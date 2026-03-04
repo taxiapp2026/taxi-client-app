@@ -1726,6 +1726,7 @@ const firebaseConfig = {
     }
 
 let lang = "el";
+try { var _sl = localStorage.getItem("appLang"); if(_sl === "en" || _sl === "el") lang = _sl; } catch(e){}
 let currentCancelledBookingId = null;  // ✅ NEW: Track cancelled booking
 
     const t = {
@@ -2971,6 +2972,7 @@ function isHomeVisible(){ return bookingForm.style.display !== "none"; }
     /* ===== Language ===== */
     window.setLang = function(l){
       lang = l;
+      try { localStorage.setItem("appLang", l); } catch(e){}
       applyLang();
 
     // ✅ SAFE ADD: when app reopens, resume last booking so client sees driver cancellation / progress
