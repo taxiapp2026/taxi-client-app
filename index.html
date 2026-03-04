@@ -4233,14 +4233,67 @@ currentBookingStatus = "new";
     window.retryBooking = retryBooking;
     window.declineRetry = declineRetry;
     window.acknowledgeAndDelete = acknowledgeAndDelete;
+    // --- AUTO CLEANUP expired folder bookings (keeps folder clean on iPhone/Safari too) ---
+    function cleanExpiredFolderBookings(){
+      try{
+        const raw = localStorage.getItem("client_folder_v1");
+        if(!raw) return;
+        let arr = [];
+        try{ arr = JSON.parse(raw) || []; }catch(e){ arr = []; }
+        if(!Array.isArray(arr) || arr.length===0) return;
+
+        const now = Date.now();
+        const THIRTY_MIN = 30 * 60 * 1000;
+
+        const toMillis = (b) => {
+          // best effort parse: supports fields like b.date / b.time or b.bookingDate / b.bookingTime
+          const d = (b && (b.date || b.bookingDate || b.day)) || "";
+          const tme = (b && (b.time || b.bookingTime || b.hour)) || "";
+          const s = (String(d).trim() + " " + String(tme).trim()).trim();
+          const ms = Date.parse(s);
+          if(!Number.isFinite(ms)){
+            // fallback: if timestamp exists
+            const ts = b && (b.ts || b.timestamp || b.createdAt || b.when);
+            const n = Number(ts);
+            return Number.isFinite(n) ? n : NaN;
+          }
+          return ms;
+        };
+
+        const filtered = arr.filter(b=>{
+          const ms = toMillis(b);
+          if(!Number.isFinite(ms)) return true; // if unknown, keep (safer)
+          return (ms + THIRTY_MIN) > now;
+        });
+
+        if(filtered.length !== arr.length){
+          localStorage.setItem("client_folder_v1", JSON.stringify(filtered));
+        }
+      }catch(e){}
+    }
+
+    // Run cleanup on load + on iOS "back/forward cache" resume
+    document.addEventListener("DOMContentLoaded", () => { cleanExpiredFolderBookings(); }, { once:true });
+    document.addEventListener("visibilitychange", () => {
+      if(!document.hidden) cleanExpiredFolderBookings();
+    });
 
     /* SUBMIT */
     bookingForm.addEventListener("submit", async (e) => {
       e.preventDefault();
 
+      // --- Prevent double submit (double booking) ---
+      if (window.__bookingSubmitLock) return;
+      window.__bookingSubmitLock = true;
+      const __submitBtns = bookingForm.querySelectorAll('button[type="submit"], input[type="submit"]');
+      __submitBtns.forEach(b=>{ try{ b.disabled = true; b.style.opacity = "0.6"; }catch(e){} });
+      // auto-unlock in case of network issues
+      setTimeout(()=>{
+        window.__bookingSubmitLock = false;
+        __submitBtns.forEach(b=>{ try{ b.disabled = false; b.style.opacity = ""; }catch(e){} });
+      }, 4000);
 
-
-      // Ensure Firebase Auth is ready before any DB access (rules require auth != null)
+// Ensure Firebase Auth is ready before any DB access (rules require auth != null)
       try {
         await ensureAuth();
       } catch (eAuth) {
