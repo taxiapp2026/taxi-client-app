@@ -1661,21 +1661,38 @@
 <!-- Firebase + App script (MODULE) -->
 <script type="module">
 
-    // ✅ QR CLEAN START: Αν ανοίγει από QR (GitHub/Browser) καθάρισε ΜΟΝΟ τα τοπικά αποθηκευμένα ραντεβού (localStorage)
-    // Δεν επηρεάζει Firebase και δεν επηρεάζει την Android εφαρμογή (άλλο storage).
-    (function(){
-      try{
-        const p = new URLSearchParams(window.location.search || "");
-        if(p.has("qrId") || p.has("sourceQrId")){
-          // disabled: keep folder on refresh
-          // localStorage.removeItem("client_folder_v1");
-          // compatibility keys (αν υπάρχουν από παλιές εκδόσεις)
-          // localStorage.removeItem("savedBookings");
-          // localStorage.removeItem("bookings");
-          // localStorage.removeItem("folderBookings");
-        }
-      }catch(e){}
-    })();
+  // QR CLEAN START (SAFE)
+  // Θέλουμε: σε νέο scan (sourceQrId) να είναι ΚΑΘΑΡΑ τα πεδία/τρέχουσα κράτηση,
+  // αλλά ο ΦΑΚΕΛΟΣ (Αποθηκευμένα Ραντεβού) να ΜΗΝ χάνεται με refresh.
+  const urlParams = new URLSearchParams(window.location.search);
+  const sourceQrId = urlParams.get("sourceQrId");
+
+  if (sourceQrId) {
+    // Καθαρίζουμε μόνο το "τρέχον booking" (ώστε να μη ξαναφορτώνει παλιά κράτηση).
+    try { localStorage.removeItem(LAST_BOOKING_KEY); } catch (e) {}
+    try { sessionStorage.removeItem(LAST_BOOKING_KEY); } catch (e) {}
+
+    // IMPORTANT: ΔΕΝ πειράζουμε τον ΦΑΚΕΛΟ
+    // try { localStorage.removeItem(FOLDER_KEY); } catch (e) {}  // <- ΟΧΙ
+
+    // Αφαιρούμε το sourceQrId από το URL ώστε σε refresh να μη ξανατρέχει το clear.
+    try { window.history.replaceState({}, document.title, window.location.pathname); } catch (e) {}
+
+    // Καθαρίζουμε οπτικά τα input πεδία (μόνο UI).
+    const clearUiInputs = () => {
+      const ids = ["nameInput","surnameInput","phoneInput","pickupInput","dateInput","timeInput","map_address","map_postalcode"];
+      ids.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.value = "";
+      });
+    };
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", clearUiInputs);
+    } else {
+      clearUiInputs();
+    }
+  }
+  // QR CLEAN END
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
     import { getDatabase, ref, push, onValue, update, get, query, orderByChild, equalTo, set } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
 
