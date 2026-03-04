@@ -847,18 +847,6 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-
-<script>
-(function(){
-  try{
-    const params = new URLSearchParams(window.location.search);
-    if(params.has("sourceQrId") || params.has("scan")){
-      localStorage.removeItem("client_folder_v1");
-    }
-  }catch(e){}
-})();
-</script>
-
 </head>
 
 <body>
@@ -1678,12 +1666,14 @@
     (function(){
       try{
         const p = new URLSearchParams(window.location.search || "");
-        if(p.has("qrId") || p.has("sourceQrId")){
+        if((p.has("qrId") || p.has("sourceQrId")) && sessionStorage.getItem("qr_clean_done") !== "1"){
+          // Καθαρισμός ΜΟΝΟ μία φορά ανά tab/session (ώστε στο refresh να ΜΗΝ σβήνει ο φάκελος)
           localStorage.removeItem("client_folder_v1");
           // compatibility keys (αν υπάρχουν από παλιές εκδόσεις)
           localStorage.removeItem("savedBookings");
           localStorage.removeItem("bookings");
           localStorage.removeItem("folderBookings");
+          sessionStorage.setItem("qr_clean_done", "1");
         }
       }catch(e){}
     })();
@@ -5506,3 +5496,4 @@ async function routeKm(fromLat, fromLon){
 
 </body>
 </html>
+
