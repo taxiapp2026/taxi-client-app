@@ -1660,6 +1660,21 @@
 
 <!-- Firebase + App script (MODULE) -->
 <script type="module">
+
+    // ✅ QR CLEAN START: Αν ανοίγει από QR (GitHub/Browser) καθάρισε ΜΟΝΟ τα τοπικά αποθηκευμένα ραντεβού (localStorage)
+    // Δεν επηρεάζει Firebase και δεν επηρεάζει την Android εφαρμογή (άλλο storage).
+    (function(){
+      try{
+        const p = new URLSearchParams(window.location.search || "");
+        if(p.has("qrId") || p.has("sourceQrId")){
+          localStorage.removeItem("client_folder_v1");
+          // compatibility keys (αν υπάρχουν από παλιές εκδόσεις)
+          localStorage.removeItem("savedBookings");
+          localStorage.removeItem("bookings");
+          localStorage.removeItem("folderBookings");
+        }
+      }catch(e){}
+    })();
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
     import { getDatabase, ref, push, onValue, update, get, query, orderByChild, equalTo, set } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
 
@@ -5479,4 +5494,3 @@ async function routeKm(fromLat, fromLon){
 
 </body>
 </html>
-
