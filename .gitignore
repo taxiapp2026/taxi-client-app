@@ -13,3 +13,11 @@
 .externalNativeBuild
 .cxx
 local.properties
+keystore.properties
+*.jks
+*.keystore
+*.p8
+*.p12
+*.mobileprovision
+AuthKey_*.p8
+.secrets/
