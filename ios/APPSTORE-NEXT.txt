@@ -2,17 +2,12 @@ Taxi and Fly — iOS Client (App Store)
 
 Bundle ID: com.taxiandfly.client
 Όνομα: Taxi and Fly
-Έκδοση: 1.0.31 (build θα γίνει 34 από το Codemagic)
+Έκδοση: 1.0.30 (νέο build από Codemagic, πάνω από 33)
 Apple ID εφαρμογής: 6804729201
 Team ID: 4R4KZSBJ64
 Enrollment ID: 32HB3TFD8P
 Email: ioannestrantalides@gmail.com
 
-ΚΑΤΑΣΤΑΣΗ: 1.0.30 (build 33) απορρίφθηκε 28/08/2026 — Guideline 4 Design.
-Αιτία: τα μηνύματα αδειών (τοποθεσία / μικρόφωνο / αναγνώριση ομιλίας) ήταν μόνο στα ελληνικά,
-ενώ η εφαρμογή έχει English localization. Το 1.0.31 έχει αγγλικά κείμενα ως default
-και ελληνικά στο el.lproj.
-
-Νέο build
-1. Push στο branch ios-appstore → το Codemagic φτιάχνει IPA και το ανεβάζει στο App Store Connect.
-2. App Store Connect → νέα έκδοση 1.0.31 → επιλογή του νέου build → Add for Review → Submit.
+ΚΑΤΑΣΤΑΣΗ: 1.0.30 απορρίφθηκε 28/08/2026 — Guideline 4 Design.
+Δεν γίνεται νέα έκδοση 1.0.31 όσο η 1.0.30 είναι REJECTED.
+Στέλνουμε νέο build της ΙΔΙΑΣ 1.0.30 με αγγλικά κείμενα αδειών.
