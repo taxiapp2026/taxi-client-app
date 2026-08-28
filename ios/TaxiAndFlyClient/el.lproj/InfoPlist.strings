@@ -1,0 +1,4 @@
+/* Greek — shown when the device language is Greek. */
+"NSLocationWhenInUseUsageDescription" = "Χρησιμοποιείται για να βρει ο οδηγός τη θέση παραλαβής σας.";
+"NSMicrophoneUsageDescription" = "Χρησιμοποιείται για φωνητική εισαγωγή στο chat με τον οδηγό.";
+"NSSpeechRecognitionUsageDescription" = "Χρησιμοποιείται για φωνητική εισαγωγή στο chat με τον οδηγό.";
