@@ -3347,7 +3347,15 @@
     }
 
 let lang = "el";
-try { var _sl = localStorage.getItem("appLang"); if(_sl === "en" || _sl === "el") lang = _sl; } catch(e){}
+try {
+  var _sl = localStorage.getItem("appLang");
+  if(_sl === "en" || _sl === "el") {
+    lang = _sl;
+  } else {
+    var _nav = String(navigator.language || navigator.userLanguage || "").toLowerCase();
+    if(_nav.indexOf("en") === 0) lang = "en";
+  }
+} catch(e){}
 window.lang = lang;
 let currentCancelledBookingId = null;  // ✅ NEW: Track cancelled booking
 let retryLoopBookingId = null;
@@ -6190,6 +6198,19 @@ function isHomeVisible(){ return bookingForm.style.display !== "none"; }
       try{ if(typeof _updateClientChatUiLabels === 'function') _updateClientChatUiLabels(); }catch(e){}
 
       pickupIn.placeholder = (lang==="en") ? "Pickup location" : "Από πού";
+      try{
+        var _hhEmpty = document.querySelector('#time_hour option[value=""]');
+        if(_hhEmpty) _hhEmpty.textContent = (lang==="en") ? "HH" : "ΩΩ";
+        var _mmEmpty = document.querySelector('#time_minute option[value=""]');
+        if(_mmEmpty) _mmEmpty.textContent = (lang==="en") ? "MM" : "ΛΛ";
+      }catch(e){}
+      try{
+        var _atTitle = document.querySelector('#airportTopBar .airport-title');
+        var _atSub = document.querySelector('#airportTopBar .airport-sub');
+        if(_atTitle) _atTitle.textContent = (lang==="en") ? "✈ AIRPORT" : "✈ ΑΕΡΟΔΡΟΜΙΟ";
+        if(_atSub) _atSub.textContent = (lang==="en") ? "TO" : "ΠΡΟΣ";
+      }catch(e){}
+      try{ if(typeof window.applyAirportDestinationMode === 'function') window.applyAirportDestinationMode(); }catch(e){}
 
       if(lang==="en"){
 
@@ -11896,6 +11917,10 @@ async function routeKm(fromLat, fromLon){
           try{ window.setLang(lang); }catch(e){}
         }
       };
+      try {
+        var _bootLang = String(window.lang || localStorage.getItem('appLang') || 'el').toLowerCase();
+        window.routeChoiceLang(_bootLang === 'en' ? 'en' : 'el', true);
+      } catch(e) {}
     })();
 </script>
 
@@ -11905,20 +11930,28 @@ async function routeKm(fromLat, fromLon){
       function applyAirportDestinationMode(mode){
         var currentMode = mode || null;
         try { currentMode = currentMode || sessionStorage.getItem("clientRouteMode") || localStorage.getItem("clientRouteMode"); } catch(e) {}
+        var en = false;
+        try {
+          en = String(window.lang || localStorage.getItem("appLang") || "el").toLowerCase() === "en";
+        } catch(e) {}
 
         var airportTopBar = document.getElementById("airportTopBar");
         var pickupLabel = document.getElementById("l_pickup");
         var airportText = document.getElementById("airportText");
+        var atTitle = document.querySelector("#airportTopBar .airport-title");
+        var atSub = document.querySelector("#airportTopBar .airport-sub");
+        if(atTitle) atTitle.textContent = en ? "✈ AIRPORT" : "✈ ΑΕΡΟΔΡΟΜΙΟ";
+        if(atSub) atSub.textContent = en ? "TO" : "ΠΡΟΣ";
 
         if(currentMode === "airport_athens"){
           if(airportTopBar) airportTopBar.style.display = "block";
-          if(pickupLabel) pickupLabel.innerText = "Προορισμός";
+          if(pickupLabel) pickupLabel.innerText = en ? "Destination" : "Προορισμός";
           if(airportText) airportText.style.display = "none";
           var flightWrap = document.getElementById("flightWrap");
           if(flightWrap) flightWrap.style.display = "";
         } else {
           if(airportTopBar) airportTopBar.style.display = "none";
-          if(pickupLabel) pickupLabel.innerText = "Σημείο Παραλαβής";
+          if(pickupLabel) pickupLabel.innerText = en ? "Pickup Location" : "Σημείο Παραλαβής";
           if(airportText) airportText.style.display = "";
           var flightWrap = document.getElementById("flightWrap");
           if(flightWrap) flightWrap.style.display = "none";
