@@ -32,6 +32,8 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         if #available(iOS 14.0, *) {
             config.limitsNavigationsToAppBoundDomains = false
         }
+        config.preferences.setValue(true, forKey: "allowFileAccessFromFileURLs")
+        config.setValue(true, forKey: "allowUniversalAccessFromFileURLs")
 
         let wv = WKWebView(frame: view.bounds, configuration: config)
         wv.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -40,6 +42,8 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         wv.scrollView.keyboardDismissMode = .interactive
         wv.scrollView.contentInsetAdjustmentBehavior = .never
         wv.scrollView.bounces = false
+        wv.scrollView.delaysContentTouches = false
+        wv.scrollView.canCancelContentTouches = false
         wv.isOpaque = false
         wv.backgroundColor = .black
         view.addSubview(wv)
