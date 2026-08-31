@@ -73,6 +73,14 @@ enum VpsPush {
         lastKey = ""
     }
 
+    static func markSeen(bookingId: String, status: String) {
+        let id = bookingId.trimmingCharacters(in: .whitespacesAndNewlines)
+        let st = status.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        guard !id.isEmpty, !st.isEmpty else { return }
+        if watchedId == nil { watchedId = id }
+        lastKey = "\(id):\(st)"
+    }
+
     static func localNotify(title: String, body: String, id: String) {
         let center = UNUserNotificationCenter.current()
         let deliver = {

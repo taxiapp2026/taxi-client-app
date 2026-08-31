@@ -79,9 +79,12 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         case "showKeyboard":
             webView.becomeFirstResponder()
         case "showLocalNotification":
+            guard UIApplication.shared.applicationState != .active else { return }
             DispatchQueue.main.async {
                 VpsPush.localNotify(title: self.str(args, 0), body: self.str(args, 1), id: "local_\(Int(Date().timeIntervalSince1970))")
             }
+        case "markBookingSeen":
+            VpsPush.markSeen(bookingId: str(args, 0), status: str(args, 1))
         case "cancelNotification":
             UNCenter.remove(id: str(args, 0))
         case "cancelDriverArrivedNotification", "cancelAllNotifications":
@@ -169,6 +172,7 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         cancelDriverArrivedNotification: function(){ call('cancelDriverArrivedNotification',[]); },
         cancelAllNotifications: function(){ call('cancelAllNotifications',[]); },
         showLocalNotification: function(t,b){ call('showLocalNotification',[t,b]); },
+        markBookingSeen: function(id,st){ call('markBookingSeen',[id,st]); },
         scheduleClientUnconfirmedCheck: function(id,d,t){ call('scheduleClientUnconfirmedCheck',[id,d,t]); },
         watchBookingForNotifications: function(id){ call('watchBookingForNotifications',[id]); },
         cancelClientUnconfirmedCheck: function(){ call('cancelClientUnconfirmedCheck',[]); },
