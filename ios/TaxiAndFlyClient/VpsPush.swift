@@ -39,19 +39,31 @@ enum VpsPush {
             watchedId = id
             lastKey = ""
         }
+        // Do not poll while the app is open — JS already listens live.
+        // Polling /rtdb/bookings every 6s starved in-app chat and status.
+    }
+
+    static func startBackgroundPoll() {
+        guard watchedId != nil else { return }
         DispatchQueue.main.async {
             timer?.invalidate()
-            timer = Timer.scheduledTimer(withTimeInterval: 6, repeats: true) { _ in poll() }
-            RunLoop.main.add(timer!, forMode: .common)
+            timer = Timer.scheduledTimer(withTimeInterval: 8, repeats: true) { _ in poll() }
+            if let timer {
+                RunLoop.main.add(timer, forMode: .common)
+            }
             poll()
         }
     }
 
-    static func stopWatch() {
+    static func pauseBackgroundPoll() {
         DispatchQueue.main.async {
             timer?.invalidate()
             timer = nil
         }
+    }
+
+    static func stopWatch() {
+        pauseBackgroundPoll()
         watchedId = nil
         lastKey = ""
     }
@@ -120,14 +132,8 @@ enum VpsPush {
         guard notifyStatuses.contains(st) else { return }
         lastKey = key
         let pair = message(for: st)
-        localNotify(title: pair.0, body: pair.1, id: "booking_\(id)_\(st)")
-        let jsSt = st.replacingOccurrences(of: "\\", with: "\\\\").replacingOccurrences(of: "\"", with: "\\\"")
-        let jsId = id.replacingOccurrences(of: "\\", with: "\\\\").replacingOccurrences(of: "\"", with: "\\\"")
         DispatchQueue.main.async {
-            webView?.evaluateJavaScript(
-                "if(typeof window.__iosNotifyBooking==='function'){window.__iosNotifyBooking(\"\(jsSt)\",\"\(jsId)\");}",
-                completionHandler: nil
-            )
+            localNotify(title: pair.0, body: pair.1, id: "booking_\(id)_\(st)")
         }
     }
 

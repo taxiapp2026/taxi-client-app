@@ -29,6 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         VpsPush.setApnsToken(deviceToken)
     }
 
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        VpsPush.startBackgroundPoll()
+    }
+
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        VpsPush.pauseBackgroundPoll()
+    }
+
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         willPresent notification: UNNotification,

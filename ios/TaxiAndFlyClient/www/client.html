@@ -11938,6 +11938,7 @@ async function routeKm(fromLat, fromLon){
           st = String(st || '').toLowerCase();
           id = String(id || '');
           if(!st || !window.ClientBridge || !ClientBridge.showLocalNotification) return;
+          if(document.visibilityState === 'visible') return;
           var key = st + ':' + id;
           if(window.__lastIosNotif === key) return;
           window.__lastIosNotif = key;

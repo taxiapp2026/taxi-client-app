@@ -79,10 +79,14 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         case "showKeyboard":
             webView.becomeFirstResponder()
         case "showLocalNotification":
-            VpsPush.localNotify(title: str(args, 0), body: str(args, 1), id: "local_\(Int(Date().timeIntervalSince1970))")
+            DispatchQueue.main.async {
+                VpsPush.localNotify(title: self.str(args, 0), body: self.str(args, 1), id: "local_\(Int(Date().timeIntervalSince1970))")
+            }
         case "cancelNotification":
             UNCenter.remove(id: str(args, 0))
-        case "cancelDriverArrivedNotification", "cancelAllNotifications", "cancelClientUnconfirmedCheck":
+        case "cancelDriverArrivedNotification", "cancelAllNotifications":
+            UNCenter.removeAll()
+        case "cancelClientUnconfirmedCheck":
             UNCenter.removeAll()
             VpsPush.stopWatch()
         case "scheduleClientUnconfirmedCheck", "watchBookingForNotifications":
