@@ -155,11 +155,17 @@
           var terms=document.getElementById('clientTermsOverlayV1');
           if(terms) terms.style.display='none';
         }
+        var _en=false;
+        try{ _en=String(window.lang||localStorage.getItem('appLang')||'el').toLowerCase()==='en'; }catch(e){}
+        var _atTitle=document.querySelector('#airportTopBar .airport-title');
+        var _atSub=document.querySelector('#airportTopBar .airport-sub');
+        if(_atTitle) _atTitle.textContent=_en?'✈ AIRPORT':'✈ ΑΕΡΟΔΡΟΜΙΟ';
+        if(_atSub) _atSub.textContent=_en?'TO':'ΠΡΟΣ';
         if(type==='airport_athens'){
           var airportTopBar=document.getElementById('airportTopBar');
           if(airportTopBar) airportTopBar.style.display='block';
           var pickupLabel=document.getElementById('l_pickup');
-          if(pickupLabel) pickupLabel.innerText='Προορισμός';
+          if(pickupLabel) pickupLabel.innerText=_en?'Destination':'Προορισμός';
           var airportText=document.getElementById('airportText');
           if(airportText) airportText.style.display='none';
           var flightWrap=document.getElementById('flightWrap');
@@ -168,7 +174,7 @@
           var airportTopBar2=document.getElementById('airportTopBar');
           if(airportTopBar2) airportTopBar2.style.display='none';
           var pickupLabel2=document.getElementById('l_pickup');
-          if(pickupLabel2) pickupLabel2.innerText='Σημείο Παραλαβής';
+          if(pickupLabel2) pickupLabel2.innerText=_en?'Pickup Location':'Σημείο Παραλαβής';
           var airportText2=document.getElementById('airportText');
           if(airportText2) airportText2.style.display='';
           var flightWrap2=document.getElementById('flightWrap');
@@ -189,7 +195,10 @@
       window.__pickClientRoute=function(type){
         window.__routeChoiceActive=false;
         window.__applyRouteModeUI(type);
-        if(typeof window.applyAirportDestinationMode==='function') window.applyAirportDestinationMode(type);
+        try{
+          if(typeof window.applyLang==='function') window.applyLang();
+          else if(typeof window.applyAirportDestinationMode==='function') window.applyAirportDestinationMode(type);
+        }catch(e){}
         if(typeof window.__clientFixHomeUI==='function') window.__clientFixHomeUI();
         if(window.__needsClientTerms()){
           window.__showTermsAfterRoute();
@@ -6153,6 +6162,13 @@ function isHomeVisible(){ return bookingForm.style.display !== "none"; }
     };
 
     function applyLang(){
+      try {
+        var _cur = window.lang || localStorage.getItem('appLang');
+        if(_cur === 'en' || _cur === 'el'){
+          lang = _cur;
+          window.lang = _cur;
+        }
+      } catch(e){}
       titleEl.innerHTML = '<span style="color:#FFD700;">Taxi</span> <span style="color:#fff;">and Fly</span>';
       titleEl.className = (lang==="el") ? "el-text" : "en-text";
       bookingForm.className = resultEl.className = (lang==="el") ? "el-text" : "en-text";
@@ -6269,8 +6285,15 @@ function isHomeVisible(){ return bookingForm.style.display !== "none"; }
       }
 
       document.getElementById("folderBtn").innerHTML = t[lang].folderBtn;
+      try{
+        var _ft = document.getElementById("folderTitle");
+        if(_ft) _ft.textContent = t[lang].folderTitle;
+        var _fc = document.getElementById("folderClose");
+        if(_fc) _fc.textContent = t[lang].folderClose;
+      }catch(e){}
       try{ if(typeof window.__applyGdprLang === 'function') window.__applyGdprLang(lang); }catch(e){}
     }
+    window.applyLang = applyLang;
 
     applyLang();
 
@@ -10508,7 +10531,9 @@ async function routeKm(fromLat, fromLon){
     }
 
     function uiText(key){
-      if(lang==="en"){
+      var isEn=false;
+      try{ isEn=String((typeof lang!=='undefined'?lang:'')||window.lang||localStorage.getItem('appLang')||'el').toLowerCase()==='en'; }catch(e){}
+      if(isEn){
         const en = {
           title:"Estimated fare",
           note:"The final fare will be within this range.",
@@ -10541,10 +10566,12 @@ async function routeKm(fromLat, fromLon){
     }
 
     function refreshOverlayText(){
+      var isEn=false;
+      try{ isEn=String((typeof lang!=='undefined'?lang:'')||window.lang||localStorage.getItem('appLang')||'el').toLowerCase()==='en'; }catch(e){}
       priceOverlayTitle.textContent = uiText("title");
       priceOverlayNote.textContent  = uiText("note");
-      priceFromLabel.textContent    = (lang==="en") ? "FROM" : "ΑΠΟ";
-      priceToLabel.textContent      = (lang==="en") ? "TO" : "ΠΡΟΣ";
+      priceFromLabel.textContent    = isEn ? "FROM" : "ΑΠΟ";
+      priceToLabel.textContent      = isEn ? "TO" : "ΠΡΟΣ";
 
       try{
         const iconFrom = document.querySelector(".price-route-icon.from");
