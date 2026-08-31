@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="el">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -71,6 +71,193 @@
           var _rm=localStorage.getItem('clientRouteMode');
           if(_rm==='athens_airport'||_rm==='airport_athens') document.documentElement.className='client-route-restored';
         }catch(e){}
+        window.__readAppLang=function(){
+          try{
+            var s=localStorage.getItem('appLang');
+            if(s==='en'||s==='el') return s;
+            var n=String(navigator.language||navigator.userLanguage||'').toLowerCase();
+            if(n.indexOf('en')===0) return 'en';
+          }catch(e){}
+          return 'el';
+        };
+        window.__isEn=function(){
+          try{
+            return String(window.lang||localStorage.getItem('appLang')||window.__readAppLang()||'el').toLowerCase()==='en';
+          }catch(e){ return false; }
+        };
+        window.__airportFromLabel=function(pickup){
+          var en=window.__isEn();
+          var p=String(pickup||'').trim();
+          if(p) return en?('From Airport to '+p):('Από Αεροδρόμιο προς '+p);
+          return en?'From Airport':'Από Αεροδρόμιο';
+        };
+        window.__displayRouteLabel=function(route, pickup, mode){
+          var en=window.__isEn();
+          var txt=String(route||pickup||'').trim();
+          var m=String(mode||'').trim();
+          var low=txt.toLowerCase();
+          var isAA=m==='airport_athens'||txt.indexOf('Από Αεροδρόμιο')===0||low.indexOf('from airport')===0||txt.indexOf('✈')===0;
+          if(isAA){
+            var dest=String(pickup||'').trim();
+            if(!dest){
+              if(/προς\s+/i.test(txt)) dest=txt.split(/προς\s+/i).slice(1).join('προς ').trim();
+              else if(/^from airport to /i.test(txt)) dest=txt.replace(/^from airport to /i,'').trim();
+              else if(txt.indexOf('→')>=0) dest=txt.split('→').slice(1).join('→').trim();
+            }
+            return window.__airportFromLabel(dest);
+          }
+          var addr=txt;
+          if(txt.indexOf('→')>=0) addr=txt.split('→')[0].trim();
+          if(addr) return addr+' → ✈ '+(en?'Airport':'Αεροδρόμιο');
+          return en?'Pickup → Airport':'Παραλαβή → Αεροδρόμιο';
+        };
+        window.__paintLang=function(forced){
+          var l=(forced==='en'||forced==='el')?forced:window.__readAppLang();
+          window.lang=l;
+          try{ localStorage.setItem('appLang',l); }catch(e){}
+          try{ document.documentElement.lang=l==='en'?'en':'el'; }catch(e){}
+          var en=l==='en';
+          function txt(id,enT,elT){ var e=document.getElementById(id); if(e) e.textContent=en?enT:elT; }
+          function ph(id,enT,elT){ var e=document.getElementById(id); if(e) e.placeholder=en?enT:elT; }
+          txt('routeWelcomeText','Welcome to Taxi and Fly','Καλώς ήρθατε στο Taxi and Fly');
+          txt('routeAthensBtn','From Athens to Airport','Από Αθήνα προς Αεροδρόμιο');
+          txt('routeAirportBtn','From Airport to Athens','Από Αεροδρόμιο προς Αθήνα');
+          txt('clientBuildBadge','Version 3.0 VPS ✓','Έκδοση 3.0 VPS ✓');
+          txt('l_name','First Name','Όνομα');
+          txt('l_surname','Last Name','Επίθετο');
+          txt('l_phone','Phone','Τηλέφωνο');
+          txt('l_people','Passengers','Πόσα άτομα');
+          txt('l_date','Date','Ημερομηνία');
+          txt('l_time','Time','Ώρα');
+          txt('l_flightNum','Flight Number','Αριθμός Πτήσης');
+          txt('lbl_countrycode','🌍 Country Code','🌍 Κωδικός Χώρας');
+          txt('lbl_phonenumber','📞 Phone Number','📞 Αριθμός Τηλεφώνου');
+          txt('lbl_customcc','✏️ Enter code (e.g. +46)','✏️ Γράψε τον κωδικό (π.χ. +46)');
+          txt('airportText','→ ✈ Airport','→ ✈ Αεροδρόμιο');
+          txt('twoTaxiForm','⚠ 2 taxis required','⚠ Απαιτούνται 2 ταξί');
+          txt('airportNowAutoBtn','NOW','ΤΩΡΑ');
+          txt('airportNowAutoHint','AUTOMATIC DATE & TIME','ΑΥΤΟΜΑΤΑ ΩΡΑ & ΗΜΕΡΟΜΗΝΙΑ');
+          txt('pickupMapTitle','Enter address','Βάλε διεύθυνση');
+          txt('l_map_address','Address','Διεύθυνση');
+          txt('l_map_city','City','Πόλη');
+          txt('l_map_number','Number','Αριθμός');
+          txt('l_map_postalcode','Postal Code','ΤΚ');
+          txt('pickupMapClose','Back','Πίσω');
+          txt('pickupMapHint','📍 Move the pin to the exact pickup point and tap OK.','📍 Μετακίνησε την πινέζα στο ακριβές σημείο και πάτα OK.');
+          ph('pickup', 'Pickup location', 'Από πού');
+          ph('flightNum', 'e.g. A3 620', 'π.χ. A3 620');
+          ph('map_address', 'Address', 'Διεύθυνση');
+          ph('map_city', 'City', 'Πόλη');
+          ph('map_number', 'No.', 'Αρ.');
+          ph('map_postalcode', 'Postal Code', 'ΤΚ');
+          ph('pickupMapSearch', 'Type street/hotel (e.g. Piraeus Port)', 'Γράψε οδό/ξενοδοχείο (π.χ. Λιμάνι Πειραιά)');
+          try{
+            var hh=document.querySelector('#time_hour option[value=""]');
+            if(hh) hh.textContent=en?'HH':'ΩΩ';
+            var mm=document.querySelector('#time_minute option[value=""]');
+            if(mm) mm.textContent=en?'MM':'ΛΛ';
+          }catch(e){}
+          try{
+            var atTitle=document.querySelector('#airportTopBar .airport-title');
+            var atSub=document.querySelector('#airportTopBar .airport-sub');
+            if(atTitle) atTitle.textContent=en?'✈ AIRPORT':'✈ ΑΕΡΟΔΡΟΜΙΟ';
+            if(atSub) atSub.textContent=en?'TO':'ΠΡΟΣ';
+          }catch(e){}
+          try{
+            var fb=document.getElementById('folderBtn');
+            if(fb) fb.innerHTML=en?"<span style='font-size:20px'>📁</span> Folder":"<span style='font-size:20px'>📁</span> Φάκελος";
+            var ft=document.getElementById('folderTitle');
+            if(ft) ft.textContent=en?'Saved Appointments':'Αποθηκευμένα Ραντεβού';
+            var fc=document.getElementById('folderClose');
+            if(fc) fc.textContent=en?'Close':'Κλείσιμο';
+          }catch(e){}
+          try{
+            var mode=window._clientRouteMode||sessionStorage.getItem('clientRouteMode')||localStorage.getItem('clientRouteMode');
+            var pickup=document.getElementById('l_pickup');
+            if(pickup) pickup.textContent=(mode==='airport_athens')?(en?'Destination':'Προορισμός'):(en?'Pickup Location':'Σημείο Παραλαβής');
+          }catch(e){}
+          txt('routeMapHint','👆 Tap a route to select','👆 Πάτα διαδρομή για επιλογή');
+          txt('routeSelectorLabel','🛣️ SELECT ROUTE','🛣️ ΕΠΙΛΕΞΕ ΔΙΑΔΡΟΜΗ');
+          txt('priceEstLabel','ESTIMATED FARE','ΕΚΤΙΜΩΜΕΝΟ ΚΟΣΤΟΣ');
+          txt('cancelTitle','Cancel Appointment','Ακύρωση Ραντεβού');
+          txt('cancelMessage','Are you sure you want to cancel this appointment?','Θέλετε σίγουρα να ακυρώσετε αυτό το ραντεβού;');
+          txt('cancelBtnNoText','No, Keep it','Όχι, Κράτησε');
+          txt('cancelBtnYesText','Yes, Cancel','Ναι, Ακύρωση');
+          txt('cancelYesBtn','YES','ΝΑΙ');
+          txt('cancelNoBtn','NO','ΟΧΙ');
+          txt('lbCloseHint','Tap anywhere to close','Πάτα οπουδήποτε για κλείσιμο');
+          txt('caTitle','Notice','Ενημέρωση');
+          txt('nsTitle','Booking Cancellation','Ακύρωση Κράτησης');
+          txt('nsReasonLabel','Please tell us the reason:','Παρακαλούμε πείτε μας τον λόγο:');
+          txt('nsReason1','😴 Did not wake up','😴 Δεν ξύπνησα');
+          txt('nsReason2','🚗 Was at wrong location','🚗 Ήμουν στο λάθος σημείο');
+          txt('nsReason3','⏰ Was late','⏰ Άργησα');
+          txt('nsReason4','❓ Other reason','❓ Άλλος λόγος');
+          ph('nsOtherText','Write the reason here...','Γράψτε τον λόγο εδώ...');
+          txt('nsSubmitBtn','📤 Submit','📤 Υποβολή');
+          txt('nsOkBtn','OK, Got it','ΟΚ, Κατάλαβα');
+          txt('tripCompletedTitle','Your trip was completed successfully!','Η διαδρομή σας πραγματοποιήθηκε επιτυχώς!');
+          txt('dwCallBtn','📞 Call','📞 Κλήση');
+          txt('dwWhatsAppBtn','📱 WhatsApp','📱 WhatsApp');
+          txt('dwSmsBtn','✉️ Message','✉️ Μήνυμα');
+          txt('dwChatBtn','💬 Chat with Driver','💬 Chat με Οδηγό');
+          txt('clientChatBackBtn','Back','Πίσω');
+          txt('clientChatTitle','Chat with Driver','Συνομιλία με Οδηγό');
+          ph('clientChatInput','Type a message...','Γράψε μήνυμα...');
+          try{
+            var nsBody=document.getElementById('nsBody');
+            if(nsBody) nsBody.innerHTML=en
+              ?'⚠️ Your driver arrived at the pickup point and waited, but you were not there.<br><br>Please respect the driver\'s time and be punctual. Trust is the basis of our cooperation.'
+              :'⚠️ Ο οδηγός σας έφτασε στο σημείο παραλαβής και σας περίμενε, αλλά δεν ήσασταν εκεί.<br><br>Σας παρακαλούμε να σέβεστε τον χρόνο του οδηγού και να είστε συνεπείς στις κρατήσεις σας. Η εμπιστοσύνη είναι η βάση της συνεργασίας μας.';
+          }catch(e){}
+          try{
+            var tcBody=document.getElementById('tripCompletedBody');
+            if(tcBody) tcBody.innerHTML=en
+              ?'Thank you for choosing our app.<br>If you like, tell us how the trip and driver were.'
+              :'Σας ευχαριστούμε που επιλέξατε την εφαρμογή μας.<br>Αν θέλετε, γράψτε πώς ήταν η διαδρομή και ο οδηγός.';
+            var tcFb=document.getElementById('tripCompletedFeedback');
+            if(tcFb) tcFb.placeholder=en?'Optional: comment about the trip / driver…':'Προαιρετικά: σχόλιο για τη διαδρομή / τον οδηγό…';
+          }catch(e){}
+          try{
+            var tollName=document.querySelector('#routeBtnToll .route-btn-name');
+            if(tollName) tollName.innerHTML=en?'Attiki Odos <span style="font-size:11px;opacity:.7;">(with tolls)</span>':'Αττική Οδός <span style="font-size:11px;opacity:.7;">(με διόδια)</span>';
+            var notollName=document.querySelector('#routeBtnNotoll .route-btn-name');
+            if(notollName) notollName.textContent=en?'Without tolls':'Χωρίς διόδια';
+          }catch(e){}
+          try{
+            var te=document.getElementById('termsEl');
+            var tn=document.getElementById('termsEn');
+            var tEl=document.getElementById('termsFlagEl');
+            var tEn=document.getElementById('termsFlagEn');
+            var termsL=window.__termsLang||l;
+            if(te) te.style.display=termsL==='en'?'none':'block';
+            if(tn) tn.style.display=termsL==='en'?'block':'none';
+            if(tEl) tEl.style.opacity=termsL==='en'?'0.4':'1';
+            if(tEn) tEn.style.opacity=termsL==='en'?'1':'0.4';
+          }catch(e){}
+          try{ if(typeof window.__syncPriceBtnLang==='function') window.__syncPriceBtnLang(l); }catch(e){}
+          try{ if(typeof window.updateAirportNowAutoButton==='function') window.updateAirportNowAutoButton(); }catch(e){}
+        };
+        try{
+          window.lang=window.__readAppLang();
+          document.documentElement.lang=window.lang==='en'?'en':'el';
+        }catch(e){}
+        try{
+          if(document.readyState==='loading'){
+            document.addEventListener('DOMContentLoaded', function(){ try{ window.__paintLang(); }catch(e){} });
+          }
+        }catch(e){}
+        window.routeChoiceLang=function(lang, skipSetLang){
+          var l=String(lang).toLowerCase()==='en'?'en':'el';
+          try{ window.__termsLang=l; }catch(e){}
+          window.__paintLang(l);
+          if(!skipSetLang && typeof window.setLang==='function' && window.setLang!==window.routeChoiceLang){
+            try{ window.setLang(l); }catch(e){}
+          }
+        };
+        window.setLang=function(l){
+          window.__paintLang(String(l).toLowerCase()==='en'?'en':'el');
+        };
         window.__priceBtnLabel=function(){
           var lang='el'; try{lang=window.lang||localStorage.getItem('appLang')||'el';}catch(x){}
           return (lang==='en')?'Show price':'Δείξε τιμή';
@@ -313,11 +500,13 @@
         window.__termsAccepted();
       }, {capture:true, passive:false});
       document.addEventListener('DOMContentLoaded', function(){
+        try{ if(typeof window.__paintLang==='function') window.__paintLang(); }catch(e){}
         try{
           if(window.__routeChoiceActive) return;
           var m=sessionStorage.getItem('clientRouteMode')||localStorage.getItem('clientRouteMode');
           if(m==='athens_airport'||m==='airport_athens') window.__applyRouteModeUI(m);
         }catch(e){}
+        try{ if(typeof window.applyLang==='function') window.applyLang(); }catch(e){}
       });
     </script>
 
@@ -1983,12 +2172,13 @@
         <span style="color:#FFD700;">Taxi</span> <span style="color:#fff;">and Fly</span>
     </div>
 
-    <div id="routeWelcomeText">Καλώς ήρθατε στο Taxi and Fly</div>
-    <div id="clientBuildBadge" style="font-size:11px;color:#c9ab00;opacity:0.9;margin:-18px 0 20px;font-weight:700;">Έκδοση 3.0 VPS ✓</div>
+    <div id="routeWelcomeText">Welcome to Taxi and Fly</div>
+    <div id="clientBuildBadge" style="font-size:11px;color:#c9ab00;opacity:0.9;margin:-18px 0 20px;font-weight:700;">Version 3.0 VPS ✓</div>
 
-    <button type="button" class="routeChoiceBtn" id="routeAthensBtn" onclick="selectClientRoute('athens_airport')">Από Αθήνα προς Αεροδρόμιο</button>
-    <button type="button" class="routeChoiceBtn" id="routeAirportBtn" onclick="selectClientRoute('airport_athens')">Από Αεροδρόμιο προς Αθήνα</button>
+    <button type="button" class="routeChoiceBtn" id="routeAthensBtn" onclick="selectClientRoute('athens_airport')">From Athens to Airport</button>
+    <button type="button" class="routeChoiceBtn" id="routeAirportBtn" onclick="selectClientRoute('airport_athens')">From Airport to Athens</button>
 </div>
+<script>try{ window.__paintLang(); }catch(e){}</script>
 <!-- ===== END ROUTE CHOICE SCREEN ===== -->
 <!-- === CLIENT TERMS (v1) — top of body === -->
 <div id="clientTermsOverlayV1" style="display:none;">
@@ -2091,10 +2281,10 @@
         <button id="gdprDeleteBtn" type="button"
                 onclick="event.stopPropagation(); window.requestDataDeletion();"
                 style="width:100%; padding:12px; border:1px solid #a11; border-radius:14px; background:#1a0d0d; color:#ff8a8a; font-size:15px; font-weight:700; cursor:pointer;">
-            🗑️ <span id="gdprDeleteBtnText">Διαγραφή των στοιχείων μου</span>
+            🗑️ <span id="gdprDeleteBtnText">Delete my data</span>
         </button>
         <div id="gdprHint" style="max-width:480px; margin:8px auto 0 auto; font-size:12px; color:#aaa; text-align:center;">
-            Διαγράφει πλήρως τα στοιχεία σου από την εφαρμογή και τον server.<br>
+            Permanently deletes your data from the app and the server.<br>
             GDPR: <a href="#" onclick="return window.__openGdprEmail();" style="color:#8cf;">taxiandfly.privacy@gmail.com</a>
         </div>
     </div>
@@ -2372,8 +2562,8 @@
         <div class="booking-info" id="cancelledBookingInfo"></div>
 
         <div id="cancellationBtns" style="display:flex;gap:10px;margin-top:16px;">
-            <button onclick="retryBooking()" id="cancelYesBtn" style="flex:1;background:#28a745;font-weight:bold;">ΝΑΙ</button>
-            <button onclick="declineRetry()" id="cancelNoBtn" style="flex:1;background:#dc3545;font-weight:bold;">ΟΧΙ</button>
+            <button onclick="retryBooking()" id="cancelYesBtn" style="flex:1;background:#28a745;font-weight:bold;">YES</button>
+            <button onclick="declineRetry()" id="cancelNoBtn" style="flex:1;background:#dc3545;font-weight:bold;">NO</button>
         </div>
     </div>
 </div>
@@ -2381,8 +2571,8 @@
 <!-- FOLDER PANEL (fixed, not affecting form) -->
 <div id="folderBox">
     <div class="folderHeader" style="display:flex;justify-content:space-between;align-items:center;gap:10px;">
-        <b style="color:#FFD700" id="folderTitle">Ραντεβού</b>
-        <button class="delBtn folderActionBtn" style="background:#444" type="button" onclick="toggleFolder()" id="folderClose">Κλείσιμο</button>
+        <b style="color:#FFD700" id="folderTitle">Saved Appointments</b>
+        <button class="delBtn folderActionBtn" style="background:#444" type="button" onclick="toggleFolder()" id="folderClose">Close</button>
     </div>
     <div id="folderList" style="margin-top:10px;"></div>
     <div class="small" style="opacity:.75;margin-top:6px;" id="folderHint"></div>
@@ -2396,7 +2586,7 @@
             <div class="info-btn" onclick="openInfo()">ⓘ</div>
         </div>
         <!-- Folder button in the middle -->
-        <button type="button" class="folder-btn" id="folderBtn" onclick="toggleFolder()"><span style="font-size:20px">📁</span> Φάκελος</button>
+        <button type="button" class="folder-btn" id="folderBtn" onclick="toggleFolder()"><span style="font-size:20px">📁</span> Folder</button>
         <div class="lang" id="langSwitch">
             <button type="button" onclick="setLang('el')">🇬🇷</button>
             <button type="button" onclick="setLang('en')">🇬🇧</button>
@@ -2424,7 +2614,7 @@
         <div class="input-wrap" style="background:rgba(255,255,255,0.08);border-radius:18px;padding:10px 12px;border:1px solid rgba(255,255,255,0.15);">
 
             <!-- Κωδικός χώρας -->
-            <div id="lbl_countrycode" style="font-size:12px;font-weight:900;color:#FFD700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;text-align:center;">🌍 Κωδικός Χώρας</div>
+            <div id="lbl_countrycode" style="font-size:12px;font-weight:900;color:#FFD700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;text-align:center;">🌍 Country Code</div>
             <div style="display:flex;gap:6px;align-items:center;margin-bottom:10px;">
                 <select id="phoneCountryCode" style="flex:1;font-size:14px;padding:10px 8px;border-radius:12px;border:none;font-weight:700;text-align:center;background:#fff;color:#000;" onchange="syncCustomCC(this.value)">
                     <option value="+30">🇬🇷 Greece +30</option>
@@ -2476,43 +2666,43 @@
             <div id="phoneHint" style="font-size:12px;color:#ffaa00;margin-top:6px;text-align:center;display:none;font-weight:700;"></div>
         </div>
 
-        <div id="airportTopBar"><div class="airport-title">✈ ΑΕΡΟΔΡΟΜΙΟ</div><div class="airport-sub">ΠΡΟΣ</div></div>
+        <div id="airportTopBar"><div class="airport-title">✈ AIRPORT</div><div class="airport-sub">TO</div></div>
         <label id="l_pickup"></label>
         <div class="input-wrap">
-            <input id="pickup" placeholder="Από πού" required readonly>
-            <div class="airport-below" id="airportText">→ ✈ Αεροδρόμιο</div>
+            <input id="pickup" placeholder="Pickup location" required readonly>
+            <div class="airport-below" id="airportText">→ ✈ Airport</div>
         </div>
         <!-- PICKUP MAP (SAFE ADD) -->
         <div id="pickupMapBox">
             <div class="inner-container">
-                <div id="pickupMapTitle">Βάλε διεύθυνση</div>
+                <div id="pickupMapTitle">Enter address</div>
 
                 <!-- Address Fields -->
                 <div class="address-fields">
                     <div class="address-field">
-                        <label id="l_map_address">Διεύθυνση</label>
-                        <input type="text" id="map_address" placeholder="Διεύθυνση" readonly onfocus="this.removeAttribute('readonly')">
+                        <label id="l_map_address">Address</label>
+                        <input type="text" id="map_address" placeholder="Address" readonly onfocus="this.removeAttribute('readonly')">
                     </div>
 
                     <div class="address-row">
                         <div class="address-field" style="flex:2;">
-                            <label id="l_map_city">Πόλη</label>
-                            <input type="text" id="map_city" placeholder="Πόλη" readonly onfocus="this.removeAttribute('readonly')">
+                            <label id="l_map_city">City</label>
+                            <input type="text" id="map_city" placeholder="City" readonly onfocus="this.removeAttribute('readonly')">
                         </div>
                         <div class="address-field" style="flex:1;">
-                            <label id="l_map_number">Αριθμός</label>
-                            <input type="text" id="map_number" placeholder="Αρ." readonly onfocus="this.removeAttribute('readonly')">
+                            <label id="l_map_number">Number</label>
+                            <input type="text" id="map_number" placeholder="No." readonly onfocus="this.removeAttribute('readonly')">
                         </div>
                     </div>
 
                     <div class="address-field">
-                        <label id="l_map_postalcode">ΤΚ</label>
-                        <input type="text" id="map_postalcode" placeholder="ΤΚ" readonly onfocus="this.removeAttribute('readonly')">
+                        <label id="l_map_postalcode">Postal Code</label>
+                        <input type="text" id="map_postalcode" placeholder="Postal Code" readonly onfocus="this.removeAttribute('readonly')">
                     </div>
                 </div>
 
                 <div id="pickupMapSearchRow">
-                    <input type="text" id="pickupMapSearch" placeholder="Γράψε οδό/ξενοδοχείο (π.χ. Λιμάνι Πειραιά)" readonly onfocus="this.removeAttribute('readonly')" autocomplete="off"/>
+                    <input type="text" id="pickupMapSearch" placeholder="Type street/hotel (e.g. Piraeus Port)" readonly onfocus="this.removeAttribute('readonly')" autocomplete="off"/>
                     <div id="pickupAutocomplete"></div>
                 </div>
 
@@ -2523,17 +2713,17 @@
 
                 <div class="row">
                     <button type="button" id="pickupMapOk">OK</button>
-                    <button type="button" id="pickupMapClose">Πίσω</button>
+                    <button type="button" id="pickupMapClose">Back</button>
                 </div>
 
-                <div id="pickupMapHint">📍 Μετακίνησε την πινέζα στο ακριβές σημείο και πάτα OK.</div>
+                <div id="pickupMapHint">📍 Move the pin to the exact pickup point and tap OK.</div>
                 <div id="pickupMapAddr"></div>
             </div>
         </div>
 
         <div id="airportNowAutoWrap" style="display:none;text-align:center;margin:16px auto 14px;">
-            <button class="main" type="button" id="airportNowAutoBtn" onclick="setAirportNowAutoTime()" style="margin:0 auto;width:78%;max-width:220px;height:62px;box-sizing:border-box;font-size:26px;padding:12px 16px;">ΤΩΡΑ</button>
-            <div id="airportNowAutoHint" style="margin-top:9px;font-size:20px;font-weight:800;color:#FFD700;opacity:1;line-height:1.25;letter-spacing:.2px;">αυτόματα ώρα & ημερομηνία</div>
+            <button class="main" type="button" id="airportNowAutoBtn" onclick="setAirportNowAutoTime()" style="margin:0 auto;width:78%;max-width:220px;height:62px;box-sizing:border-box;font-size:26px;padding:12px 16px;">NOW</button>
+            <div id="airportNowAutoHint" style="margin-top:9px;font-size:20px;font-weight:800;color:#FFD700;opacity:1;line-height:1.25;letter-spacing:.2px;">AUTOMATIC DATE & TIME</div>
         </div>
 
         <label id="l_date"></label>
@@ -2542,7 +2732,7 @@
         <label id="l_time"></label>
         <div class="input-wrap" style="display:flex; gap:8px;">
             <select id="time_hour" required style="flex:1; text-align:center;">
-                <option value="">ΩΩ</option>
+                <option value="">HH</option>
                 <option value="00">00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -2570,7 +2760,7 @@
             </select>
             <span style="color:#fff; font-size:20px; font-weight:bold; align-self:center;">:</span>
             <select id="time_minute" required style="flex:1; text-align:center;">
-                <option value="">ΛΛ</option>
+                <option value="">MM</option>
                 <option value="00">00</option>
                 <option value="01">01</option>
                 <option value="02">02</option>
@@ -2645,13 +2835,13 @@
                 <option value="5">>4</option>
             </select>
         </div>
-        <div id="twoTaxiForm" class="note" style="display:none">⚠ Απαιτούνται 2 ταξί</div>
+        <div id="twoTaxiForm" class="note" style="display:none">⚠ 2 taxis required</div>
 
 
         <div id="flightWrap" style="display:none;margin-bottom:10px;">
             <label id="l_flightNum"></label>
             <div class="input-wrap">
-                <input type="text" id="flightNum" placeholder="π.χ. A3 620" autocomplete="off">
+                <input type="text" id="flightNum" placeholder="e.g. A3 620" autocomplete="off">
             </div>
         </div>
 
@@ -3016,30 +3206,30 @@
                 <!-- ROUTE MAP -->
                 <div id="routeMapContainer">
                     <div id="routeMap"></div>
-                    <div id="routeMapHint">👆 Πάτα διαδρομή για επιλογή</div>
+                    <div id="routeMapHint">👆 Tap a route to select</div>
                 </div>
 
                 <!-- ROUTE SELECTOR -->
                 <div id="routeSelector">
-                    <div id="routeSelectorLabel">🛣️ ΕΠΙΛΕΞΕ ΔΙΑΔΡΟΜΗ</div>
+                    <div id="routeSelectorLabel">🛣️ SELECT ROUTE</div>
                     <button type="button" class="route-btn" id="routeBtnToll" onclick="__selectRoute('toll')">
                         <span class="route-btn-icon">🛣️</span>
                         <span class="route-btn-info">
-                <div class="route-btn-name">Αττική Οδός <span style="font-size:11px;opacity:.7;">(με διόδια)</span></div>
-                <div class="route-btn-detail" id="routeTollDetail">Υπολογισμός…</div>
+                <div class="route-btn-name">Attiki Odos <span style="font-size:11px;opacity:.7;">(with tolls)</span></div>
+                <div class="route-btn-detail" id="routeTollDetail">Calculating…</div>
               </span>
                     </button>
                     <button type="button" class="route-btn" id="routeBtnNotoll" onclick="__selectRoute('notoll')">
                         <span class="route-btn-icon">🌿</span>
                         <span class="route-btn-info">
-                <div class="route-btn-name">Χωρίς διόδια</div>
-                <div class="route-btn-detail" id="routeNotollDetail">Υπολογισμός…</div>
+                <div class="route-btn-name">Without tolls</div>
+                <div class="route-btn-detail" id="routeNotollDetail">Calculating…</div>
               </span>
                     </button>
                 </div>
 
                 <div class="price-center">
-                    <div class="price-est-label" id="priceEstLabel">ΕΚΤΙΜΩΜΕΝΟ ΚΟΣΤΟΣ</div>
+                    <div class="price-est-label" id="priceEstLabel">ESTIMATED FARE</div>
                     <div id="priceRangeBig">
                         <div class="price-loading-dots"><span></span><span></span><span></span></div>
                     </div>
@@ -3178,7 +3368,7 @@
         <div class="ca-bar"></div>
         <div class="ca-content">
             <span id="caIcon">⚠️</span>
-            <div id="caTitle">Ενημέρωση</div>
+            <div id="caTitle">Notice</div>
             <div id="caBody"></div>
         </div>
         <button id="caBtn" onclick="closeCustomAlert()">OK</button>
@@ -3357,7 +3547,7 @@
 
 let lang = "el";
 try {
-  var _sl = localStorage.getItem("appLang");
+  var _sl = window.lang || localStorage.getItem("appLang");
   if(_sl === "en" || _sl === "el") {
     lang = _sl;
   } else {
@@ -3512,7 +3702,9 @@ const surnameIn = document.getElementById("surname");
       const cc = getActiveCC();
       if(cc === "+30"){
         if(digits.length > 0 && digits.length < 10){
-          phoneHint.textContent = "⚠️ Βάλε 10 ψηφία (π.χ. 6912345678)";
+          phoneHint.textContent = window.__isEn()
+            ? "⚠️ Enter 10 digits (e.g. 6912345678)"
+            : "⚠️ Βάλε 10 ψηφία (π.χ. 6912345678)";
           phoneHint.style.display = "block";
         } else {
           phoneHint.style.display = "none";
@@ -3998,10 +4190,14 @@ async function __updatePickupMapAddr(){
 
           // Αποθήκευση για χρήση στον υπολογισμό τιμής
           window.__daktyliosPolyCoords = daktyliosCoords;
-
-          // Filled polygon (χρησιμοποιούμε polyline γιατί τα δεδομένα είναι γραμμές δρόμου)
+          window.__daktyliosLayer = daktyliosLayer;
+          window.__daktyliosTooltipHtml = function(){
+            return (typeof window.__isEn==='function' && window.__isEn())
+              ? '<b>🚦 Athens Ring</b><br><span style="font-size:12px">Restricted Traffic Zone</span>'
+              : '<b>🚦 Δακτύλιος Αθήνας</b><br><span style="font-size:12px">Ζώνη Περιορισμένης Κυκλοφορίας</span>';
+          };
           daktyliosLayer.bindTooltip(
-            '<b>🚦 Δακτύλιος Αθήνας</b><br><span style="font-size:12px">Ζώνη Περιορισμένης Κυκλοφορίας</span>',
+            window.__daktyliosTooltipHtml(),
             { sticky: true, direction: 'top' }
           );
           // ===== END ΔΑΚΤΥΛΙΟΣ =====
@@ -4438,6 +4634,11 @@ async function __updatePickupMapAddr(){
       window.setLang = function(l){
         __orig(l);
         try{ __setPickupHint(); }catch(e){}
+        try{
+          if(window.__daktyliosLayer && typeof window.__daktyliosTooltipHtml==='function'){
+            window.__daktyliosLayer.setTooltipContent(window.__daktyliosTooltipHtml());
+          }
+        }catch(e){}
       };
     }
     /* ===== END PICKUP MAP ===== */
@@ -5249,7 +5450,7 @@ async function __updatePickupMapAddr(){
         const routeForAirportCard = String(it.route || it.pickup || "").trim();
         const itemRouteMode = String(it.routeMode || "").trim();
         const routeLow = routeForAirportCard.toLowerCase();
-        const isAirportAthensFolderCard = routeForAirportCard.startsWith("Από Αεροδρόμιο") || routeForAirportCard.startsWith("✈") || itemRouteMode === "airport_athens";
+        const isAirportAthensFolderCard = routeForAirportCard.startsWith("Από Αεροδρόμιο") || /^from airport/i.test(routeForAirportCard) || routeForAirportCard.startsWith("✈") || itemRouteMode === "airport_athens";
         const isAthensAirportFolderCard = itemRouteMode === "athens_airport" || routeForAirportCard.includes("→ ✈") || routeForAirportCard.includes("Αεροδρόμιο") || routeLow.includes("athens → airport") || routeLow.includes("to airport");
         const isCollapsedFolderCard = isAirportAthensFolderCard || isAthensAirportFolderCard;
         const isAirportAthensExpanded = !!(activeExpandedAirportAthensKey && folderKey === activeExpandedAirportAthensKey);
@@ -5269,8 +5470,9 @@ async function __updatePickupMapAddr(){
           let shortTitle = routeForAirportCard || (lang === "en" ? "Appointment" : "Ραντεβού");
           try{
             if(isAirportAthensFolderCard){
-              const routeParts = routeForAirportCard.includes("προς") ? routeForAirportCard.split("προς") : [];
-              shortTitle = (routeParts.length > 1 ? routeParts.slice(1).join("προς").trim() : routeForAirportCard) || (lang==="en" ? "Airport → Athens" : "Αεροδρόμιο → Αθήνα");
+              const routeParts = /προς/i.test(routeForAirportCard) ? routeForAirportCard.split(/προς/i)
+                : (/^from airport to /i.test(routeForAirportCard) ? routeForAirportCard.replace(/^from airport to /i,'|').split('|') : []);
+              shortTitle = (routeParts.length > 1 ? routeParts.slice(1).join(" ").trim() : routeForAirportCard) || (lang==="en" ? "Airport → Athens" : "Αεροδρόμιο → Αθήνα");
             }else{
               shortTitle = String(it.pickup || it.route || shortTitle || "").trim();
             }
@@ -5427,15 +5629,15 @@ async function __updatePickupMapAddr(){
         div.innerHTML = `
           <div class="meta">
             ${airportExpandedBackHtml}
-            ${isCancelled ? `<div style="color:#ff4444;font-weight:900;margin-bottom:6px;">❌ ΑΚΥΡΩΘΗΚΕ ΑΠΟ ΟΔΗΓΟ</div>` : ''}
+            ${isCancelled ? `<div style="color:#ff4444;font-weight:900;margin-bottom:6px;">❌ ${lang==='en'?'CANCELLED BY DRIVER':'ΑΚΥΡΩΘΗΚΕ ΑΠΟ ΟΔΗΓΟ'}</div>` : ''}
             ${safePhoto ? `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;cursor:pointer;" onclick="openDriverPhotoLightbox('${safePhoto}','${safePhotoLarge}')">
-              <img src="${safePhoto}" style="width:30px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #FFD700;box-shadow:0 2px 8px rgba(0,0,0,0.35);flex-shrink:0;pointer-events:none;" alt="Οδηγός" />
+              <img src="${safePhoto}" style="width:30px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #FFD700;box-shadow:0 2px 8px rgba(0,0,0,0.35);flex-shrink:0;pointer-events:none;" alt="${lang==='en'?'Driver':'Οδηγός'}" />
               <span style="color:rgba(255,255,255,0.5);font-size:11px;font-style:italic;">${lang==='en'?'Tap to enlarge':'Πάτα για μεγέθυνση'}</span>
             </div>` : ''}
             ${safeName ? `<div class="folderDriverName" style="font-weight:700;word-break:break-word;">🚗 ${safeName}</div>` : `<div style="opacity:.75;font-size:13px;margin-bottom:2px;">🔍 ${lang==='en'?'Searching for driver...':'Αναζήτηση οδηγού...'}</div>`}
             ${safePhone ? `<div class="folderDriverPhone" style="opacity:.95;margin-top:2px;">📞 ${safePhone}</div>` : ''}
             ${safePlate ? `<div class="folderDriverPlate" style="margin-top:2px;">🚙 <span style="color:#FFD700;font-weight:700;">${lang === 'en' ? 'License Plate' : 'Πινακίδα'}: ${safePlate}</span></div>` : ''}
-            <div class="folderRouteLine" style="${safeName || safePhone ? 'margin-top:4px;' : ''}">🚕 ${escapeHtml(it.route || it.pickup || "")}</div>
+            <div class="folderRouteLine" style="${safeName || safePhone ? 'margin-top:4px;' : ''}">🚕 ${escapeHtml((typeof window.__displayRouteLabel==='function')?window.__displayRouteLabel(it.route, it.pickup, it.routeMode):(it.route || it.pickup || ""))}</div>
             <div class="airport-expanded-meta-extra folderDateLine" style="opacity:.9;margin-top:4px;">📅 ${escapeHtml(formatDateDMY(it.date || ""))} &nbsp; ⏰ ${escapeHtml(it.time || "")}</div>
             ${_clientFolderCountdownHtml(it)}
             ${contactButtons}
@@ -5987,13 +6189,14 @@ listEl.appendChild(div);
         // Εξαγωγή μόνο της διεύθυνσης από το route
         const routeFull = it.route || it.pickup || it.address || it.from || '';
         const addressOnly = routeFull.includes('→')
-          ? (routeFull.trim().startsWith('✈') || routeFull.trim().startsWith('Από Αεροδρόμιο')
-            ? routeFull.split('→')[1].trim()   // airport_athens: Από Αεροδρόμιο προς → [διεύθυνση]
-            : routeFull.split('→')[0].trim())   // athens_airport: [διεύθυνση] → ✈ Αεροδρόμιο
-          : (routeFull.includes('προς') ? routeFull.split('προς').slice(1).join('προς').trim() : routeFull);
+          ? (routeFull.trim().startsWith('✈') || routeFull.trim().startsWith('Από Αεροδρόμιο') || /^from airport/i.test(routeFull.trim())
+            ? routeFull.split('→')[1].trim()
+            : routeFull.split('→')[0].trim())
+          : (/προς/i.test(routeFull) ? routeFull.split(/προς/i).slice(1).join('προς').trim()
+            : (/^from airport to /i.test(routeFull) ? routeFull.replace(/^from airport to /i,'').trim() : routeFull));
         const bookingInfo = {
           name: it.driverName || '',
-          address: routeFull || addressOnly,
+          address: (typeof window.__displayRouteLabel==='function') ? window.__displayRouteLabel(routeFull, it.pickup, it.routeMode) : (routeFull || addressOnly),
           dateTime: (formattedDate + ' ' + (it.time || '')).trim()
         };
 
@@ -6169,6 +6372,7 @@ function isHomeVisible(){ return bookingForm.style.display !== "none"; }
           window.lang = _cur;
         }
       } catch(e){}
+      try { if(typeof window.__paintLang === 'function') window.__paintLang(lang); } catch(e){}
       titleEl.innerHTML = '<span style="color:#FFD700;">Taxi</span> <span style="color:#fff;">and Fly</span>';
       titleEl.className = (lang==="el") ? "el-text" : "en-text";
       bookingForm.className = resultEl.className = (lang==="el") ? "el-text" : "en-text";
@@ -6254,6 +6458,10 @@ function isHomeVisible(){ return bookingForm.style.display !== "none"; }
           if(el_tollName) el_tollName.innerHTML = 'Attiki Odos <span style="font-size:11px;opacity:.7;">(with tolls)</span>';
           const el_notollName = document.querySelector("#routeBtnNotoll .route-btn-name");
           if(el_notollName) el_notollName.innerText = "Without tolls";
+          const el_mapHintRoute = document.getElementById("routeMapHint");
+          if(el_mapHintRoute) el_mapHintRoute.innerText = "👆 Tap a route to select";
+          const el_priceEst = document.getElementById("priceEstLabel");
+          if(el_priceEst) el_priceEst.textContent = "ESTIMATED FARE";
         }catch(e){}
       }else{
 
@@ -6281,6 +6489,10 @@ function isHomeVisible(){ return bookingForm.style.display !== "none"; }
           if(el_tollName2) el_tollName2.innerHTML = 'Αττική Οδός <span style="font-size:11px;opacity:.7;">(με διόδια)</span>';
           const el_notollName2 = document.querySelector("#routeBtnNotoll .route-btn-name");
           if(el_notollName2) el_notollName2.innerText = "Χωρίς διόδια";
+          const el_mapHintRoute2 = document.getElementById("routeMapHint");
+          if(el_mapHintRoute2) el_mapHintRoute2.innerText = "👆 Πάτα διαδρομή για επιλογή";
+          const el_priceEst2 = document.getElementById("priceEstLabel");
+          if(el_priceEst2) el_priceEst2.textContent = "ΕΚΤΙΜΩΜΕΝΟ ΚΟΣΤΟΣ";
         }catch(e){}
       }
 
@@ -6491,7 +6703,7 @@ function isHomeVisible(){ return bookingForm.style.display !== "none"; }
       return `
         <b>${t[lang].name}:</b> ${escapeHtml(b.name || "")}<br>
         <b>${t[lang].phone}:</b> ${escapeHtml(b.phone || "")}<br>
-        <b>${t[lang].pickup}:</b> ${isAirportToAthensMode() ? `Από Αεροδρόμιο προς ${escapeHtml(b.pickup || "")}` : `${escapeHtml(b.pickup || "")} → ✈ ${lang==="en"?"Airport":"Αεροδρόμιο"}`}<br>
+        <b>${t[lang].pickup}:</b> ${isAirportToAthensMode() ? (lang==="en" ? `From Airport to ${escapeHtml(b.pickup || "")}` : `Από Αεροδρόμιο προς ${escapeHtml(b.pickup || "")}`) : `${escapeHtml(b.pickup || "")} → ✈ ${lang==="en"?"Airport":"Αεροδρόμιο"}`}<br>
         <b>${t[lang].people}:</b> ${escapeHtml(b.people || "")}<br>
 
         ${b.routeMode === 'airport_athens'
@@ -6753,7 +6965,7 @@ currentBookingStatus = "new";
       const existingIdx = folder.findIndex(x => String(x.id||"") === String(bookingId));
 
       const route = routeMode === "airport_athens"
-        ? (pickup ? `Από Αεροδρόμιο προς ${pickup}` : "Από Αεροδρόμιο")
+        ? ((typeof window.__airportFromLabel==='function') ? window.__airportFromLabel(pickup) : (pickup ? `Από Αεροδρόμιο προς ${pickup}` : "Από Αεροδρόμιο"))
         : (pickup ? `${pickup} → ✈ ${lang==="en"?"Airport":"Αεροδρόμιο"}` : (lang==="en" ? "Pickup → Airport" : "Παραλαβή → Αεροδρόμιο"));
 
       const driverName = String(b.driverName || b.driver_name || "").trim();
@@ -7077,25 +7289,26 @@ currentBookingStatus = "new";
       if(status === "driver_cancelled"){
         // Driver cancelled - ask if driver notified client
         const driverConfirmedNotified = b.driverConfirmedClientNotified === true;
+        const _dcEn = (typeof window.__isEn==='function') ? window.__isEn() : (lang === 'en');
 
         resultEl.innerHTML = `
           <div class="yellowLine" style="font-size:18px;line-height:1.35;color:#ff4444;font-weight:700;">
-            ❌ Ο οδηγός έχει πρόβλημα και δεν θα μπορέσει να έρθει.
+            ${_dcEn ? '❌ The driver has a problem and will not be able to come.' : '❌ Ο οδηγός έχει πρόβλημα και δεν θα μπορέσει να έρθει.'}
           </div>
           <br>
           <div style="font-size:16px;line-height:1.4;">
-            Παρακαλούμε κάντε καινούργια κράτηση για να βρείτε άλλον οδηγό.
+            ${_dcEn ? 'Please make a new booking to find another driver.' : 'Παρακαλούμε κάντε καινούργια κράτηση για να βρείτε άλλον οδηγό.'}
           </div>
           <br>
           <div style="border-top:2px solid rgba(255,255,255,0.2);padding-top:16px;margin-top:16px;">
             <div style="font-size:15px;margin-bottom:12px;font-weight:700;">
-              ⚠️ Σας ενημέρωσε ο οδηγός τηλεφωνικά για την ακύρωση;
+              ${_dcEn ? '⚠️ Did the driver call you about the cancellation?' : '⚠️ Σας ενημέρωσε ο οδηγός τηλεφωνικά για την ακύρωση;'}
             </div>
             <div style="display:flex;gap:10px;flex-direction:column;">
               <button class="main" onclick="reportDriverNotification('${escapeHtml(bookingId)}', true)"
-                style="background:#00b300;">✅ Ναι, με ενημέρωσε</button>
+                style="background:#00b300;">${_dcEn ? '✅ Yes, he informed me' : '✅ Ναι, με ενημέρωσε'}</button>
               <button class="main" onclick="reportDriverNotification('${escapeHtml(bookingId)}', false)"
-                style="background:#c00000;">❌ ΟΧΙ, δεν με πήρε</button>
+                style="background:#c00000;">${_dcEn ? '❌ NO, he did not call' : '❌ ΟΧΙ, δεν με πήρε'}</button>
             </div>
           </div>
         `;
@@ -7716,7 +7929,9 @@ currentBookingStatus = "new";
 
         const snap = await get(ref(db, `bookings/${bookingId}`));
         if(!snap.exists()){
-          alert('Η κράτηση δεν βρέθηκε στο Firebase.');
+          alert((typeof window.__isEn==='function' ? window.__isEn() : lang==='en')
+            ? 'Booking not found.'
+            : 'Η κράτηση δεν βρέθηκε στο Firebase.');
           return;
         }
         const b = snap.val() || {};
@@ -7737,7 +7952,7 @@ currentBookingStatus = "new";
             cov.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px;';
             document.body.appendChild(cov);
           }
-          const confirmIsEn = (lang === 'en');
+          const confirmIsEn = (typeof window.__isEn==='function') ? window.__isEn() : (lang === 'en');
           cov.innerHTML = `
             <div style="width:100%;max-width:340px;background:#1a1a1a;border:2px solid #ff6600;border-radius:20px;padding:24px;">
               <div style="font-size:28px;text-align:center;margin-bottom:10px;">⚠️</div>
@@ -7764,7 +7979,7 @@ currentBookingStatus = "new";
             ov.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px;';
             document.body.appendChild(ov);
           }
-          const noShowIsEn = (lang === 'en');
+          const noShowIsEn = (typeof window.__isEn==='function') ? window.__isEn() : (lang === 'en');
           ov.innerHTML = `
             <div style="width:100%;max-width:340px;background:#1a1a1a;border:2px solid #ff6600;border-radius:20px;padding:24px;">
               <div style="font-size:28px;text-align:center;margin-bottom:10px;">⚠️</div>
@@ -7898,7 +8113,7 @@ currentBookingStatus = "new";
       const btn   = document.getElementById('driverWaitingBtn');
       if(!title || !sub || !btn) return;
 
-      if(lang === "en"){
+      if((typeof window.__isEn==='function') ? window.__isEn() : (lang === "en")){
         title.innerHTML = "Your driver is at the pickup point";
         sub.innerHTML   = "He is waiting for you!<br>Please come down.";
         btn.innerHTML   = "✅ OK, I'm coming!";
@@ -8022,7 +8237,7 @@ currentBookingStatus = "new";
       // monitor έμενε παγωμένο χωρίς η αιτιολογία no-show να εμφανιστεί ποτέ. Το αφαιρούμε εδώ.
       try{ var _blockingTa = document.getElementById('clientMonitorAitiologiaText'); if(_blockingTa) _blockingTa.remove(); }catch(e){}
 
-      const _isEn = (typeof lang !== 'undefined' && lang === 'en');
+      const _isEn = (typeof window.__isEn==='function') ? window.__isEn() : (typeof lang !== 'undefined' && lang === 'en');
       const title = _isEn ? 'Booking Cancellation' : 'Ακύρωση Κράτησης';
       const body  = _isEn
         ? '⚠️ Your driver arrived at the pickup point and waited, but you were not there. Please tell us the reason.'
@@ -8282,12 +8497,13 @@ currentBookingStatus = "new";
 
     window.nsSubmitReason = async function() {
       var reason = _nsSelectedReason;
-      if (!reason) { alert(lang === 'en' ? 'Please select a reason.' : 'Παρακαλούμε επιλέξτε έναν λόγο.'); return; }
-      var labels = { sleep: lang==='en'?'Did not wake up':'Δεν ξύπνησα', wrong_place: lang==='en'?'Was at wrong location':'Ήμουν στο λάθος σημείο', late: lang==='en'?'Was late':'Άργησα', other: lang==='en'?'Other reason':'Άλλος λόγος' };
+      if (!reason) { alert((typeof window.__isEn==='function' ? window.__isEn() : lang === 'en') ? 'Please select a reason.' : 'Παρακαλούμε επιλέξτε έναν λόγο.'); return; }
+      var _nsEn = (typeof window.__isEn==='function' ? window.__isEn() : lang==='en');
+      var labels = { sleep: _nsEn?'Did not wake up':'Δεν ξύπνησα', wrong_place: _nsEn?'Was at wrong location':'Ήμουν στο λάθος σημείο', late: _nsEn?'Was late':'Άργησα', other: _nsEn?'Other reason':'Άλλος λόγος' };
       var otherText = '';
       if (reason === 'other') {
         otherText = (document.getElementById('nsOtherText') || {}).value || '';
-        if (!otherText.trim()) { alert(lang === 'en' ? 'Please write the reason.' : 'Παρακαλούμε γράψτε τον λόγο.'); return; }
+        if (!otherText.trim()) { alert(_nsEn ? 'Please write the reason.' : 'Παρακαλούμε γράψτε τον λόγο.'); return; }
       }
       const bookingId = _noShowCancelBookingId;
       const finalReasonText = otherText || labels[reason];
@@ -8371,7 +8587,7 @@ currentBookingStatus = "new";
       const ov = document.getElementById('tripCompletedOverlay');
 
       // ✅ Αλλαγή γλώσσας βάσει lang
-      const isEn = (lang === 'en');
+      const isEn = (typeof window.__isEn==='function') ? window.__isEn() : (lang === 'en');
       const titleEl = document.getElementById('tripCompletedTitle');
       const bodyEl  = document.getElementById('tripCompletedBody');
       const fbEl    = document.getElementById('tripCompletedFeedback');
@@ -8568,7 +8784,7 @@ currentBookingStatus = "new";
       if(booking && (booking.clientDeclinedRetry === true || booking.clientAcknowledgedCancel === true || String(booking.status || '').toLowerCase() === 'client_declined')) return;
 
       // ✅ Γλώσσα overlay ανάλογα με την επιλογή του χρήστη
-      const isEn = (window.lang === 'en');
+      const isEn = (typeof window.__isEn==='function') ? window.__isEn() : (window.lang === 'en');
       const isNoDriverRetry = !!(booking && booking.noDriverRetry);
       // Τίτλος
       const titleEl = overlay.querySelector('h2.el-text');
@@ -8645,7 +8861,9 @@ currentBookingStatus = "new";
 
       } catch (err) {
         console.error('Error acknowledging cancellation:', err);
-        alert('Σφάλμα. Δοκιμάστε ξανά.');
+        alert((typeof window.__isEn==='function' ? window.__isEn() : lang==='en')
+          ? 'Error. Please try again.'
+          : 'Σφάλμα. Δοκιμάστε ξανά.');
       }
     }
 
@@ -10104,7 +10322,7 @@ currentBookingStatus = "new";
             const folder = readFolderRaw(routeMode).filter(function(x){ return !isTerminalFolderBooking(x); });
             if(folder.some(x => String(x.id||'') === bid)) return true;
             const _routeLabel = routeMode === "airport_athens"
-              ? (payload.pickup ? `Από Αεροδρόμιο προς ${payload.pickup}` : "Από Αεροδρόμιο")
+              ? ((typeof window.__airportFromLabel==='function') ? window.__airportFromLabel(payload.pickup) : (payload.pickup ? `Από Αεροδρόμιο προς ${payload.pickup}` : "Από Αεροδρόμιο"))
               : (payload.pickup ? `${payload.pickup} → ✈ ${lang==="en"?"Airport":"Αεροδρόμιο"}` : (lang==="en" ? "Pickup → Airport" : "Παραλαβή → Αεροδρόμιο"));
             folder.push({
               id: bid,
@@ -11073,7 +11291,9 @@ async function routeKm(fromLat, fromLon){
     function reportDriverNotification(bookingId, wasNotified) {
       if (wasNotified) {
         // Client confirms driver notified them - no complaint
-        alert('Ευχαριστούμε για την επιβεβαίωση.');
+        alert((typeof window.__isEn==='function' ? window.__isEn() : (typeof lang!=='undefined' && lang==='en'))
+          ? 'Thank you for confirming.'
+          : 'Ευχαριστούμε για την επιβεβαίωση.');
         goBackToHome();
         return;
       }
@@ -11104,12 +11324,16 @@ async function routeKm(fromLat, fromLon){
           });
         })
         .then(() => {
-          alert('🙏 Ευχαριστούμε για την ενημέρωση.\n\nΗ καταγγελία σας καταγράφηκε.\nΘα ελέγξουμε το περιστατικό.');
+          alert((typeof window.__isEn==='function' ? window.__isEn() : (typeof lang!=='undefined' && lang==='en'))
+            ? '🙏 Thank you for the information.\n\nYour report has been recorded.\nWe will look into the incident.'
+            : '🙏 Ευχαριστούμε για την ενημέρωση.\n\nΗ καταγγελία σας καταγράφηκε.\nΘα ελέγξουμε το περιστατικό.');
           goBackToHome();
         })
         .catch(err => {
           console.error('Error creating complaint:', err);
-          alert('Σφάλμα κατά την καταγραφή της καταγγελίας.');
+          alert((typeof window.__isEn==='function' ? window.__isEn() : (typeof lang!=='undefined' && lang==='en'))
+            ? 'Error while recording the report.'
+            : 'Σφάλμα κατά την καταγραφή της καταγγελίας.');
         });
     }
 </script>
@@ -11118,8 +11342,8 @@ async function routeKm(fromLat, fromLon){
 <div id="cancelConfirmOverlay">
     <div id="cancelConfirmBox">
         <div class="cancel-icon">🚫</div>
-        <div class="cancel-title" id="cancelTitle">Ακύρωση Ραντεβού</div>
-        <div class="cancel-message" id="cancelMessage">Θέλετε σίγουρα να ακυρώσετε αυτό το ραντεβού;</div>
+        <div class="cancel-title" id="cancelTitle">Cancel Appointment</div>
+        <div class="cancel-message" id="cancelMessage">Are you sure you want to cancel this appointment?</div>
 
         <div class="cancel-booking-info" id="cancelBookingInfo" style="display:none;">
             <div class="cancel-booking-info-line">
@@ -11139,11 +11363,11 @@ async function routeKm(fromLat, fromLon){
         <div class="cancel-buttons">
             <button class="cancel-btn-action cancel-btn-no" id="cancelBtnNo">
                 <span class="btn-emoji">✅</span>
-                <span class="btn-label" id="cancelBtnNoText">Όχι, Κράτησε</span>
+                <span class="btn-label" id="cancelBtnNoText">No, Keep it</span>
             </button>
             <button class="cancel-btn-action cancel-btn-yes" id="cancelBtnYes">
                 <span class="btn-emoji">🗑️</span>
-                <span class="btn-label" id="cancelBtnYesText">Ναι, Ακύρωση</span>
+                <span class="btn-label" id="cancelBtnYesText">Yes, Cancel</span>
             </button>
         </div>
     </div>
@@ -11162,7 +11386,7 @@ async function routeKm(fromLat, fromLon){
         cancelResolve = resolve;
 
         // Update text based on current language
-        const isEn = (typeof lang !== 'undefined' && lang === 'en');
+        const isEn = (typeof window.__isEn==='function') ? window.__isEn() : (typeof lang !== 'undefined' && lang === 'en');
         document.getElementById('cancelTitle').textContent = isEn ? 'Cancel Appointment' : 'Ακύρωση Ραντεβού';
         document.getElementById('cancelMessage').textContent = isEn
           ? 'Are you sure you want to cancel this appointment?'
@@ -11493,24 +11717,24 @@ async function routeKm(fromLat, fromLon){
     <div style="width:calc(100% - 32px);max-width:360px;background:linear-gradient(160deg,#1a0000,#2d0000,#3d0000);border:1.5px solid rgba(255,70,70,0.4);border-radius:28px;padding:34px 22px 28px;box-shadow:0 30px 80px rgba(0,0,0,0.9);text-align:center;position:relative;overflow:hidden;">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#ff4444 30%,#ff6666 50%,#ff4444 70%,transparent);border-radius:28px 28px 0 0;"></div>
         <div style="font-size:56px;margin-bottom:16px;">⚠️</div>
-        <div id="nsTitle" style="font-size:18px;font-weight:800;color:#ff6666;margin-bottom:16px;line-height:1.4;">Ακύρωση Κράτησης</div>
+        <div id="nsTitle" style="font-size:18px;font-weight:800;color:#ff6666;margin-bottom:16px;line-height:1.4;">Booking Cancellation</div>
         <div id="nsBody" style="font-size:14px;color:rgba(255,255,255,0.85);margin-bottom:20px;line-height:1.7;text-align:left;">
-            ⚠️ Ο οδηγός σας έφτασε στο σημείο παραλαβής και σας περίμενε, αλλά δεν ήσασταν εκεί.<br><br>
-            Σας παρακαλούμε να σέβεστε τον χρόνο του οδηγού και να είστε συνεπείς στις κρατήσεις σας. Η εμπιστοσύνη είναι η βάση της συνεργασίας μας.
+            ⚠️ Your driver arrived at the pickup point and waited, but you were not there.<br><br>
+            Please respect the driver's time and be punctual. Trust is the basis of our cooperation.
         </div>
-        <div id="nsReasonLabel" style="font-size:13px;color:#FFD700;font-weight:700;margin-bottom:10px;text-align:left;">Παρακαλούμε πείτε μας τον λόγο:</div>
+        <div id="nsReasonLabel" style="font-size:13px;color:#FFD700;font-weight:700;margin-bottom:10px;text-align:left;">Please tell us the reason:</div>
         <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
-            <button id="nsReason1" type="button" onclick="nsSelectReason('sleep')" style="background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 14px;font-size:13px;text-align:left;cursor:pointer;">?? Δεν ξύπνησα</button>
-            <button id="nsReason2" type="button" onclick="nsSelectReason('wrong_place')" style="background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 14px;font-size:13px;text-align:left;cursor:pointer;">🚗 Ήμουν στο λάθος σημείο</button>
-            <button id="nsReason3" type="button" onclick="nsSelectReason('late')" style="background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 14px;font-size:13px;text-align:left;cursor:pointer;">⏰ Άργησα</button>
-            <button id="nsReason4" type="button" onclick="nsSelectReason('other')" style="background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 14px;font-size:13px;text-align:left;cursor:pointer;">❓ Άλλος λόγος</button>
+            <button id="nsReason1" type="button" onclick="nsSelectReason('sleep')" style="background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 14px;font-size:13px;text-align:left;cursor:pointer;">😴 Did not wake up</button>
+            <button id="nsReason2" type="button" onclick="nsSelectReason('wrong_place')" style="background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 14px;font-size:13px;text-align:left;cursor:pointer;">🚗 Was at wrong location</button>
+            <button id="nsReason3" type="button" onclick="nsSelectReason('late')" style="background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 14px;font-size:13px;text-align:left;cursor:pointer;">⏰ Was late</button>
+            <button id="nsReason4" type="button" onclick="nsSelectReason('other')" style="background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 14px;font-size:13px;text-align:left;cursor:pointer;">❓ Other reason</button>
         </div>
         <div id="nsOtherBox" style="display:none;margin-bottom:14px;">
-            <textarea id="nsOtherText" placeholder="Γράψτε τον λόγο εδώ..." style="width:100%;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-size:13px;resize:none;height:70px;outline:none;"></textarea>
+            <textarea id="nsOtherText" placeholder="Write the reason here..." style="width:100%;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-size:13px;resize:none;height:70px;outline:none;"></textarea>
         </div>
-        <button id="nsSubmitBtn" type="button" onclick="nsSubmitReason()" style="width:100%;padding:14px;border:none;border-radius:14px;background:linear-gradient(135deg,#FFD700,#c9a800);color:#000;font-size:15px;font-weight:800;cursor:pointer;margin-bottom:10px;">📤 Υποβολή</button>
+        <button id="nsSubmitBtn" type="button" onclick="nsSubmitReason()" style="width:100%;padding:14px;border:none;border-radius:14px;background:linear-gradient(135deg,#FFD700,#c9a800);color:#000;font-size:15px;font-weight:800;cursor:pointer;margin-bottom:10px;">📤 Submit</button>
         <button id="nsOkBtn" type="button" onclick="noShowCancelOk()" style="width:100%;padding:14px;border:none;border-radius:14px;background:linear-gradient(135deg,#ff4444,#c0392b);color:#fff;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 10px 28px rgba(255,68,68,0.4);">
-            ΟΚ, Κατάλαβα
+            OK, Got it
         </button>
     </div>
 </div>
@@ -11525,11 +11749,11 @@ async function routeKm(fromLat, fromLon){
         <div id="driverWaitingSubtitle" style="font-size:16px;color:rgba(255,255,255,0.85);margin-bottom:16px;line-height:1.5;"></div>
         <!-- Κουμπιά επικοινωνίας -->
         <div id="driverWaitingContactRow" style="display:flex;gap:8px;margin-bottom:10px;">
-            <button type="button" onclick="_dwCall()" style="flex:1;padding:10px 6px;border:none;border-radius:12px;background:#00b300;color:#fff;font-size:13px;font-weight:700;cursor:pointer;">📞 Κλήση</button>
-            <button type="button" onclick="_dwWhatsApp()" style="flex:1;padding:10px 6px;border:none;border-radius:12px;background:#25D366;color:#fff;font-size:13px;font-weight:700;cursor:pointer;">📱 WhatsApp</button>
-            <button type="button" onclick="_dwSms()" style="flex:1;padding:10px 6px;border:none;border-radius:12px;background:#0080ff;color:#fff;font-size:13px;font-weight:700;cursor:pointer;">✉️ Μήνυμα</button>
+            <button id="dwCallBtn" type="button" onclick="_dwCall()" style="flex:1;padding:10px 6px;border:none;border-radius:12px;background:#00b300;color:#fff;font-size:13px;font-weight:700;cursor:pointer;">📞 Call</button>
+            <button id="dwWhatsAppBtn" type="button" onclick="_dwWhatsApp()" style="flex:1;padding:10px 6px;border:none;border-radius:12px;background:#25D366;color:#fff;font-size:13px;font-weight:700;cursor:pointer;">📱 WhatsApp</button>
+            <button id="dwSmsBtn" type="button" onclick="_dwSms()" style="flex:1;padding:10px 6px;border:none;border-radius:12px;background:#0080ff;color:#fff;font-size:13px;font-weight:700;cursor:pointer;">✉️ Message</button>
         </div>
-        <button type="button" onclick="_dwChat()" style="width:100%;padding:10px;border:2px solid #FFD700;border-radius:12px;background:rgba(0,0,0,0.3);color:#FFD700;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:12px;">💬 Chat με Οδηγό</button>
+        <button id="dwChatBtn" type="button" onclick="_dwChat()" style="width:100%;padding:10px;border:2px solid #FFD700;border-radius:12px;background:rgba(0,0,0,0.3);color:#FFD700;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:12px;">💬 Chat with Driver</button>
         <button id="driverWaitingBtn" type="button" onclick="clientComingDown()" style="width:100%;padding:18px;border:none;border-radius:18px;background:linear-gradient(135deg,#2ecc71,#27ae60);color:#fff;font-size:18px;font-weight:800;cursor:pointer;box-shadow:0 10px 28px rgba(46,204,113,0.5);letter-spacing:0.3px;"></button>
     </div>
 </div>
@@ -11546,12 +11770,12 @@ async function routeKm(fromLat, fromLon){
     <div style="width:calc(100% - 32px);max-width:360px;background:linear-gradient(160deg,#0a2e1a,#0f4a2a,#1a6b3a);border:1.5px solid rgba(46,204,113,0.4);border-radius:28px;padding:34px 22px 28px;box-shadow:0 30px 80px rgba(0,0,0,0.9),inset 0 1px 0 rgba(255,255,255,0.08);text-align:center;position:relative;overflow:hidden;">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#2ecc71 30%,#00e676 50%,#2ecc71 70%,transparent);border-radius:28px 28px 0 0;"></div>
         <div style="font-size:60px;margin-bottom:16px;">✈️</div>
-        <div id="tripCompletedTitle" style="font-size:22px;font-weight:900;color:#2ecc71;margin-bottom:14px;line-height:1.3;">Η διαδρομή σας<br>πραγματοποιήθηκε<br>επιτυχώς!</div>
+        <div id="tripCompletedTitle" style="font-size:22px;font-weight:900;color:#2ecc71;margin-bottom:14px;line-height:1.3;">Your trip was<br>completed<br>successfully!</div>
         <div id="tripCompletedBody" style="font-size:15px;color:rgba(255,255,255,0.85);line-height:1.65;margin-bottom:14px;">
-            Σας ευχαριστούμε που επιλέξατε την εφαρμογή μας.<br>
-            Αν θέλετε, γράψτε πώς ήταν η διαδρομή και ο οδηγός.
+            Thank you for choosing our app.<br>
+            If you like, tell us how the trip and driver were.
         </div>
-        <textarea id="tripCompletedFeedback" rows="3" placeholder="Προαιρετικά: σχόλιο για τη διαδρομή / τον οδηγό…" style="width:100%;box-sizing:border-box;margin:0 0 18px;padding:12px 14px;border-radius:14px;border:1.5px solid rgba(46,204,113,0.45);background:rgba(0,0,0,0.28);color:#fff;font-size:14px;font-weight:600;line-height:1.4;resize:none;outline:none;"></textarea>
+        <textarea id="tripCompletedFeedback" rows="3" placeholder="Optional: comment about the trip / driver…" style="width:100%;box-sizing:border-box;margin:0 0 18px;padding:12px 14px;border-radius:14px;border:1.5px solid rgba(46,204,113,0.45);background:rgba(0,0,0,0.28);color:#fff;font-size:14px;font-weight:600;line-height:1.4;resize:none;outline:none;"></textarea>
         <button type="button" onclick="tripCompletedOk()" style="width:100%;padding:18px;border:none;border-radius:18px;background:linear-gradient(135deg,#2ecc71,#1db954);color:#fff;font-size:18px;font-weight:800;cursor:pointer;box-shadow:0 10px 28px rgba(46,204,113,0.5);letter-spacing:0.3px;">
             👍 OK
         </button>
@@ -11662,7 +11886,7 @@ async function routeKm(fromLat, fromLon){
 <div id="driverPhotoLightbox" onclick="closeDriverPhotoLightbox()">
     <div style="display:flex;flex-direction:column;align-items:center;gap:16px;padding:24px;">
         <img id="driverPhotoLightboxImg" src="" alt="Οδηγός" />
-        <div style="color:rgba(255,255,255,0.45);font-size:13px;" id="lbCloseHint">Πάτα οπουδήποτε για κλείσιμο</div>
+        <div style="color:rgba(255,255,255,0.45);font-size:13px;" id="lbCloseHint">Tap anywhere to close</div>
     </div>
 </div>
 <script>
@@ -11850,7 +12074,9 @@ async function routeKm(fromLat, fromLon){
         window._aitiologiaFromCannotFind = false;
         try { var _co = document.getElementById('cancellationOverlay'); if (_co) _co.style.display = 'none'; } catch(e) {}
       }
-      alert('✅ Η αιτιολογία σας στάλθηκε. Η κράτηση έκλεισε.');
+      alert((typeof window.__isEn==='function' ? window.__isEn() : (typeof lang!=='undefined' && lang==='en'))
+        ? '✅ Your explanation was sent. The booking is closed.'
+        : '✅ Η αιτιολογία σας στάλθηκε. Η κράτηση έκλεισε.');
     };
 
     // ✅ Watcher: αν ο οδηγός ακυρώσει (driverCancelledCannotFind) → αιτιολογία στον πελάτη
@@ -11925,12 +12151,15 @@ async function routeKm(fromLat, fromLon){
       };
 
       window.routeChoiceLang = function(lang, skipSetLang){
-        try{ window.lang=lang; localStorage.setItem('appLang', lang); }catch(e){}
+        var l = String(lang).toLowerCase()==='en'?'en':'el';
+        try{ window.__termsLang=l; }catch(e){}
+        try{ if(typeof window.__paintLang==='function') window.__paintLang(l); }catch(e){}
+        try{ window.lang=l; localStorage.setItem('appLang', l); }catch(e){}
         var welcome = document.getElementById("routeWelcomeText");
         var athens = document.getElementById("routeAthensBtn");
         var airport = document.getElementById("routeAirportBtn");
 
-        if(lang === "en"){
+        if(l === "en"){
           if(welcome) welcome.innerText = "Welcome to Taxi and Fly";
           if(athens) athens.innerText = "From Athens to Airport";
           if(airport) airport.innerText = "From Airport to Athens";
@@ -11939,9 +12168,9 @@ async function routeKm(fromLat, fromLon){
           if(athens) athens.innerText = "Από Αθήνα προς Αεροδρόμιο";
           if(airport) airport.innerText = "Από Αεροδρόμιο προς Αθήνα";
         }
-        try{ if(typeof window.__syncPriceBtnLang==='function') window.__syncPriceBtnLang(lang); }catch(e){}
+        try{ if(typeof window.__syncPriceBtnLang==='function') window.__syncPriceBtnLang(l); }catch(e){}
         if(!skipSetLang && typeof window.setLang==='function'){
-          try{ window.setLang(lang); }catch(e){}
+          try{ window.setLang(l); }catch(e){}
         }
       };
       try {
@@ -12490,7 +12719,7 @@ async function routeKm(fromLat, fromLon){
 <div id="clientChatOverlay">
     <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#1a1a1a;border-bottom:1px solid #333;flex-shrink:0;">
         <div style="color:#FFD700;font-weight:900;font-size:16px;">💬 <span id="clientChatTitle">Chat with Driver</span></div>
-        <button id="clientChatBackBtn" type="button" onclick="closeClientChat()">Πίσω</button>
+        <button id="clientChatBackBtn" type="button" onclick="closeClientChat()">Back</button>
     </div>
     <div id="clientChatMessages"></div>
     <div id="clientChatInputBar">
