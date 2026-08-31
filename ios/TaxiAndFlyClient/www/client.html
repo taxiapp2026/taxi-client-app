@@ -3330,6 +3330,11 @@
 
     <div id="result" class="el-text"></div>
 
+    <div id="iosNoticeToast" style="display:none;position:fixed;top:14px;left:12px;right:12px;z-index:2147483647;background:#111;color:#FFD700;border:2px solid #FFD700;border-radius:14px;padding:14px 16px;font-weight:800;box-shadow:0 10px 28px rgba(0,0,0,.5);">
+        <div id="iosNoticeTitle" style="font-size:16px;margin-bottom:4px;"></div>
+        <div id="iosNoticeBody" style="font-size:14px;color:#fff;font-weight:600;"></div>
+    </div>
+
     <!-- Driver Message Overlay -->
     <div id="driverMessageOverlay">
         <div id="driverMessageBox">
@@ -7669,6 +7674,7 @@ currentBookingStatus = "new";
         if(window.ClientBridge && ClientBridge.watchBookingForNotifications){
           ClientBridge.watchBookingForNotifications(bookingId);
         }
+        try{ if(typeof watchChatForBooking === 'function') watchChatForBooking(bookingId); }catch(e){}
       }catch(e){}
 // (re)start watchdog for this booking
       lastBookingUpdateAt = Date.now();
@@ -11933,11 +11939,25 @@ async function routeKm(fromLat, fromLon){
 <script>
     window.__CLIENT_FCM_TOKEN = null;
 
+    window.__showInAppNotice = function(title, body){
+        try{
+          var box = document.getElementById('iosNoticeToast');
+          var tEl = document.getElementById('iosNoticeTitle');
+          var bEl = document.getElementById('iosNoticeBody');
+          if(!box || !tEl || !bEl) return;
+          tEl.textContent = title || '';
+          bEl.textContent = body || '';
+          box.style.display = 'block';
+          clearTimeout(window.__iosNoticeTimer);
+          window.__iosNoticeTimer = setTimeout(function(){ box.style.display = 'none'; }, 7000);
+        }catch(e){}
+    };
+
     window.__iosNotifyBooking = function(st, id){
         try{
           st = String(st || '').toLowerCase();
           id = String(id || '');
-          if(!st || !window.ClientBridge || !ClientBridge.showLocalNotification) return;
+          if(!st) return;
           var key = st + ':' + id;
           if(window.__lastIosNotif === key) return;
           window.__lastIosNotif = key;
@@ -11954,7 +11974,9 @@ async function routeKm(fromLat, fromLon){
           } else if(st === 'cancelled' || st === 'canceled' || st === 'driver_cancelled'){
             msg = en ? ['Booking cancelled', 'Open the app for details.'] : ['Η κράτηση ακυρώθηκε', 'Άνοιξε την εφαρμογή για λεπτομέρειες.'];
           }
-          if(msg) ClientBridge.showLocalNotification(msg[0], msg[1]);
+          if(!msg) return;
+          if(typeof window.__showInAppNotice === 'function') window.__showInAppNotice(msg[0], msg[1]);
+          if(window.ClientBridge && ClientBridge.showLocalNotification) ClientBridge.showLocalNotification(msg[0], msg[1]);
         }catch(e){}
     };
 
@@ -13057,10 +13079,11 @@ async function routeKm(fromLat, fromLon){
           if (latest <= lastTs || clientCurrentChatId === bookingId) return;
           lastTs = latest;
           try{
+            var en = (typeof window.__isEn === 'function') ? window.__isEn() : false;
+            var title = en ? 'New message' : 'Νέο μήνυμα';
+            var body = String(lastText || '').trim() || (en ? 'The driver sent a message.' : 'Ο οδηγός έστειλε μήνυμα.');
+            if(typeof window.__showInAppNotice === 'function') window.__showInAppNotice(title, body);
             if(window.ClientBridge && ClientBridge.showLocalNotification){
-              var en = (typeof window.__isEn === 'function') ? window.__isEn() : false;
-              var title = en ? 'New message' : 'Νέο μήνυμα';
-              var body = String(lastText || '').trim() || (en ? 'The driver sent a message.' : 'Ο οδηγός έστειλε μήνυμα.');
               ClientBridge.showLocalNotification(title, body);
             }
           }catch(e){}

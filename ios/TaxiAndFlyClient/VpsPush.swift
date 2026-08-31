@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 import UserNotifications
 import WebKit
 
@@ -52,6 +53,10 @@ enum VpsPush {
                 RunLoop.main.add(timer, forMode: .common)
             }
             poll()
+            var bgTask = UIBackgroundTaskIdentifier.invalid
+            bgTask = UIApplication.shared.beginBackgroundTask {
+                UIApplication.shared.endBackgroundTask(bgTask)
+            }
         }
     }
 
@@ -69,15 +74,36 @@ enum VpsPush {
     }
 
     static func localNotify(title: String, body: String, id: String) {
-        let content = UNMutableNotificationContent()
-        content.title = title
-        content.body = body
-        content.sound = .default
-        if #available(iOS 15.0, *) {
-            content.interruptionLevel = .timeSensitive
+        let center = UNUserNotificationCenter.current()
+        let deliver = {
+            let content = UNMutableNotificationContent()
+            content.title = title
+            content.body = body
+            content.sound = .default
+            let req = UNNotificationRequest(identifier: id, content: content, trigger: nil)
+            center.add(req, withCompletionHandler: { err in
+                if let err {
+                    NSLog("TaxiAndFly notify error: %@", err.localizedDescription)
+                }
+            })
         }
-        let req = UNNotificationRequest(identifier: id, content: content, trigger: nil)
-        UNUserNotificationCenter.current().add(req, withCompletionHandler: nil)
+        center.getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .notDetermined:
+                center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
+                    if granted {
+                        DispatchQueue.main.async {
+                            UIApplication.shared.registerForRemoteNotifications()
+                            deliver()
+                        }
+                    }
+                }
+            case .authorized, .provisional, .ephemeral:
+                DispatchQueue.main.async { deliver() }
+            default:
+                DispatchQueue.main.async { deliver() }
+            }
+        }
     }
 
     private static func injectApns() {
