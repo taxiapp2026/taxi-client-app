@@ -11938,7 +11938,6 @@ async function routeKm(fromLat, fromLon){
           st = String(st || '').toLowerCase();
           id = String(id || '');
           if(!st || !window.ClientBridge || !ClientBridge.showLocalNotification) return;
-          if(document.visibilityState === 'visible') return;
           var key = st + ':' + id;
           if(window.__lastIosNotif === key) return;
           window.__lastIosNotif = key;
@@ -13054,9 +13053,17 @@ async function routeKm(fromLat, fromLon){
         const fns = window._clientDbFns || {};
         if (!db || !fns.ref || !fns.get) return;
 
-        function applyChatBadge(latest) {
+        function applyChatBadge(latest, lastText) {
           if (latest <= lastTs || clientCurrentChatId === bookingId) return;
           lastTs = latest;
+          try{
+            if(window.ClientBridge && ClientBridge.showLocalNotification){
+              var en = (typeof window.__isEn === 'function') ? window.__isEn() : false;
+              var title = en ? 'New message' : 'Νέο μήνυμα';
+              var body = String(lastText || '').trim() || (en ? 'The driver sent a message.' : 'Ο οδηγός έστειλε μήνυμα.');
+              ClientBridge.showLocalNotification(title, body);
+            }
+          }catch(e){}
           const badge = document.getElementById('chatBadge_' + bookingId);
           if (badge) badge.style.display = 'inline';
           _clientUnreadBookings.add(bookingId);
@@ -13085,7 +13092,8 @@ async function routeKm(fromLat, fromLon){
             const msgs = snap ? (snap.val() || {}) : {};
             const driverMsgs = Object.values(msgs).filter(m => m && m.sender === 'driver');
             const latest = driverMsgs.reduce((max, m) => Math.max(max, m.ts || 0), 0);
-            applyChatBadge(latest);
+            const lastDriver = driverMsgs.slice().sort(function(a,b){ return (a.ts||0)-(b.ts||0); }).pop();
+            applyChatBadge(latest, lastDriver && lastDriver.text);
           }).catch(() => {});
         }
 
