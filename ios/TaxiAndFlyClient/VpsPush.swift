@@ -88,7 +88,12 @@ enum VpsPush {
             content.title = title
             content.body = body
             content.sound = .default
-            let req = UNNotificationRequest(identifier: id, content: content, trigger: nil)
+            if #available(iOS 15.0, *) {
+                content.interruptionLevel = .active
+            }
+            // nil trigger is treated as in-app: iOS puts it in Notification Center without a banner.
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.5, repeats: false)
+            let req = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
             center.add(req, withCompletionHandler: { err in
                 if let err {
                     NSLog("TaxiAndFly notify error: %@", err.localizedDescription)
