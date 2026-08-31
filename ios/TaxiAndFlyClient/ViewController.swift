@@ -48,6 +48,7 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         wv.backgroundColor = .black
         view.addSubview(wv)
         webView = wv
+        VpsPush.webView = wv
     }
 
     private func loadClient() {
@@ -78,17 +79,19 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         case "showKeyboard":
             webView.becomeFirstResponder()
         case "showLocalNotification":
-            notify(title: str(args, 0), body: str(args, 1), id: "local_obs")
+            VpsPush.localNotify(title: str(args, 0), body: str(args, 1), id: "local_\(Int(Date().timeIntervalSince1970))")
         case "cancelNotification":
             UNCenter.remove(id: str(args, 0))
         case "cancelDriverArrivedNotification", "cancelAllNotifications", "cancelClientUnconfirmedCheck":
             UNCenter.removeAll()
+            VpsPush.stopWatch()
         case "scheduleClientUnconfirmedCheck", "watchBookingForNotifications":
-            break
+            VpsPush.watchBooking(str(args, 0), webView: webView)
         case "sendChatNotification":
             VpsPush.sendChat(token: str(args, 0), title: str(args, 1), body: str(args, 2))
         case "getFcmToken":
-            break
+            VpsPush.webView = webView
+            VpsPush.deliverPushTokenToJs()
         case "log":
             NSLog("JS: %@", str(args, 0))
         case "startSpeechToText", "stopSpeechToText":

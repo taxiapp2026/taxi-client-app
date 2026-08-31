@@ -1251,33 +1251,49 @@
           border:none;
           font-size:16px;
         }
-        /* Ημερομηνία: ομοιόμορφα στο πλαίσιο (WebView συχνά την έσπρωχνε αριστερά/δεξιά) */
+        /* Ημερομηνία: σταθερό πλαίσιο και άδειο και γεμάτο (iOS WKWebView συρρικνώνει το empty date). */
+        #dateWrap{
+          min-height:54px;
+        }
         input[type="date"]#date{
+          display:block !important;
+          width:100% !important;
+          min-width:100% !important;
+          min-height:54px !important;
+          height:54px !important;
           text-align:center !important;
           text-align-last:center !important;
           -webkit-appearance:none;
           appearance:none;
           position:relative;
-          box-sizing:border-box;
+          box-sizing:border-box !important;
           direction:ltr;
-          padding:12px 36px !important; /* ίσο αριστερά/δεξιά (χώρος για το βελάκι) */
+          padding:14px 36px !important;
+          font-size:20px !important;
+          line-height:26px !important;
         }
         input[type="date"]#date::-webkit-date-and-time-value{
           text-align:center !important;
-          width:100%;
+          min-width:100%;
+          min-height:26px;
+          line-height:26px;
           margin:0;
         }
         input[type="date"]#date::-webkit-datetime-edit{
           width:100%;
+          min-height:26px;
           text-align:center;
           padding:0;
           display:flex;
           justify-content:center;
+          align-items:center;
         }
         input[type="date"]#date::-webkit-datetime-edit-fields-wrapper{
           display:flex;
           justify-content:center;
+          align-items:center;
           width:100%;
+          min-height:26px;
           direction:ltr;
         }
         input[type="date"]#date::-webkit-calendar-picker-indicator{
@@ -2794,7 +2810,7 @@
         </div>
 
         <label id="l_date"></label>
-        <div class="input-wrap"><input type="date" id="date" required></div>
+        <div class="input-wrap" id="dateWrap"><input type="date" id="date" required></div>
 
         <label id="l_time"></label>
         <div class="input-wrap" style="display:flex; gap:8px;">
@@ -7649,6 +7665,11 @@ currentBookingStatus = "new";
       }catch(e){}
 
       try{ saveLastBookingId(bookingId); }catch(e){}
+      try{
+        if(window.ClientBridge && ClientBridge.watchBookingForNotifications){
+          ClientBridge.watchBookingForNotifications(bookingId);
+        }
+      }catch(e){}
 // (re)start watchdog for this booking
       lastBookingUpdateAt = Date.now();
       if (watchdogTimer) { try{ clearInterval(watchdogTimer); }catch(e){} watchdogTimer = null; }
@@ -7724,6 +7745,11 @@ currentBookingStatus = "new";
           if (_stLocal === "offered" || _stLocal === "interested") currentBookingStatus = "accepted";
         }
         lastBookingUpdateAt = Date.now(); // ✅ watchdog heartbeat
+        try{
+          var _nst = String(currentBookingStatus || '').toLowerCase();
+          if(b && (b.showDriverReady === true || b.driverConfirmedOk === true)) _nst = 'driver_ready';
+          if(typeof window.__iosNotifyBooking === 'function') window.__iosNotifyBooking(_nst, bookingId);
+        }catch(e){}
 
         const _stNow = readStatus(b);
         if (_stNow === "accepted" || _stNow === "booked" || _stNow === "confirmed") {
@@ -11902,6 +11928,48 @@ async function routeKm(fromLat, fromLon){
 <!-- ===== FCM TOKEN BRIDGE ===== -->
 <script>
     window.__CLIENT_FCM_TOKEN = null;
+
+    window.__iosNotifyBooking = function(st, id){
+        try{
+          st = String(st || '').toLowerCase();
+          id = String(id || '');
+          if(!st || !window.ClientBridge || !ClientBridge.showLocalNotification) return;
+          var key = st + ':' + id;
+          if(window.__lastIosNotif === key) return;
+          window.__lastIosNotif = key;
+          var en = (typeof window.__isEn === 'function') ? window.__isEn() : false;
+          var msg = null;
+          if(st === 'accepted' || st === 'booked' || st === 'confirmed'){
+            msg = en ? ['Booking accepted', 'A driver accepted your booking.'] : ['Η κράτηση έγινε δεκτή', 'Ένας οδηγός αποδέχτηκε την κράτηση.'];
+          } else if(st === 'offered'){
+            msg = en ? ['Price confirmation', 'The driver sent a price. Open the app to accept.'] : ['Επιβεβαίωση τιμής', 'Ο οδηγός έστειλε τιμή. Άνοιξε την εφαρμογή για αποδοχή.'];
+          } else if(st === 'interested'){
+            msg = en ? ['Driver found', 'A driver is interested. Please wait.'] : ['Βρέθηκε οδηγός', 'Ένας οδηγός ενδιαφέρεται. Περίμενε λίγο.'];
+          } else if(st === 'driver_ready' || st === 'arrived'){
+            msg = en ? ['Driver arrived', 'Your driver is at the pickup point.'] : ['Ο οδηγός έφτασε', 'Ο οδηγός είναι στο σημείο παραλαβής.'];
+          } else if(st === 'cancelled' || st === 'canceled' || st === 'driver_cancelled'){
+            msg = en ? ['Booking cancelled', 'Open the app for details.'] : ['Η κράτηση ακυρώθηκε', 'Άνοιξε την εφαρμογή για λεπτομέρειες.'];
+          }
+          if(msg) ClientBridge.showLocalNotification(msg[0], msg[1]);
+        }catch(e){}
+    };
+
+    window.__onClientApnsToken = function(token){
+        if (!token) return;
+        window.__CLIENT_APNS_TOKEN = token;
+        try {
+            var dbx = window._clientDb;
+            var fns = window._clientDbFns || {};
+            if (!dbx || !fns.ref || !fns.update) return;
+            if (window.currentBookingId) {
+                fns.update(fns.ref(dbx, "bookings/" + window.currentBookingId), {
+                    clientApnsToken: token,
+                    clientApnsTokenAt: Date.now(),
+                    clientPushPlatform: 'ios'
+                }).catch(function(){});
+            }
+        } catch(e) {}
+    };
 
     window.__onClientFcmToken = function(token){
         if (!token) return;
