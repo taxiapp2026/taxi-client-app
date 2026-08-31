@@ -10642,14 +10642,15 @@ currentBookingStatus = "new";
     function calcRouteBasePrice(km, dateStr, timeStr){
       const night = isNightTariff(dateStr, timeStr);
       if(isAirportToAthensMode() && !isAirportAthensNowPriceMode(dateStr, timeStr)){
+        // Ραντεβού: μέρα 1.20/km. Μετά τις 12 (00:00–05:00): διπλή/νυχτερινή χρέωση.
+        if(night) return calcBasePrice(km, true);
         return calcAirportAthensBasePrice(km);
       }
       return calcBasePrice(km, night);
     }
 
     function calcAirportAthensBasePrice(km){
-      // Αεροδρόμιο → Αθήνα: τιμή 1.20/km, πρωί και βράδυ
-      // σημαία 2€ + km*1.20 + αεροδρόμιο 4€ + πρόσθετο 2.5€
+      // Αεροδρόμιο → Αθήνα ραντεβού ημέρας: σημαία 2€ + km*1.20 + αεροδρόμιο 4€ + 2.5€
       return Math.max(0, 2 + (1.20 * km) + 4 + 2.5);
     }
 
@@ -10725,9 +10726,12 @@ currentBookingStatus = "new";
       return 1.5;   // κανονικές ώρες: ±1.5€ → εύρος 3€
     }
 
-    // Αεροδρόμιο → Αθήνα ραντεβού: ακριβής τιμή χωρίς ±. «Τώρα»: ίδιο εύρος με Αθήνα→Αεροδρόμιο.
+    // Αεροδρόμιο → Αθήνα ραντεβού ημέρας: μία τιμή. Μετά τις 12 (00:00–05:00): διπλή χρέωση + εύρος.
+    // «Τώρα» και Αθήνα→Αεροδρόμιο: εύρος πάντα.
     function calcEffectiveRangeBuffer(dateStr, timeStr){
-      if(isAirportToAthensMode() && !isAirportAthensNowPriceMode(dateStr, timeStr)) return 0;
+      if(isAirportToAthensMode() && !isAirportAthensNowPriceMode(dateStr, timeStr) && !isNightTariff(dateStr, timeStr)){
+        return 0;
+      }
       return calcRangeBuffer(dateStr, timeStr);
     }
 
