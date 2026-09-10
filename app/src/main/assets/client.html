@@ -499,11 +499,13 @@
         try{ ev.preventDefault(); }catch(e){}
         window.__termsAccepted();
       }, {capture:true, passive:false});
-      /* iOS WKWebView: same capture tap as route/terms — onclick on div/readonly often never fires. */
+      /* iOS WKWebView: same capture tap as route/terms — onclick on div/readonly often never fires.
+         touchend + click = δύο φορές (φάκελος ανοίγει και κλείνει, Info ανοίγει και κλείνει). */
       var __uiTapAt={folder:0,info:0,pickup:0};
+      var __uiFromTouch={folder:0,info:0,pickup:0};
       function __uiTapOk(key){
         var n=Date.now();
-        if(n-(__uiTapAt[key]||0)<450) return false;
+        if(n-(__uiTapAt[key]||0)<900) return false;
         __uiTapAt[key]=n;
         return true;
       }
@@ -513,26 +515,38 @@
         if(t.nodeType===3) t=t.parentElement;
         return t;
       }
+      function __homeUiKey(t){
+        if(!t||!t.closest) return null;
+        if(t.id==='folderBtn'||t.closest('#folderBtn')) return 'folder';
+        if(t.id==='infoBtn'||(t.classList&&t.classList.contains('info-btn'))||t.closest('.info-btn')) return 'info';
+        if(t.id==='pickup'||t.id==='l_pickup'||t.id==='airportText'||t.id==='pickupWrap'||t.closest('#pickupWrap')) return 'pickup';
+        return null;
+      }
       function __onHomeUiTap(ev){
-        var t=__uiFrom(ev); if(!t||!t.closest) return;
-        if(t.id==='folderBtn'||t.closest('#folderBtn')){
-          try{ ev.preventDefault(); ev.stopPropagation(); }catch(e){}
-          if(!__uiTapOk('folder')) return;
+        var t=__uiFrom(ev);
+        var key=__homeUiKey(t);
+        if(!key) return;
+        try{ ev.preventDefault(); ev.stopPropagation(); }catch(e){}
+        if(ev.type==='touchend') __uiFromTouch[key]=Date.now();
+        if(ev.type==='click' && (Date.now()-(__uiFromTouch[key]||0)<1200)) return;
+        if(!__uiTapOk(key)) return;
+        if(key==='folder'){
           if(typeof window.toggleFolder==='function') window.toggleFolder();
           return;
         }
-        if(t.id==='infoBtn'||(t.classList&&t.classList.contains('info-btn'))||t.closest('.info-btn')){
-          try{ ev.preventDefault(); ev.stopPropagation(); }catch(e){}
-          if(!__uiTapOk('info')) return;
+        if(key==='info'){
           if(typeof window.openInfo==='function') window.openInfo();
+          try{
+            var ov=document.getElementById('infoOverlay');
+            if(ov){
+              ov.style.pointerEvents='none';
+              setTimeout(function(){ try{ ov.style.pointerEvents='auto'; }catch(e2){} }, 700);
+            }
+          }catch(e){}
           return;
         }
-        if(t.id==='pickup'||t.id==='l_pickup'||t.id==='airportText'||t.id==='pickupWrap'||t.closest('#pickupWrap')){
-          try{ ev.preventDefault(); ev.stopPropagation(); }catch(e){}
-          if(!__uiTapOk('pickup')) return;
-          if(typeof window.__showPickupMap==='function') window.__showPickupMap();
-          try{ var inp=document.getElementById('pickup'); if(inp) inp.blur(); }catch(e){}
-        }
+        if(typeof window.__showPickupMap==='function') window.__showPickupMap();
+        try{ var inp=document.getElementById('pickup'); if(inp) inp.blur(); }catch(e){}
       }
       document.addEventListener('click', __onHomeUiTap, true);
       document.addEventListener('touchend', __onHomeUiTap, {capture:true, passive:false});
@@ -4525,14 +4539,16 @@ async function __updatePickupMapAddr(){
     // Open map when user taps/clicks the pickup field (NOT on focus to prevent keyboard)
     function __openPickupFromField(){
       __showPickupMap();
-      try{ pickupIn.blur(); }catch(e){}
+      try{ if(pickupIn) pickupIn.blur(); }catch(e){}
     }
-    pickupIn.addEventListener("click", __openPickupFromField);
-    pickupIn.addEventListener("touchend", function(ev){
-      try{ ev.preventDefault(); }catch(e){}
-      __openPickupFromField();
-    }, {passive:false});
     try{
+      if(pickupIn){
+        pickupIn.addEventListener("click", __openPickupFromField);
+        pickupIn.addEventListener("touchend", function(ev){
+          try{ ev.preventDefault(); }catch(e){}
+          __openPickupFromField();
+        }, {passive:false});
+      }
       var wrap=document.getElementById('pickupWrap');
       var lab=document.getElementById('l_pickup');
       if(wrap) wrap.addEventListener('click', __openPickupFromField);
@@ -5091,7 +5107,7 @@ async function __updatePickupMapAddr(){
       }, 450);
     }
 
-    pickupIn.addEventListener("input", ()=>{
+    if(pickupIn) pickupIn.addEventListener("input", ()=>{
       if(!pickupMapBox || pickupMapBox.style.display !== "block") return;
       const q = (pickupIn.value||"").trim();
       if(q.length < 3) return;
@@ -7033,7 +7049,13 @@ listEl.appendChild(div);
       }
     }
 
-function isHomeVisible(){ return bookingForm.style.display !== "none"; }
+function isHomeVisible(){
+      try{
+        if(!bookingForm) return true;
+        if(bookingForm.style.display === "none") return false;
+        return true;
+      }catch(e){ return true; }
+    }
 
     window.toggleFolder = function(){
       if(!isHomeVisible()) return; // only on home
