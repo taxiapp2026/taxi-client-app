@@ -44,6 +44,8 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         wv.scrollView.keyboardDismissMode = .interactive
         wv.scrollView.contentInsetAdjustmentBehavior = .never
         wv.scrollView.bounces = false
+        wv.scrollView.delaysContentTouches = false
+        wv.scrollView.canCancelContentTouches = false
         wv.isOpaque = false
         wv.backgroundColor = .black
         view.addSubview(wv)
