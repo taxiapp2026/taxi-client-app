@@ -1250,33 +1250,49 @@
           border:none;
           font-size:16px;
         }
-        /* Ημερομηνία: ομοιόμορφα στο πλαίσιο (WebView συχνά την έσπρωχνε αριστερά/δεξιά) */
+        /* Ημερομηνία: σταθερό πλαίσιο άδειο και γεμάτο (iPhone το έκοβε) */
+        #dateWrap{
+          min-height:54px;
+        }
         input[type="date"]#date{
+          display:block !important;
+          width:100% !important;
+          min-width:100% !important;
+          min-height:54px !important;
+          height:54px !important;
           text-align:center !important;
           text-align-last:center !important;
           -webkit-appearance:none;
           appearance:none;
           position:relative;
-          box-sizing:border-box;
+          box-sizing:border-box !important;
           direction:ltr;
-          padding:12px 36px !important; /* ίσο αριστερά/δεξιά (χώρος για το βελάκι) */
+          padding:14px 36px !important;
+          font-size:20px !important;
+          line-height:26px !important;
         }
         input[type="date"]#date::-webkit-date-and-time-value{
           text-align:center !important;
-          width:100%;
+          min-width:100%;
+          min-height:26px;
+          line-height:26px;
           margin:0;
         }
         input[type="date"]#date::-webkit-datetime-edit{
           width:100%;
+          min-height:26px;
           text-align:center;
           padding:0;
           display:flex;
           justify-content:center;
+          align-items:center;
         }
         input[type="date"]#date::-webkit-datetime-edit-fields-wrapper{
           display:flex;
           justify-content:center;
+          align-items:center;
           width:100%;
+          min-height:26px;
           direction:ltr;
         }
         input[type="date"]#date::-webkit-calendar-picker-indicator{
@@ -2841,7 +2857,7 @@
         </div>
 
         <label id="l_date"></label>
-        <div class="input-wrap"><input type="date" id="date" required></div>
+        <div class="input-wrap" id="dateWrap"><input type="date" id="date" required></div>
 
         <label id="l_time"></label>
         <div class="input-wrap" style="display:flex; gap:8px;">
