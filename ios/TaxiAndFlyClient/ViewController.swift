@@ -113,6 +113,8 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
             reverseGeocode(lat: str(args, 0), lon: str(args, 1), requestId: str(args, 2))
         case "placeAutocomplete":
             placeAutocomplete(query: str(args, 0), requestId: str(args, 1))
+        case "placeDetails":
+            placeDetails(placeId: str(args, 0), requestId: str(args, 1))
         default:
             break
         }
@@ -277,6 +279,17 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         }
     }
 
+    private func placeDetails(placeId: String, requestId: String) {
+        geoLock.lock()
+        let cached = placeCache[placeId]
+        geoLock.unlock()
+        if let cached {
+            nativeCallback("__onNativePlaceDetails", id: requestId, payload: jsonPayload(cached))
+        } else {
+            nativeCallback("__onNativePlaceDetails", id: requestId, payload: "null")
+        }
+    }
+
     private static let bridgeScript = """
     (function(){
       function call(name, args){
@@ -305,7 +318,8 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         stopSpeechToText: function(){ call('stopSpeechToText',[]); },
         geocodeAddress: function(q,id){ call('geocodeAddress',[q,id]); },
         reverseGeocode: function(lat,lon,id){ call('reverseGeocode',[lat,lon,id]); },
-        placeAutocomplete: function(q,id){ call('placeAutocomplete',[q,id]); }
+        placeAutocomplete: function(q,id){ call('placeAutocomplete',[q,id]); },
+        placeDetails: function(id,req){ call('placeDetails',[id,req]); }
       };
       window.ClientBridge = b;
       window.AndroidBridge = b;
