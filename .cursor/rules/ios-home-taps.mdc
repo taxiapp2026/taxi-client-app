@@ -1,0 +1,23 @@
+---
+description: iPhone Folder, Info and pickup taps must stay as in 1.0.30
+alwaysApply: true
+---
+
+# iPhone taps (1.0.30) — μην τα ξανασπάσεις
+
+Η live App Store **1.0.30** ανοίγει φάκελο, Info και σημείο παραλαβής. Κάθε νέα έκδοση (TestFlight / App Store) **κρατάει αυτό το κύκλωμα**. Μην το ξαναγράψεις.
+
+## Γιατί δεν κολλούσε
+- `ViewController`: `delaysContentTouches = false`, `canCancelContentTouches = false`
+- HTML: `__onHomeUiTap` (capture `click` + `touchend`, debounce 450ms)
+- Info = `<button id="infoBtn">`, παραλαβή = `#pickupWrap`
+- `window.__showPickupMap` / `window.toggleFolder` / `window.openInfo` ορίζονται και μένουν
+
+## Τι έσπασε την 1.0.31
+Αντικατάσταση όλου του `client.html` (WIP) έσβησε τα taps. Μετά «διορθώσεις» στα taps (άλλο debounce, skip click, overlay pointer-events) τα έκαναν χειρότερα.
+
+## Κανόνας
+Νέα λειτουργία (π.χ. προορισμός / geocode) = **μόνο** μέσα στις συναρτήσεις αναζήτησης/πινέζας.
+**Απαγορεύεται:** αλλαγή `__onHomeUiTap`, `toggleFolder`, `openInfo`, date-frame CSS, ή σβήσιμο `delaysContentTouches`.
+**Απαγορεύεται:** ολόκληρο HTML από άλλο branch πάνω στην ios-appstore βάση.
+Base για iOS = η 1.0.30 (commit `25ffc64` / tap-fix `1979565`), μετά μόνο το ζητούμενο.

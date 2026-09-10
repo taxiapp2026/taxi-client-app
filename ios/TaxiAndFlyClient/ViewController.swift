@@ -36,6 +36,8 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         if #available(iOS 14.0, *) {
             config.limitsNavigationsToAppBoundDomains = false
         }
+        config.preferences.setValue(true, forKey: "allowFileAccessFromFileURLs")
+        config.setValue(true, forKey: "allowUniversalAccessFromFileURLs")
 
         let wv = WKWebView(frame: view.bounds, configuration: config)
         wv.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -50,6 +52,7 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         wv.backgroundColor = .black
         view.addSubview(wv)
         webView = wv
+        VpsPush.webView = wv
     }
 
     private func loadClient() {
@@ -80,17 +83,26 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         case "showKeyboard":
             webView.becomeFirstResponder()
         case "showLocalNotification":
-            notify(title: str(args, 0), body: str(args, 1), id: "local_obs")
+            guard UIApplication.shared.applicationState != .active else { return }
+            DispatchQueue.main.async {
+                VpsPush.localNotify(title: self.str(args, 0), body: self.str(args, 1), id: "local_\(Int(Date().timeIntervalSince1970))")
+            }
+        case "markBookingSeen":
+            VpsPush.markSeen(bookingId: str(args, 0), status: str(args, 1))
         case "cancelNotification":
             UNCenter.remove(id: str(args, 0))
-        case "cancelDriverArrivedNotification", "cancelAllNotifications", "cancelClientUnconfirmedCheck":
+        case "cancelDriverArrivedNotification", "cancelAllNotifications":
             UNCenter.removeAll()
+        case "cancelClientUnconfirmedCheck":
+            UNCenter.removeAll()
+            VpsPush.stopWatch()
         case "scheduleClientUnconfirmedCheck", "watchBookingForNotifications":
-            break
+            VpsPush.watchBooking(str(args, 0), webView: webView)
         case "sendChatNotification":
             VpsPush.sendChat(token: str(args, 0), title: str(args, 1), body: str(args, 2))
         case "getFcmToken":
-            break
+            VpsPush.webView = webView
+            VpsPush.deliverPushTokenToJs()
         case "log":
             NSLog("JS: %@", str(args, 0))
         case "startSpeechToText", "stopSpeechToText":
@@ -101,8 +113,6 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
             reverseGeocode(lat: str(args, 0), lon: str(args, 1), requestId: str(args, 2))
         case "placeAutocomplete":
             placeAutocomplete(query: str(args, 0), requestId: str(args, 1))
-        case "placeDetails":
-            placeDetails(placeId: str(args, 0), requestId: str(args, 1))
         default:
             break
         }
@@ -167,7 +177,7 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         guard JSONSerialization.isValidJSONObject(obj),
               let data = try? JSONSerialization.data(withJSONObject: obj, options: []),
               let s = String(data: data, encoding: .utf8) else {
-            return (obj is NSNull) ? "null" : "[]"
+            return "[]"
         }
         return s
     }
@@ -187,16 +197,6 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         )
     }
 
-    private func gateNumber(_ query: String) -> String? {
-        guard let re = try? NSRegularExpression(pattern: "(?:gate|πύλη|πυλη)\\s*[eε]?\\s*(\\d{1,2})", options: .caseInsensitive) else {
-            return nil
-        }
-        let range = NSRange(query.startIndex..<query.endIndex, in: query)
-        guard let m = re.firstMatch(in: query, options: [], range: range), m.numberOfRanges > 1,
-              let r = Range(m.range(at: 1), in: query) else { return nil }
-        return String(query[r])
-    }
-
     private func placemarkDict(_ p: CLPlacemark, name: String?) -> [String: Any] {
         let c = p.location?.coordinate
         let lat = c?.latitude ?? 0
@@ -206,10 +206,6 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
             p.subLocality ?? p.locality ?? "",
             p.postalCode ?? ""
         ].filter { !$0.isEmpty }.joined(separator: ", ")
-        var postcode = p.postalCode ?? ""
-        if postcode.isEmpty, let m = display.range(of: #"\b\d{5}\b"#, options: .regularExpression) {
-            postcode = String(display[m])
-        }
         return [
             "lat": lat,
             "lon": lon,
@@ -219,19 +215,8 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
             "house_number": p.subThoroughfare ?? "",
             "city": p.locality ?? "",
             "suburb": p.subLocality ?? "",
-            "postcode": postcode
+            "postcode": p.postalCode ?? ""
         ]
-    }
-
-    private func mapItemDict(_ item: MKMapItem, id: String) -> [String: Any] {
-        let p = item.placemark
-        var d = placemarkDict(p, name: item.name)
-        let hotel = item.pointOfInterestCategory == .hotel
-        d["place_id"] = id
-        d["subtitle"] = [p.thoroughfare, p.locality, p.postalCode].compactMap { $0 }.filter { !$0.isEmpty }.joined(separator: ", ")
-        d["type"] = hotel ? "hotel" : "address"
-        d["class"] = hotel ? "tourism" : "place"
-        return d
     }
 
     private func geocodeAddress(query: String, requestId: String) {
@@ -240,35 +225,12 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
             nativeCallback("__onNativeGeocode", id: requestId, payload: "[]")
             return
         }
-        var tries: [String] = []
-        if let n = gateNumber(q) {
-            tries.append("Πύλη Ε\(n) Πειραιάς")
-            tries.append("Piraeus Port Gate E\(n)")
-            tries.append("Gate E\(n) Piraeus")
-        }
-        tries.append(q)
-        if !q.lowercased().contains("ελλάδα") && !q.lowercased().contains("greece") {
-            tries.append("\(q), Ελλάδα")
-        }
-        geocodeNext(tries: tries, index: 0, requestId: requestId)
-    }
-
-    private func geocodeNext(tries: [String], index: Int, requestId: String) {
-        if index >= tries.count {
-            nativeCallback("__onNativeGeocode", id: requestId, payload: "[]")
-            return
-        }
         let geocoder = CLGeocoder()
-        let locale = Locale(identifier: "el_GR")
-        geocoder.geocodeAddressString(tries[index], in: nil, preferredLocale: locale) { [weak self] marks, _ in
+        geocoder.geocodeAddressString(q, in: nil, preferredLocale: Locale(identifier: "el_GR")) { [weak self] marks, _ in
             guard let self = self else { return }
             let good = (marks ?? []).filter { $0.location != nil && ($0.isoCountryCode == "GR" || $0.isoCountryCode == nil) }
-            if !good.isEmpty {
-                let arr = good.prefix(8).map { self.placemarkDict($0, name: $0.name) }
-                self.nativeCallback("__onNativeGeocode", id: requestId, payload: self.jsonPayload(arr))
-                return
-            }
-            self.geocodeNext(tries: tries, index: index + 1, requestId: requestId)
+            let arr = good.prefix(8).map { self.placemarkDict($0, name: $0.name) }
+            self.nativeCallback("__onNativeGeocode", id: requestId, payload: self.jsonPayload(arr))
         }
     }
 
@@ -293,12 +255,8 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
             nativeCallback("__onNativePlaces", id: requestId, payload: "[]")
             return
         }
-        var searchQuery = q
-        if let n = gateNumber(q) {
-            searchQuery = "Πύλη Ε\(n) Πειραιάς"
-        }
         let req = MKLocalSearch.Request()
-        req.naturalLanguageQuery = searchQuery
+        req.naturalLanguageQuery = q
         req.region = atticaRegion()
         req.resultTypes = [.pointOfInterest, .address]
         MKLocalSearch(request: req).start { [weak self] resp, _ in
@@ -308,23 +266,14 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
             defer { self.geoLock.unlock() }
             for item in resp?.mapItems ?? [] {
                 let id = "ios-" + UUID().uuidString
-                let d = self.mapItemDict(item, id: id)
+                var d = self.placemarkDict(item.placemark, name: item.name)
+                d["place_id"] = id
+                d["type"] = item.pointOfInterestCategory == .hotel ? "hotel" : "address"
                 self.placeCache[id] = d
                 out.append(d)
                 if out.count >= 8 { break }
             }
             self.nativeCallback("__onNativePlaces", id: requestId, payload: self.jsonPayload(out))
-        }
-    }
-
-    private func placeDetails(placeId: String, requestId: String) {
-        geoLock.lock()
-        let cached = placeCache[placeId]
-        geoLock.unlock()
-        if let cached = cached {
-            nativeCallback("__onNativePlaceDetails", id: requestId, payload: jsonPayload(cached))
-        } else {
-            nativeCallback("__onNativePlaceDetails", id: requestId, payload: "null")
         }
     }
 
@@ -343,6 +292,7 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         cancelDriverArrivedNotification: function(){ call('cancelDriverArrivedNotification',[]); },
         cancelAllNotifications: function(){ call('cancelAllNotifications',[]); },
         showLocalNotification: function(t,b){ call('showLocalNotification',[t,b]); },
+        markBookingSeen: function(id,st){ call('markBookingSeen',[id,st]); },
         scheduleClientUnconfirmedCheck: function(id,d,t){ call('scheduleClientUnconfirmedCheck',[id,d,t]); },
         watchBookingForNotifications: function(id){ call('watchBookingForNotifications',[id]); },
         cancelClientUnconfirmedCheck: function(){ call('cancelClientUnconfirmedCheck',[]); },
@@ -355,8 +305,7 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         stopSpeechToText: function(){ call('stopSpeechToText',[]); },
         geocodeAddress: function(q,id){ call('geocodeAddress',[q,id]); },
         reverseGeocode: function(lat,lon,id){ call('reverseGeocode',[lat,lon,id]); },
-        placeAutocomplete: function(q,id){ call('placeAutocomplete',[q,id]); },
-        placeDetails: function(pid,id){ call('placeDetails',[pid,id]); }
+        placeAutocomplete: function(q,id){ call('placeAutocomplete',[q,id]); }
       };
       window.ClientBridge = b;
       window.AndroidBridge = b;
