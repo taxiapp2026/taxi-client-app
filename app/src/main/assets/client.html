@@ -596,6 +596,21 @@
           color:#fff;
         }
         body.no-scroll{ overflow:hidden; }
+        html.pickup-map-open,
+        html.pickup-map-open body{
+          overflow:hidden !important;
+          overscroll-behavior:none;
+        }
+        html.pickup-map-open body{
+          position:fixed !important;
+          left:0;
+          right:0;
+          width:100% !important;
+        }
+        html.pickup-map-open #bgFixed{
+          position:fixed !important;
+          transform:translateZ(0);
+        }
 
         /* ✅ Fixed background div - λειτουργεί σε iOS Safari, Android, Desktop */
         #bgFixed{
@@ -1789,6 +1804,8 @@
           z-index:99999;
           overflow-y:auto;
           overflow-x:hidden;
+          overscroll-behavior:none;
+          overscroll-behavior-y:contain;
           -webkit-overflow-scrolling:touch;
         }
 
@@ -4475,6 +4492,24 @@ async function __updatePickupMapAddr(){
       }catch(e){}
     }
 
+    let __pickupLockY = 0;
+    function __lockHomeBehindPickup(){
+      try{
+        __pickupLockY = window.scrollY || window.pageYOffset || 0;
+        document.documentElement.classList.add("pickup-map-open");
+        document.body.style.top = "-" + __pickupLockY + "px";
+      }catch(e){}
+      try{ if(window.ClientBridge && typeof ClientBridge.lockPageScroll==="function") ClientBridge.lockPageScroll(); }catch(e){}
+    }
+    function __unlockHomeBehindPickup(){
+      try{
+        document.documentElement.classList.remove("pickup-map-open");
+        document.body.style.top = "";
+        document.body.style.overflow = "";
+        window.scrollTo(0, __pickupLockY || 0);
+      }catch(e){}
+      try{ if(window.ClientBridge && typeof ClientBridge.unlockPageScroll==="function") ClientBridge.unlockPageScroll(); }catch(e){}
+    }
     function __showPickupMap(){
       try{ __clearPickupMapFields(); }catch(e){}
       try{ __destroyPickupMap(); }catch(e){}
@@ -4489,11 +4524,11 @@ async function __updatePickupMapAddr(){
       pickupMapBox.style.zIndex = "99999";
       try{ pickupMapBox.classList.remove("pickup-typing"); }catch(e){}
       __pickupMapBaseH = __pickupMapViewH();
-      try{ document.body.style.overflow="hidden"; }catch(e){}
+      __lockHomeBehindPickup();
 
       if(!__initPickupMap()){
         pickupMapBox.style.display = "none";
-        try{ document.body.style.overflow=""; }catch(e){}
+        __unlockHomeBehindPickup();
         return;
       }
 
@@ -4510,7 +4545,7 @@ async function __updatePickupMapAddr(){
       pickupMapBox.style.display = "none";
       try{ pickupMapBox.classList.remove("pickup-typing"); }catch(e){}
       __pickupMapBaseH = 0;
-      try{ document.body.style.overflow=""; }catch(e){}
+      __unlockHomeBehindPickup();
       try{ __destroyPickupMap(); }catch(e){}
 
       // Reset readonly to prevent keyboard from auto-showing next time

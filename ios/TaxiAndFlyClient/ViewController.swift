@@ -115,6 +115,10 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
             placeAutocomplete(query: str(args, 0), requestId: str(args, 1))
         case "placeDetails":
             placeDetails(placeId: str(args, 0), requestId: str(args, 1))
+        case "lockPageScroll":
+            webView.scrollView.isScrollEnabled = false
+        case "unlockPageScroll":
+            webView.scrollView.isScrollEnabled = true
         default:
             break
         }
@@ -319,7 +323,9 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         geocodeAddress: function(q,id){ call('geocodeAddress',[q,id]); },
         reverseGeocode: function(lat,lon,id){ call('reverseGeocode',[lat,lon,id]); },
         placeAutocomplete: function(q,id){ call('placeAutocomplete',[q,id]); },
-        placeDetails: function(id,req){ call('placeDetails',[id,req]); }
+        placeDetails: function(id,req){ call('placeDetails',[id,req]); },
+        lockPageScroll: function(){ call('lockPageScroll',[]); },
+        unlockPageScroll: function(){ call('unlockPageScroll',[]); }
       };
       window.ClientBridge = b;
       window.AndroidBridge = b;
