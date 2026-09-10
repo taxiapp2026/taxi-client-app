@@ -138,7 +138,7 @@
           txt('airportNowAutoBtn','NOW','ΤΩΡΑ');
           txt('airportNowAutoHint','AUTOMATIC DATE & TIME','ΑΥΤΟΜΑΤΑ ΩΡΑ & ΗΜΕΡΟΜΗΝΙΑ');
           txt('pickupMapTitle','Enter address','Βάλε διεύθυνση');
-          txt('l_map_address','Address','Διεύθυνση');
+          txt('l_map_address','Street / hotel / area','Οδός / ξενοδοχείο / περιοχή');
           txt('l_map_city','City','Πόλη');
           txt('l_map_number','Number','Αριθμός');
           txt('l_map_postalcode','Postal Code','ΤΚ');
@@ -146,7 +146,7 @@
           txt('pickupMapHint','📍 Move the pin to the exact pickup point and tap OK.','📍 Μετακίνησε την πινέζα στο ακριβές σημείο και πάτα OK.');
           ph('pickup', 'Pickup location', 'Από πού');
           ph('flightNum', 'e.g. A3 620', 'π.χ. A3 620');
-          ph('map_address', 'Address', 'Διεύθυνση');
+          ph('map_address', 'e.g. Divani or Kifisias 100 15125', 'π.χ. Divani ή Κηφισίας 100 15125');
           ph('map_city', 'City', 'Πόλη');
           ph('map_number', 'No.', 'Αρ.');
           ph('map_postalcode', 'Postal Code', 'ΤΚ');
@@ -293,11 +293,7 @@
           try{
             document.documentElement.classList.remove('client-terms-visible');
             var ov=document.getElementById('clientTermsOverlayV1');
-            if(ov){
-              ov.style.display='none';
-              ov.style.pointerEvents='none';
-              ov.style.visibility='hidden';
-            }
+            if(ov) ov.style.display='none';
             document.documentElement.style.overflow='';
             document.body.style.overflow='';
             document.body.style.touchAction='';
@@ -503,43 +499,6 @@
         try{ ev.preventDefault(); }catch(e){}
         window.__termsAccepted();
       }, {capture:true, passive:false});
-      /* iOS WKWebView: same capture tap as route/terms — onclick on div/readonly often never fires. */
-      var __uiTapAt={folder:0,info:0,pickup:0};
-      function __uiTapOk(key){
-        var n=Date.now();
-        if(n-(__uiTapAt[key]||0)<450) return false;
-        __uiTapAt[key]=n;
-        return true;
-      }
-      function __uiFrom(ev){
-        var t=ev&&ev.target;
-        if(!t) return null;
-        if(t.nodeType===3) t=t.parentElement;
-        return t;
-      }
-      function __onHomeUiTap(ev){
-        var t=__uiFrom(ev); if(!t||!t.closest) return;
-        if(t.id==='folderBtn'||t.closest('#folderBtn')){
-          try{ ev.preventDefault(); ev.stopPropagation(); }catch(e){}
-          if(!__uiTapOk('folder')) return;
-          if(typeof window.toggleFolder==='function') window.toggleFolder();
-          return;
-        }
-        if(t.id==='infoBtn'||(t.classList&&t.classList.contains('info-btn'))||t.closest('.info-btn')){
-          try{ ev.preventDefault(); ev.stopPropagation(); }catch(e){}
-          if(!__uiTapOk('info')) return;
-          if(typeof window.openInfo==='function') window.openInfo();
-          return;
-        }
-        if(t.id==='pickup'||t.id==='l_pickup'||t.id==='airportText'||t.id==='pickupWrap'||t.closest('#pickupWrap')){
-          try{ ev.preventDefault(); ev.stopPropagation(); }catch(e){}
-          if(!__uiTapOk('pickup')) return;
-          if(typeof window.__showPickupMap==='function') window.__showPickupMap();
-          try{ var inp=document.getElementById('pickup'); if(inp) inp.blur(); }catch(e){}
-        }
-      }
-      document.addEventListener('click', __onHomeUiTap, true);
-      document.addEventListener('touchend', __onHomeUiTap, {capture:true, passive:false});
       document.addEventListener('DOMContentLoaded', function(){
         try{ if(typeof window.__paintLang==='function') window.__paintLang(); }catch(e){}
         try{
@@ -576,11 +535,12 @@
           -webkit-overflow-scrolling:touch;
           padding:12px 0!important;
           box-sizing:border-box!important;
-          pointer-events:none;
+          visibility:visible!important;
+          opacity:1!important;
+          pointer-events:auto!important;
         }
         html.client-terms-visible #clientTermsOverlayV1{
           display:block!important;
-          pointer-events:auto!important;
         }
         html.client-terms-visible body{
           overflow:hidden!important;
@@ -590,8 +550,10 @@
           margin:0;
           min-height:100vh;
           background:#000;
-          display:block;
-          /* iOS WKWebView: display:flex breaks position:fixed overlays (info/folder/map). */
+          display:flex;
+          justify-content:center;
+          align-items:flex-start;
+          /* Όπως φάκελος: «Δείξε τιμή» / κάτω κουμπιά πάνω από εντολές */
           padding:50px 0 max(48px, calc(12px + env(safe-area-inset-bottom, 0px)));
           color:#fff;
         }
@@ -617,23 +579,6 @@
           max-width:280px;
           margin:0 auto;
           text-align:center;
-        }
-        #pickupWrap, #pickup, #l_pickup{
-          touch-action:manipulation;
-          pointer-events:auto;
-          cursor:pointer;
-          -webkit-tap-highlight-color:rgba(255,215,0,.22);
-        }
-        #pickupMapBox{
-          position:fixed!important;
-          inset:0!important;
-          left:0!important;
-          right:0!important;
-          top:0!important;
-          bottom:0!important;
-          width:100%!important;
-          max-width:none!important;
-          z-index:99999!important;
         }
 
         h1{
@@ -669,13 +614,6 @@
           justify-content:center;
           text-decoration:none;
           cursor:pointer;
-          border:none;
-          padding:0;
-          touch-action:manipulation;
-          -webkit-tap-highlight-color:rgba(255,215,0,.28);
-          pointer-events:auto;
-          position:relative;
-          z-index:6;
         }
         .lang{display:flex;gap:6px;align-items:center}
         .lang button{background:none;border:none;font-size:22px;cursor:pointer;padding:0}
@@ -692,7 +630,7 @@
           box-shadow:0 10px 24px rgba(0,0,0,.35);
           white-space:nowrap;
         }
-        .folder-btn{min-height:58px;padding:12px 18px;font-size:20px;border:none;border-radius:15px;display:inline-flex;align-items:center;justify-content:center;gap:7px;box-sizing:border-box;touch-action:manipulation;-webkit-tap-highlight-color:rgba(255,215,0,.28);pointer-events:auto;position:relative;z-index:6;}
+        .folder-btn{min-height:58px;padding:12px 18px;font-size:20px;border:none;border-radius:15px;display:inline-flex;align-items:center;justify-content:center;gap:7px;box-sizing:border-box;}
         .folder-btn span{font-size:30px !important;line-height:1;}
         @keyframes folderBtnBlink{
           0%,100%{background:#000;box-shadow:0 10px 24px rgba(0,0,0,.35);}
@@ -1251,49 +1189,33 @@
           border:none;
           font-size:16px;
         }
-        /* Ημερομηνία: σταθερό πλαίσιο και άδειο και γεμάτο (iOS WKWebView συρρικνώνει το empty date). */
-        #dateWrap{
-          min-height:54px;
-        }
+        /* Ημερομηνία: ομοιόμορφα στο πλαίσιο (WebView συχνά την έσπρωχνε αριστερά/δεξιά) */
         input[type="date"]#date{
-          display:block !important;
-          width:100% !important;
-          min-width:100% !important;
-          min-height:54px !important;
-          height:54px !important;
           text-align:center !important;
           text-align-last:center !important;
           -webkit-appearance:none;
           appearance:none;
           position:relative;
-          box-sizing:border-box !important;
+          box-sizing:border-box;
           direction:ltr;
-          padding:14px 36px !important;
-          font-size:20px !important;
-          line-height:26px !important;
+          padding:12px 36px !important; /* ίσο αριστερά/δεξιά (χώρος για το βελάκι) */
         }
         input[type="date"]#date::-webkit-date-and-time-value{
           text-align:center !important;
-          min-width:100%;
-          min-height:26px;
-          line-height:26px;
+          width:100%;
           margin:0;
         }
         input[type="date"]#date::-webkit-datetime-edit{
           width:100%;
-          min-height:26px;
           text-align:center;
           padding:0;
           display:flex;
           justify-content:center;
-          align-items:center;
         }
         input[type="date"]#date::-webkit-datetime-edit-fields-wrapper{
           display:flex;
           justify-content:center;
-          align-items:center;
           width:100%;
-          min-height:26px;
           direction:ltr;
         }
         input[type="date"]#date::-webkit-calendar-picker-indicator{
@@ -1327,11 +1249,6 @@
           font-weight:700;
           cursor:pointer;
           color:#000;
-          touch-action:manipulation;
-          -webkit-tap-highlight-color:rgba(0,0,0,.12);
-          pointer-events:auto;
-          position:relative;
-          z-index:2;
     }
         /* Φόρμα: «Δείξε τιμή» καθαρά πάνω από εντολές Xiaomi/χειρονομίες */
         #btn.main{
@@ -1781,7 +1698,7 @@
           width:auto;
           max-width:none;
           margin:0;
-          background:rgba(0,0,0,.92);
+          background:#000;
           padding:0;
           border-radius:0;
           border:none;
@@ -1794,7 +1711,8 @@
 
         #pickupMapBox .inner-container{
           padding:12px;
-          min-height:100vh;
+          min-height:100%;
+          height:100%;
           display:flex;
           flex-direction:column;
         }
@@ -1821,16 +1739,21 @@
         .address-field label{
           display:block;
           color:#FFD700;
-          font-size:11px;
-          font-weight:600;
-          margin-bottom:3px;
+          font-size:14px;
+          font-weight:700;
+          margin-bottom:5px;
         }
         .address-field input{
           width:100%;
-          padding:8px;
-          border-radius:8px;
+          padding:14px 12px;
+          min-height:56px;
+          border-radius:10px;
           border:none;
-          font-size:13px;
+          font-size:20px;
+        }
+        .map-address-wrap{
+          position:relative;
+          width:100%;
         }
         .address-row{
           display:flex;
@@ -1838,6 +1761,9 @@
         }
         .address-row .address-field{
           flex:1;
+        }
+        .address-extra{
+          display:none !important;
         }
 
     /* inner map area */
@@ -1947,6 +1873,34 @@
           min-height:18px;
           opacity:.95;
         }
+        /* Keyboard open: only address fields. Map/OK return when keyboard closes. */
+        #pickupMapBox.pickup-typing{
+          overflow:hidden;
+        }
+        #pickupMapBox.pickup-typing .inner-container{
+          min-height:0;
+          height:100%;
+          padding-bottom:8px;
+        }
+        #pickupMapBox.pickup-typing .address-extra{
+          display:none !important;
+        }
+        #pickupMapBox.pickup-typing #pickupMapWrapper,
+        #pickupMapBox.pickup-typing #pickupMap,
+        #pickupMapBox.pickup-typing #pickupMapHint,
+        #pickupMapBox.pickup-typing #pickupMapAddr{
+          display:none !important;
+          height:0 !important;
+          min-height:0 !important;
+          overflow:hidden !important;
+        }
+        #pickupMapBox.pickup-typing #pickupAutocomplete,
+        #pickupMapBox.pickup-suggesting #pickupAutocomplete{
+          flex:1 1 0%;
+          min-height:0;
+          max-height:none;
+          overflow-y:auto;
+        }
 
 
         #pickupMapTitle{
@@ -1960,32 +1914,45 @@
         /* ===== AUTOCOMPLETE DROPDOWN ===== */
         #pickupAutocomplete{
           display:none;
-          position:absolute;
-          top:50px;
-          left:0; right:0;
+          position:relative;
+          margin-top:8px;
+          left:auto; right:auto;
           background:#1a1a1a;
           border:1px solid rgba(255,215,0,.35);
           border-radius:14px;
           z-index:9999;
           overflow:hidden;
           box-shadow:0 8px 28px rgba(0,0,0,.7);
-          max-height:260px;
+          max-height:42vh;
           overflow-y:auto;
         }
         .ac-item{
           display:flex;
           align-items:center;
           gap:10px;
-          padding:11px 14px;
+          padding:16px;
+          min-height:52px;
           cursor:pointer;
           border-bottom:1px solid rgba(255,255,255,.07);
           transition:background .15s;
         }
         .ac-item:last-child{ border-bottom:none; }
         .ac-item:active, .ac-item:hover{ background:rgba(255,215,0,.13); }
-        .ac-icon{ font-size:18px; flex-shrink:0; }
-        .ac-main{ font-size:14px; font-weight:700; color:#fff; line-height:1.2; }
-        .ac-sub{ font-size:11px; color:rgba(255,255,255,.55); margin-top:2px; }
+        .ac-item.ac-close{
+          justify-content:center;
+          position:sticky;
+          top:0;
+          z-index:2;
+          color:#FFD700;
+          font-size:18px;
+          font-weight:800;
+          min-height:48px;
+          background:#2a2408;
+        }
+        .ac-item.ac-close:active, .ac-item.ac-close:hover{ background:#3a320c; }
+        .ac-icon{ font-size:22px; flex-shrink:0; }
+        .ac-main{ font-size:17px; font-weight:700; color:#fff; line-height:1.25; }
+        .ac-sub{ font-size:14px; color:rgba(255,255,255,.55); margin-top:2px; }
 
 
 
@@ -2069,8 +2036,8 @@
     </style>
 
     <!-- Leaflet (OpenStreetMap) -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 
     <script>
@@ -2666,7 +2633,7 @@
     <div class="topbar" id="topbar">
         <div class="route-back-stack">
             <button type="button" id="routeBackTopBtn" class="routeBackTopBtn" onclick="goToRouteChoice()">↩</button>
-            <button type="button" class="info-btn" id="infoBtn" onclick="openInfo()" aria-label="Info">ⓘ</button>
+            <div class="info-btn" onclick="openInfo()">ⓘ</div>
         </div>
         <!-- Folder button in the middle -->
         <button type="button" class="folder-btn" id="folderBtn" onclick="toggleFolder()"><span style="font-size:20px">📁</span> Folder</button>
@@ -2751,7 +2718,7 @@
 
         <div id="airportTopBar"><div class="airport-title">✈ AIRPORT</div><div class="airport-sub">TO</div></div>
         <label id="l_pickup"></label>
-        <div class="input-wrap" id="pickupWrap">
+        <div class="input-wrap">
             <input id="pickup" placeholder="Pickup location" required readonly>
             <div class="airport-below" id="airportText">→ ✈ Airport</div>
         </div>
@@ -2763,11 +2730,13 @@
                 <!-- Address Fields -->
                 <div class="address-fields">
                     <div class="address-field">
-                        <label id="l_map_address">Address</label>
-                        <input type="text" id="map_address" placeholder="Address" readonly onfocus="this.removeAttribute('readonly')">
+                        <label id="l_map_address">Οδός / ξενοδοχείο / περιοχή</label>
+                        <div class="map-address-wrap">
+                            <input type="text" id="map_address" placeholder="π.χ. Divani ή Κηφισίας 100 15125" readonly onfocus="this.removeAttribute('readonly')" autocomplete="off">
+                        </div>
                     </div>
 
-                    <div class="address-row">
+                    <div class="address-row address-extra">
                         <div class="address-field" style="flex:2;">
                             <label id="l_map_city">City</label>
                             <input type="text" id="map_city" placeholder="City" readonly onfocus="this.removeAttribute('readonly')">
@@ -2778,15 +2747,16 @@
                         </div>
                     </div>
 
-                    <div class="address-field">
+                    <div class="address-field address-extra">
                         <label id="l_map_postalcode">Postal Code</label>
                         <input type="text" id="map_postalcode" placeholder="Postal Code" readonly onfocus="this.removeAttribute('readonly')">
                     </div>
                 </div>
 
-                <div id="pickupMapSearchRow">
-                    <input type="text" id="pickupMapSearch" placeholder="Type street/hotel (e.g. Piraeus Port)" readonly onfocus="this.removeAttribute('readonly')" autocomplete="off"/>
-                    <div id="pickupAutocomplete"></div>
+                <div id="pickupAutocomplete"></div>
+
+                <div id="pickupMapSearchRow" style="display:none">
+                    <input type="text" id="pickupMapSearch" tabindex="-1" aria-hidden="true" autocomplete="off"/>
                 </div>
 
                 <div id="pickupMapWrapper">
@@ -2810,7 +2780,7 @@
         </div>
 
         <label id="l_date"></label>
-        <div class="input-wrap" id="dateWrap"><input type="date" id="date" required></div>
+        <div class="input-wrap"><input type="date" id="date" required></div>
 
         <label id="l_time"></label>
         <div class="input-wrap" style="display:flex; gap:8px;">
@@ -3329,11 +3299,6 @@
 
 
     <div id="result" class="el-text"></div>
-
-    <div id="iosNoticeToast" style="display:none;position:fixed;top:14px;left:12px;right:12px;z-index:2147483647;background:#111;color:#FFD700;border:2px solid #FFD700;border-radius:14px;padding:14px 16px;font-weight:800;box-shadow:0 10px 28px rgba(0,0,0,.5);">
-        <div id="iosNoticeTitle" style="font-size:16px;margin-bottom:4px;"></div>
-        <div id="iosNoticeBody" style="font-size:14px;color:#fff;font-weight:600;"></div>
-    </div>
 
     <!-- Driver Message Overlay -->
     <div id="driverMessageOverlay">
@@ -3972,12 +3937,95 @@ const surnameIn = document.getElementById("surname");
       }, 450);
     }
 
+    function __pickupFieldFocused(){
+      var a = document.activeElement;
+      return !!(a && (a.id==="map_address" || a.id==="map_city" || a.id==="map_number" || a.id==="map_postalcode" || a.id==="pickupMapSearch"));
+    }
+    let __pickupMapBaseH = 0;
+    function __pickupMapViewH(){
+      var ih = window.innerHeight || 0;
+      var vh = 0;
+      try{ if(window.visualViewport && window.visualViewport.height) vh = window.visualViewport.height; }catch(e){}
+      if(ih && vh) return Math.min(ih, vh);
+      return vh || ih || 0;
+    }
+    function __pickupKbOpen(){
+      var h = __pickupMapViewH();
+      if(__pickupMapBaseH && h && (__pickupMapBaseH - h) > 80) return true;
+      try{ if(window.visualViewport && window.visualViewport.offsetTop > 50) return true; }catch(e){}
+      return false;
+    }
+    function __capturePickupMapBaseH(){
+      var h = __pickupMapViewH();
+      if(h > (__pickupMapBaseH || 0)) __pickupMapBaseH = h;
+    }
+    let __pickupKeepMap = false;
+    function __setPickupTyping(on, force){
+      if(!pickupMapBox) return;
+      if(force && !on){
+        __pickupKeepMap = true;
+        try{ clearTimeout(__pickupKeepMap.t); }catch(e){}
+        setTimeout(function(){ __pickupKeepMap = false; }, 1500);
+      }
+      if(__pickupKeepMap) on = false;
+      else if(!on && (__pickupFieldFocused() || __pickupKbOpen())) on = true;
+      var was = pickupMapBox.classList.contains("pickup-typing");
+      pickupMapBox.classList.toggle("pickup-typing", !!on);
+      if(was && !on){
+        setTimeout(function(){ try{ __refreshPickupMapSize(); }catch(e){} }, 80);
+      }
+    }
+    function __syncPickupKeyboardLayout(){
+      if(!pickupMapBox || pickupMapBox.style.display !== "block") return;
+      if(__pickupKeepMap){
+        __setPickupTyping(false);
+        return;
+      }
+      if(!__pickupFieldFocused() && !__pickupKbOpen()) __capturePickupMapBaseH();
+      __setPickupTyping(__pickupKbOpen() || __pickupFieldFocused());
+    }
+    let __pickupTypingBlurTimer = null;
+    function __onPickupInputFocus(){
+      try{ clearTimeout(__pickupTypingBlurTimer); }catch(e){}
+      __setPickupTyping(true);
+      try{ document.activeElement && document.activeElement.scrollIntoView({block:"nearest", inline:"nearest"}); }catch(e){}
+    }
+    function __onPickupInputBlur(){
+      try{ clearTimeout(__pickupTypingBlurTimer); }catch(e){}
+      __pickupTypingBlurTimer = setTimeout(__syncPickupKeyboardLayout, 350);
+    }
+    try{
+      if(window.visualViewport){
+        window.visualViewport.addEventListener("resize", __syncPickupKeyboardLayout);
+        window.visualViewport.addEventListener("scroll", __syncPickupKeyboardLayout);
+      }
+      window.addEventListener("resize", __syncPickupKeyboardLayout);
+    }catch(e){}
+    try{
+      if(pickupMapBox){
+        pickupMapBox.addEventListener("focusin", function(ev){
+          var t = ev && ev.target;
+          if(!t) return;
+          if(t.id==="map_address" || t.id==="map_city" || t.id==="map_number" || t.id==="map_postalcode" || t.id==="pickupMapSearch"){
+            __onPickupInputFocus();
+          }
+        });
+        pickupMapBox.addEventListener("touchstart", function(ev){
+          var t = ev && ev.target;
+          if(!t) return;
+          if(t.id==="map_address" || t.id==="map_city" || t.id==="map_number" || t.id==="map_postalcode" || t.id==="pickupMapSearch"){
+            __onPickupInputFocus();
+          }
+        }, {passive:true});
+      }
+    }catch(e){}
+
     function __bindFieldGeo(el){
       if(!el) return;
-      el.addEventListener("focus", ()=>{ __userIsTyping = true; });
+      el.addEventListener("focus", ()=>{ __userIsTyping = true; __onPickupInputFocus(); });
       el.addEventListener("input", ()=>{
         __userIsTyping = true;
-        __debouncedGeocodeFromFields();
+        if(el.id !== "map_address") __debouncedGeocodeFromFields();
       });
       el.addEventListener("keydown", (ev)=>{
         if(ev.key === "Enter"){
@@ -3999,14 +4047,25 @@ const surnameIn = document.getElementById("surname");
     __bindFieldGeo(mapCityIn);
     __bindFieldGeo(mapNumberIn);
     __bindFieldGeo(mapPostalIn);
+    [mapAddressIn, mapCityIn, mapNumberIn, mapPostalIn].forEach(function(el){
+      if(!el) return;
+      el.addEventListener("blur", __onPickupInputBlur);
+    });
+    if(mapAddressIn){
+      mapAddressIn.addEventListener("blur", function(){
+        setTimeout(function(){ try{ __acHide(); }catch(e){} }, 250);
+      });
+    }
 
     let __pickupSearchTyping = false;
-    pickupMapSearch.addEventListener('focus', () => { __pickupSearchTyping = true; });
-    pickupMapSearch.addEventListener('blur', () => {
-      __pickupSearchTyping = false;
-      // Καθυστέρηση για να επιτρέψουμε click στο dropdown πρώτα
-      setTimeout(()=>{ try{ __acHide(); }catch(e){} }, 200);
-    });
+    if(pickupMapSearch){
+      pickupMapSearch.addEventListener('focus', () => { __pickupSearchTyping = true; __onPickupInputFocus(); });
+      pickupMapSearch.addEventListener('blur', () => {
+        __pickupSearchTyping = false;
+        __onPickupInputBlur();
+        setTimeout(()=>{ try{ __acHide(); }catch(e){} }, 200);
+      });
+    }
     const pickupMapSearchBtn = document.getElementById("pickupMapSearchBtn");
 
     function __syncPickupSearchFromInput(){
@@ -4080,7 +4139,7 @@ const surnameIn = document.getElementById("surname");
     }
 
     // ✅ SAFE ADD: get postal code via Nominatim reverse (fallback when MapTiler has no postcode)
-    async function __reversePostalNominatim(lat, lon){
+    async function __nominatimReverseDetails(lat, lon){
       try{
         const url =
           "https://nominatim.openstreetmap.org/reverse?" +
@@ -4089,11 +4148,23 @@ const surnameIn = document.getElementById("surname");
           "&format=jsonv2&addressdetails=1&zoom=18" +
           "&accept-language=" + (lang==="en" ? "en" : "el");
         const res = await fetch(url, { headers:{"Accept":"application/json","User-Agent":"TaxiBookingApp/1.0"} });
-        if(!res.ok) return "";
+        if(!res.ok) return {};
         const j = await res.json();
         const adr = (j && j.address) ? j.address : {};
-        const pc = (adr.postcode || "").toString().trim();
-        return pc;
+        return {
+          road: (adr.road||adr.pedestrian||adr.footway||adr.path||"").trim(),
+          house_number: (adr.house_number||"").trim(),
+          suburb: (adr.suburb||adr.neighbourhood||adr.quarter||"").trim(),
+          city: (adr.city||adr.town||adr.village||adr.municipality||"").trim(),
+          postcode: (adr.postcode||"").toString().trim(),
+          display_name: (j && j.display_name || "").trim()
+        };
+      }catch(e){ return {}; }
+    }
+    async function __reversePostalNominatim(lat, lon){
+      try{
+        var d = await __nominatimReverseDetails(lat, lon);
+        return (d && d.postcode) ? String(d.postcode).trim() : "";
       }catch(e){ return ""; }
     }
 
@@ -4174,7 +4245,6 @@ async function __updatePickupMapAddr(){
 
     function __initPickupMap(){
       if(!pickupMapEl) return false;
-      if(typeof L==='undefined') return false;
       try{
         __map = L.map(pickupMapEl, { zoomControl:true });
         const tiles = L.tileLayer("https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}@2x.png?key=CuZ5gR4yjdp1ybLGm9NM", {
@@ -4302,7 +4372,19 @@ async function __updatePickupMapAddr(){
     function __refreshPickupMapSize(){
       if(!__map) return;
       try{ __map.invalidateSize(true); }catch(e){ try{ __map.invalidateSize(); }catch(e2){} }
-      try{ __map.setView([37.9838, 23.7275], 13, { animate:false }); }catch(e){}
+      try{
+        var lat = (typeof __pickupLat === "number" && isFinite(__pickupLat)) ? __pickupLat : null;
+        var lng = (typeof __pickupLng === "number" && isFinite(__pickupLng)) ? __pickupLng : null;
+        if((lat == null || lng == null) && __marker){
+          var ll = __marker.getLatLng();
+          if(ll && isFinite(ll.lat) && isFinite(ll.lng)){ lat = ll.lat; lng = ll.lng; }
+        }
+        if(lat == null || lng == null) return;
+        var z = __map.getZoom();
+        if(!isFinite(z) || z < 15) z = 16;
+        __map.setView([lat, lng], z, { animate:false });
+        if(__marker) __marker.setLatLng([lat, lng]);
+      }catch(e){}
     }
 
     function __showPickupMap(){
@@ -4310,43 +4392,29 @@ async function __updatePickupMapAddr(){
       try{ __destroyPickupMap(); }catch(e){}
       try{ __setPickupHint(); }catch(e){}
       if(!pickupMapBox) return;
-      try{
-        if(pickupMapBox.parentElement !== document.body) document.body.appendChild(pickupMapBox);
-      }catch(e){}
       pickupMapBox.style.display = "block";
-      pickupMapBox.style.visibility = "visible";
-      pickupMapBox.style.pointerEvents = "auto";
-      pickupMapBox.style.zIndex = "99999";
+      try{ pickupMapBox.classList.remove("pickup-typing"); }catch(e){}
+      __pickupMapBaseH = __pickupMapViewH();
       try{ document.body.style.overflow="hidden"; }catch(e){}
 
-      function afterMap(){
-        [60, 180, 350].forEach(function(ms){
-          setTimeout(function(){ try{ __refreshPickupMapSize(); }catch(e){} }, ms);
-        });
-      }
-      function initOrKeepOpen(){
-        try{ __initPickupMap(); }catch(e){}
-        afterMap();
-      }
-      if(typeof L==='undefined'){
-        try{
-          var s=document.createElement('script');
-          s.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
-          s.onload=initOrKeepOpen;
-          s.onerror=afterMap;
-          document.head.appendChild(s);
-        }catch(e){ afterMap(); }
+      if(!__initPickupMap()){
+        pickupMapBox.style.display = "none";
+        try{ document.body.style.overflow=""; }catch(e){}
         return;
       }
-      initOrKeepOpen();
+
+      [60, 180, 350].forEach(function(ms){
+        setTimeout(function(){ try{ __refreshPickupMapSize(); }catch(e){} }, ms);
+      });
     }
-    window.__showPickupMap = __showPickupMap;
 
     function __hidePickupMap(){
       if(!pickupMapBox) return;
       try{ __clearPickupMapPendingTimers(); }catch(e){}
       try{ __acHide(); }catch(e){}
       pickupMapBox.style.display = "none";
+      try{ pickupMapBox.classList.remove("pickup-typing"); }catch(e){}
+      __pickupMapBaseH = 0;
       try{ document.body.style.overflow=""; }catch(e){}
       try{ __destroyPickupMap(); }catch(e){}
 
@@ -4360,21 +4428,10 @@ async function __updatePickupMapAddr(){
     }
 
     // Open map when user taps/clicks the pickup field (NOT on focus to prevent keyboard)
-    function __openPickupFromField(){
+    pickupIn.addEventListener("click", ()=>{
       __showPickupMap();
-      try{ pickupIn.blur(); }catch(e){}
-    }
-    pickupIn.addEventListener("click", __openPickupFromField);
-    pickupIn.addEventListener("touchend", function(ev){
-      try{ ev.preventDefault(); }catch(e){}
-      __openPickupFromField();
-    }, {passive:false});
-    try{
-      var wrap=document.getElementById('pickupWrap');
-      var lab=document.getElementById('l_pickup');
-      if(wrap) wrap.addEventListener('click', __openPickupFromField);
-      if(lab) lab.addEventListener('click', __openPickupFromField);
-    }catch(e){}
+      pickupIn.blur(); // Remove focus to prevent keyboard
+    });
 
     // ===== AUTOCOMPLETE DROPDOWN =====
     const __acBox = document.getElementById("pickupAutocomplete");
@@ -4394,30 +4451,62 @@ async function __updatePickupMapAddr(){
       return "📍";
     }
 
+    let __pickupAcOff = false;
     function __acHide(){
       if(__acBox) __acBox.style.display = "none";
+      try{ if(pickupMapBox) pickupMapBox.classList.remove("pickup-suggesting"); }catch(e){}
     }
+    function __acDismiss(){
+      __pickupAcOff = true;
+      try{ clearTimeout(__acTimer); }catch(e){}
+      __acHide();
+    }
+    try{
+      if(pickupMapBox){
+        pickupMapBox.addEventListener("touchstart", function(ev){
+          try{
+            if(!__acBox || __acBox.style.display !== "block") return;
+            var t = ev && ev.target;
+            if(!t) return;
+            if(t.id === "map_address") return;
+            if(t.closest && t.closest("#pickupAutocomplete")) return;
+            __acDismiss();
+          }catch(e){}
+        }, true);
+      }
+    }catch(e){}
 
     function __acShow(results){
+      if(__pickupAcOff) return;
       if(!__acBox) return;
       if(!results || results.length === 0){ __acHide(); return; }
       __acBox.innerHTML = "";
+      var closeRow = document.createElement("div");
+      closeRow.className = "ac-item ac-close";
+      closeRow.textContent = (lang==="en") ? "Close" : "Κλείσιμο";
+      closeRow.addEventListener("click", function(ev){
+        try{ ev.preventDefault(); ev.stopPropagation(); }catch(e){}
+        __acDismiss();
+      });
+      __acBox.appendChild(closeRow);
       results.forEach(item => {
         const div = document.createElement("div");
         div.className = "ac-item";
         const adr = item.address || {};
-        const name = item.name || item.display_name.split(",")[0];
+        const name = item.name || (item.display_name || "").split(",")[0];
         const street = (adr.road || adr.pedestrian || adr.footway || "").trim();
         const city = (adr.city || adr.town || adr.village || adr.suburb || adr.municipality || adr.county || "").trim();
         const postcode = (adr.postcode || "").trim();
         const type = (item.type || item.class || "").toLowerCase();
-        const icon = __acIcon(type + " " + (item.category||""));
+        const icon = __isHotelHit(item) ? "🏨" : __acIcon(type + " " + (item.category||"") + " " + (item.subtitle||""));
 
-        // Build subtitle
         const subParts = [];
-        if(street && street !== name) subParts.push(street);
-        if(city) subParts.push(city);
-        if(postcode) subParts.push(postcode);
+        if(item.subtitle) subParts.push(item.subtitle);
+        else {
+          if(street && street !== name) subParts.push(street);
+          if(city) subParts.push(city);
+          if(postcode) subParts.push(postcode);
+        }
         const subtitle = subParts.join(", ");
 
         div.innerHTML = `
@@ -4427,8 +4516,14 @@ async function __updatePickupMapAddr(){
             ${subtitle ? `<div class="ac-sub">${subtitle}</div>` : ""}
           </div>`;
 
-        div.addEventListener("click", ()=>{
+        div.addEventListener("click", async ()=>{
           __acHide();
+          if(item.place_id){
+            try{
+              var det = await __nativePlaceDetails(item.place_id);
+              if(det && await __applyPlaceToPin(det, true)) return;
+            }catch(e){}
+          }
           const lat = parseFloat(item.lat);
           const lon = parseFloat(item.lon);
           if(!isFinite(lat)||!isFinite(lon)) return;
@@ -4454,7 +4549,7 @@ async function __updatePickupMapAddr(){
             const f2 = document.getElementById("map_city");
             const f3 = document.getElementById("map_number");
             const f4 = document.getElementById("map_postalcode");
-            if(f1) f1.value = street || name || "";
+            if(f1) f1.value = (__isHotelHit(item) && name) ? name : (street || name || "");
             if(f2) f2.value = city || "";
             if(f3) f3.value = (adr.house_number || "");
             if(f4) f4.value = postcode || "";
@@ -4463,19 +4558,349 @@ async function __updatePickupMapAddr(){
         __acBox.appendChild(div);
       });
       __acBox.style.display = "block";
+      try{ if(pickupMapBox) pickupMapBox.classList.add("pickup-suggesting"); }catch(e){}
     }
 
     // Έξυπνη αναζήτηση Nominatim: αν δεν βρεθεί τίποτα, ξαναδοκιμάζει
     // (α) χωρίς πληθυντικό -s στα λατινικά (holidays -> holiday)
     // (β) πετώντας σταδιακά την τελευταία λέξη (μέχρι 2 λέξεις minimum)
     // Με προτίμηση περιοχής Αττικής (bounded=0: βρίσκει και υπόλοιπη Ελλάδα)
+    function __addrHasGreek(s){
+      return /[\u0370-\u03FF\u1F00-\u1FFF]/.test(String(s||""));
+    }
+    function __greeklishWordToGreek(w){
+      var low = String(w||"").toLowerCase();
+      if(!low) return "";
+      var aliases = {
+        marousi:"μαρούσι", maroussi:"μαρούσι", amarousio:"αμαρούσιο", amarousion:"αμαρούσιο",
+        kifisia:"κηφισιά", kifissia:"κηφισιά", kephisia:"κηφισιά",
+        kifisias:"κηφισίας", kifissias:"κηφισίας",
+        piraeus:"πειραιάς", peiraias:"πειραιάς", peiraia:"πειραιά", peiraeus:"πειραιάς",
+        syntagma:"σύνταγμα",
+        leoforos:"λεωφόρος", leoforo:"λεωφόρος",
+        odos:"οδός",
+        plateia:"πλατεία", platia:"πλατεία",
+        athina:"αθήνα", athens:"αθήνα",
+        kallithea:"καλλιθέα", kallitheas:"καλλιθέας",
+        glyfada:"γλυφάδα", glifada:"γλυφάδα",
+        vrilissia:"βριλήσσια", vrilisia:"βριλήσσια",
+        chalandri:"χαλάνδρι", halandri:"χαλάνδρι", halandri:"χαλάνδρι",
+        peristeri:"περιστέρι",
+        aigaleo:"αιγάλεω", egaleo:"αιγάλεω",
+        pateision:"πατησίων", patision:"πατησίων",
+        stadiou:"σταδίου", ermou:"ερμού",
+        akademias:"ακαδημίας", academias:"ακαδημίας",
+        alexandras:"αλεξάνδρας",
+        mesogeion:"μεσογείων", mesogion:"μεσογείων",
+        syngrou:"συγγρού", sigrou:"συγγρού", singrou:"συγγρού",
+        vasilisis:"βασιλίσσης", vasilissis:"βασιλίσσης",
+        sofias:"σοφίας",
+        limani:"λιμάνι",
+        airport:"αεροδρόμιο", aerodromio:"αεροδρόμιο",
+        pentelis:"πεντέλης", penteli:"πεντέλη",
+        kentro:"κέντρο", kentrou:"κέντρου",
+        kypseli:"κυψέλη", kipseli:"κυψέλη", kypselis:"κυψέλης",
+        amorgou:"αμοργού"
+      };
+      if(aliases[low]) return aliases[low];
+      var s = low, out = "", i = 0, atStart = true;
+      var digraphs = [
+        ["th","θ"],["ch","χ"],["ps","ψ"],["ks","ξ"],["ph","φ"],
+        ["ou","ου"],["ai","αι"],["ei","ει"],["oi","οι"],["yi","γι"],
+        ["mp","μπ"],["nt","ντ"],["gk","γκ"],["gg","γγ"],["ts","τσ"],["tz","τζ"],["gi","γι"]
+      ];
+      var single = {
+        a:"α",b:"β",c:"κ",d:"δ",e:"ε",f:"φ",g:"γ",h:"η",i:"ι",j:"τζ",
+        k:"κ",l:"λ",m:"μ",n:"ν",o:"ο",p:"π",q:"κ",r:"ρ",s:"σ",t:"τ",
+        u:"ου",v:"β",w:"ω",x:"ξ",y:"υ",z:"ζ"
+      };
+      while(i < s.length){
+        var ch = s.charAt(i);
+        if(/[0-9]/.test(ch)){ out += ch; i++; atStart = false; continue; }
+        if(atStart && ch === "b"){ out += "μπ"; i++; atStart = false; continue; }
+        var hit = false;
+        for(var d = 0; d < digraphs.length; d++){
+          var a = digraphs[d][0];
+          if(s.substr(i, a.length) === a){ out += digraphs[d][1]; i += a.length; hit = true; atStart = false; break; }
+        }
+        if(hit) continue;
+        out += (single[ch] || ch);
+        i++;
+        atStart = false;
+      }
+      return out;
+    }
+    function __greeklishToGreek(q){
+      return String(q||"").split(/(\s+)/).map(function(tok){
+        if(!tok || /^\s+$/.test(tok) || /^\d+$/.test(tok) || __addrHasGreek(tok)) return tok;
+        return __greeklishWordToGreek(tok);
+      }).join("");
+    }
+    function __parseOneAddressLine(raw){
+      var full = String(raw||"").trim();
+      var street = full;
+      var number = "";
+      var tk = "";
+      var area = "";
+      var mTk = street.match(/\b(\d{3}\s?\d{2})\b/);
+      if(mTk && String(mTk[1].replace(/\s/g,"")).length === 5){
+        tk = mTk[1].replace(/\s/g,"");
+        street = street.replace(mTk[0], " ").replace(/\s+/g," ").trim();
+      }
+      var mMid = street.match(/^(.+?)\s+(\d{1,4}[A-Za-zΑ-Ωα-ω]?(?:\s*[-/]\s*\d{1,4}[A-Za-zΑ-Ωα-ω]?)?)\s+(.+)$/);
+      if(mMid){
+        street = mMid[1].trim();
+        number = mMid[2].trim();
+        area = mMid[3].trim();
+      } else {
+        var mEnd = street.match(/\s+(\d{1,4}[A-Za-zΑ-Ωα-ω]?(?:\s*[-/]\s*\d{1,4}[A-Za-zΑ-Ωα-ω]?)?)\s*$/);
+        if(mEnd){
+          number = mEnd[1].trim();
+          street = street.slice(0, street.length - mEnd[0].length).trim();
+        }
+      }
+      return { full: full, street: street, number: number, tk: tk, area: area };
+    }
+    function __fillHiddenFromOneLine(raw){
+      try{
+        var p = __parseOneAddressLine(raw);
+        if(mapNumberIn && p.number) mapNumberIn.value = p.number;
+        if(mapPostalIn && p.tk) mapPostalIn.value = p.tk;
+        if(mapCityIn && p.area) mapCityIn.value = p.area;
+      }catch(e){}
+    }
+    function __extractTkFromText(s){
+      var m = String(s||"").match(/\b(\d{3}\s?\d{2})\b/);
+      if(!m) return "";
+      var tk = String(m[1]).replace(/\s/g,"");
+      return tk.length === 5 ? tk : "";
+    }
+    function __formatFoundAddress(street, number, area, tk, fallback){
+      street = String(street||"").trim();
+      number = String(number||"").trim();
+      area = String(area||"").trim();
+      tk = String(tk||"").replace(/\s/g,"");
+      var line = "";
+      if(street && number) line = street + " " + number;
+      else line = street || number || "";
+      if(area){
+        var low = line.toLowerCase();
+        if(!low || low.indexOf(area.toLowerCase()) === -1) line = line ? (line + ", " + area) : area;
+      }
+      if(tk && line.indexOf(tk) === -1) line = line ? (line + " " + tk) : tk;
+      line = line.trim();
+      if(line) return line;
+      return String(fallback||"").replace(/,\s*(Greece|Ελλάδα)\s*$/i,"").trim();
+    }
+
+    let __geoReqId = 0;
+    const __geoWait = {};
+    window.__onNativeGeocode = function(id, hits){
+      var fn = __geoWait[String(id)];
+      if(fn){ delete __geoWait[String(id)]; fn(Array.isArray(hits) ? hits : []); }
+    };
+    function __nativeGeocode(q){
+      return new Promise(function(resolve){
+        try{
+          var br = window.ClientBridge;
+          if(!br || typeof br.geocodeAddress !== "function"){ resolve([]); return; }
+          var id = String(++__geoReqId);
+          var t = setTimeout(function(){
+            if(__geoWait[id]){ delete __geoWait[id]; resolve([]); }
+          }, 8000);
+          __geoWait[id] = function(hits){
+            try{ clearTimeout(t); }catch(e){}
+            resolve(hits || []);
+          };
+          br.geocodeAddress(String(q||""), id);
+        }catch(e){ resolve([]); }
+      });
+    }
+    window.__onNativeReverse = function(id, hits){
+      var fn = __revWait[String(id)];
+      if(fn){ delete __revWait[String(id)]; fn(Array.isArray(hits) ? hits : []); }
+    };
+    const __revWait = {};
+    function __nativeReverseGeocode(lat, lon){
+      return new Promise(function(resolve){
+        try{
+          var br = window.ClientBridge;
+          if(!br || typeof br.reverseGeocode !== "function"){ resolve([]); return; }
+          var id = String(++__geoReqId);
+          var t = setTimeout(function(){
+            if(__revWait[id]){ delete __revWait[id]; resolve([]); }
+          }, 8000);
+          __revWait[id] = function(hits){
+            try{ clearTimeout(t); }catch(e){}
+            resolve(hits || []);
+          };
+          br.reverseGeocode(String(lat), String(lon), id);
+        }catch(e){ resolve([]); }
+      });
+    }
+    const __placesWait = {};
+    window.__onNativePlaces = function(id, hits){
+      var fn = __placesWait[String(id)];
+      if(fn){ delete __placesWait[String(id)]; fn(Array.isArray(hits) ? hits : []); }
+    };
+    function __nativePlacesAutocomplete(q){
+      return new Promise(function(resolve){
+        try{
+          var br = window.ClientBridge;
+          if(!br || typeof br.placeAutocomplete !== "function"){ resolve([]); return; }
+          var id = String(++__geoReqId);
+          var t = setTimeout(function(){
+            if(__placesWait[id]){ delete __placesWait[id]; resolve([]); }
+          }, 8000);
+          __placesWait[id] = function(hits){
+            try{ clearTimeout(t); }catch(e){}
+            resolve(hits || []);
+          };
+          br.placeAutocomplete(String(q||""), id);
+        }catch(e){ resolve([]); }
+      });
+    }
+    const __placeDetWait = {};
+    window.__onNativePlaceDetails = function(id, det){
+      var fn = __placeDetWait[String(id)];
+      if(fn){ delete __placeDetWait[String(id)]; fn(det || null); }
+    };
+    function __nativePlaceDetails(placeId){
+      return new Promise(function(resolve){
+        try{
+          var br = window.ClientBridge;
+          if(!br || typeof br.placeDetails !== "function"){ resolve(null); return; }
+          var id = String(++__geoReqId);
+          var t = setTimeout(function(){
+            if(__placeDetWait[id]){ delete __placeDetWait[id]; resolve(null); }
+          }, 8000);
+          __placeDetWait[id] = function(det){
+            try{ clearTimeout(t); }catch(e){}
+            resolve(det || null);
+          };
+          br.placeDetails(String(placeId||""), id);
+        }catch(e){ resolve(null); }
+      });
+    }
+    function __looksLikePoiQuery(q){
+      var s = String(q||"").toLowerCase();
+      if(__looksLikeHotelQuery(s)) return true;
+      return /λιμ[αά]ν|port|harbour|harbor|gate|π[υύ]λη|αεροδρ[οό]μ|airport|σταθμ|station|μαρ[ίι]να|marina/.test(s);
+    }
+    function __scorePlacePred(p, q){
+      var blob = __addrNorm((p.name||"")+" "+(p.subtitle||"")+" "+(p.display_name||"")+" "+((p.types||[]).join(" ")));
+      var tokens = __addrNorm(q).split(/\s+/).filter(function(t){ return t.length>=1; });
+      var s = 0;
+      for(var i=0;i<tokens.length;i++){
+        if(tokens[i].length && blob.indexOf(tokens[i]) !== -1) s += (tokens[i].length===1 ? 8 : 20);
+      }
+      if(__looksLikeHotelQuery(q) && (p.type==="hotel" || blob.indexOf("lodging")!==-1 || blob.indexOf("hotel")!==-1)) s += 40;
+      if(/λιμ|port|gate|πυλη/.test(__addrNorm(q)) && /λιμ|port|gate|πυλη|harbour|ferry|πειραι/.test(blob)) s += 40;
+      return s;
+    }
+    function __bestPlacePred(places, q){
+      if(!places || !places.length) return null;
+      var best = places[0], bestS = __scorePlacePred(best, q);
+      for(var i=1;i<places.length;i++){
+        var s = __scorePlacePred(places[i], q);
+        if(s > bestS){ bestS = s; best = places[i]; }
+      }
+      return best;
+    }
+    async function __applyPlaceToPin(det, fillTop){
+      if(!det || !__map || !__marker) return false;
+      var lat = parseFloat(det.lat), lon = parseFloat(det.lon);
+      if(!isFinite(lat) || !isFinite(lon)) return false;
+      __marker.setLatLng([lat,lon]);
+      __map.setView([lat,lon], 17);
+      __pickupLat = lat;
+      __pickupLng = lon;
+      var name = String(det.name||"").trim();
+      var street = String(det.road||"").trim();
+      var num = String(det.house_number||"").trim();
+      var area = String(det.suburb||det.city||"").trim();
+      var tk = String(det.postcode||"").trim() || __extractTkFromText(det.display_name||"");
+      if(fillTop && !tk){
+        try{ tk = await __reversePostalNominatim(lat, lon) || ""; }catch(e){}
+      }
+      try{
+        if(mapCityIn && area) mapCityIn.value = area;
+        if(mapNumberIn && num) mapNumberIn.value = num;
+        if(mapPostalIn && tk) mapPostalIn.value = tk;
+      }catch(e){}
+      var pretty = name
+        ? __formatFoundAddress(name, "", area, tk, det.display_name || name)
+        : __formatFoundAddress(street, num, area, tk, det.display_name || "");
+      __pickupLastResolvedText = pretty;
+      try{ __setPickupMapAddrText(pretty); }catch(e){}
+      try{ if(pickupMapSearch && !__pickupSearchTyping) pickupMapSearch.value = pretty; }catch(e){}
+      if(fillTop){
+        try{ if(mapAddressIn && pretty) mapAddressIn.value = pretty; }catch(e){}
+      }
+      return true;
+    }
+    function __hitsFromGoogle(arr){
+      return (arr||[]).map(function(a){
+        return {
+          lat: a.lat,
+          lon: a.lon,
+          display_name: a.display_name || "",
+          name: a.name || "",
+          type: "address",
+          class: "place",
+          address: {
+            road: a.road || "",
+            house_number: a.house_number || "",
+            city: a.city || "",
+            suburb: a.suburb || "",
+            postcode: a.postcode || ""
+          }
+        };
+      }).filter(function(x){ return isFinite(parseFloat(x.lat)) && isFinite(parseFloat(x.lon)); });
+    }
+    async function __searchTypedPlace(q){
+      var query = String(q||"").trim();
+      if(query.length < 2) return [];
+      if(__looksLikePoiQuery(query)){
+        try{
+          var places = await __nativePlacesAutocomplete(query);
+          var best = __bestPlacePred(places, query);
+          if(best && best.place_id){
+            var det = await __nativePlaceDetails(best.place_id);
+            if(det && isFinite(parseFloat(det.lat))){
+              return [{
+                lat: det.lat,
+                lon: det.lon,
+                display_name: det.display_name || det.name || query,
+                name: det.name || "",
+                type: det.type || "address",
+                class: det.class || "place",
+                place_id: det.place_id || best.place_id,
+                address: {
+                  road: det.road || "",
+                  house_number: det.house_number || "",
+                  city: det.city || "",
+                  suburb: det.suburb || "",
+                  postcode: det.postcode || ""
+                },
+                _placeDet: det,
+                _placeList: places
+              }];
+            }
+          }
+        }catch(e){}
+      }
+      var g = __hitsFromGoogle(await __nativeGeocode(query));
+      if(g.length) return g;
+      return await __nominatimSearchSmart(query, 5);
+    }
+
     async function __nominatimSearchSmart(q, limit){
       const base =
         "https://nominatim.openstreetmap.org/search?" +
         "format=jsonv2&countrycodes=gr&addressdetails=1" +
-        "&limit=" + (limit||1) +
+        "&limit=" + (limit||5) +
         "&accept-language=" + (lang==="en" ? "en" : "el") +
-        "&viewbox=23.0,38.4,24.2,37.6&bounded=0" +
         "&q=";
       async function one(query){
         try{
@@ -4485,37 +4910,79 @@ async function __updatePickupMapAddr(){
           return Array.isArray(j) ? j : [];
         }catch(e){ return []; }
       }
-      let out = await one(q);
-      if(out.length) return out;
-      const singular = q.replace(/([A-Za-z]{3,})s(?=\s|$)/g, "$1");
-      if(singular !== q){
-        out = await one(singular);
-        if(out.length) return out;
-      }
-      let tokens = singular.split(/\s+/);
-      while(!out.length && tokens.length > 2){
-        tokens.pop();
-        out = await one(tokens.join(" "));
-      }
-      return out;
+      var hits = await one(q);
+      if(hits.length) return hits;
+      var gq = __greeklishToGreek(q);
+      if(gq && gq !== q) return await one(gq);
+      return [];
+    }
+
+    async function __maptilerSearch(q, limit){
+      try{
+        const url =
+          "https://api.maptiler.com/geocoding/" +
+          encodeURIComponent(q) +
+          ".json?key=CuZ5gR4yjdp1ybLGm9NM&limit=" + (limit||6) +
+          "&country=gr&language=" + encodeURIComponent(lang === "en" ? "en" : "el");
+        const res = await fetch(url, { headers: { "Accept":"application/json" }});
+        if(!res.ok) return [];
+        const j = await res.json();
+        const feats = (j && j.features) ? j.features : [];
+        return feats.map(function(f){
+          const center = f.center || (f.geometry && f.geometry.coordinates) || [];
+          const lon = parseFloat(center[0]);
+          const lat = parseFloat(center[1]);
+          const name = (f.text || f.place_name || "").toString();
+          return {
+            lat: lat,
+            lon: lon,
+            display_name: f.place_name || name,
+            name: name,
+            type: (f.place_type && f.place_type[0]) || "hotel",
+            class: "tourism",
+            address: {}
+          };
+        }).filter(function(x){ return isFinite(x.lat) && isFinite(x.lon); });
+      }catch(e){ return []; }
     }
 
     async function __fetchAutocomplete(q){
+      if(__pickupAcOff) return;
       if(!q || q.length < 2) { __acHide(); return; }
       try{
-        // Nominatim: αναζήτηση με POI (ξενοδοχεία, λιμάνια κλπ) + διευθύνσεις
-        const j = await __nominatimSearchSmart(q, 6);
-        __acShow(j);
+        var j = await __searchTypedPlace(q);
+        if(__pickupAcOff) return;
+        __acShow(__rankHits(j, q));
       }catch(e){ __acHide(); }
     }
 
     function __debouncedGeocodeToMarker(q){
       try{ clearTimeout(__geocodeTimer); }catch(e){}
       try{ clearTimeout(__acTimer); }catch(e){}
-      // Show autocomplete suggestions
-      __acTimer = setTimeout(()=>{ __fetchAutocomplete(q); }, 350);
-      // Also move marker to first result
-      __geocodeTimer = setTimeout(()=>{ __geocodeToMarker(q); }, 700);
+      __geocodeTimer = setTimeout(async function(){
+        var query = String(q||"").trim();
+        if(query.length < 2) return;
+        try{
+          var places = [];
+          try{ places = await __nativePlacesAutocomplete(query); }catch(e){}
+          if(__pickupAcOff) return;
+          if(places.length && !__pickupAcOff) __acShow(places);
+          if(__looksLikePoiQuery(query) && places.length){
+            var best = __bestPlacePred(places, query);
+            if(best && best.place_id){
+              var det = await __nativePlaceDetails(best.place_id);
+              if(det) await __applyPlaceToPin(det, false);
+            }
+            return;
+          }
+          var j = await __searchTypedPlace(query);
+          if(!__pickupAcOff){
+            var show = places.length ? places.concat(j) : j;
+            __acShow(__rankHits(show, query));
+          }
+          await __applyPinFromHits(j, query, false);
+        }catch(e){}
+      }, 450);
     }
 
     pickupIn.addEventListener("input", ()=>{
@@ -4527,144 +4994,214 @@ async function __updatePickupMapAddr(){
 
     // Address field input listener
     function __onAddressInput(){
-      __userIsTyping = true; // Mark that user is typing
+      __userIsTyping = true;
+      __pickupAcOff = false;
       if(!pickupMapBox || pickupMapBox.style.display !== "block") return;
-      const txt = __buildManualPickupText();
-      if(txt.length < 3) return;
-      __debouncedGeocodeToMarker(txt);
+      var q = (mapAddressIn && mapAddressIn.value || "").trim();
+      if(q.length < 2){ __acHide(); return; }
+      __fillHiddenFromOneLine(q);
+      __debouncedGeocodeToMarker(q);
     }
 
     ["map_address", "map_city", "map_number", "map_postalcode"].forEach(id => {
       const f = document.getElementById(id);
       if(f){
         f.addEventListener("input", __onAddressInput);
-        // Reset typing flag when user stops typing
         f.addEventListener("blur", () => {
           setTimeout(() => { __userIsTyping = false; }, 500);
         });
       }
     });
+    function __looksLikeHotelQuery(q){
+      var s = String(q||"").toLowerCase();
+      if(/hotel|ξενοδοχ/.test(s)) return true;
+      return /divani|hilton|marriott|hyatt|sheraton|novotel|ibis|radisson|caravel|sofitel|westin|intercontinental|grand bretagne|grande bretagne|electra|njv|royal olympic|king george/.test(s);
+    }
+    function __isHotelHit(item){
+      var cls = String(item && item.class || "").toLowerCase();
+      var typ = String(item && item.type || "").toLowerCase();
+      var name = String((item && (item.name || item.display_name)) || "").toLowerCase();
+      var types = ((item && item.types) || []).join(" ").toLowerCase();
+      if(cls === "tourism" && /hotel|motel|hostel|guest_house|apartments/.test(typ)) return true;
+      if(typ === "hotel" || types.indexOf("lodging") !== -1) return true;
+      if(/hotel|ξενοδοχ/.test(name)) return true;
+      return false;
+    }
+    function __isJunkHit(item){
+      var cls = String(item && item.class || "").toLowerCase();
+      var typ = String(item && item.type || "").toLowerCase();
+      if(/charging_station|furniture|parking/.test(typ)) return true;
+      if(cls === "shop") return true;
+      return false;
+    }
+    function __inAttica(item){
+      var b = String((item && item.display_name) || "").toLowerCase();
+      return /αττικ|αθήνα|athens|πειραι|piraeus|μαρούσ|κηφισ|γλυφάδ|κυψέλ|κολωνάκ/.test(b);
+    }
+    function __rankHits(hits, q){
+      if(!hits || !hits.length) return [];
+      var parsed = __parseOneAddressLine(q);
+      var hotelQ = __looksLikeHotelQuery(q);
+      var out = hits.filter(function(h){ return !__isJunkHit(h); });
+      if(hotelQ){
+        var hot = out.filter(__isHotelHit);
+        if(hot.length) out = hot;
+      }
+      out.sort(function(a,b){
+        var sa = 0, sb = 0;
+        if(hotelQ){
+          if(__isHotelHit(a)) sa += 50;
+          if(__isHotelHit(b)) sb += 50;
+          if(__inAttica(a)) sa += 25;
+          if(__inAttica(b)) sb += 25;
+          var nq = String(q||"").toLowerCase();
+          if(String(a.name||"").toLowerCase().indexOf(nq) !== -1) sa += 15;
+          if(String(b.name||"").toLowerCase().indexOf(nq) !== -1) sb += 15;
+        } else {
+          sa = __addrScore(a, parsed);
+          sb = __addrScore(b, parsed);
+        }
+        return sb - sa;
+      });
+      return out.slice(0, 6);
+    }
+    function __addrNorm(s){
+      return String(s||"").toLowerCase().replace(/ά/g,"α").replace(/έ/g,"ε").replace(/ή/g,"η").replace(/ί/g,"ι").replace(/ό/g,"ο").replace(/ύ/g,"υ").replace(/ώ/g,"ω").replace(/ς/g,"σ");
+    }
+    function __addrScore(item, parsed){
+      var adr = (item && item.address) || {};
+      var blob = __addrNorm((item.display_name||"") + " " + (adr.road||"") + " " + (adr.suburb||"") + " " + (adr.quarter||"") + " " + (adr.city||"") + " " + (adr.municipality||""));
+      var street = __addrNorm(parsed && parsed.street);
+      var area = __addrNorm(parsed && parsed.area);
+      var num = String((parsed && parsed.number) || "").trim();
+      var road = __addrNorm(adr.road || adr.pedestrian || "");
+      var score = 0;
+      if(street && road.indexOf(street) !== -1) score += 80;
+      else if(street && blob.indexOf(street) !== -1) score += 25;
+      if(num && String(adr.house_number||"").trim() === num) score += 40;
+      if(area && blob.indexOf(area) !== -1) score += 50;
+      var tokens = __addrNorm((parsed && parsed.full) || "").split(/\s+/);
+      for(var ti=0;ti<tokens.length;ti++){
+        if(tokens[ti].length>=2 && blob.indexOf(tokens[ti]) !== -1) score += 12;
+      }
+      if(blob.indexOf("αθηνα") !== -1) score += 8;
+      if(street && area && road.indexOf(area) !== -1 && road.indexOf(street) === -1) score -= 100;
+      if(area && blob.indexOf("περιστερ") !== -1 && area.indexOf("περιστερ") === -1) score -= 40;
+      return score;
+    }
+    function __pickBestAddr(hits, q){
+      if(!hits || !hits.length) return null;
+      var parsed = __parseOneAddressLine(q);
+      if(!parsed.street && !parsed.area) return hits[0];
+      var best = hits[0], bestS = __addrScore(hits[0], parsed);
+      for(var i=1;i<hits.length;i++){
+        var s = __addrScore(hits[i], parsed);
+        if(s > bestS){ bestS = s; best = hits[i]; }
+      }
+      return best;
+    }
+
+    async function __applyPinFromHits(j, query, fillTop){
+      if(!__map || !__marker) return false;
+      if(!Array.isArray(j)||j.length===0) return false;
+      const ranked = __rankHits(j, query);
+      const item = (ranked && ranked[0]) || j[0];
+      const lat = parseFloat(item.lat);
+      const lon = parseFloat(item.lon);
+      if(!isFinite(lat)||!isFinite(lon)) return false;
+      __marker.setLatLng([lat,lon]);
+      __map.setView([lat,lon], 17);
+      __pickupLat = lat;
+      __pickupLng = lon;
+      const adr = item.address||{};
+      const parsed = __parseOneAddressLine(query);
+      var street     = (adr.road||adr.pedestrian||adr.footway||adr.path||"").trim();
+      var housenumber= (adr.house_number||"").trim();
+      var area       = (adr.suburb||adr.neighbourhood||adr.quarter||"").trim();
+      var city       = (adr.city||adr.town||adr.village||adr.municipality||"").trim();
+      var postcode   = (adr.postcode||"").trim() || __extractTkFromText(item.display_name||"");
+      if(!street) street = parsed.street || "";
+      if(!housenumber) housenumber = parsed.number || "";
+      if(!area) area = parsed.area || city;
+      if(!postcode) postcode = parsed.tk || "";
+      if(fillTop && (!postcode || !housenumber)){
+        try{
+          var extra = await __reversePostalNominatim(lat, lon);
+          if(!postcode && extra) postcode = extra;
+        }catch(e){}
+      }
+      try{
+        if(mapCityIn && (area || city)) mapCityIn.value = area || city;
+        if(mapNumberIn && housenumber) mapNumberIn.value = housenumber;
+        if(mapPostalIn && postcode) mapPostalIn.value = postcode;
+      }catch(e){}
+      const pretty = __formatFoundAddress(street, housenumber, area || city, postcode, item.display_name || query);
+      __pickupLastResolvedText = pretty || query;
+      try{ __setPickupMapAddrText(__pickupLastResolvedText); }catch(e){}
+      try{ if(pickupMapSearch&&!__pickupSearchTyping) pickupMapSearch.value=__pickupLastResolvedText; }catch(e){}
+      if(fillTop){
+        try{ if(mapAddressIn && pretty) mapAddressIn.value = pretty; }catch(e){}
+      }
+      return true;
+    }
 
     async function __geocodeToMarker(q){
       if(!__map || !__marker) return;
       const query = String(q||"").trim();
       if(query.length < 2) return;
       try{
-        const j = await __nominatimSearchSmart(query, 1);
-        if(!Array.isArray(j)||j.length===0) return;
-        const item = j[0];
-        const lat = parseFloat(item.lat);
-        const lon = parseFloat(item.lon);
-        if(!isFinite(lat)||!isFinite(lon)) return;
-        __marker.setLatLng([lat,lon]);
-        __map.setView([lat,lon], 17);
-        __pickupLat = lat;
-        __pickupLng = lon;
-        const adr = item.address||{};
-        const street     = (adr.road||adr.pedestrian||adr.footway||adr.path||"").trim();
-        const housenumber= (adr.house_number||"").trim();
-        const city       = (adr.city||adr.town||adr.village||adr.suburb||adr.municipality||"").trim();
-        const postcode   = (adr.postcode||"").trim();
-        if(!__userIsTyping){
-          try{
-            const f1=document.getElementById("map_address");
-            const f2=document.getElementById("map_city");
-            const f3=document.getElementById("map_number");
-            const f4=document.getElementById("map_postalcode");
-            if(f1) f1.value=street||"";
-            if(f2) f2.value=city||"";
-            if(f3) f3.value=housenumber||"";
-            if(f4) f4.value=postcode||"";
-          }catch(e){}
+        if(__looksLikePoiQuery(query)){
+          var places = await __nativePlacesAutocomplete(query);
+          var best = __bestPlacePred(places, query);
+          if(best && best.place_id){
+            var det = await __nativePlaceDetails(best.place_id);
+            if(det && await __applyPlaceToPin(det, true)) return;
+          }
         }
-        // ✅ SAFE ADD: even while typing, set TK if we have it and field is empty
-        try{
-          const f4=document.getElementById("map_postalcode");
-          if(f4 && !String(f4.value||"").trim() && postcode) f4.value = postcode;
-        }catch(e){}
-        const name = item.name || item.display_name.split(",")[0];
-        const line1 = (street&&housenumber)?(street+" "+housenumber):(street||housenumber||name||"");
-        const parts=[];
-        if(line1) parts.push(line1);
-        if(city&&city!==line1) parts.push(city);
-        if(postcode) parts.push(postcode);
-        const pretty=parts.length?parts.join(", "):(item.display_name||query);
-        __pickupLastResolvedText=pretty||query;
-        try{ __setPickupMapAddrText(__pickupLastResolvedText); }catch(e){}
-        try{ if(pickupMapSearch&&!__pickupSearchTyping) pickupMapSearch.value=__pickupLastResolvedText; }catch(e){}
+        const j = await __searchTypedPlace(query);
+        if(j && j[0] && j[0]._placeDet){
+          await __applyPlaceToPin(j[0]._placeDet, true);
+          return;
+        }
+        await __applyPinFromHits(j, query, true);
       }catch(e){}
     }
 
     async function __reverseGeocode(lat, lon){
-      // MapTiler reverse geocoding expects "lon,lat"
-      const url =
-        "https://api.maptiler.com/geocoding/" +
-        encodeURIComponent(String(lon) + "," + String(lat)) +
-        ".json?key=CuZ5gR4yjdp1ybLGm9NM&limit=1&language=" +
-        encodeURIComponent(lang === "en" ? "en" : "el");
-
-      const res = await fetch(url, { headers: { "Accept":"application/json" } });
-      if(!res.ok) return "";
-
-      const j = await res.json();
-      const feat = (j && j.features && j.features[0]) ? j.features[0] : null;
-      if(!feat) return "";
-
-      const props = feat.properties || {};
-      const place = (feat.place_name || "").toString().trim();
-
-      // Mapbox-style fallbacks (MapTiler compatible)
-      const placeTypes = Array.isArray(feat.place_type) ? feat.place_type : [];
-      const text = (feat.text || props.name || "").toString().trim();
-      const housenumber = (feat.address || props.housenumber || props.house_number || "").toString().trim();
-
-      // Try to extract from context[]
-      let city = (props.locality || props.municipality || props.county || props.region || "").toString().trim();
-      let postcode = (props.postal_code || props.postcode || "").toString().trim();
-
+      var street = "", housenumber = "", area = "", city = "", postcode = "", fallback = "";
       try{
-        const ctx = Array.isArray(feat.context) ? feat.context : [];
-        if(!postcode){
-          const pcObj = ctx.find(x => (x && typeof x.id==="string" && x.id.startsWith("postcode")));
-          postcode = pcObj ? (pcObj.text || pcObj.name || "").toString().trim() : "";
-        }
-        if(!city){
-          const placeObj = ctx.find(x => (x && typeof x.id==="string" && (x.id.startsWith("place") || x.id.startsWith("locality") || x.id.startsWith("district"))));
-          city = placeObj ? (placeObj.text || placeObj.name || "").toString().trim() : "";
+        var g = __hitsFromGoogle(await __nativeReverseGeocode(lat, lon));
+        if(g && g[0]){
+          var adr = g[0].address || {};
+          street = (adr.road || "").trim();
+          housenumber = (adr.house_number || "").trim();
+          area = (adr.suburb || "").trim();
+          city = (adr.city || "").trim();
+          postcode = (adr.postcode || "").trim() || __extractTkFromText(g[0].display_name || "");
+          fallback = (g[0].display_name || "").trim();
         }
       }catch(e){}
-
-      // Street logic:
-      // - If place_type includes "address", text is street and feat.address is number
-      // - Otherwise we keep whatever props.street gives, or fall back to text
-      let street = (props.street || props.address || "").toString().trim();
-      if(!street){
-        if(placeTypes.includes("address")) street = text;
-        else street = text; // best effort
-      }
-
-      // Fill the address fields when user is NOT typing
-      if(!__userIsTyping){
+      if(!street || !housenumber || !postcode || !area){
         try{
-          const f1 = document.getElementById("map_address");
-          const f2 = document.getElementById("map_city");
-          const f3 = document.getElementById("map_number");
-          const f4 = document.getElementById("map_postalcode");
-          if(f1) f1.value = street || "";
-          if(f2) f2.value = city || "";
-          if(f3) f3.value = housenumber || "";
-          if(f4) f4.value = postcode || "";
+          var n = await __nominatimReverseDetails(lat, lon);
+          if(!street) street = n.road || "";
+          if(!housenumber) housenumber = n.house_number || "";
+          if(!area) area = n.suburb || "";
+          if(!city) city = n.city || "";
+          if(!postcode) postcode = n.postcode || "";
+          if(!fallback) fallback = n.display_name || "";
         }catch(e){}
       }
-
-      const line1 = (street && housenumber) ? (street + " " + housenumber) : (street || housenumber || "");
-      const parts = [];
-      if(line1) parts.push(line1);
-      if(city) parts.push(city);
-      if(postcode) parts.push(postcode);
-      if(parts.length) return parts.join(", ");
-
-      return place || "";
+      var pretty = __formatFoundAddress(street, housenumber, area || city, postcode, fallback);
+      if(!__userIsTyping){
+        try{
+          if(mapAddressIn && pretty) mapAddressIn.value = pretty;
+          if(mapCityIn && (area || city)) mapCityIn.value = area || city;
+          if(mapNumberIn && housenumber) mapNumberIn.value = housenumber;
+          if(mapPostalIn && postcode) mapPostalIn.value = postcode;
+        }catch(e){}
+      }
+      return pretty || "";
     }
 
 
@@ -4678,42 +5215,51 @@ async function __updatePickupMapAddr(){
       const num = (f2 ? f2.value : "").trim();
       const city = (f3 ? f3.value : "").trim();
       const zip = (f4 ? f4.value : "").trim();
-      let line = [st, num].filter(Boolean).join(" ").trim();
-      const tail = [city, zip].filter(Boolean).join(" ").trim();
-      if(tail) line = line ? (line + ", " + tail) : tail;
+      let line = st;
+      if(num && line.toLowerCase().indexOf(num.toLowerCase()) === -1) line = (line + " " + num).trim();
+      if(city && line.toLowerCase().indexOf(city.toLowerCase()) === -1) line = line ? (line + ", " + city) : city;
+      if(zip && line.indexOf(zip) === -1) line = (line + " " + zip).trim();
       return line.trim();
     }
 
     pickupMapOk.addEventListener("click", async ()=>{
       try{
+        __acDismiss();
+        const typed = (mapAddressIn && mapAddressIn.value || "").trim();
+        var wasTyping = pickupMapBox && pickupMapBox.classList.contains("pickup-typing");
+        if(typed.length >= 2){
+          try{ await __geocodeToMarker(typed); }catch(e){}
+        }
+        if(wasTyping){
+          try{ __acHide(); }catch(e){}
+          try{ if(mapAddressIn) mapAddressIn.blur(); }catch(e){}
+          __setPickupTyping(false, true);
+          setTimeout(function(){ try{ __refreshPickupMapSize(); }catch(e){} }, 100);
+          return;
+        }
         if(!__marker) return;
         const ll = __marker.getLatLng();
         __pickupLat = ll.lat;
         __pickupLng = ll.lng;
 
-        // Build manual text from fields (street/number/city/zip)
         const manualText = __buildManualPickupText();
 
         let addr = "";
 
-        // PREFER manual text if user typed anything
         if(manualText && manualText.length > 0){
           addr = manualText;
         } else {
-          // Only use reverse geocode if user didn't type anything
           try{ addr = await __reverseGeocode(__pickupLat, __pickupLng); }catch(e){ addr = ""; }
         }
 
         if(addr){
           pickupIn.value = addr;
           __pickupLastResolvedText = addr;
-          // Trigger any existing listeners in your app (e.g., price overlay uses pickupIn.value)
           try{ pickupIn.dispatchEvent(new Event("input", { bubbles:true })); }catch(e){}
           try{ pickupIn.dispatchEvent(new Event("change", { bubbles:true })); }catch(e){}
         }
-      }finally{
         __hidePickupMap();
-      }
+      }catch(e){}
     });
 
     pickupMapClose.addEventListener("click", ()=>{
@@ -6381,29 +6927,10 @@ listEl.appendChild(div);
       }
     }
 
-function isHomeVisible(){
-      try{
-        var tb=document.getElementById('topbar');
-        if(tb){
-          var cs=window.getComputedStyle(tb);
-          if(cs.display!=='none' && cs.visibility!=='hidden') return true;
-        }
-      }catch(e){}
-      try{
-        if(!bookingForm) return true;
-        if(bookingForm.style.display==='none'){
-          var cs2=window.getComputedStyle(bookingForm);
-          return cs2.display!=='none';
-        }
-      }catch(e){}
-      return true;
-    }
+function isHomeVisible(){ return bookingForm.style.display !== "none"; }
 
     window.toggleFolder = function(){
-      var now=Date.now();
-      if(window.__folderTapAt && now-window.__folderTapAt<400) return;
-      window.__folderTapAt=now;
-      if(!isHomeVisible()) return;
+      if(!isHomeVisible()) return; // only on home
       const box = document.getElementById("folderBox");
       if(!box) return;
       const open = box.style.display === "block";
@@ -6575,11 +7102,11 @@ function isHomeVisible(){
         twoTaxiForm.innerText = "⚠ 2 taxis required";
         try{
           document.getElementById("pickupMapTitle").innerText = "Enter address";
-          document.getElementById("l_map_address").innerText = "Address";
+          document.getElementById("l_map_address").innerText = "Street / hotel / area";
           document.getElementById("l_map_city").innerText = "City";
           document.getElementById("l_map_number").innerText = "Number";
           document.getElementById("l_map_postalcode").innerText = "Postal Code";
-          document.getElementById("map_address").placeholder = "Address";
+          document.getElementById("map_address").placeholder = "e.g. Divani or Kifisias 100 15125";
           document.getElementById("map_city").placeholder = "City";
           document.getElementById("map_number").placeholder = "No.";
           document.getElementById("map_postalcode").placeholder = "Postal Code";
@@ -6606,11 +7133,11 @@ function isHomeVisible(){
         twoTaxiForm.innerText = "⚠ Απαιτούνται 2 ταξί";
         try{
           document.getElementById("pickupMapTitle").innerText = "Βάλε διεύθυνση";
-          document.getElementById("l_map_address").innerText = "Διεύθυνση";
+          document.getElementById("l_map_address").innerText = "Οδός / ξενοδοχείο / περιοχή";
           document.getElementById("l_map_city").innerText = "Πόλη";
           document.getElementById("l_map_number").innerText = "Αριθμός";
           document.getElementById("l_map_postalcode").innerText = "ΤΚ";
-          document.getElementById("map_address").placeholder = "Διεύθυνση";
+          document.getElementById("map_address").placeholder = "π.χ. Divani ή Κηφισίας 100 15125";
           document.getElementById("map_city").placeholder = "Πόλη";
           document.getElementById("map_number").placeholder = "Αρ.";
           document.getElementById("map_postalcode").placeholder = "ΤΚ";
@@ -7670,12 +8197,6 @@ currentBookingStatus = "new";
       }catch(e){}
 
       try{ saveLastBookingId(bookingId); }catch(e){}
-      try{
-        if(window.ClientBridge && ClientBridge.watchBookingForNotifications){
-          ClientBridge.watchBookingForNotifications(bookingId);
-        }
-        try{ if(typeof watchChatForBooking === 'function') watchChatForBooking(bookingId); }catch(e){}
-      }catch(e){}
 // (re)start watchdog for this booking
       lastBookingUpdateAt = Date.now();
       if (watchdogTimer) { try{ clearInterval(watchdogTimer); }catch(e){} watchdogTimer = null; }
@@ -7751,11 +8272,6 @@ currentBookingStatus = "new";
           if (_stLocal === "offered" || _stLocal === "interested") currentBookingStatus = "accepted";
         }
         lastBookingUpdateAt = Date.now(); // ✅ watchdog heartbeat
-        try{
-          var _nst = String(currentBookingStatus || '').toLowerCase();
-          if(b && (b.showDriverReady === true || b.driverConfirmedOk === true)) _nst = 'driver_ready';
-          if(typeof window.__iosNotifyBooking === 'function') window.__iosNotifyBooking(_nst, bookingId);
-        }catch(e){}
 
         const _stNow = readStatus(b);
         if (_stNow === "accepted" || _stNow === "booked" || _stNow === "confirmed") {
@@ -10648,15 +11164,14 @@ currentBookingStatus = "new";
     function calcRouteBasePrice(km, dateStr, timeStr){
       const night = isNightTariff(dateStr, timeStr);
       if(isAirportToAthensMode() && !isAirportAthensNowPriceMode(dateStr, timeStr)){
-        // Ραντεβού: μέρα 1.20/km. Μετά τις 12 (00:00–05:00): διπλή/νυχτερινή χρέωση.
-        if(night) return calcBasePrice(km, true);
         return calcAirportAthensBasePrice(km);
       }
       return calcBasePrice(km, night);
     }
 
     function calcAirportAthensBasePrice(km){
-      // Αεροδρόμιο → Αθήνα ραντεβού ημέρας: σημαία 2€ + km*1.20 + αεροδρόμιο 4€ + 2.5€
+      // Αεροδρόμιο → Αθήνα: τιμή 1.20/km, πρωί και βράδυ
+      // σημαία 2€ + km*1.20 + αεροδρόμιο 4€ + πρόσθετο 2.5€
       return Math.max(0, 2 + (1.20 * km) + 4 + 2.5);
     }
 
@@ -10732,12 +11247,9 @@ currentBookingStatus = "new";
       return 1.5;   // κανονικές ώρες: ±1.5€ → εύρος 3€
     }
 
-    // Αεροδρόμιο → Αθήνα ραντεβού ημέρας: μία τιμή. Μετά τις 12 (00:00–05:00): διπλή χρέωση + εύρος.
-    // «Τώρα» και Αθήνα→Αεροδρόμιο: εύρος πάντα.
+    // Αεροδρόμιο → Αθήνα ραντεβού: ακριβής τιμή χωρίς ±. «Τώρα»: ίδιο εύρος με Αθήνα→Αεροδρόμιο.
     function calcEffectiveRangeBuffer(dateStr, timeStr){
-      if(isAirportToAthensMode() && !isAirportAthensNowPriceMode(dateStr, timeStr) && !isNightTariff(dateStr, timeStr)){
-        return 0;
-      }
+      if(isAirportToAthensMode() && !isAirportAthensNowPriceMode(dateStr, timeStr)) return 0;
       return calcRangeBuffer(dateStr, timeStr);
     }
 
@@ -10906,7 +11418,7 @@ async function routeKm(fromLat, fromLon){
       if(isEn){
         const en = {
           title:"Estimated fare",
-          note:"The final fare will be within this range.",
+          note:"The final fare will be based on the taximeter.",
           from:"From:",
           to:"To:",
           airport:"✈ Airport",
@@ -10921,7 +11433,7 @@ async function routeKm(fromLat, fromLon){
       }
       const el = {
         title:"Εκτίμηση τιμής",
-        note:"Η τελική τιμή θα είναι μέσα στο εύρος.",
+        note:"Η τελική τιμή θα είναι με βάση το ταξίμετρο.",
         from:"Από:",
         to:"Προς:",
         airport:"✈ Αεροδρόμιο",
@@ -11805,7 +12317,7 @@ async function routeKm(fromLat, fromLon){
           // Greek version handler
           if(btnEl) {
             btnEl.addEventListener("click", function(){
-              try { if(typeof window.__termsAccepted==='function') window.__termsAccepted(); } catch(e) {}
+              try { ov.style.display = "none"; } catch(e) {}
               try { lockScroll(false); } catch(e) {}
               try {
                 localStorage.setItem(KEY, "1");
@@ -11818,7 +12330,7 @@ async function routeKm(fromLat, fromLon){
           // English version handler
           if(btnEn) {
             btnEn.addEventListener("click", function(){
-              try { if(typeof window.__termsAccepted==='function') window.__termsAccepted(); } catch(e) {}
+              try { ov.style.display = "none"; } catch(e) {}
               try { lockScroll(false); } catch(e) {}
               try {
                 localStorage.setItem(KEY, "1");
@@ -11938,65 +12450,6 @@ async function routeKm(fromLat, fromLon){
 <!-- ===== FCM TOKEN BRIDGE ===== -->
 <script>
     window.__CLIENT_FCM_TOKEN = null;
-
-    window.__showInAppNotice = function(title, body){
-        try{
-          var box = document.getElementById('iosNoticeToast');
-          var tEl = document.getElementById('iosNoticeTitle');
-          var bEl = document.getElementById('iosNoticeBody');
-          if(!box || !tEl || !bEl) return;
-          tEl.textContent = title || '';
-          bEl.textContent = body || '';
-          box.style.display = 'block';
-          clearTimeout(window.__iosNoticeTimer);
-          window.__iosNoticeTimer = setTimeout(function(){ box.style.display = 'none'; }, 7000);
-        }catch(e){}
-    };
-
-    window.__iosNotifyBooking = function(st, id){
-        try{
-          st = String(st || '').toLowerCase();
-          id = String(id || '');
-          if(!st) return;
-          var key = st + ':' + id;
-          if(window.__lastIosNotif === key) return;
-          window.__lastIosNotif = key;
-          try{ if(window.ClientBridge && ClientBridge.markBookingSeen) ClientBridge.markBookingSeen(id, st); }catch(e){}
-          if(document.visibilityState === 'visible') return;
-          var en = (typeof window.__isEn === 'function') ? window.__isEn() : false;
-          var msg = null;
-          if(st === 'accepted' || st === 'booked' || st === 'confirmed'){
-            msg = en ? ['Booking accepted', 'A driver accepted your booking.'] : ['Η κράτηση έγινε δεκτή', 'Ένας οδηγός αποδέχτηκε την κράτηση.'];
-          } else if(st === 'offered'){
-            msg = en ? ['Price confirmation', 'The driver sent a price. Open the app to accept.'] : ['Επιβεβαίωση τιμής', 'Ο οδηγός έστειλε τιμή. Άνοιξε την εφαρμογή για αποδοχή.'];
-          } else if(st === 'interested'){
-            msg = en ? ['Driver found', 'A driver is interested. Please wait.'] : ['Βρέθηκε οδηγός', 'Ένας οδηγός ενδιαφέρεται. Περίμενε λίγο.'];
-          } else if(st === 'driver_ready' || st === 'arrived'){
-            msg = en ? ['Driver arrived', 'Your driver is at the pickup point.'] : ['Ο οδηγός έφτασε', 'Ο οδηγός είναι στο σημείο παραλαβής.'];
-          } else if(st === 'cancelled' || st === 'canceled' || st === 'driver_cancelled'){
-            msg = en ? ['Booking cancelled', 'Open the app for details.'] : ['Η κράτηση ακυρώθηκε', 'Άνοιξε την εφαρμογή για λεπτομέρειες.'];
-          }
-          if(!msg) return;
-          if(window.ClientBridge && ClientBridge.showLocalNotification) ClientBridge.showLocalNotification(msg[0], msg[1]);
-        }catch(e){}
-    };
-
-    window.__onClientApnsToken = function(token){
-        if (!token) return;
-        window.__CLIENT_APNS_TOKEN = token;
-        try {
-            var dbx = window._clientDb;
-            var fns = window._clientDbFns || {};
-            if (!dbx || !fns.ref || !fns.update) return;
-            if (window.currentBookingId) {
-                fns.update(fns.ref(dbx, "bookings/" + window.currentBookingId), {
-                    clientApnsToken: token,
-                    clientApnsTokenAt: Date.now(),
-                    clientPushPlatform: 'ios'
-                }).catch(function(){});
-            }
-        } catch(e) {}
-    };
 
     window.__onClientFcmToken = function(token){
         if (!token) return;
@@ -13076,17 +13529,9 @@ async function routeKm(fromLat, fromLon){
         const fns = window._clientDbFns || {};
         if (!db || !fns.ref || !fns.get) return;
 
-        function applyChatBadge(latest, lastText) {
+        function applyChatBadge(latest) {
           if (latest <= lastTs || clientCurrentChatId === bookingId) return;
           lastTs = latest;
-          try{
-            if(document.visibilityState !== 'visible' && window.ClientBridge && ClientBridge.showLocalNotification){
-              var en = (typeof window.__isEn === 'function') ? window.__isEn() : false;
-              var title = en ? 'New message' : 'Νέο μήνυμα';
-              var body = String(lastText || '').trim() || (en ? 'The driver sent a message.' : 'Ο οδηγός έστειλε μήνυμα.');
-              ClientBridge.showLocalNotification(title, body);
-            }
-          }catch(e){}
           const badge = document.getElementById('chatBadge_' + bookingId);
           if (badge) badge.style.display = 'inline';
           _clientUnreadBookings.add(bookingId);
@@ -13115,8 +13560,7 @@ async function routeKm(fromLat, fromLon){
             const msgs = snap ? (snap.val() || {}) : {};
             const driverMsgs = Object.values(msgs).filter(m => m && m.sender === 'driver');
             const latest = driverMsgs.reduce((max, m) => Math.max(max, m.ts || 0), 0);
-            const lastDriver = driverMsgs.slice().sort(function(a,b){ return (a.ts||0)-(b.ts||0); }).pop();
-            applyChatBadge(latest, lastDriver && lastDriver.text);
+            applyChatBadge(latest);
           }).catch(() => {});
         }
 
