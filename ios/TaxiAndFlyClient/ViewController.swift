@@ -241,18 +241,96 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         ]
     }
 
+    /// Same try-list idea as Android `geocodeAddressJson` (MainActivity.kt):
+    /// POI/local search in Attica first, then CLGeocoder with Greece variants.
     private func geocodeAddress(query: String, requestId: String) {
         let q = query.trimmingCharacters(in: .whitespacesAndNewlines)
         if q.count < 2 {
             nativeCallback("__onNativeGeocode", id: requestId, payload: "[]")
             return
         }
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(q, in: nil, preferredLocale: Locale(identifier: "el_GR")) { [weak self] marks, _ in
+        var tries: [String] = []
+        let low = q.lowercased()
+        if let gate = q.range(of: #"(?:gate|πύλη|πυλη)\s*[eε]?\s*(\d{1,2})"#, options: [.regularExpression, .caseInsensitive]) {
+            let n = String(q[gate]).replacingOccurrences(of: #"[^\d]"#, with: "", options: .regularExpression)
+            if !n.isEmpty {
+                tries.append("Πύλη Ε\(n) Πειραιάς")
+                tries.append("Piraeus Port Gate E\(n)")
+                tries.append("Gate E\(n) Piraeus")
+            }
+        }
+        if q.range(of: #"\s+(και|kai)\s+"#, options: [.regularExpression, .caseInsensitive]) != nil {
+            tries.append(q.replacingOccurrences(of: #"\s+(και|kai)\s+"#, with: " & ", options: [.regularExpression, .caseInsensitive]))
+        }
+        tries.append(q)
+        let piraeus = q.range(of: #"pir[aeiouy]+e?us|pireas|piraus|πειραι"#, options: [.regularExpression, .caseInsensitive]) != nil
+        let port = low.contains("λιμάν") || low.contains("λιμαν") || low.contains("port") || low.contains("harbour") || low.contains("harbor")
+        if piraeus && port {
+            tries.append("Piraeus Port")
+            tries.append("Λιμάνι Πειραιά")
+        } else if piraeus {
+            tries.append("Piraeus Port")
+            tries.append("Piraeus")
+        } else if port {
+            tries.append("\(q) λιμάνι")
+            tries.append("Piraeus Port")
+        }
+        if !low.contains("ελλάδα") && !low.contains("ellada") && !low.contains("greece") {
+            tries.append("\(q), Ελλάδα")
+            tries.append("\(q), Αθήνα, Ελλάδα")
+        }
+        geocodeTryList(tries, requestId: requestId, index: 0, seen: [])
+    }
+
+    private func geocodeTryList(_ tries: [String], requestId: String, index: Int, seen: Set<String>) {
+        if index >= tries.count {
+            nativeCallback("__onNativeGeocode", id: requestId, payload: "[]")
+            return
+        }
+        let tryQ = tries[index]
+        let req = MKLocalSearch.Request()
+        req.naturalLanguageQuery = tryQ
+        req.region = atticaRegion()
+        req.resultTypes = [.pointOfInterest, .address]
+        MKLocalSearch(request: req).start { [weak self] resp, _ in
             guard let self = self else { return }
-            let good = (marks ?? []).filter { $0.location != nil && ($0.isoCountryCode == "GR" || $0.isoCountryCode == nil) }
-            let arr = good.prefix(8).map { self.placemarkDict($0, name: $0.name) }
-            self.nativeCallback("__onNativeGeocode", id: requestId, payload: self.jsonPayload(arr))
+            var out: [[String: Any]] = []
+            var seen2 = seen
+            for item in resp?.mapItems ?? [] {
+                guard let c = item.placemark.location?.coordinate else { continue }
+                let key = String(format: "%.5f,%.5f", c.latitude, c.longitude)
+                if seen2.contains(key) { continue }
+                seen2.insert(key)
+                out.append(self.placemarkDict(item.placemark, name: item.name))
+                if out.count >= 8 { break }
+            }
+            if !out.isEmpty {
+                self.nativeCallback("__onNativeGeocode", id: requestId, payload: self.jsonPayload(out))
+                return
+            }
+            let geocoder = CLGeocoder()
+            let region = CLCircularRegion(
+                center: CLLocationCoordinate2D(latitude: 37.98, longitude: 23.72),
+                radius: 120_000,
+                identifier: "attica"
+            )
+            geocoder.geocodeAddressString(tryQ, in: region, preferredLocale: Locale(identifier: "el_GR")) { marks, _ in
+                var out2: [[String: Any]] = []
+                var seen3 = seen2
+                let good = (marks ?? []).filter { $0.location != nil && ($0.isoCountryCode == "GR" || $0.isoCountryCode == nil) }
+                for m in good.prefix(8) {
+                    guard let c = m.location?.coordinate else { continue }
+                    let key = String(format: "%.5f,%.5f", c.latitude, c.longitude)
+                    if seen3.contains(key) { continue }
+                    seen3.insert(key)
+                    out2.append(self.placemarkDict(m, name: m.name))
+                }
+                if !out2.isEmpty {
+                    self.nativeCallback("__onNativeGeocode", id: requestId, payload: self.jsonPayload(out2))
+                    return
+                }
+                self.geocodeTryList(tries, requestId: requestId, index: index + 1, seen: seen3)
+            }
         }
     }
 
