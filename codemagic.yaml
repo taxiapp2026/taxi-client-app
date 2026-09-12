@@ -3,6 +3,14 @@ workflows:
     name: iOS App Store
     max_build_duration: 60
     instance_type: mac_mini_m2
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: ios-appstore
+          include: true
+          source: true
+      cancel_previous_builds: true
     environment:
       groups:
         - appstore_credentials
