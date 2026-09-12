@@ -251,6 +251,7 @@
             if(notollName) notollName.textContent=T('notollName');
           }catch(e){}
           try{ if(typeof window.__paintTerms==='function') window.__paintTerms(); }catch(e){}
+          try{ window.__termsLang=l; if(document.documentElement.classList.contains('client-terms-visible') && typeof window.termsSetLang==='function') window.termsSetLang(l); }catch(e){}
           try{ if(typeof window.__renderLangPicker==='function') window.__renderLangPicker(); }catch(e){}
           try{ if(typeof window.__syncPriceBtnLang==='function') window.__syncPriceBtnLang(l); }catch(e){}
           try{ if(typeof window.updateAirportNowAutoButton==='function') window.updateAirportNowAutoButton(); }catch(e){}
@@ -2589,8 +2590,8 @@
 
         <!-- Greek Version -->
         <div id="termsEl">
-            <div style="font-weight:700; font-size:18px; margin-bottom:10px;">Ενημέρωση & Αποδοχή</div>
-            <div style="font-size:13.5px; line-height:1.55; opacity:0.95; margin-bottom:14px; max-height:46vh; overflow-y:auto; padding-right:6px;">
+            <div id="termsTitleEl" style="font-weight:700; font-size:18px; margin-bottom:10px;">Ενημέρωση & Αποδοχή</div>
+            <div id="termsBodyEl" style="font-size:13.5px; line-height:1.55; opacity:0.95; margin-bottom:14px; max-height:46vh; overflow-y:auto; padding-right:6px;">
                 <p style="margin:0 0 10px 0;">Η εφαρμογή λειτουργεί αποκλειστικά ως πλατφόρμα διασύνδεσης με πιστοποιημένους οδηγούς ταξί. Την ευθύνη για κάθε μεταφορά, ασφάλεια και συναλλαγή φέρει αποκλειστικά ο οδηγός.</p>
                 <p style="margin:0 0 4px 0;"><b>✈ Αθήνα → Αεροδρόμιο:</b></p>
                 <p style="margin:0 0 4px 0;">• <b>Ακύρωση:</b> μέχρι 1 ώρα πριν από τον Φάκελο</p>
@@ -2617,13 +2618,13 @@
                     style="width:100%; padding:12px 14px; border-radius:10px; border:none; font-weight:700; font-size:15px; cursor:pointer; opacity:1;">
                 Αποδέχομαι τους όρους & την Πολιτική Απορρήτου
             </button>
-            <div style="margin-top:10px; font-size:12px; opacity:0.75;">(Θα εμφανιστεί μόνο την πρώτη φορά.)</div>
+            <div id="termsHintEl" style="margin-top:10px; font-size:12px; opacity:0.75;">(Θα εμφανιστεί μόνο την πρώτη φορά.)</div>
         </div>
 
         <!-- English Version -->
         <div id="termsEn" style="display:none;">
-            <div style="font-weight:700; font-size:18px; margin-bottom:10px;">Information & Acceptance</div>
-            <div style="font-size:13.5px; line-height:1.55; opacity:0.95; margin-bottom:14px; max-height:46vh; overflow-y:auto; padding-right:6px;">
+            <div id="termsTitleEn" style="font-weight:700; font-size:18px; margin-bottom:10px;">Information & Acceptance</div>
+            <div id="termsBodyEn" style="font-size:13.5px; line-height:1.55; opacity:0.95; margin-bottom:14px; max-height:46vh; overflow-y:auto; padding-right:6px;">
                 <p style="margin:0 0 10px 0;">The app operates exclusively as a connection platform with certified taxi drivers. Full responsibility for every transfer, safety and transaction lies exclusively with the driver.</p>
                 <p style="margin:0 0 4px 0;"><b>✈ Athens → Airport:</b></p>
                 <p style="margin:0 0 4px 0;">• <b>Cancellation:</b> up to 1 hour before, from the Folder</p>
@@ -2650,7 +2651,7 @@
                     style="width:100%; padding:12px 14px; border-radius:10px; border:none; font-weight:700; font-size:15px; cursor:pointer; opacity:1;">
                 I Accept the Terms & Privacy Policy
             </button>
-            <div style="margin-top:10px; font-size:12px; opacity:0.75;">(Will only appear once.)</div>
+            <div id="termsHintEn" style="margin-top:10px; font-size:12px; opacity:0.75;">(Will only appear once.)</div>
         </div>
 
     </div>
@@ -2658,13 +2659,44 @@
 
 <script>
     function termsSetLang(l) {
-      // Θυμήσου την επιλογή γλώσσας των όρων, ώστε τα delayed __showTermsAfterRoute
-      // να ΜΗΝ την επαναφέρουν σε ελληνικά (window.lang).
-      try{ window.__termsLang = l; }catch(e){}
-      document.getElementById('termsEl').style.display = (l === 'el') ? 'block' : 'none';
-      document.getElementById('termsEn').style.display = (l === 'en') ? 'block' : 'none';
-      document.getElementById('termsFlagEl').style.opacity = (l === 'el') ? '1' : '0.4';
-      document.getElementById('termsFlagEn').style.opacity = (l === 'en') ? '1' : '0.4';
+      // Same panels as build 53 (el / en). Any other app language uses the
+      // second panel, painted from i18n — no overlay redesign.
+      try{
+        var code = (typeof window.__knownLang==='function') ? (window.__knownLang(l)||'el') : String(l||'el').toLowerCase();
+        window.__termsLang = code;
+        var isEl = (code === 'el');
+        var te = document.getElementById('termsEl');
+        var tn = document.getElementById('termsEn');
+        var fEl = document.getElementById('termsFlagEl');
+        var fEn = document.getElementById('termsFlagEn');
+        if(te) te.style.display = isEl ? 'block' : 'none';
+        if(tn) tn.style.display = isEl ? 'none' : 'block';
+        if(fEl) fEl.style.opacity = isEl ? '1' : '0.4';
+        if(fEn) fEn.style.opacity = isEl ? '0.4' : '1';
+        var I = window.__I18N || {};
+        function pack(lang){
+          var p = I[lang] || I.en || I.el || {};
+          return { title:p.termsTitle||'', body:p.termsBody||'', accept:p.termsAccept||'', once:p.termsOnce||'' };
+        }
+        var elp = pack('el');
+        var xp = pack(isEl ? 'el' : code);
+        var tEl = document.getElementById('termsTitleEl');
+        var bEl = document.getElementById('termsBodyEl');
+        var hEl = document.getElementById('termsHintEl');
+        var btnEl = document.getElementById('clientTermsContinueV1');
+        if(tEl && elp.title) tEl.textContent = elp.title;
+        if(bEl && elp.body) bEl.innerHTML = elp.body;
+        if(hEl && elp.once) hEl.textContent = elp.once;
+        if(btnEl && elp.accept) btnEl.textContent = elp.accept;
+        var tEn = document.getElementById('termsTitleEn');
+        var bEn = document.getElementById('termsBodyEn');
+        var hEn = document.getElementById('termsHintEn');
+        var btnEn = document.getElementById('clientTermsContinueV1En');
+        if(tEn && xp.title) tEn.textContent = xp.title;
+        if(bEn && xp.body) bEn.innerHTML = xp.body;
+        if(hEn && xp.once) hEn.textContent = xp.once;
+        if(btnEn && xp.accept) btnEn.textContent = xp.accept;
+      }catch(e){}
     }
 </script>
 
@@ -13209,6 +13241,9 @@ async function routeKm(fromLat, fromLon){
                 }).catch(function(){});
             }
         } catch(e) {}
+        // iPhone: ο οδηγός στέλνει push στο bookings/{id}/clientFcmToken — γράφουμε εκεί το ίδιο token
+        // (ο server αναγνωρίζει τα iPhone tokens και τα στέλνει μέσω APNs, το Android/FCM δεν αλλάζει).
+        try { if (typeof window.__onClientFcmToken === 'function') window.__onClientFcmToken(token); } catch(e) {}
     };
 
     window.__onClientFcmToken = function(token){
