@@ -1,4 +1,4 @@
 /* English — App Review tests this localization. Must match the English UI. */
 "NSLocationWhenInUseUsageDescription" = "Used so your driver can find your pickup location.";
-"NSMicrophoneUsageDescription" = "Used for voice input in the chat with your driver.";
-"NSSpeechRecognitionUsageDescription" = "Used for voice input in the chat with your driver.";
+"NSMicrophoneUsageDescription" = "Used for voice input of your pickup address and in the chat with your driver.";
+"NSSpeechRecognitionUsageDescription" = "Used for voice input of your pickup address and in the chat with your driver.";

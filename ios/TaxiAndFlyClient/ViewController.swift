@@ -3,11 +3,25 @@ import WebKit
 import UserNotifications
 import MapKit
 import CoreLocation
+import Speech
+import AVFoundation
 
 final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandler {
     private var webView: WKWebView!
     private var placeCache: [String: [String: Any]] = [:]
     private let geoLock = NSLock()
+
+    // Φωνή → κείμενο (ίδιο «συμβόλαιο» με το Android: __onAppSpeechPartial / __onAppSpeechResult)
+    private var speechRecognizer: SFSpeechRecognizer?
+    private var speechRequest: SFSpeechAudioBufferRecognitionRequest?
+    private var speechTask: SFSpeechRecognitionTask?
+    private let speechEngine = AVAudioEngine()
+    private var speechSilenceTimer: Timer?
+    private var speechMaxTimer: Timer?
+    private var speechBestText = ""
+    private var speechBestAlts: [String] = []
+    private var speechDelivered = false
+    private var speechSession = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,8 +119,10 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
             VpsPush.deliverPushTokenToJs()
         case "log":
             NSLog("JS: %@", str(args, 0))
-        case "startSpeechToText", "stopSpeechToText":
-            break
+        case "startSpeechToText":
+            startSpeechToText(langCode: str(args, 0))
+        case "stopSpeechToText":
+            stopSpeechToText()
         case "geocodeAddress":
             geocodeAddress(query: str(args, 0), requestId: str(args, 1))
         case "reverseGeocode":
@@ -291,6 +307,183 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
             nativeCallback("__onNativePlaceDetails", id: requestId, payload: jsonPayload(cached))
         } else {
             nativeCallback("__onNativePlaceDetails", id: requestId, payload: "null")
+        }
+    }
+
+    // MARK: - Φωνή → κείμενο (μικρόφωνο στο πεδίο διεύθυνσης και στο chat)
+
+    private func speechLocale(_ code: String) -> Locale {
+        let l = code.lowercased()
+        if l.hasPrefix("en") { return Locale(identifier: "en-US") }
+        if l.hasPrefix("el") { return Locale(identifier: "el-GR") }
+        // "auto": η γλώσσα της συσκευής (όπως στο Android)
+        return Locale.current
+    }
+
+    private func startSpeechToText(langCode: String) {
+        SFSpeechRecognizer.requestAuthorization { [weak self] status in
+            guard let self = self else { return }
+            guard status == .authorized else {
+                self.speechResultToJs(text: "", error: "permission", alts: [])
+                return
+            }
+            AVAudioSession.sharedInstance().requestRecordPermission { granted in
+                DispatchQueue.main.async {
+                    guard granted else {
+                        self.speechResultToJs(text: "", error: "permission", alts: [])
+                        return
+                    }
+                    self.beginSpeech(langCode: langCode)
+                }
+            }
+        }
+    }
+
+    private func stopSpeechToText() {
+        endSpeechAudio()
+    }
+
+    private func beginSpeech(langCode: String) {
+        stopSpeechInternal()
+        speechSession += 1
+        let sid = speechSession
+        var rec = SFSpeechRecognizer(locale: speechLocale(langCode))
+        if rec == nil || !(rec!.isAvailable) {
+            rec = SFSpeechRecognizer(locale: Locale(identifier: "el-GR"))
+        }
+        guard let recognizer = rec, recognizer.isAvailable else {
+            speechResultToJs(text: "", error: "unavailable", alts: [])
+            return
+        }
+        speechRecognizer = recognizer
+        speechBestText = ""
+        speechBestAlts = []
+        speechDelivered = false
+
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.setCategory(.record, mode: .measurement, options: .duckOthers)
+            try session.setActive(true, options: .notifyOthersOnDeactivation)
+        } catch {
+            speechResultToJs(text: "", error: "error", alts: [])
+            return
+        }
+
+        let request = SFSpeechAudioBufferRecognitionRequest()
+        request.shouldReportPartialResults = true
+        speechRequest = request
+
+        let input = speechEngine.inputNode
+        let format = input.outputFormat(forBus: 0)
+        input.removeTap(onBus: 0)
+        input.installTap(onBus: 0, bufferSize: 1024, format: format) { buffer, _ in
+            request.append(buffer)
+        }
+        speechEngine.prepare()
+        do {
+            try speechEngine.start()
+        } catch {
+            input.removeTap(onBus: 0)
+            speechResultToJs(text: "", error: "error", alts: [])
+            return
+        }
+
+        speechTask = recognizer.recognitionTask(with: request) { [weak self] result, error in
+            DispatchQueue.main.async {
+                guard let self = self, sid == self.speechSession else { return }
+                if let result = result {
+                    let alts = result.transcriptions
+                        .map { $0.formattedString.trimmingCharacters(in: .whitespacesAndNewlines) }
+                        .filter { !$0.isEmpty }
+                    let text = result.bestTranscription.formattedString.trimmingCharacters(in: .whitespacesAndNewlines)
+                    if !text.isEmpty {
+                        self.speechBestText = text
+                        self.speechBestAlts = alts
+                    }
+                    if result.isFinal {
+                        self.finishSpeech(error: self.speechBestText.isEmpty ? "no_match" : "")
+                        return
+                    }
+                    if !text.isEmpty { self.speechPartialToJs(text: text, alts: alts) }
+                    self.restartSpeechSilenceTimer()
+                }
+                if error != nil {
+                    // Σφάλμα ή «δεν άκουσα τίποτα»: παραδίδουμε ό,τι καλύτερο ακούστηκε, αλλιώς no_match.
+                    self.finishSpeech(error: self.speechBestText.isEmpty ? "no_match" : "")
+                }
+            }
+        }
+
+        restartSpeechSilenceTimer()
+        speechMaxTimer?.invalidate()
+        speechMaxTimer = Timer.scheduledTimer(withTimeInterval: 12.0, repeats: false) { [weak self] _ in
+            self?.endSpeechAudio()
+        }
+    }
+
+    /// Όπως στο Android: μόλις σταματήσεις να μιλάς, το μικρόφωνο κλείνει μόνο του.
+    private func restartSpeechSilenceTimer() {
+        speechSilenceTimer?.invalidate()
+        let interval: TimeInterval = speechBestText.isEmpty ? 5.0 : 1.6
+        speechSilenceTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { [weak self] _ in
+            self?.endSpeechAudio()
+        }
+    }
+
+    /// Κλείνει το μικρόφωνο· το τελικό αποτέλεσμα έρχεται από το recognitionTask (isFinal).
+    private func endSpeechAudio() {
+        guard speechRequest != nil else { return }
+        speechSilenceTimer?.invalidate()
+        speechSilenceTimer = nil
+        if speechEngine.isRunning {
+            speechEngine.stop()
+            speechEngine.inputNode.removeTap(onBus: 0)
+        }
+        speechRequest?.endAudio()
+        let sid = speechSession
+        // Αν το isFinal αργήσει, παραδίδουμε ό,τι έχουμε.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { [weak self] in
+            guard let self = self, sid == self.speechSession, !self.speechDelivered else { return }
+            self.finishSpeech(error: self.speechBestText.isEmpty ? "no_match" : "")
+        }
+    }
+
+    private func finishSpeech(error: String) {
+        if speechDelivered { return }
+        speechDelivered = true
+        let text = speechBestText
+        let alts = speechBestAlts
+        stopSpeechInternal()
+        speechResultToJs(text: error.isEmpty ? text : "", error: error, alts: error.isEmpty ? alts : [])
+    }
+
+    private func stopSpeechInternal() {
+        speechSilenceTimer?.invalidate()
+        speechSilenceTimer = nil
+        speechMaxTimer?.invalidate()
+        speechMaxTimer = nil
+        if speechEngine.isRunning {
+            speechEngine.stop()
+            speechEngine.inputNode.removeTap(onBus: 0)
+        }
+        speechRequest?.endAudio()
+        speechTask?.cancel()
+        speechTask = nil
+        speechRequest = nil
+        _ = try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+    }
+
+    private func speechResultToJs(text: String, error: String, alts: [String]) {
+        let js = "try{if(window.__onAppSpeechResult)window.__onAppSpeechResult(\(jsString(text)),\(jsString(error)),\(jsonPayload(alts)));}catch(e){}"
+        DispatchQueue.main.async { [weak self] in
+            self?.webView.evaluateJavaScript(js, completionHandler: nil)
+        }
+    }
+
+    private func speechPartialToJs(text: String, alts: [String]) {
+        let js = "try{if(window.__onAppSpeechPartial)window.__onAppSpeechPartial(\(jsString(text)),\(jsonPayload(alts)));}catch(e){}"
+        DispatchQueue.main.async { [weak self] in
+            self?.webView.evaluateJavaScript(js, completionHandler: nil)
         }
     }
 

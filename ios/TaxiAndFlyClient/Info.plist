@@ -47,9 +47,9 @@
 		</dict>
 	</dict>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Used for voice input in the chat with your driver.</string>
+	<string>Used for voice input of your pickup address and in the chat with your driver.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Used for voice input in the chat with your driver.</string>
+	<string>Used for voice input of your pickup address and in the chat with your driver.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
