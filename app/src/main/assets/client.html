@@ -2582,9 +2582,6 @@
 <div id="clientTermsOverlayV1" style="display:none;">
     <div id="clientTermsBoxV1" style="max-width:560px; width:calc(100% - 24px); margin:18px auto; background:rgba(15,15,15,0.95); border:1px solid rgba(255,255,255,0.18); border-radius:14px; padding:16px; color:#fff; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;">
 
-        <!-- Language switcher: pick any language, terms text changes -->
-        <div id="termsLangFlags" style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-bottom:14px;"></div>
-
         <!-- Greek Version -->
         <div id="termsEl">
             <div id="termsTitleEl" style="font-weight:700; font-size:18px; margin-bottom:10px;">Ενημέρωση & Αποδοχή</div>
@@ -2656,43 +2653,15 @@
 
 <script>
     function termsSetLang(l) {
-      // Build 53 panels (el / en). Flag row lists ALL langs; pick one → text changes.
+      // No language UI here — show terms in the language already chosen on the route screen.
       try{
         var code = (typeof window.__knownLang==='function') ? (window.__knownLang(l)||'el') : String(l||'el').toLowerCase();
         window.__termsLang = code;
-        try{ window.lang = code; }catch(_e){}
         var isEl = (code === 'el');
         var te = document.getElementById('termsEl');
         var tn = document.getElementById('termsEn');
         if(te) te.style.display = isEl ? 'block' : 'none';
         if(tn) tn.style.display = isEl ? 'none' : 'block';
-        var wrap = document.getElementById('termsLangFlags');
-        if(wrap){
-          if(!wrap.getAttribute('data-built')){
-            wrap.setAttribute('data-built','1');
-            wrap.innerHTML = '';
-            var LANGS = window.__LANGS || {};
-            var codes = Object.keys(LANGS);
-            if(!codes.length) codes = ['el','en'];
-            codes.forEach(function(c){
-              var btn = document.createElement('button');
-              btn.type = 'button';
-              btn.className = 'termsLangFlag';
-              btn.setAttribute('data-lang', c);
-              btn.textContent = (LANGS[c] && LANGS[c].flag) ? LANGS[c].flag : c;
-              btn.setAttribute('aria-label', (LANGS[c] && LANGS[c].name) ? LANGS[c].name : c);
-              btn.style.cssText = 'background:none;border:none;font-size:24px;cursor:pointer;opacity:0.4;padding:2px;line-height:1;';
-              btn.addEventListener('click', function(ev){
-                try{ ev.preventDefault(); ev.stopPropagation(); }catch(_e){}
-                termsSetLang(c);
-              });
-              wrap.appendChild(btn);
-            });
-          }
-          Array.prototype.forEach.call(wrap.querySelectorAll('.termsLangFlag'), function(btn){
-            btn.style.opacity = (btn.getAttribute('data-lang') === code) ? '1' : '0.4';
-          });
-        }
         var I = window.__I18N || {};
         function pack(lang){
           var p = I[lang] || I.en || I.el || {};
