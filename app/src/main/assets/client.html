@@ -2661,16 +2661,10 @@
       // Θυμήσου την επιλογή γλώσσας των όρων, ώστε τα delayed __showTermsAfterRoute
       // να ΜΗΝ την επαναφέρουν σε ελληνικά (window.lang).
       try{ window.__termsLang = l; }catch(e){}
-      // Όροι υπάρχουν μόνο el/en. Κάθε άλλη γλώσσα εφαρμογής → αγγλικά (και το «I Accept»).
-      var isEl = String(l || 'el').toLowerCase() === 'el';
-      var te = document.getElementById('termsEl');
-      var tn = document.getElementById('termsEn');
-      var fEl = document.getElementById('termsFlagEl');
-      var fEn = document.getElementById('termsFlagEn');
-      if (te) te.style.display = isEl ? 'block' : 'none';
-      if (tn) tn.style.display = isEl ? 'none' : 'block';
-      if (fEl) fEl.style.opacity = isEl ? '1' : '0.4';
-      if (fEn) fEn.style.opacity = isEl ? '0.4' : '1';
+      document.getElementById('termsEl').style.display = (l === 'el') ? 'block' : 'none';
+      document.getElementById('termsEn').style.display = (l === 'en') ? 'block' : 'none';
+      document.getElementById('termsFlagEl').style.opacity = (l === 'el') ? '1' : '0.4';
+      document.getElementById('termsFlagEn').style.opacity = (l === 'en') ? '1' : '0.4';
     }
 </script>
 
@@ -13215,9 +13209,6 @@ async function routeKm(fromLat, fromLon){
                 }).catch(function(){});
             }
         } catch(e) {}
-        // iPhone: ο οδηγός στέλνει push στο bookings/{id}/clientFcmToken — γράφουμε εκεί το ίδιο token
-        // (ο server αναγνωρίζει τα iPhone tokens και τα στέλνει μέσω APNs, το Android/FCM δεν αλλάζει).
-        try { if (typeof window.__onClientFcmToken === 'function') window.__onClientFcmToken(token); } catch(e) {}
     };
 
     window.__onClientFcmToken = function(token){

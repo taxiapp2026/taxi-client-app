@@ -117,8 +117,6 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         case "getFcmToken":
             VpsPush.webView = webView
             VpsPush.deliverPushTokenToJs()
-        case "setUiLang":
-            VpsPush.setUiLang(str(args, 0))
         case "log":
             NSLog("JS: %@", str(args, 0))
         case "startSpeechToText":
@@ -510,7 +508,6 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         cancelClientUnconfirmedCheck: function(){ call('cancelClientUnconfirmedCheck',[]); },
         getApiUrl: function(){ return '\(AppConfig.apiUrl)'; },
         getFcmToken: function(){ call('getFcmToken',[]); return null; },
-        setUiLang: function(lang){ call('setUiLang',[lang]); },
         sendChatNotification: function(token,title,body){ call('sendChatNotification',[token,title,body]); },
         isAuthReady: function(){ return true; },
         log: function(m){ call('log',[m]); },

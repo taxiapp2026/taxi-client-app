@@ -10,22 +10,6 @@ enum VpsPush {
     private static var timer: Timer?
     private static var apnsToken = ""
 
-    // Γλώσσα που διάλεξε ο πελάτης στην εφαρμογή (όχι του iOS) — για τις ειδοποιήσεις, όπως στο Android.
-    private static let langKey = "appLang"
-    static var uiLang: String {
-        let l = (UserDefaults.standard.string(forKey: langKey) ?? "el").trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-        return NotifI18n.pack[l] != nil ? l : "el"
-    }
-
-    static func setUiLang(_ code: String) {
-        let c = code.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-        guard !c.isEmpty else { return }
-        let changed = c != (UserDefaults.standard.string(forKey: langKey) ?? "")
-        UserDefaults.standard.set(c, forKey: langKey)
-        // Να ξέρει και ο server τη γλώσσα, ώστε τα push (APNs) να έρχονται σε αυτήν.
-        if changed { registerApnsWithVps() }
-    }
-
     static func sendChat(token: String, title: String, body: String) {
         guard let url = URL(string: "\(AppConfig.apiUrl)/api/push/chat") else { return }
         var req = URLRequest(url: url)
@@ -152,8 +136,7 @@ enum VpsPush {
         let payload: [String: String] = [
             "platform": "ios",
             "token": apnsToken,
-            "bundleId": AppConfig.bundleId,
-            "lang": uiLang
+            "bundleId": AppConfig.bundleId
         ]
         req.httpBody = try? JSONSerialization.data(withJSONObject: payload)
         URLSession.shared.dataTask(with: req).resume()
@@ -194,9 +177,19 @@ enum VpsPush {
     }
 
     private static func message(for st: String) -> (String, String) {
-        if let pair = NotifI18n.fromStatus(st, lang: uiLang) {
-            return pair
+        switch st {
+        case "accepted", "booked", "confirmed":
+            return ("Booking accepted", "A driver accepted your booking.")
+        case "offered":
+            return ("Price confirmation", "The driver sent a price. Open the app.")
+        case "interested":
+            return ("Driver found", "A driver is interested. Please wait.")
+        case "driver_ready", "arrived":
+            return ("Driver arrived", "Your driver is at the pickup point.")
+        case "driver_cannot_find":
+            return ("Driver could not find you", "Open the app to explain.")
+        default:
+            return ("Booking update", "Open Taxi and Fly for details.")
         }
-        return NotifI18n.pair(lang: uiLang, kind: "arrived")
     }
 }
