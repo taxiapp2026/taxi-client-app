@@ -622,6 +622,8 @@
           return;
         }
         if(t.id==='pickup'||t.id==='l_pickup'||t.id==='airportText'||t.id==='pickupWrap'||t.closest('#pickupWrap')){
+          // Scroll (δάχτυλο κινήθηκε >8px) ≠ tap — μην ανοίγει χάρτη/προορισμό.
+          if(window.__pickupMoved) return;
           try{ ev.preventDefault(); ev.stopPropagation(); }catch(e){}
           if(!__uiTapOk('pickup')) return;
           if(typeof window.__showPickupMap==='function') window.__showPickupMap();
@@ -2321,7 +2323,8 @@
         }
         #routeChoiceLang{
           position:absolute;
-          top:22px;
+          /* iPhone: κάτω από το notch/ρολόι (safe area). Android: μένει 22px. */
+          top:max(22px, calc(env(safe-area-inset-top, 0px) + 12px));
           right:22px;
           display:flex;
           gap:10px;
@@ -2483,6 +2486,10 @@
         .topbar{
           margin-top:58px;
         }
+        /* Γλώσσα στην κεντρική οθόνη: να μη βγαίνει άκρη-άκρη — μικραίνει (…) αντί να ξεχειλίζει, και η γραμμή λίγο πιο φαρδιά */
+        .topbar{ margin-left:-14px; margin-right:-14px; }
+        #langSwitch{ flex-shrink:1; min-width:0; margin-right:6px; }
+        #langSwitch .langPickBtn{ max-width:100%; overflow:hidden; }
         .route-back-stack{
           position:static;
         }
