@@ -2581,96 +2581,49 @@
 <div id="clientTermsOverlayV1" style="display:none;">
     <div id="clientTermsBoxV1" style="max-width:560px; width:calc(100% - 24px); margin:18px auto; background:rgba(15,15,15,0.95); border:1px solid rgba(255,255,255,0.18); border-radius:14px; padding:16px; color:#fff; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;">
 
-        <!-- Flag switcher -->
+        <!-- Language: open the same full language picker -->
         <div style="display:flex; justify-content:center; gap:12px; margin-bottom:14px;">
-            <button type="button" onclick="termsSetLang('el')" id="termsFlagEl" style="background:none;border:none;font-size:26px;cursor:pointer;opacity:1;">🇬🇷</button>
-            <button type="button" onclick="termsSetLang('en')" id="termsFlagEn" style="background:none;border:none;font-size:26px;cursor:pointer;opacity:0.4;">🇬🇧</button>
-        </div>
-
-        <!-- Greek Version -->
-        <div id="termsEl">
-            <div style="font-weight:700; font-size:18px; margin-bottom:10px;">Ενημέρωση & Αποδοχή</div>
-            <div style="font-size:13.5px; line-height:1.55; opacity:0.95; margin-bottom:14px; max-height:46vh; overflow-y:auto; padding-right:6px;">
-                <p style="margin:0 0 10px 0;">Η εφαρμογή λειτουργεί αποκλειστικά ως πλατφόρμα διασύνδεσης με πιστοποιημένους οδηγούς ταξί. Την ευθύνη για κάθε μεταφορά, ασφάλεια και συναλλαγή φέρει αποκλειστικά ο οδηγός.</p>
-                <p style="margin:0 0 4px 0;"><b>✈ Αθήνα → Αεροδρόμιο:</b></p>
-                <p style="margin:0 0 4px 0;">• <b>Ακύρωση:</b> μέχρι 1 ώρα πριν από τον Φάκελο</p>
-                <p style="margin:0 0 10px 0;">• <b>Πληρωμή:</b> βάσει ταξιμέτρου + πρόσθετα αεροδρομίου + διόδια, απευθείας στον οδηγό</p>
-                <p style="margin:0 0 4px 0;"><b>🛬 Αεροδρόμιο → Αθήνα:</b></p>
-                <p style="margin:0 0 4px 0;">• <b>Ακύρωση:</b> οποτεδήποτε πριν την πτήση</p>
-                <p style="margin:0 0 10px 0;">• <b>Τιμή:</b> περιλαμβάνει ραντεβού, πρόσθετα αεροδρομίου και αναμονή έως 1 ώρα για καθυστέρηση πτήσης</p>
-                <p style="margin:0 0 4px 0;">• <b>Ασφάλεια:</b> το ταξί πρέπει να είναι κίτρινο με εμφανή την ειδική άδεια</p>
-
-                <div style="height:1px; background:rgba(255,255,255,0.18); margin:12px 0;"></div>
-                <p style="margin:0 0 8px 0; font-weight:700;">🔒 Προστασία Προσωπικών Δεδομένων (GDPR)</p>
-                <p style="margin:0 0 6px 0;"><b>Υπεύθυνος επεξεργασίας:</b> Ιωάννης Τρανταλίδης.</p>
-                <p style="margin:0 0 6px 0;"><b>Ποια δεδομένα:</b> όνομα, τηλέφωνο, σημείο παραλαβής (τοποθεσία/πινέζα) και τα στοιχεία της κράτησης.</p>
-                <p style="margin:0 0 6px 0;"><b>Σκοπός & νομική βάση:</b> αποκλειστικά η διεκπεραίωση της κράτησης και η σύνδεσή σου με τον οδηγό — βάσει της εκτέλεσης της υπηρεσίας και της συγκατάθεσής σου.</p>
-                <p style="margin:0 0 6px 0;"><b>Κοινοποίηση:</b> τα στοιχεία δίνονται ΜΟΝΟ στον οδηγό που αναλαμβάνει τη μεταφορά. Δεν πωλούνται ούτε διαβιβάζονται σε τρίτους για διαφήμιση.</p>
-                <p style="margin:0 0 6px 0;"><b>Διατήρηση:</b> κρατούνται όσο χρειάζεται για την κράτηση. Μπορείς να τα διαγράψεις οποιαδήποτε στιγμή μέσα από την εφαρμογή· επιπλέον τα αρχεία κρατήσεων καθαρίζονται αυτόματα (έως ~30 ημέρες μετά).</p>
-                <p style="margin:0 0 6px 0;"><b>Τα δικαιώματά σου:</b> μπορείς να ζητήσεις πρόσβαση, διόρθωση, διαγραφή ή ανάκληση της συγκατάθεσης οποιαδήποτε στιγμή, μέσα από την εφαρμογή ή με email.</p>
-                <p style="margin:0 0 6px 0;"><b>Επικοινωνία GDPR:</b> <a href="#" onclick="return window.__openGdprEmail();" style="color:#8cf;">taxiandfly.privacy@gmail.com</a></p>
-                <p style="margin:0 0 6px 0;"><b>Πάροχοι/αποδέκτες:</b> για τη λειτουργία της εφαρμογής χρησιμοποιούμε ασφαλή διακομιστή στην ΕΕ (Hetzner), υπηρεσία ειδοποιήσεων (Google Firebase) και υπηρεσίες χαρτών (Google Maps, MapTiler, OpenStreetMap). Ορισμένες από αυτές ενδέχεται να επεξεργάζονται δεδομένα και εκτός ΕΕ, με τις προβλεπόμενες νομικές εγγυήσεις.</p>
-                <p style="margin:0 0 6px 0;"><b>Δικαίωμα καταγγελίας:</b> αν θεωρείς ότι δεν τηρήθηκαν τα δικαιώματά σου, μπορείς να απευθυνθείς και στην Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα (www.dpa.gr).</p>
-                <p style="margin:0;"><b>Ασφάλεια:</b> τα δεδομένα φυλάσσονται σε ασφαλή διακομιστή.</p>
-            </div>
-            <button type="button" id="clientTermsContinueV1"
-                    style="width:100%; padding:12px 14px; border-radius:10px; border:none; font-weight:700; font-size:15px; cursor:pointer; opacity:1;">
-                Αποδέχομαι τους όρους & την Πολιτική Απορρήτου
+            <button type="button" id="termsLangBtn" onclick="try{ if(typeof window.__openLangPicker==='function') window.__openLangPicker(); }catch(e){}"
+                    style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:10px;padding:6px 12px;font-size:22px;cursor:pointer;color:#fff;">
+                <span id="termsLangFlag">🇬🇷</span>
             </button>
-            <div style="margin-top:10px; font-size:12px; opacity:0.75;">(Θα εμφανιστεί μόνο την πρώτη φορά.)</div>
+            <!-- keep old ids so any leftover handlers do not break -->
+            <button type="button" id="termsFlagEl" onclick="termsSetLang('el')" style="display:none;" aria-hidden="true">🇬🇷</button>
+            <button type="button" id="termsFlagEn" onclick="termsSetLang('en')" style="display:none;" aria-hidden="true">🇬🇧</button>
         </div>
 
-        <!-- English Version -->
-        <div id="termsEn" style="display:none;">
-            <div style="font-weight:700; font-size:18px; margin-bottom:10px;">Information & Acceptance</div>
-            <div style="font-size:13.5px; line-height:1.55; opacity:0.95; margin-bottom:14px; max-height:46vh; overflow-y:auto; padding-right:6px;">
-                <p style="margin:0 0 10px 0;">The app operates exclusively as a connection platform with certified taxi drivers. Full responsibility for every transfer, safety and transaction lies exclusively with the driver.</p>
-                <p style="margin:0 0 4px 0;"><b>✈ Athens → Airport:</b></p>
-                <p style="margin:0 0 4px 0;">• <b>Cancellation:</b> up to 1 hour before, from the Folder</p>
-                <p style="margin:0 0 10px 0;">• <b>Payment:</b> taximeter + airport surcharges + tolls, paid directly to the driver</p>
-                <p style="margin:0 0 4px 0;"><b>🛬 Airport → Athens:</b></p>
-                <p style="margin:0 0 4px 0;">• <b>Cancellation:</b> any time before the flight</p>
-                <p style="margin:0 0 10px 0;">• <b>Price:</b> includes appointment, airport surcharges and waiting up to 1 hour for flight delays</p>
-                <p style="margin:0 0 4px 0;">• <b>Safety:</b> taxi must be yellow with special licence clearly visible</p>
-
-                <div style="height:1px; background:rgba(255,255,255,0.18); margin:12px 0;"></div>
-                <p style="margin:0 0 8px 0; font-weight:700;">🔒 Personal Data Protection (GDPR)</p>
-                <p style="margin:0 0 6px 0;"><b>Data controller:</b> Ioannis Trantalidis.</p>
-                <p style="margin:0 0 6px 0;"><b>What data:</b> name, phone, pickup point (location/pin) and the booking details.</p>
-                <p style="margin:0 0 6px 0;"><b>Purpose & legal basis:</b> solely to carry out your booking and connect you with the driver — based on performance of the service and your consent.</p>
-                <p style="margin:0 0 6px 0;"><b>Sharing:</b> your data is given ONLY to the driver who takes the transfer. It is never sold or shared with third parties for advertising.</p>
-                <p style="margin:0 0 6px 0;"><b>Retention:</b> kept only as long as needed for the booking. You can delete them anytime from within the app; booking records are also cleaned up automatically (up to ~30 days after).</p>
-                <p style="margin:0 0 6px 0;"><b>Your rights:</b> you may request access, correction, deletion or withdrawal of consent at any time, from within the app or by email.</p>
-                <p style="margin:0 0 6px 0;"><b>GDPR contact:</b> <a href="#" onclick="return window.__openGdprEmail();" style="color:#8cf;">taxiandfly.privacy@gmail.com</a></p>
-                <p style="margin:0 0 6px 0;"><b>Providers/recipients:</b> to run the app we use a secure EU server (Hetzner), a notification service (Google Firebase) and map services (Google Maps, MapTiler, OpenStreetMap). Some of these may also process data outside the EU, under the appropriate legal safeguards.</p>
-                <p style="margin:0 0 6px 0;"><b>Right to complain:</b> if you believe your rights were not respected, you may also contact the Hellenic Data Protection Authority (www.dpa.gr).</p>
-                <p style="margin:0;"><b>Security:</b> data is stored on a secure server.</p>
-            </div>
-            <button type="button" id="clientTermsContinueV1En"
-                    style="width:100%; padding:12px 14px; border-radius:10px; border:none; font-weight:700; font-size:15px; cursor:pointer; opacity:1;">
-                I Accept the Terms & Privacy Policy
-            </button>
-            <div style="margin-top:10px; font-size:12px; opacity:0.75;">(Will only appear once.)</div>
-        </div>
+        <div id="termsTitle" style="font-weight:700; font-size:18px; margin-bottom:10px;">Ενημέρωση & Αποδοχή</div>
+        <div id="termsBody" style="font-size:13.5px; line-height:1.55; opacity:0.95; margin-bottom:14px; max-height:46vh; overflow-y:auto; padding-right:6px;"></div>
+        <button type="button" id="clientTermsContinueV1"
+                style="width:100%; padding:12px 14px; border-radius:10px; border:none; font-weight:700; font-size:15px; cursor:pointer; opacity:1;">
+            Αποδέχομαι τους όρους & την Πολιτική Απορρήτου
+        </button>
+        <button type="button" id="clientTermsContinueV1En" style="display:none;" aria-hidden="true"></button>
+        <div id="termsOnceHint" style="margin-top:10px; font-size:12px; opacity:0.75;">(Θα εμφανιστεί μόνο την πρώτη φορά.)</div>
+        <div id="termsEl" style="display:none;" aria-hidden="true"></div>
+        <div id="termsEn" style="display:none;" aria-hidden="true"></div>
 
     </div>
 </div>
 
 <script>
     function termsSetLang(l) {
-      // Θυμήσου την επιλογή γλώσσας των όρων, ώστε τα delayed __showTermsAfterRoute
-      // να ΜΗΝ την επαναφέρουν σε ελληνικά (window.lang).
-      try{ window.__termsLang = l; }catch(e){}
-      // Όροι υπάρχουν μόνο el/en. Κάθε άλλη γλώσσα εφαρμογής → αγγλικά (και το «I Accept»).
-      var isEl = String(l || 'el').toLowerCase() === 'el';
-      var te = document.getElementById('termsEl');
-      var tn = document.getElementById('termsEn');
-      var fEl = document.getElementById('termsFlagEl');
-      var fEn = document.getElementById('termsFlagEn');
-      if (te) te.style.display = isEl ? 'block' : 'none';
-      if (tn) tn.style.display = isEl ? 'none' : 'block';
-      if (fEl) fEl.style.opacity = isEl ? '1' : '0.4';
-      if (fEn) fEn.style.opacity = isEl ? '0.4' : '1';
+      try{
+        var code = (typeof window.__knownLang==='function') ? (window.__knownLang(l)||l) : l;
+        window.__termsLang = code;
+        if(code){
+          window.lang = code;
+          try{ localStorage.setItem('appLang', code); }catch(e){}
+          try{ document.documentElement.lang = code; }catch(e){}
+          try{
+            var meta=(window.__LANGS&&window.__LANGS[code])||{};
+            document.documentElement.dir = meta.dir || 'ltr';
+          }catch(e){}
+          try{ if(window.ClientBridge && typeof ClientBridge.setUiLang==='function') ClientBridge.setUiLang(code); }catch(e){}
+        }
+      }catch(e){}
+      try{ if(typeof window.__paintTerms==='function') window.__paintTerms(); }catch(e){}
+      try{ if(typeof window.__paintLang==='function') window.__paintLang(window.__termsLang||window.lang); }catch(e){}
     }
 </script>
 
@@ -12463,541 +12416,8 @@ async function routeKm(fromLat, fromLon){
     };
 
         function showOverlay(){
-      const pickupText = (pickupIn.value || "").trim();
-      if(!pickupText){ alert(uiText("needPickup")); return; }
-
-      try{ document.getElementById("folderBox").style.display="none"; }catch(e){}
-
-      refreshOverlayText();
-      if(isAirportToAthensMode()){
-        priceFromValue.textContent = uiText("airport");
-        priceToValue.textContent   = pickupText;
-      } else {
-        priceFromValue.textContent = pickupText;
-        priceToValue.textContent   = uiText("airport");
-      }
-
-      priceOverlay.style.display = "flex";
-      _priceSoundPlayed = false;
-      document.body.classList.add("no-scroll");
-      prefetchBookingSubmitChecks();
-
-      priceRangeBig.innerHTML = '<div class="price-loading-dots"><span></span><span></span><span></span></div>';
-      priceDistanceLine.textContent = "";
-      priceConfirmBtn.disabled = true;
-      priceConfirmBtn.style.opacity = "0.7";
-
-      // Update label language
-      try{
-        const lbl = document.getElementById("priceEstLabel");
-        if(lbl) lbl.textContent = (typeof window.__t==='function' && window.__t('priceEstLabel')) || uiText("title");
-      }catch(e){}
-
-      // Reset route selection
-      __selectedRoute = null;
-      __routeData = { toll: null, notoll: null };
-      document.getElementById("routeBtnToll").classList.remove("selected");
-      document.getElementById("routeBtnNotoll").classList.remove("selected");
-      document.getElementById("routeTollDetail").textContent   = ((typeof window.__t==='function' && window.__t('priceCalc')) || (lang==="en" ? "Calculating…" : "Υπολογισμός…"));
-      document.getElementById("routeNotollDetail").textContent = ((typeof window.__t==='function' && window.__t('priceCalc')) || (lang==="en" ? "Calculating…" : "Υπολογισμός…"));
-
-      computeDynamicRange(pickupText, dateIn.value, timeIn.value)
-        .then(async r=>{
-          priceRangeBig.style.animation = "none";
-          if(r.daktylios){
-            // ===== FIX PRICE ΔΑΚΤΥΛΙΟΣ =====
-            document.getElementById("routeSelector").style.display = "none";
-            const isNight = (r.fixPrice === 55);
-            priceRangeBig.innerHTML = `<span style="font-size:38px;font-weight:900;color:#FFD700;">${r.fixPrice}€</span>`;
-            void priceRangeBig.offsetWidth;
-            priceRangeBig.style.animation = "";
-            if(!_priceSoundPlayed){ _priceSoundPlayed = true; try { playPriceRevealSound(); } catch(e) {} }
-            const lbl = document.getElementById("priceEstLabel");
-            const Tfix = (typeof window.__t==='function') ? window.__t : function(){ return ''; };
-            if(lbl) lbl.innerHTML = `<span style="color:#FFD700;font-weight:900;font-size:13px;letter-spacing:1px;">🚦 ${Tfix('priceFixTitle') || (lang==="en" ? "FIX PRICE – RING ROAD" : "FIX PRICE – ΔΑΚΤΥΛΙΟΣ")}</span>`;
-            priceDistanceLine.innerHTML = `<span style="color:#aaa;font-size:13px;">${isNight ? (Tfix('priceNightLegal') || (lang==="en" ? "🌙 Night tariff (00:00–05:00) · Official price without discount" : "🌙 Νυχτερινό (00:00–05:00) · Νόμιμη τιμή χωρίς έκπτωση")) : (Tfix('priceDayLegal') || (lang==="en" ? "☀️ Daytime (05:00–00:00) · Official price without discount" : "☀️ Ημερήσιο (05:00–00:00) · Νόμιμη τιμή χωρίς έκπτωση"))}</span>`;
-          } else {
-            // ===== ΕΜΦΑΝΙΣΗ ΕΠΙΛΟΓΗΣ ΔΙΑΔΡΟΜΗΣ =====
-            document.getElementById("routeSelector").style.display = "block";
-
-            // Αρχική τιμή χωρίς επιλογή (με συντομότερη διαδρομή)
-            priceRangeBig.textContent = ((typeof window.__t==='function' && window.__t('priceChooseRoute')) || (lang==="en" ? "Choose route ↑" : "Επίλεξε διαδρομή ↑"));
-            priceDistanceLine.textContent = "";
-            const lbl = document.getElementById("priceEstLabel");
-            if(lbl) lbl.textContent = (typeof window.__t==='function' && window.__t('priceEstLabel')) || uiText("title");
-
-            // Υπολογισμός km για κάθε διαδρομή παράλληλα
-            let fromLat = r.pickupLat || __pickupLat;
-            let fromLon = r.pickupLon || __pickupLng;
-            if(!fromLat || !fromLon){
-              try{
-                const coords = await geocodePickup(pickupText);
-                fromLat = coords.lat; fromLon = coords.lon;
-              }catch(e){}
-            }
-
-            if(fromLat && fromLon){
-              // Τρέχουμε και τις 2 διαδρομές παράλληλα
-              const [resToll, resNotoll] = await Promise.allSettled([
-                routeKmWithOptions(fromLat, fromLon, false), // με διόδια
-                routeKmWithOptions(fromLat, fromLon, true)   // χωρίς διόδια
-              ]);
-
-              if(resToll.status==="fulfilled"){
-                const { km, mins } = resToll.value;
-                const kmR = Math.max(1, Math.round(km*10)/10);
-                __routeData.toll = { km: kmR, mins };
-                const base = calcRouteBasePrice(kmR, dateIn.value, timeIn.value);
-                const buf  = calcEffectiveRangeBuffer(dateIn.value, timeIn.value);
-                const mn = roundEuro(base-buf), mx = roundEuro(base+buf);
-                console.log(`[TOLL] km=${kmR}, base=${base}, price=${formatPriceLabel(mn, mx)}`);
-                document.getElementById("routeTollDetail").textContent = `📏 ${kmR} km · ~${mins} ${((typeof window.__t==='function' && window.__t('priceMin')) || (lang==="en" ? "min" : "λεπτ."))} · ${formatPriceLabel(mn, mx)}`;
-              } else {
-                console.log(`[TOLL] FAILED`);
-                document.getElementById("routeTollDetail").textContent = ((typeof window.__t==='function' && window.__t('priceNotAvail')) || (lang==="en" ? "Not available" : "Δεν υπολογίστηκε"));
-              }
-
-              if(resNotoll.status==="fulfilled"){
-                const { km, mins } = resNotoll.value;
-                const kmR = Math.max(1, Math.round(km*10)/10);
-                __routeData.notoll = { km: kmR, mins };
-                const base = calcRouteBasePrice(kmR, dateIn.value, timeIn.value);
-                const buf  = calcEffectiveRangeBuffer(dateIn.value, timeIn.value);
-                const mn = roundEuro(base-buf), mx = roundEuro(base+buf);
-                console.log(`[NOTOLL] km=${kmR}, base=${base}, price=${formatPriceLabel(mn, mx)}`);
-                document.getElementById("routeNotollDetail").textContent = `📏 ${kmR} km · ~${mins} ${((typeof window.__t==='function' && window.__t('priceMin')) || (lang==="en" ? "min" : "λεπτ."))} · ${formatPriceLabel(mn, mx)}`;
-              } else {
-                console.log(`[NOTOLL] FAILED`);
-                document.getElementById("routeNotollDetail").textContent = ((typeof window.__t==='function' && window.__t('priceNotAvail')) || (lang==="en" ? "Not available" : "Δεν υπολογίστηκε"));
-              }
-
-            }
-
-            // Κρατάμε confirm disabled μέχρι να επιλέξει
-            priceConfirmBtn.disabled = true;
-            priceConfirmBtn.style.opacity = "0.7";
-            return; // skip finally enable
-          }
-        })
-        .catch(()=>{
-          priceRangeBig.textContent = uiText("bad");
-          priceDistanceLine.textContent = uiText("bad2");
-        })
-        .finally(()=>{
-          // Ενεργοποιούμε κουμπί ΜΟΝΟ αν δεν χρειάζεται επιλογή διαδρομής (π.χ. Δακτύλιος)
-          if(!document.getElementById("routeSelector") ||
-             document.getElementById("routeSelector").style.display === "none"){
-            priceConfirmBtn.disabled = false;
-            priceConfirmBtn.style.opacity = "1";
-            prefetchBookingSubmitChecks();
-          }
-          // Αν έχει ήδη επιλεγεί διαδρομή (π.χ. ο χρήστης επέλεξε πριν τελειώσει ο υπολογισμός)
-          if(__selectedRoute){
-            priceConfirmBtn.disabled = false;
-            priceConfirmBtn.style.opacity = "1";
-            prefetchBookingSubmitChecks();
-          }
-        });
-    }
-
-    // IMPORTANT: bind function that can be re-called after setLang() (because your code may overwrite handlers)
-    function bindPriceButton(){
-      try{
-        btn.onclick = null;
-        btn.addEventListener("click", showOverlay, { passive:true });
-      }catch(e){}
-    }
-
-    // Bind once now
-    bindPriceButton();
-
-    // Back button
-    priceBackBtn.addEventListener("click", hideOverlay);
-
-    // Confirm booking: trigger original submit flow safely
-    priceConfirmBtn.addEventListener("click", async ()=>{
-      const precheck = validateBookingFormForSubmit();
-      if(!precheck.ok){
-        showBookingFormValidationError(precheck);
-        return;
-      }
-      prefetchBookingSubmitChecks();
-      hideOverlay();
-      showBookingSendingUI();
-      await submitBookingForm(precheck);
-    });
-
-    // Patch setLang to re-bind + refresh overlay text (fixes Greek/English blocking)
-    if(window.setLang && !window.__priceLangPatched){
-      window.__priceLangPatched = true;
-      const __origSetLang = window.setLang;
-      window.setLang = function(l){
-        __origSetLang(l);
-        try{ if(typeof window.__syncPriceBtnLang==='function') window.__syncPriceBtnLang(l); }catch(e){}
-        try{ bindPriceButton(); }catch(e){}
-        try{
-          if(priceOverlay && priceOverlay.style.display==="flex"){ refreshOverlayText(); }
-        }catch(e){}
-      };
-    }
-
-    // Update booking payload fields inside the existing submit handler block by shadowing PRICE_MIN/MAX later:
-    // (We do NOT change the submit handler structure; it will use these cached vars if it reads them.)
-
-    // ==================== COMPLAINT FUNCTIONS ====================
-
-    function reportDriverNotification(bookingId, wasNotified) {
-      if (wasNotified) {
-        // Client confirms driver notified them - no complaint
-        alert((typeof window.__isEn==='function' ? window.__isEn() : (typeof lang!=='undefined' && lang==='en'))
-          ? 'Thank you for confirming.'
-          : 'Ευχαριστούμε για την επιβεβαίωση.');
-        goBackToHome();
-        return;
-      }
-
-      // Client says driver did NOT notify - create complaint
-      fetch(`${DB_URL}/bookings/${bookingId}`, { headers: window.TAXI_API_KEY ? { "X-API-Key": window.TAXI_API_KEY } : {} })
-        .then(r => r.json())
-        .then(booking => {
-          const complaint = {
-            type: 'driver_cancelled_no_notification',
-            bookingId: bookingId,
-            driverId: booking.driverCancelledBy || booking.targetDriverId || '',
-            driverName: booking.driverCancelledName || booking.driverName || '',
-            driverPhone: booking.driverPhone || '',
-            clientName: booking.name || booking.clientName || '',
-            clientPhone: booking.phone || booking.clientPhone || '',
-            driverClaimedNotified: booking.driverConfirmedClientNotified || false,
-            clientConfirmedNotNotified: true,
-            timestamp: Date.now(),
-            createdAt: new Date().toISOString()
-          };
-
-          const complaintId = `${Date.now()}_${bookingId}`;
-          return fetch(`${DB_URL}/complaints/${complaintId}`, {
-            method: 'PUT',
-            headers: Object.assign({ "Content-Type": "application/json" }, window.TAXI_API_KEY ? { "X-API-Key": window.TAXI_API_KEY } : {}),
-            body: JSON.stringify(complaint)
-          });
-        })
-        .then(() => {
-          alert((typeof window.__isEn==='function' ? window.__isEn() : (typeof lang!=='undefined' && lang==='en'))
-            ? '🙏 Thank you for the information.\n\nYour report has been recorded.\nWe will look into the incident.'
-            : '🙏 Ευχαριστούμε για την ενημέρωση.\n\nΗ καταγγελία σας καταγράφηκε.\nΘα ελέγξουμε το περιστατικό.');
-          goBackToHome();
-        })
-        .catch(err => {
-          console.error('Error creating complaint:', err);
-          alert((typeof window.__isEn==='function' ? window.__isEn() : (typeof lang!=='undefined' && lang==='en'))
-            ? 'Error while recording the report.'
-            : 'Σφάλμα κατά την καταγραφή της καταγγελίας.');
-        });
-    }
-</script>
-
-<!-- === PREMIUM CANCEL CONFIRMATION DIALOG === -->
-<div id="cancelConfirmOverlay">
-    <div id="cancelConfirmBox">
-        <div class="cancel-icon">🚫</div>
-        <div class="cancel-title" id="cancelTitle"></div>
-        <div class="cancel-message" id="cancelMessage"></div>
-
-        <div class="cancel-booking-info" id="cancelBookingInfo" style="display:none;">
-            <div class="cancel-booking-info-line">
-                <span class="cancel-booking-info-icon">👤</span>
-                <span id="cancelInfoName"></span>
-            </div>
-            <div class="cancel-booking-info-line">
-                <span class="cancel-booking-info-icon">📍</span>
-                <span id="cancelInfoAddress"></span>
-            </div>
-            <div class="cancel-booking-info-line">
-                <span class="cancel-booking-info-icon">📅</span>
-                <span id="cancelInfoDateTime"></span>
-            </div>
-        </div>
-
-        <div class="cancel-buttons">
-            <button class="cancel-btn-action cancel-btn-no" id="cancelBtnNo">
-                <span class="btn-emoji">✅</span>
-                <span class="btn-label" id="cancelBtnNoText"></span>
-            </button>
-            <button class="cancel-btn-action cancel-btn-yes" id="cancelBtnYes">
-                <span class="btn-emoji">🗑️</span>
-                <span class="btn-label" id="cancelBtnYesText"></span>
-            </button>
-        </div>
-    </div>
-</div>
-
-<script>
-    // Modern cancel confirmation dialog functionality
-    const cancelConfirmOverlay = document.getElementById('cancelConfirmOverlay');
-    const cancelBtnNo = document.getElementById('cancelBtnNo');
-    const cancelBtnYes = document.getElementById('cancelBtnYes');
-
-    let cancelResolve = null;
-
-    window.showCancelConfirm = function(bookingInfo) {
-      return new Promise((resolve) => {
-        cancelResolve = resolve;
-
-        try{ if(typeof window.__hideStackedDialogs==='function') window.__hideStackedDialogs('cancel'); }catch(e){}
-        try{ if(typeof window.__activeLang==='function') window.__activeLang(); }catch(e){}
-        var T = (typeof window.__t === 'function') ? window.__t : function(){ return ''; };
-        var titleEl = document.getElementById('cancelTitle');
-        var msgEl = document.getElementById('cancelMessage');
-        var noEl = document.getElementById('cancelBtnNoText') || document.querySelector('#cancelBtnNo .btn-label');
-        var yesEl = document.getElementById('cancelBtnYesText') || document.querySelector('#cancelBtnYes .btn-label');
-        if(titleEl) titleEl.textContent = T('cancelTitle') || 'Ακύρωση Ραντεβού';
-        if(msgEl) msgEl.textContent = T('cancelMessage') || 'Θέλετε σίγουρα να ακυρώσετε αυτό το ραντεβού;';
-        if(noEl) noEl.textContent = T('cancelBtnNoText') || 'Όχι, Κράτησε';
-        if(yesEl) yesEl.textContent = T('cancelBtnYesText') || 'Ναι, Ακύρωση';
-
-        // Show booking info if provided
-        if (bookingInfo && (bookingInfo.name || bookingInfo.address || bookingInfo.dateTime)) {
-          document.getElementById('cancelBookingInfo').style.display = 'block';
-          document.getElementById('cancelInfoName').textContent = bookingInfo.name || '';
-          document.getElementById('cancelInfoAddress').textContent = bookingInfo.address || '';
-          document.getElementById('cancelInfoDateTime').textContent = bookingInfo.dateTime || '';
-        } else {
-          document.getElementById('cancelBookingInfo').style.display = 'none';
-        }
-
-        cancelConfirmOverlay.style.display = 'block';
-        document.body.classList.add('no-scroll');
-      });
-    }
-
-    function hideCancelConfirm(result) {
-      cancelConfirmOverlay.style.display = 'none';
-      document.body.classList.remove('no-scroll');
-      if (cancelResolve) {
-        cancelResolve(result);
-        cancelResolve = null;
-      }
-    }
-
-    cancelBtnNo.addEventListener('click', () => hideCancelConfirm(false));
-    cancelBtnYes.addEventListener('click', () => hideCancelConfirm(true));
-
-    // Close on overlay background click
-    cancelConfirmOverlay.addEventListener('click', (e) => {
-      if (e.target === cancelConfirmOverlay) hideCancelConfirm(false);
-    });
-</script>
-<!-- === END MODERN CANCEL CONFIRMATION DIALOG === -->
-
-<!-- === CLIENT TERMS ONE-CHECK (v1) — logic only === -->
-<script>
-    (function(){
-      try {
-        var KEY = "clientTermsAccepted_v1";
-        var ACCEPTANCE_ID_KEY = "clientTermsAcceptanceId_v1";
-
-        function lockScroll(lock){
-          try{
-            document.documentElement.style.overflow = lock ? "hidden" : "";
-            document.body.style.overflow = lock ? "hidden" : "";
-            document.body.style.touchAction = lock ? "none" : "";
-          }catch(e){}
-        }
-
-        // ✅ NEW: Αποθήκευση αποδοχής όρων στο Firebase
-        function buildTermsPayload(lang){
-          var _d = new Date();
-          var _pad = function(n){ return n < 10 ? '0' + n : '' + n; };
-          var dateStr = _pad(_d.getDate()) + '/' + _pad(_d.getMonth()+1) + '/' + _d.getFullYear()
-                      + ' ' + _pad(_d.getHours()) + ':' + _pad(_d.getMinutes());
-          var anon = '';
-          try { anon = String(window.__taxiAuthToken || localStorage.getItem('taxiAnonUid') || '').trim(); } catch(e) {}
-          var label = anon ? ('Client ' + anon.slice(0, 16)) : 'Client (fresh install)';
-          return {
-            fullName: label, name: label, surname: null,
-            phone: anon || null,
-            date: dateStr,
-            termsAccepted: "ΝΑΙ - Αποδέχτηκε τους όρους",
-            termsAcceptedAt: Date.now(),
-            termsVersion: "v1",
-            termsText_el: "Η εφαρμογή λειτουργεί αποκλειστικά ως πλατφόρμα διασύνδεσης με πιστοποιημένους οδηγούς ταξί.",
-            termsText_en: "The app operates exclusively as a connection platform with certified taxi drivers.",
-            lang: lang || "el",
-            platform: "client-web"
-          };
-        }
-
-        async function pushTermsDirect(data){
-          var base = (window.TAXI_API_URL || 'http://167.233.49.140').replace(/\/$/, '');
-          var h = { 'Content-Type': 'application/json' };
-          if(window.TAXI_API_KEY) h['X-API-Key'] = window.TAXI_API_KEY;
-          if(window.__taxiAuthToken) h['Authorization'] = 'Bearer ' + window.__taxiAuthToken;
-          var res = await fetch(base + '/rtdb/apodoxes_pelaton/push', {
-            method: 'POST', headers: h, body: JSON.stringify(data)
-          });
-          if(!res.ok) throw new Error('push terms ' + res.status);
-          var j = await res.json();
-          return String(j.name || j.id || '');
-        }
-
-        var _termsSaveInFlight = false;
-        function saveTermsAcceptanceToFirebase(lang, attempt){
-          attempt = attempt || 0;
-          try {
-            if(_termsSaveInFlight) return;
-            var db  = window._clientDb;
-            var fns = window._clientDbFns || {};
-            if(!db || !fns.push || !fns.ref || !fns.set || !fns.get){
-              if(attempt < 40){
-                setTimeout(function(){ saveTermsAcceptanceToFirebase(lang, attempt+1); }, 500);
-              }
-              return;
-            }
-
-            var existingId = null;
-            try { existingId = localStorage.getItem(ACCEPTANCE_ID_KEY); } catch(e) {}
-
-            function writeNewRecord(){
-              _termsSaveInFlight = true;
-              var data = buildTermsPayload(lang);
-              function onSaved(acceptanceId){
-                acceptanceId = String(acceptanceId || '').trim();
-                if(!acceptanceId) throw new Error('no acceptance id');
-                try { localStorage.setItem(ACCEPTANCE_ID_KEY, acceptanceId); } catch(e) {}
-                _termsSaveInFlight = false;
-                watchNameFieldsForTerms(acceptanceId);
-              }
-              function onFail(){
-                _termsSaveInFlight = false;
-              }
-              pushTermsDirect(data).then(onSaved).catch(function(err2){
-                console.error('terms direct save error', err2);
-                onFail();
-                if(attempt < 6) setTimeout(function(){ saveTermsAcceptanceToFirebase(lang, attempt+1); }, 1000);
-              });
-            }
-
-            if(existingId){
-              fns.get(fns.ref(db, 'apodoxes_pelaton/' + existingId)).then(function(snap){
-                if(snap && snap.exists && snap.exists()){
-                  watchNameFieldsForTerms(existingId);
-                  return;
-                }
-                try { localStorage.removeItem(ACCEPTANCE_ID_KEY); } catch(e) {}
-                writeNewRecord();
-              }).catch(function(){
-                try { localStorage.removeItem(ACCEPTANCE_ID_KEY); } catch(e) {}
-                writeNewRecord();
-              });
-              return;
-            }
-
-            writeNewRecord();
-          } catch(e){ console.error('saveTermsAcceptanceToFirebase error', e); }
-        }
-        window.saveTermsAcceptanceToFirebase = saveTermsAcceptanceToFirebase;
-        window.__flushTermsAcceptance = function(){
-          try{
-            if(localStorage.getItem(KEY)!=='1') return;
-            if(localStorage.getItem(ACCEPTANCE_ID_KEY)) return;
-            saveTermsAcceptanceToFirebase(window.lang||'el');
-          }catch(e){}
-        };
-        window.__acceptTermsNow = function(lang){
-          try{
-            localStorage.setItem(KEY, '1');
-            localStorage.setItem(KEY + '_ts', String(Date.now()));
-          }catch(e){}
-          try { saveTermsAcceptanceToFirebase(lang || window.lang || 'el'); } catch(e) {}
-          try {
-            var ov = document.getElementById('clientTermsOverlayV1');
-            if (ov) ov.style.display = 'none';
-            lockScroll(false);
-          } catch(e) {}
-          try { if (typeof window.__ensureYellowBtnVisible === 'function') window.__ensureYellowBtnVisible(); } catch(e) {}
-        };
-
-        // ✅ NEW: Παρακολούθηση των πεδίων name + surname + phone για ενημέρωση Firebase
-        var _termsNameWatcherActive = false;
-        function watchNameFieldsForTerms(acceptanceId){
-          if(_termsNameWatcherActive || !acceptanceId) return;
-
-          var nameIn    = document.getElementById('name');
-          var surnameIn = document.getElementById('surname');
-          var phoneIn   = document.getElementById('phone');
-          var ccSel     = document.getElementById('phoneCountryCode');
-          var ccCustom  = document.getElementById('customCC');
-
-          if(!nameIn || !surnameIn || !phoneIn){
-            // Δοκίμασε ξανά λίγο αργότερα αν δεν υπάρχουν ακόμα στο DOM
-            setTimeout(function(){ watchNameFieldsForTerms(acceptanceId); }, 800);
-            return;
-          }
-
-          _termsNameWatcherActive = true;
-
-          var updateTimer = null;
-          var lastSent = '';
-
-          function getCountryCode(){
-            try {
-              var v = ccSel ? ccSel.value : '';
-              if(v === 'custom' && ccCustom){ return (ccCustom.value || '').trim(); }
-              return (v || '').trim();
-            } catch(e){ return ''; }
-          }
-
-          function tryUpdate(){
-            clearTimeout(updateTimer);
-            updateTimer = setTimeout(function(){
-              try {
-                var n  = (nameIn.value    || '').trim();
-                var s  = (surnameIn.value || '').trim();
-                var p  = (phoneIn.value   || '').trim();
-                var cc = getCountryCode();
-
-                if(!n && !s && !p) return;
-
-                var fullName = (n + ' ' + s).trim();
-                var phoneFull = (cc && p) ? (cc + ' ' + p) : (p || cc || '');
-
-                var snapshotKey = fullName + '|' + phoneFull;
-                if(snapshotKey === lastSent) return;
-
-                var db  = window._clientDb;
-                var fns = window._clientDbFns || {};
-                if(!db || !fns.update || !fns.ref) return;
-
-                lastSent = snapshotKey;
-                fns.update(fns.ref(db, 'apodoxes_pelaton/' + acceptanceId), {
-                  fullName: fullName || null,
-                  name:     n || null,
-                  surname:  s || null,
-                  phone:    phoneFull || null
-                }).catch(function(err){ console.error('terms update error', err); });
-              } catch(e){}
-            }, 700); // debounce
-          }
-
-          ['input','change','blur'].forEach(function(ev){
-            nameIn.addEventListener(ev, tryUpdate);
-            surnameIn.addEventListener(ev, tryUpdate);
-            phoneIn.addEventListener(ev, tryUpdate);
-            if(ccSel)    ccSel.addEventListener(ev, tryUpdate);
-            if(ccCustom) ccCustom.addEventListener(ev, tryUpdate);
-          });
-
-          // Έλεγξε για ήδη συμπληρωμένες τιμές (autofill)
-          setTimeout(tryUpdate, 600);
-        }
-
-        // Εκθέτω συνάρτηση παγκόσμια ώστε να καλείται και αργότερα αν χρειαστεί
-        window.watchNameFieldsForTerms = watchNameFieldsForTerms;
-
-        function showOverlay(){
           var ov = document.getElementById("clientTermsOverlayV1");
           var btnEl = document.getElementById("clientTermsContinueV1");
-          var btnEn = document.getElementById("clientTermsContinueV1En");
           if(!ov) return;
 
           window.__termsOverlayPending = true;
@@ -13008,33 +12428,23 @@ async function routeKm(fromLat, fromLon){
           ov.style.pointerEvents = "auto";
           lockScroll(true);
 
-          // Set language: respect the user's flag choice (__termsLang) first
           try { termsSetLang(window.__termsLang || window.lang || 'el'); } catch(e) { try{ termsSetLang('el'); }catch(_e){} }
+          try { if(typeof window.__paintTerms==='function') window.__paintTerms(); } catch(e) {}
 
-          // Greek version handler
-          if(btnEl) {
+          if(btnEl && !btnEl.__termsBound) {
+            btnEl.__termsBound = true;
             btnEl.addEventListener("click", function(){
+              var lang = window.__termsLang || window.lang || 'el';
               try { if(typeof window.__termsAccepted==='function') window.__termsAccepted(); } catch(e) {}
               try { lockScroll(false); } catch(e) {}
               try {
                 localStorage.setItem(KEY, "1");
                 localStorage.setItem(KEY + "_ts", String(Date.now()));
               } catch(e) {}
-              try { saveTermsAcceptanceToFirebase('el'); } catch(e) { console.error('terms FB el', e); }
+              try { saveTermsAcceptanceToFirebase(lang); } catch(e) { console.error('terms FB', e); }
             });
           }
-
-          // English version handler
-          if(btnEn) {
-            btnEn.addEventListener("click", function(){
-              try { if(typeof window.__termsAccepted==='function') window.__termsAccepted(); } catch(e) {}
-              try { lockScroll(false); } catch(e) {}
-              try {
-                localStorage.setItem(KEY, "1");
-                localStorage.setItem(KEY + "_ts", String(Date.now()));
-              } catch(e) {}
-              try { saveTermsAcceptanceToFirebase('en'); } catch(e) { console.error('terms FB en', e); }
-            });
+        });
           }
         }
 
