@@ -11,7 +11,7 @@
 		A01A00000000000000000002 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A00000000000000000012 /* ViewController.swift */; };
 		A01A00000000000000000003 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A00000000000000000013 /* Config.swift */; };
 		A01A00000000000000000004 /* VpsPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A00000000000000000014 /* VpsPush.swift */; };
-		A01A00000000000000000005 /* NotifI18n.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A0000000000000000001C /* NotifI18n.swift */; };
+		A01A00000000000000000009 /* NotifI18n.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01A0000000000000000001C /* NotifI18n.swift */; };
 		A01A00000000000000000005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A01A00000000000000000015 /* Assets.xcassets */; };
 		A01A00000000000000000006 /* www in Resources */ = {isa = PBXBuildFile; fileRef = A01A00000000000000000016 /* www */; };
 		A01A00000000000000000007 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01A00000000000000000017 /* WebKit.framework */; };
@@ -164,7 +164,7 @@
 				A01A00000000000000000002 /* ViewController.swift in Sources */,
 				A01A00000000000000000003 /* Config.swift in Sources */,
 				A01A00000000000000000004 /* VpsPush.swift in Sources */,
-				A01A00000000000000000005 /* NotifI18n.swift in Sources */,
+				A01A00000000000000000009 /* NotifI18n.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
