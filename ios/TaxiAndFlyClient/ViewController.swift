@@ -280,30 +280,75 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         )
     }
 
+    // Η Apple δίνει ως «περιοχή» το διοικητικό «Δημοτική Κοινότητα 3ης Περιστερίου» —
+    // η Google του Honor δίνει τη γειτονιά. Το διοικητικό δεν είναι διεύθυνση: πετιέται.
+    private func cleanSuburb(_ s: String?) -> String {
+        let v = (s ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        if v.range(of: #"^(\d+η\s+)?(Δημοτικ[ήη]\s+(Κοινότητα|Ενότητα)|Δ\.\s?[ΚΕ]\.|Municipal\s+(Unit|Community)|Community\s+of)"#,
+                   options: [.regularExpression, .caseInsensitive]) != nil { return "" }
+        return v
+    }
+
+    // Ίδια μορφή με το getAddressLine(0) της Google: «Οδός Αρ., Περιοχή ΤΚ»
+    private func displayLine(road: String, number: String, area: String, city: String, postcode: String) -> String {
+        let street = [road, number].filter { !$0.isEmpty }.joined(separator: " ")
+        let place = [area.isEmpty ? city : area, postcode].filter { !$0.isEmpty }.joined(separator: " ")
+        return [street, place].filter { !$0.isEmpty }.joined(separator: ", ")
+    }
+
     private func placemarkDict(_ p: CLPlacemark, name: String?) -> [String: Any] {
         let c = p.location?.coordinate
         let lat = c?.latitude ?? 0
         let lon = c?.longitude ?? 0
-        let display = [
-            [p.thoroughfare, p.subThoroughfare].compactMap { $0 }.joined(separator: " "),
-            p.subLocality ?? p.locality ?? "",
-            p.postalCode ?? ""
-        ].filter { !$0.isEmpty }.joined(separator: ", ")
+        let road = p.thoroughfare ?? ""
+        let number = p.subThoroughfare ?? ""
+        let suburb = cleanSuburb(p.subLocality)
+        let city = p.locality ?? p.subAdministrativeArea ?? ""
         var postcode = p.postalCode ?? ""
-        if postcode.isEmpty, let m = display.range(of: #"\b\d{5}\b"#, options: .regularExpression) {
-            postcode = String(display[m])
+        if postcode.isEmpty, let m = (p.name ?? "").range(of: #"\b\d{3} ?\d{2}\b"#, options: .regularExpression) {
+            postcode = String((p.name ?? "")[m])
         }
+        let display = displayLine(road: road, number: number, area: suburb, city: city, postcode: postcode)
         return [
             "lat": lat,
             "lon": lon,
             "display_name": display.isEmpty ? (name ?? p.name ?? "") : display,
             "name": name ?? p.name ?? "",
-            "road": p.thoroughfare ?? "",
-            "house_number": p.subThoroughfare ?? "",
-            "city": p.locality ?? p.subAdministrativeArea ?? "",
-            "suburb": p.subLocality ?? "",
+            "road": road,
+            "house_number": number,
+            "city": city,
+            "suburb": suburb,
             "postcode": postcode
         ]
+    }
+
+    // ΤΚ/γειτονιά που λείπουν από την Apple: συμπλήρωση από το OSM, native (το WebView
+    // δεν φτάνει πάντα στο nominatim). Ένα αίτημα ανά μετακίνηση πινέζας, 5s timeout.
+    private func nominatimReverse(lat: Double, lon: Double, done: @escaping ([String: String]) -> Void) {
+        let langQ = uiLangCode.hasPrefix("en") ? "en" : "el"
+        guard let url = URL(string: "https://nominatim.openstreetmap.org/reverse?lat=\(lat)&lon=\(lon)&format=jsonv2&addressdetails=1&zoom=18&accept-language=\(langQ)") else {
+            done([:]); return
+        }
+        var req = URLRequest(url: url, timeoutInterval: 5)
+        req.setValue("TaxiAndFlyClient/1.0", forHTTPHeaderField: "User-Agent")
+        req.setValue("application/json", forHTTPHeaderField: "Accept")
+        URLSession.shared.dataTask(with: req) { data, _, _ in
+            var out: [String: String] = [:]
+            if let data = data,
+               let j = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+               let a = j["address"] as? [String: Any] {
+                func f(_ keys: [String]) -> String {
+                    for k in keys { if let v = a[k] as? String, !v.isEmpty { return v } }
+                    return ""
+                }
+                out["road"] = f(["road", "pedestrian", "footway", "path"])
+                out["house_number"] = f(["house_number"])
+                out["suburb"] = f(["suburb", "neighbourhood", "quarter"])
+                out["city"] = f(["city", "town", "village", "municipality"])
+                out["postcode"] = f(["postcode"])
+            }
+            done(out)
+        }.resume()
     }
 
     /// Ίδια λίστα δοκιμών με το Android `geocodeAddressJson` (MainActivity.kt): πύλη Ε{n},
@@ -431,9 +476,28 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         let geocoder = CLGeocoder()
         let loc = CLLocation(latitude: la, longitude: lo)
         geocoder.reverseGeocodeLocation(loc, preferredLocale: uiLocale()) { [weak self] marks, _ in
+            _ = geocoder
             guard let self = self else { return }
-            let arr = (marks ?? []).prefix(5).map { self.placemarkDict($0, name: $0.name) }
-            self.nativeCallback("__onNativeReverse", id: requestId, payload: self.jsonPayload(arr))
+            var arr = (marks ?? []).prefix(5).map { self.placemarkDict($0, name: $0.name) }
+            func str(_ d: [String: Any], _ k: String) -> String { (d[k] as? String) ?? "" }
+            let first = arr.first ?? [:]
+            let complete = !arr.isEmpty && !str(first, "postcode").isEmpty && !str(first, "suburb").isEmpty && !str(first, "road").isEmpty
+            if complete {
+                self.nativeCallback("__onNativeReverse", id: requestId, payload: self.jsonPayload(arr))
+                return
+            }
+            self.nominatimReverse(lat: la, lon: lo) { n in
+                var d = arr.first ?? ["lat": la, "lon": lo, "name": ""]
+                for k in ["road", "house_number", "suburb", "city", "postcode"] where str(d, k).isEmpty {
+                    if let v = n[k], !v.isEmpty { d[k] = v }
+                }
+                let line = self.displayLine(road: str(d, "road"), number: str(d, "house_number"),
+                                            area: str(d, "suburb"), city: str(d, "city"), postcode: str(d, "postcode"))
+                if !line.isEmpty { d["display_name"] = line }
+                if arr.isEmpty { if !line.isEmpty { arr = [d] } } else { arr[0] = d }
+                NSLog("reverse %@ -> %@", "\(la),\(lo)", line)
+                self.nativeCallback("__onNativeReverse", id: requestId, payload: self.jsonPayload(arr))
+            }
         }
     }
 
