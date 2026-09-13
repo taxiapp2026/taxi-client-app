@@ -25,6 +25,50 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         c.latitude >= 34.80 && c.latitude <= 41.80 && c.longitude >= 19.30 && c.longitude <= 28.25
     }
 
+    // Η Apple «μαντεύει» όταν δεν ξέρει το μέρος: «Σχολεία Γκράβα» -> «Σμόλικα, Γέρακας».
+    // Η Google του Honor δεν το κάνει. Κρατάμε μόνο αποτελέσματα που περιέχουν έστω μία
+    // λέξη από αυτό που γράφτηκε (όνομα/οδός/περιοχή, ελληνικά ή λατινικά)· αλλιώς
+    // πετιούνται και το JS συνεχίζει σε OSM ή κρατά το κείμενο αυτούσιο.
+    private static let geoStopWords: Set<String> = [
+        "ellada", "elladas", "greece", "hellas", "hotel", "xenodocheio", "athina", "athinas", "athens",
+        "attiki", "attica", "kai", "and", "the", "odos", "street", "leoforos", "avenue", "plateia", "square"
+    ]
+    private func geoLatin(_ s: String) -> String {
+        let t = s.applyingTransform(.toLatin, reverse: false) ?? s
+        return (t.applyingTransform(.stripDiacritics, reverse: false) ?? t).lowercased()
+    }
+    private func geoGreek(_ s: String) -> String {
+        (s.applyingTransform(.stripDiacritics, reverse: false) ?? s).lowercased()
+    }
+    private func geoStem(_ s: String) -> String {
+        // «Γκράβας» ~ «Γκράβα», «Πειραιάς» ~ «Πειραιά»
+        (s.hasSuffix("s") || s.hasSuffix("ς")) ? String(s.dropLast()) : s
+    }
+    private func geoTokens(_ q: String) -> [String] {
+        let cleaned = q.replacingOccurrences(of: #"[^\p{L}\s]"#, with: " ", options: .regularExpression)
+        return cleaned.split(whereSeparator: { $0.isWhitespace }).map(String.init).filter { t in
+            t.count >= 3 && !Self.geoStopWords.contains(geoLatin(t))
+        }
+    }
+    private func placemarkBlob(_ p: CLPlacemark, name: String?) -> String {
+        [name, p.name, p.thoroughfare, p.subLocality, p.locality, p.subAdministrativeArea,
+         p.administrativeArea, (p.areasOfInterest ?? []).joined(separator: " ")]
+            .compactMap { $0 }.joined(separator: " ")
+    }
+    private func hitMatchesQuery(_ q: String, _ p: CLPlacemark, name: String?) -> Bool {
+        // Λιμάνι/πύλη/αεροδρόμιο: το JS τα εμπιστεύεται όπως είναι (όπως στο Honor).
+        if q.range(of: #"λιμ|port|gate|πυλη|πύλη|αεροδρ|airport"#, options: [.regularExpression, .caseInsensitive]) != nil { return true }
+        let toks = geoTokens(q)
+        if toks.isEmpty { return true }
+        let blob = placemarkBlob(p, name: name)
+        let bl = geoLatin(blob), bg = geoGreek(blob)
+        for t in toks {
+            let l = geoStem(geoLatin(t)), g = geoStem(geoGreek(t))
+            if (l.count >= 3 && bl.contains(l)) || (g.count >= 3 && bg.contains(g)) { return true }
+        }
+        return false
+    }
+
     // Φωνή → κείμενο (ίδιο «συμβόλαιο» με το Android: __onAppSpeechPartial / __onAppSpeechResult)
     private var speechRecognizer: SFSpeechRecognizer?
     private var speechRequest: SFSpeechAudioBufferRecognitionRequest?
@@ -333,6 +377,10 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
                 guard let c = m.location?.coordinate else { continue }
                 guard m.isoCountryCode == nil || m.isoCountryCode == "GR" else { continue }
                 guard self.inGreeceBox(c) else { continue }
+                guard self.hitMatchesQuery(tryQ, m, name: m.name) else {
+                    NSLog("geocoder try=\"%@\" dropped unrelated \"%@\"", tryQ, self.placemarkBlob(m, name: m.name))
+                    continue
+                }
                 let key = String(format: "%.5f,%.5f", c.latitude, c.longitude)
                 if !seen.insert(key).inserted { continue }
                 out.append(self.placemarkDict(m, name: m.name))
@@ -361,6 +409,7 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
             var seen = Set<String>()
             for item in resp?.mapItems ?? [] {
                 guard let c = item.placemark.location?.coordinate, self.inGreeceBox(c) else { continue }
+                guard self.hitMatchesQuery(query, item.placemark, name: item.name) else { continue }
                 let key = String(format: "%.5f,%.5f", c.latitude, c.longitude)
                 if !seen.insert(key).inserted { continue }
                 var d = self.placemarkDict(item.placemark, name: item.name)
