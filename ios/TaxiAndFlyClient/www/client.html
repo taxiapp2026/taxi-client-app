@@ -13221,6 +13221,10 @@ async function routeKm(fromLat, fromLon){
           if(st === 'booked' || st === 'confirmed') kind = 'accepted';
           if(st === 'driver_ready') kind = 'arrived';
           if(st === 'canceled') kind = 'cancelled';
+          // iPhone: «έφτασε»/ακύρωση/«δεν σας βρήκε» τα στέλνει ο server μέσω APNs, ήδη στη
+          // γλώσσα του κινητού. Αν τα έβγαζε και η σελίδα, έρχονταν δύο φορές.
+          if(window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.ClientBridge &&
+             (kind === 'arrived' || kind === 'cancelled' || st === 'driver_cancelled' || kind === 'driver_cannot_find')) return;
           var msg = null;
           if(kind === 'accepted'){
             msg = [_nt('bookDone', 'Booking accepted'), _nt('bookWait', 'A driver accepted your booking.')];
@@ -14324,7 +14328,9 @@ async function routeKm(fromLat, fromLon){
           if (latest <= lastTs || clientCurrentChatId === bookingId) return;
           lastTs = latest;
           try{
-            if(document.visibilityState !== 'visible' && window.ClientBridge && ClientBridge.showLocalNotification){
+            // iPhone: το chat push το στέλνει ο server (μεταφρασμένο) — όχι δεύτερη από τη σελίδα.
+            var __iosApp = !!(window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.ClientBridge);
+            if(!__iosApp && document.visibilityState !== 'visible' && window.ClientBridge && ClientBridge.showLocalNotification){
               var Tchat = (typeof window.__tDev === 'function') ? window.__tDev : ((typeof window.__t === 'function') ? window.__t : function(){ return ''; });
               var title = Tchat('chatNewTitle') || 'New message';
               // Το μήνυμα του οδηγού (ελληνικά) στη γλώσσα ΤΟΥ ΚΙΝΗΤΟΥ: περιμένει τη μετάφραση

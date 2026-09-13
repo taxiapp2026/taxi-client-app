@@ -232,24 +232,11 @@ enum VpsPush {
         lastKey = "\(id):\(st)"
     }
 
-    /// Ο server (οδηγός) στέλνει το ίδιο γεγονός και μέσω APNs, στα ελληνικά. Όταν το app
-    /// βγάζει τη δική του μεταφρασμένη ειδοποίηση, σβήνει το πρόσφατο push του server —
-    /// τώρα και ξανά λίγο μετά, αν το push φτάσει δεύτερο.
-    private static func removeRecentRemotePushes(within seconds: TimeInterval) {
-        let center = UNUserNotificationCenter.current()
-        center.getDeliveredNotifications { list in
-            let now = Date()
-            let ids = list.filter { n in
-                (n.request.trigger is UNPushNotificationTrigger) && now.timeIntervalSince(n.date) < seconds
-            }.map { $0.request.identifier }
-            if !ids.isEmpty { center.removeDeliveredNotifications(withIdentifiers: ids) }
-        }
-    }
-
+    /// Μία πηγή ανά γεγονός: ό,τι στέλνει ο server (έφτασε/chat/ακύρωση/δεν σας βρήκε, ήδη στη
+    /// γλώσσα του κινητού) δεν το ξαναβγάζει ούτε η σελίδα ούτε το poll. Εδώ φτάνουν μόνο
+    /// accepted/offered/interested, που δεν τα στέλνει κανείς άλλος.
     static func localNotify(title: String, body: String, id: String) {
         let center = UNUserNotificationCenter.current()
-        removeRecentRemotePushes(within: 60)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 8) { removeRecentRemotePushes(within: 12) }
         let deliver = {
             let content = UNMutableNotificationContent()
             content.title = title
