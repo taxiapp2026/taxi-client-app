@@ -4627,7 +4627,10 @@ async function __updatePickupMapAddr(){
           try{
             const fpc = document.getElementById("map_postalcode");
             if(fpc && !String(fpc.value||"").trim()){
-              const pc = await __reversePostalNominatim(ll.lat, ll.lng);
+              // Πρώτα ο ΤΚ που ήδη φαίνεται στο κείμενο της πινέζας (στο iPhone το
+              // __userIsTyping μένει ανοιχτό και το __reverseGeocode δεν γεμίζει τα πλαίσια).
+              let pc = __extractTkFromText(addr);
+              if(!pc) pc = await __reversePostalNominatim(ll.lat, ll.lng);
               if(pc) fpc.value = pc;
             }
           }catch(e){}
