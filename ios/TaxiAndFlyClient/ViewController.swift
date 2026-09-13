@@ -183,7 +183,7 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
             stopSpeechToText()
         case "setUiLang":
             let c = str(args, 0).trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-            if !c.isEmpty { uiLangCode = c }
+            if !c.isEmpty { uiLangCode = c; VpsPush.setLang(c) }
         case "geocodeAddress":
             geocodeAddress(query: str(args, 0), requestId: str(args, 1))
         case "reverseGeocode":
