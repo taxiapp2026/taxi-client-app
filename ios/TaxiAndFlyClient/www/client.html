@@ -11932,7 +11932,7 @@ currentBookingStatus = "new";
       const flag = 1.80;
       const perKm = night ? 1.39 : 1.00;   // βαθμονομημένο: 27.2km→30€
       const airport = 4.00;
-      const discount = discountByKm(km);
+      const discount = 0; // χωρίς έκπτωση ανά km (πριν: discountByKm)
       return Math.max(0, flag + (perKm * km) + airport - discount);
     }
 
