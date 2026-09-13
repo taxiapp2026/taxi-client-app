@@ -11,6 +11,20 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
     private var placeCache: [String: [String: Any]] = [:]
     private let geoLock = NSLock()
 
+    // Γλώσσα ΕΜΦΑΝΙΣΗΣ των αποτελεσμάτων = γλώσσα εφαρμογής (όπως uiLocale() στο Android).
+    // Δεν έχει σχέση με τη γλώσσα του μικροφώνου, που ακολουθεί τη συσκευή.
+    private var uiLangCode = "el"
+    private func uiLocale() -> Locale {
+        uiLangCode.lowercased().hasPrefix("en") ? Locale(identifier: "en_US") : Locale(identifier: "el_GR")
+    }
+    // Όριο Ελλάδας: ίδιο bbox με το Android (34.80–41.80 / 19.30–28.25) ως κύκλος για τον CLGeocoder.
+    private func greeceRegion() -> CLCircularRegion {
+        CLCircularRegion(center: CLLocationCoordinate2D(latitude: 38.30, longitude: 23.78), radius: 480_000, identifier: "greece")
+    }
+    private func inGreeceBox(_ c: CLLocationCoordinate2D) -> Bool {
+        c.latitude >= 34.80 && c.latitude <= 41.80 && c.longitude >= 19.30 && c.longitude <= 28.25
+    }
+
     // Φωνή → κείμενο (ίδιο «συμβόλαιο» με το Android: __onAppSpeechPartial / __onAppSpeechResult)
     private var speechRecognizer: SFSpeechRecognizer?
     private var speechRequest: SFSpeechAudioBufferRecognitionRequest?
@@ -123,6 +137,9 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
             startSpeechToText(langCode: str(args, 0))
         case "stopSpeechToText":
             stopSpeechToText()
+        case "setUiLang":
+            let c = str(args, 0).trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+            if !c.isEmpty { uiLangCode = c }
         case "geocodeAddress":
             geocodeAddress(query: str(args, 0), requestId: str(args, 1))
         case "reverseGeocode":
@@ -228,6 +245,10 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
             p.subLocality ?? p.locality ?? "",
             p.postalCode ?? ""
         ].filter { !$0.isEmpty }.joined(separator: ", ")
+        var postcode = p.postalCode ?? ""
+        if postcode.isEmpty, let m = display.range(of: #"\b\d{5}\b"#, options: .regularExpression) {
+            postcode = String(display[m])
+        }
         return [
             "lat": lat,
             "lon": lon,
@@ -235,10 +256,53 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
             "name": name ?? p.name ?? "",
             "road": p.thoroughfare ?? "",
             "house_number": p.subThoroughfare ?? "",
-            "city": p.locality ?? "",
+            "city": p.locality ?? p.subAdministrativeArea ?? "",
             "suburb": p.subLocality ?? "",
-            "postcode": p.postalCode ?? ""
+            "postcode": postcode
         ]
+    }
+
+    /// Ίδια λίστα δοκιμών με το Android `geocodeAddressJson` (MainActivity.kt): πύλη Ε{n},
+    /// «και» → «&», το query, παραλλαγές Πειραιά/λιμανιού, «, Ελλάδα», «hotel, Ελλάδα».
+    /// Σταματά στην πρώτη δοκιμή που δίνει αποτέλεσμα. Γεωκωδικοποίηση από την Apple
+    /// (δωρεάν, όπως ο Geocoder του τηλεφώνου στο Android), στη γλώσσα της εφαρμογής.
+    private func geocodeTries(for query: String) -> [String] {
+        var tries: [String] = []
+        let low = query.lowercased()
+        if let gate = query.range(of: #"(?:gate|πύλη|πυλη)\s*[eε]?\s*(\d{1,2})"#, options: [.regularExpression, .caseInsensitive]) {
+            let n = String(query[gate]).replacingOccurrences(of: #"[^\d]"#, with: "", options: .regularExpression)
+            if !n.isEmpty {
+                tries.append("Πύλη Ε\(n) Πειραιάς")
+                tries.append("Piraeus Port Gate E\(n)")
+                tries.append("Gate E\(n) Piraeus")
+            }
+        }
+        let kai = #"\s+(και|kai)\s+"#
+        if query.range(of: kai, options: [.regularExpression, .caseInsensitive]) != nil {
+            tries.append(query.replacingOccurrences(of: kai, with: " & ", options: [.regularExpression, .caseInsensitive]))
+        }
+        tries.append(query)
+        let piraeus = query.range(of: #"pir[aeiouy]+e?us|pireas|piraus|πειραι"#, options: [.regularExpression, .caseInsensitive]) != nil
+        let port = low.contains("λιμάν") || low.contains("λιμαν") || low.contains("port") || low.contains("harbour") || low.contains("harbor")
+        // Τα γενικά «Piraeus Port»/«Λιμάνι Πειραιά» ΤΕΛΕΥΤΑΙΑ (fallback), όπως στο Android.
+        if piraeus && port {
+            tries.append("Piraeus Port")
+            tries.append("Λιμάνι Πειραιά")
+        } else if piraeus {
+            tries.append("Piraeus Port")
+            tries.append("Piraeus")
+        } else if port {
+            tries.append("\(query) λιμάνι")
+            tries.append("Piraeus Port")
+        }
+        if !low.contains("ελλάδα") && !low.contains("ellada") && !low.contains("greece") {
+            tries.append("\(query), Ελλάδα")
+        }
+        let hasDigit = query.unicodeScalars.contains { CharacterSet.decimalDigits.contains($0) }
+        if !hasDigit && !low.contains("hotel") && !low.contains("ξενοδοχ") {
+            tries.append("\(query) hotel, Ελλάδα")
+        }
+        return tries
     }
 
     private func geocodeAddress(query: String, requestId: String) {
@@ -247,12 +311,65 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
             nativeCallback("__onNativeGeocode", id: requestId, payload: "[]")
             return
         }
+        geocodeTryList(geocodeTries(for: q), original: q, requestId: requestId, index: 0)
+    }
+
+    private func geocodeTryList(_ tries: [String], original: String, requestId: String, index: Int) {
+        if index >= tries.count {
+            // Καμία δοκιμή δεν βρήκε διεύθυνση: τελευταία ευκαιρία το POI search της Apple
+            // (ξενοδοχεία, λιμάνι, σταθμοί), που ο CLGeocoder δεν ξέρει με το όνομά τους.
+            geocodePoiFallback(original, requestId: requestId)
+            return
+        }
+        let tryQ = tries[index]
+        let locale = uiLocale()
         let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(q, in: nil, preferredLocale: Locale(identifier: "el_GR")) { [weak self] marks, _ in
+        geocoder.geocodeAddressString(tryQ, in: greeceRegion(), preferredLocale: locale) { [weak self] marks, _ in
+            _ = geocoder // κρατιέται ζωντανός μέχρι την απάντηση
             guard let self = self else { return }
-            let good = (marks ?? []).filter { $0.location != nil && ($0.isoCountryCode == "GR" || $0.isoCountryCode == nil) }
-            let arr = good.prefix(8).map { self.placemarkDict($0, name: $0.name) }
-            self.nativeCallback("__onNativeGeocode", id: requestId, payload: self.jsonPayload(arr))
+            var out: [[String: Any]] = []
+            var seen = Set<String>()
+            for m in marks ?? [] {
+                guard let c = m.location?.coordinate else { continue }
+                guard m.isoCountryCode == nil || m.isoCountryCode == "GR" else { continue }
+                guard self.inGreeceBox(c) else { continue }
+                let key = String(format: "%.5f,%.5f", c.latitude, c.longitude)
+                if !seen.insert(key).inserted { continue }
+                out.append(self.placemarkDict(m, name: m.name))
+                if out.count >= 8 { break }
+            }
+            NSLog("geocoder try=\"%@\" -> %d", tryQ, out.count)
+            if !out.isEmpty {
+                self.nativeCallback("__onNativeGeocode", id: requestId, payload: self.jsonPayload(out))
+                return
+            }
+            self.geocodeTryList(tries, original: original, requestId: requestId, index: index + 1)
+        }
+    }
+
+    private func geocodePoiFallback(_ query: String, requestId: String) {
+        let req = MKLocalSearch.Request()
+        req.naturalLanguageQuery = query
+        req.region = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: 38.30, longitude: 23.78),
+            span: MKCoordinateSpan(latitudeDelta: 7.0, longitudeDelta: 9.0)
+        )
+        req.resultTypes = [.pointOfInterest, .address]
+        MKLocalSearch(request: req).start { [weak self] resp, _ in
+            guard let self = self else { return }
+            var out: [[String: Any]] = []
+            var seen = Set<String>()
+            for item in resp?.mapItems ?? [] {
+                guard let c = item.placemark.location?.coordinate, self.inGreeceBox(c) else { continue }
+                let key = String(format: "%.5f,%.5f", c.latitude, c.longitude)
+                if !seen.insert(key).inserted { continue }
+                var d = self.placemarkDict(item.placemark, name: item.name)
+                d["type"] = item.pointOfInterestCategory == .hotel ? "hotel" : "address"
+                out.append(d)
+                if out.count >= 8 { break }
+            }
+            NSLog("geocoder poi-fallback=\"%@\" -> %d", query, out.count)
+            self.nativeCallback("__onNativeGeocode", id: requestId, payload: self.jsonPayload(out))
         }
     }
 
@@ -264,7 +381,7 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         }
         let geocoder = CLGeocoder()
         let loc = CLLocation(latitude: la, longitude: lo)
-        geocoder.reverseGeocodeLocation(loc, preferredLocale: Locale(identifier: "el_GR")) { [weak self] marks, _ in
+        geocoder.reverseGeocodeLocation(loc, preferredLocale: uiLocale()) { [weak self] marks, _ in
             guard let self = self else { return }
             let arr = (marks ?? []).prefix(5).map { self.placemarkDict($0, name: $0.name) }
             self.nativeCallback("__onNativeReverse", id: requestId, payload: self.jsonPayload(arr))
@@ -290,7 +407,10 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
                 let id = "ios-" + UUID().uuidString
                 var d = self.placemarkDict(item.placemark, name: item.name)
                 d["place_id"] = id
-                d["type"] = item.pointOfInterestCategory == .hotel ? "hotel" : "address"
+                let hotel = item.pointOfInterestCategory == .hotel
+                d["type"] = hotel ? "hotel" : "address"
+                d["class"] = hotel ? "tourism" : "place"
+                d["types"] = hotel ? ["lodging"] : []
                 self.placeCache[id] = d
                 out.append(d)
                 if out.count >= 8 { break }
@@ -513,6 +633,7 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         log: function(m){ call('log',[m]); },
         startSpeechToText: function(lang){ call('startSpeechToText',[lang]); },
         stopSpeechToText: function(){ call('stopSpeechToText',[]); },
+        setUiLang: function(l){ call('setUiLang',[l]); },
         geocodeAddress: function(q,id){ call('geocodeAddress',[q,id]); },
         reverseGeocode: function(lat,lon,id){ call('reverseGeocode',[lat,lon,id]); },
         placeAutocomplete: function(q,id){ call('placeAutocomplete',[q,id]); },
