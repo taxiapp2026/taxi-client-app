@@ -14327,9 +14327,19 @@ async function routeKm(fromLat, fromLon){
             if(document.visibilityState !== 'visible' && window.ClientBridge && ClientBridge.showLocalNotification){
               var Tchat = (typeof window.__tDev === 'function') ? window.__tDev : ((typeof window.__t === 'function') ? window.__t : function(){ return ''; });
               var title = Tchat('chatNewTitle') || 'New message';
-              var preview = _displayDriverChatText({ text: lastText }, _clientChatLang());
-              var body = String(preview || lastText || '').trim() || Tchat('chatNewBody') || 'Ο οδηγός έστειλε μήνυμα.';
-              ClientBridge.showLocalNotification(title, body);
+              // Το μήνυμα του οδηγού (ελληνικά) στη γλώσσα ΤΟΥ ΚΙΝΗΤΟΥ: περιμένει τη μετάφραση
+              // (έως 3"), αλλιώς δείχνει ό,τι έχει. Ίδιο με τον server για τα push.
+              var devLang = (typeof window.__deviceLang === 'function') ? window.__deviceLang() : _clientChatLang();
+              var raw = String(lastText || '').trim();
+              var txP = (devLang === 'el' || !raw) ? Promise.resolve(raw)
+                : clientTranslateText(raw, 'el', _chatTmCode(devLang)).then(function(o){
+                    var t = String(o || '').trim();
+                    return (t && t.indexOf('MYMEMORY') < 0) ? t : raw;
+                  }).catch(function(){ return raw; });
+              Promise.race([txP, new Promise(function(r){ setTimeout(function(){ r(raw); }, 3000); })]).then(function(preview){
+                var body = String(preview || raw || '').trim() || Tchat('chatNewBody') || 'The driver sent a message.';
+                try{ ClientBridge.showLocalNotification(title, body); }catch(e){}
+              });
             }
           }catch(e){}
           const badge = document.getElementById('chatBadge_' + bookingId);
@@ -14508,18 +14518,20 @@ async function routeKm(fromLat, fromLon){
       _clientLastMsgs = Object.assign({}, _clientLastMsgs, _clientPendingMsgs);
       renderClientChatMessages(_clientLastMsgs, _clientReadDriverTs);
       try {
-        const msgRef = await fns.push(fns.ref(db, 'bookings/' + bookingId + '/chat'), {
-          sender: 'client',
-          text: text,
-          textEl: text,
-          ts: msgTs,
-          isAuto: false
-        });
-        // Η μετάφραση γίνεται μετά, στο background, για να μην καθυστερεί το μήνυμα.
-        if (window.lang === 'en' && fns.update && msgRef) {
-          clientTranslateText(text, 'en', 'el').then(function(textEl){
-            try { if (textEl && textEl !== text) fns.update(msgRef, { textEl: textEl }); } catch(e) {}
-          }).catch(function(){});
+        // Ο οδηγός διαβάζει ΠΑΝΤΑ ελληνικά (textEl). Αν ο πελάτης γράφει ελληνικά, είναι έτοιμο·
+        // αλλιώς το textEl ΔΕΝ γράφεται τώρα (ο οδηγός το μεταφράζει μόνος του αν λείπει) και
+        // συμπληρώνεται εδώ μόλις τελειώσει η μετάφραση από τη γλώσσα του πελάτη.
+        const srcLang = _clientChatLang();
+        const rec = { sender: 'client', text: text, ts: msgTs, isAuto: false };
+        if (srcLang === 'el') rec.textEl = text;
+        const msgRef = await fns.push(fns.ref(db, 'bookings/' + bookingId + '/chat'), rec);
+        let greekReady = Promise.resolve(text);
+        if (srcLang !== 'el') {
+          greekReady = clientTranslateText(text, _chatTmCode(srcLang), 'el').then(function(textEl){
+            const g = (textEl && textEl !== text) ? textEl : '';
+            try { if (g && fns.update && msgRef) fns.update(msgRef, { textEl: g }); } catch(e) {}
+            return g || text;
+          }).catch(function(){ return text; });
         }
         // ✅ Notification στον driver — διαβάζουμε token από drivers/{pin}/fcmToken
         try {
@@ -14536,7 +14548,12 @@ async function routeKm(fromLat, fromLon){
           console.log('CHAT_DEBUG: ClientBridge=' + (window.ClientBridge ? 'OK' : 'MISSING'));
           if (driverToken && window.ClientBridge && ClientBridge.sendChatNotification) {
             console.log('CHAT_DEBUG: Calling sendChatNotification...');
-            ClientBridge.sendChatNotification(driverToken, '💬 Μήνυμα από Πελάτη', text);
+            // Η ειδοποίηση του οδηγού στα ελληνικά: περιμένει τη μετάφραση (έως 4"), αλλιώς το πρωτότυπο.
+            const greekText = await Promise.race([
+              greekReady,
+              new Promise(function(r){ setTimeout(function(){ r(text); }, 4000); })
+            ]);
+            ClientBridge.sendChatNotification(driverToken, '💬 Μήνυμα από Πελάτη', greekText);
             console.log('CHAT_DEBUG: sendChatNotification called OK');
           } else {
             console.log('CHAT_DEBUG: SKIP notification - driverToken=' + !!driverToken + ' ClientBridge=' + !!window.ClientBridge);
