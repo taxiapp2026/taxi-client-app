@@ -9,17 +9,13 @@ enum VpsPush {
     private static var lastKey = ""
     private static var timer: Timer?
     private static var apnsToken = ""
-    private static let langKey = "appLang"
-
-    /// Γλώσσα εφαρμογής (από setUiLang), για ειδοποιήσεις όταν το app είναι κλειστό.
-    static func setLang(_ code: String) {
-        let c = code.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-        guard !c.isEmpty else { return }
-        UserDefaults.standard.set(c, forKey: langKey)
-    }
+    /// Γλώσσα ΚΙΝΗΤΟΥ (όχι εφαρμογής): έτσι διαβάζει ο πελάτης τις ειδοποιήσεις στην οθόνη
+    /// κλειδώματος. Στέλνεται και στον server (/api/push/register) που έχει τον ίδιο πίνακα.
+    static func setLang(_ code: String) { /* η γλώσσα εφαρμογής δεν επηρεάζει τις ειδοποιήσεις */ }
     static func lang() -> String {
-        let c = (UserDefaults.standard.string(forKey: langKey) ?? "el").lowercased()
-        return pack[c] != nil ? c : "el"
+        let pref = (Locale.preferredLanguages.first ?? "en").lowercased()
+        let c = String(pref.split(separator: "-").first ?? "en")
+        return pack[c] != nil ? c : "en"
     }
     static func text(_ kind: String) -> (String, String) {
         let l = lang()
@@ -307,7 +303,8 @@ enum VpsPush {
         let payload: [String: String] = [
             "platform": "ios",
             "token": apnsToken,
-            "bundleId": AppConfig.bundleId
+            "bundleId": AppConfig.bundleId,
+            "lang": lang()   // ο server μεταφράζει τα push (έφτασε/chat/ακύρωση) σε αυτή τη γλώσσα
         ]
         req.httpBody = try? JSONSerialization.data(withJSONObject: payload)
         URLSession.shared.dataTask(with: req).resume()

@@ -108,6 +108,22 @@
             return l;
           }catch(e){ return 'el'; }
         };
+        // Γλώσσα ΤΟΥ ΚΙΝΗΤΟΥ για ειδοποιήσεις (όχι της εφαρμογής): έτσι τις διαβάζει ο πελάτης
+        // στην οθόνη κλειδώματος. Άγνωστη γλώσσα → αγγλικά. Ίδιος κανόνας με τον server (apns.js).
+        window.__deviceLang=function(){
+          try{
+            var n=String(navigator.language||navigator.userLanguage||'').toLowerCase().split(/[-_]/)[0];
+            if(n && window.__I18N && window.__I18N[n]) return n;
+          }catch(e){}
+          return 'en';
+        };
+        window.__tDev=function(key){
+          try{
+            var I=window.__I18N||{}; var l=window.__deviceLang();
+            var v=(I[l]||{})[key]; if(v==null) v=(I.en||{})[key]; if(v==null) v=(I.el||{})[key];
+            return v==null?'':v;
+          }catch(e){ return ''; }
+        };
         window.__t=function(key){
           try{
             var I=window.__I18N||{};
@@ -11353,7 +11369,10 @@ currentBookingStatus = "new";
         time: timeIn.value,
         createdAt: Date.now(),
         status: "new",
-        clientLang: window.lang || 'el',
+        // Γλώσσα push για server/οδηγό (Android/FCM ξέρει el/en): από τη γλώσσα ΤΟΥ ΚΙΝΗΤΟΥ.
+        // Ιταλός, Γάλλος κ.λπ. → αγγλικά, όχι ελληνικά. Πλήρης κωδικός στο clientLangFull.
+        clientLang: (window.__deviceLang && window.__deviceLang() === 'el') ? 'el' : 'en',
+        clientLangFull: (window.__deviceLang ? window.__deviceLang() : (window.lang || 'el')),
         routeMode: window._clientRouteMode || 'athens_airport'
       };
       if(sourceQrId) data.sourceQrId = sourceQrId;
@@ -13192,7 +13211,8 @@ async function routeKm(fromLat, fromLon){
           if(document.visibilityState === 'visible') return;
           function _nt(k, fb){
             var v = '';
-            try{ if(typeof window.__t === 'function') v = window.__t(k) || ''; }catch(e){}
+            try{ if(typeof window.__tDev === 'function') v = window.__tDev(k) || ''; }catch(e){}
+            if(!v){ try{ if(typeof window.__t === 'function') v = window.__t(k) || ''; }catch(e){} }
             if(!v){ try{ if(typeof window.Tlang === 'function') v = window.Tlang(k, fb) || ''; }catch(e){} }
             if(!v) v = fb || '';
             return String(v).replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
@@ -14305,8 +14325,8 @@ async function routeKm(fromLat, fromLon){
           lastTs = latest;
           try{
             if(document.visibilityState !== 'visible' && window.ClientBridge && ClientBridge.showLocalNotification){
-              var Tchat = (typeof window.__t === 'function') ? window.__t : function(){ return ''; };
-              var title = Tchat('chatNewTitle') || 'Νέο μήνυμα';
+              var Tchat = (typeof window.__tDev === 'function') ? window.__tDev : ((typeof window.__t === 'function') ? window.__t : function(){ return ''; });
+              var title = Tchat('chatNewTitle') || 'New message';
               var preview = _displayDriverChatText({ text: lastText }, _clientChatLang());
               var body = String(preview || lastText || '').trim() || Tchat('chatNewBody') || 'Ο οδηγός έστειλε μήνυμα.';
               ClientBridge.showLocalNotification(title, body);
