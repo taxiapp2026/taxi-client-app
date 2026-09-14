@@ -5025,7 +5025,9 @@ async function __updatePickupMapAddr(){
 
         div.addEventListener("click", async ()=>{
           __acHide();
+          __autoPinQ = "";                 // ο πελάτης διάλεξε: ακυρώνεται η αυτόματη πινέζα
           if(item.place_id){
+            __lastAutoPlaceId = item.place_id;
             try{
               var det = await __nativePlaceDetails(item.place_id);
               if(det && await __applyPlaceToPin(det, true)) return;
@@ -5596,6 +5598,7 @@ async function __updatePickupMapAddr(){
     }
 
     var __lastAutoPlaceId = "";
+    var __autoPinQ = "";
     function __debouncedGeocodeToMarker(q){
       try{ clearTimeout(__geocodeTimer); }catch(e){}
       try{ clearTimeout(__acTimer); }catch(e){}
@@ -5607,11 +5610,16 @@ async function __updatePickupMapAddr(){
           try{ places = await __nativePlacesAutocomplete(query); }catch(e){}
           if(__pickupAcOff) return;
           if(places.length && !__pickupAcOff) __acShow(places);
-          if(__looksLikePoiQuery(query) && places.length){
+          if(places.length){
+            // Google πρώτα για κάθε διεύθυνση. Η πινέζα μπαίνει από την καλύτερη πρόταση αφού
+            // σταματήσει το γράψιμο (όχι σε κάθε γράμμα — κάθε details μετράει στο όριο ημέρας).
+            __autoPinQ = query;
+            await new Promise(function(r){ setTimeout(r, 900); });
+            if(__autoPinQ !== query || __pickupAcOff) return;
             var best = __bestPlacePred(places, query);
             if(best && best.place_id && best.place_id !== __lastAutoPlaceId){
               var det = await __nativePlaceDetails(best.place_id);
-              if(det){ __lastAutoPlaceId = best.place_id; await __applyPlaceToPin(det, false); }
+              if(det && __autoPinQ === query){ __lastAutoPlaceId = best.place_id; await __applyPlaceToPin(det, false); }
             }
             return;
           }
@@ -5670,7 +5678,25 @@ async function __updatePickupMapAddr(){
       list = list.slice(0, 3);
       if(!list.length) return false;
       console.log('[speech] candidates=' + JSON.stringify(list) + ' map=' + !!__map + ' marker=' + !!__marker);
-      // ΠΑΡΑΛΛΗΛΑ, όχι σειριακά.
+      // Google Places (μέσω VPS) ΠΡΩΤΑ, με ό,τι ακούστηκε αυτούσιο — ξέρει σημεία («Γκράβας»),
+      // ελληνικά, ρωσικά, κινέζικα, και μόνο Αττική. Δεκτό μόνο αν μοιάζει με τα λόγια.
+      for(var p=0;p<list.length;p++){
+        var spoken = String(list[p]||"").trim();
+        if(spoken.length < 3) continue;
+        try{
+          var preds = await __nativePlacesAutocomplete(spoken);
+          var bestPred = __bestPlacePred(preds, spoken);
+          console.log('[speech] places "' + spoken + '" -> ' + (preds?preds.length:0) + (bestPred ? ' best=' + JSON.stringify(bestPred.display_name||bestPred.name) + ' match=' + __speechPredMatches(bestPred, spoken) : ''));
+          if(bestPred && bestPred.place_id && __speechPredMatches(bestPred, spoken)){
+            var pdet = await __nativePlaceDetails(bestPred.place_id);
+            if(pdet && await __applyPlaceToPin(pdet, true)){
+              console.log('[speech] places applied "' + spoken + '"');
+              return true;
+            }
+          }
+        }catch(e){ console.log('[speech] places error ' + e); }
+      }
+      // Εφεδρεία: ο geocoder του κινητού. ΠΑΡΑΛΛΗΛΑ, όχι σειριακά.
       var probes = await Promise.all(list.map(async function(cand){
         var q = __canonicalPlaceQuery(cand);
         if(q.length < 2) return null;
@@ -5687,24 +5713,6 @@ async function __updatePickupMapAddr(){
           console.log('[speech] applyPinFromHits("' + probes[k].query + '") -> ' + applied);
           if(applied) return true;
         }
-      }
-      // Ο geocoder του κινητού ξέρει διευθύνσεις, όχι σημεία («Σχολή Γραβάς»). Ρωτάμε τη Google
-      // Places (μέσω VPS) με ό,τι ακούστηκε, αυτούσιο — καταλαβαίνει ελληνικά, ρωσικά, κινέζικα.
-      for(var p=0;p<list.length;p++){
-        var spoken = String(list[p]||"").trim();
-        if(spoken.length < 3) continue;
-        try{
-          var preds = await __nativePlacesAutocomplete(spoken);
-          var bestPred = __bestPlacePred(preds, spoken);
-          console.log('[speech] places "' + spoken + '" -> ' + (preds?preds.length:0) + (bestPred ? ' best=' + JSON.stringify(bestPred.display_name||bestPred.name) + ' match=' + __speechPredMatches(bestPred, spoken) : ''));
-          if(bestPred && bestPred.place_id && __speechPredMatches(bestPred, spoken)){
-            var pdet = await __nativePlaceDetails(bestPred.place_id);
-            if(pdet && await __applyPlaceToPin(pdet, true)){
-              console.log('[speech] places applied "' + spoken + '"');
-              return true;
-            }
-          }
-        }catch(e){ console.log('[speech] places error ' + e); }
       }
       console.log('[speech] no candidate resolved, giving up (no slow fallback)');
       return false;
@@ -5994,13 +6002,12 @@ async function __updatePickupMapAddr(){
       const query = __canonicalPlaceQuery(q);
       if(query.length < 2) return;
       try{
-        if(__looksLikePoiQuery(query)){
-          var places = await __nativePlacesAutocomplete(query);
-          var best = __bestPlacePred(places, query);
-          if(best && best.place_id){
-            var det = await __nativePlaceDetails(best.place_id);
-            if(det && await __applyPlaceToPin(det, true)) return;
-          }
+        // Google Places πρώτα για κάθε διεύθυνση· ο geocoder του κινητού/OSM μόνο αν δεν απαντήσει.
+        var places = await __nativePlacesAutocomplete(query);
+        var best = __bestPlacePred(places, query);
+        if(best && best.place_id){
+          var det = await __nativePlaceDetails(best.place_id);
+          if(det && await __applyPlaceToPin(det, true)) return;
         }
         const j = await __searchTypedPlace(query);
         if(j && j[0] && j[0]._placeDet){
