@@ -5256,7 +5256,7 @@ async function __updatePickupMapAddr(){
       var fn = __placesWait[String(id)];
       if(fn){ delete __placesWait[String(id)]; fn(Array.isArray(hits) ? hits : []); }
     };
-    function __nativePlacesAutocomplete(q){
+    function __bridgePlacesAutocomplete(q){
       return new Promise(function(resolve){
         try{
           var br = window.ClientBridge;
@@ -5278,7 +5278,7 @@ async function __updatePickupMapAddr(){
       var fn = __placeDetWait[String(id)];
       if(fn){ delete __placeDetWait[String(id)]; fn(det || null); }
     };
-    function __nativePlaceDetails(placeId){
+    function __bridgePlaceDetails(placeId){
       return new Promise(function(resolve){
         try{
           var br = window.ClientBridge;
@@ -5294,6 +5294,74 @@ async function __updatePickupMapAddr(){
           br.placeDetails(String(placeId||""), id);
         }catch(e){ resolve(null); }
       });
+    }
+    // Google Places μέσω VPS (/api/places): το κλειδί μένει στον server. Η λίστα έρχεται
+    // στη γλώσσα της εφαρμογής (κινέζικα, ρωσικά…), τα details πάντα ελληνικά για τον οδηγό.
+    // Αν ο VPS δεν απαντήσει (offline, όριο ημέρας), πέφτουμε σε ό,τι έκανε το κινητό ως τώρα.
+    var __placesSess = "";
+    var __placesPredMeta = {};
+    function __placesApiBase(){
+      return String(window.TAXI_API_URL || "http://167.233.49.140").replace(/\/$/, "");
+    }
+    function __placesSessionToken(){
+      if(!__placesSess) __placesSess = (Math.random().toString(36).slice(2) + Date.now().toString(36)).replace(/[^a-z0-9]/g, "").slice(0, 40);
+      return __placesSess;
+    }
+    async function __vpsPlacesFetch(path){
+      var ctrl = (typeof AbortController === "function") ? new AbortController() : null;
+      var t = ctrl ? setTimeout(function(){ try{ ctrl.abort(); }catch(e){} }, 6000) : null;
+      try{
+        var h = { "Accept": "application/json" };
+        if(window.TAXI_API_KEY) h["X-API-Key"] = window.TAXI_API_KEY;
+        var res = await fetch(__placesApiBase() + path, ctrl ? { headers: h, signal: ctrl.signal } : { headers: h });
+        if(!res.ok) throw new Error("HTTP " + res.status);
+        return await res.json();
+      } finally {
+        if(t) clearTimeout(t);
+      }
+    }
+    function __placesLang(){
+      try{ if(typeof window.__activeLang === "function") return window.__activeLang() || "el"; }catch(e){}
+      return (lang === "en") ? "en" : "el";
+    }
+    async function __nativePlacesAutocomplete(q){
+      var query = String(q || "").trim();
+      if(query.length >= 3){
+        try{
+          var arr = await __vpsPlacesFetch("/api/places/autocomplete?input=" + encodeURIComponent(query)
+            + "&lang=" + encodeURIComponent(__placesLang()) + "&session=" + __placesSessionToken());
+          if(Array.isArray(arr)){
+            for(var i=0;i<arr.length;i++){
+              var p = arr[i];
+              if(!p || !p.place_id) continue;
+              var poi = (p.types||[]).some(function(t){ return t==="establishment" || t==="point_of_interest"; }) || p.type==="hotel";
+              __placesPredMeta[p.place_id] = { src: "vps", name: String(p.name||""), poi: poi };
+            }
+            try{ console.log('[pin] places vps q="'+query+'" n='+arr.length+(arr[0]?' first='+arr[0].display_name:'')); }catch(e){}
+            return arr;
+          }
+        }catch(e){
+          try{ console.log('[pin] places vps failed: '+(e && e.message)); }catch(x){}
+        }
+      }
+      return await __bridgePlacesAutocomplete(query);
+    }
+    async function __nativePlaceDetails(placeId){
+      var pid = String(placeId || "");
+      var meta = __placesPredMeta[pid];
+      if(!meta || meta.src !== "vps") return await __bridgePlaceDetails(pid);
+      try{
+        var det = await __vpsPlacesFetch("/api/places/details?place_id=" + encodeURIComponent(pid)
+          + "&lang=el&session=" + __placesSessionToken()
+          + (meta.poi && meta.name ? "&name=" + encodeURIComponent(meta.name) : ""));
+        __placesSess = "";
+        try{ console.log('[pin] places vps details '+(det ? (det.display_name+' @'+det.lat+','+det.lon) : 'null')); }catch(e){}
+        return det || null;
+      }catch(e){
+        __placesSess = "";
+        try{ console.log('[pin] places vps details failed: '+(e && e.message)); }catch(x){}
+        return null;
+      }
     }
     function __looksLikePoiQuery(q){
       var s = String(q||"").toLowerCase();
@@ -5527,6 +5595,7 @@ async function __updatePickupMapAddr(){
       }catch(e){ __acHide(); }
     }
 
+    var __lastAutoPlaceId = "";
     function __debouncedGeocodeToMarker(q){
       try{ clearTimeout(__geocodeTimer); }catch(e){}
       try{ clearTimeout(__acTimer); }catch(e){}
@@ -5540,9 +5609,9 @@ async function __updatePickupMapAddr(){
           if(places.length && !__pickupAcOff) __acShow(places);
           if(__looksLikePoiQuery(query) && places.length){
             var best = __bestPlacePred(places, query);
-            if(best && best.place_id){
+            if(best && best.place_id && best.place_id !== __lastAutoPlaceId){
               var det = await __nativePlaceDetails(best.place_id);
-              if(det) await __applyPlaceToPin(det, false);
+              if(det){ __lastAutoPlaceId = best.place_id; await __applyPlaceToPin(det, false); }
             }
             return;
           }
@@ -12110,8 +12179,11 @@ async function routeKm(fromLat, fromLon){
           __dynMin = fixPrice;
           __dynMax = fixPrice;
           __isDaktylios = true;
-          // ✅ Υπολογισμός OSRM χρόνου για δακτύλιο (για conflict check οδηγού)
-          try {
+          // ✅ Υπολογισμός χρόνου για δακτύλιο (για conflict check οδηγού): Google με κίνηση, αλλιώς OSRM
+          const gRoute = await __vpsRoute(pickupLat, pickupLon, false);
+          if(gRoute && gRoute.mins){
+            __daktyliosMins = gRoute.mins;
+          } else try {
             const dUrl = `https://router.project-osrm.org/route/v1/driving/${pickupLon},${pickupLat};${AIRPORT_LON},${AIRPORT_LAT}?overview=false`;
             const dRes = await priceRouteFetch(dUrl, { headers: { "Accept": "application/json" }});
             if(dRes.ok) {
@@ -12396,7 +12468,43 @@ async function routeKm(fromLat, fromLon){
       return { lat, lon };
     }
 
+    // Google Routes μέσω VPS (/api/route): km + λεπτά ΜΕ κίνηση για την ώρα του ραντεβού.
+    // Αεροδρόμιο→Αθήνα: αφετηρία το αεροδρόμιο (η κίνηση έχει κατεύθυνση). null → εφεδρεία OSRM.
+    async function __vpsRoute(fromLat, fromLon, noTolls){
+      var base = String(window.TAXI_API_URL || "http://167.233.49.140").replace(/\/$/, "");
+      var pin = fromLat + "," + fromLon;
+      var apt = AIRPORT_LAT + "," + AIRPORT_LON;
+      var toAthens = isAirportToAthensMode();
+      var qs = "from=" + encodeURIComponent(toAthens ? apt : pin) + "&to=" + encodeURIComponent(toAthens ? pin : apt) + "&tolls=" + (noTolls ? "0" : "1");
+      try{
+        var d = String((dateIn && dateIn.value) || "").trim();
+        var t = String((timeIn && timeIn.value) || "").trim().replace(".", ":");
+        var tm = t.match(/^(\d{1,2}):(\d{2})/);
+        if(/^\d{4}-\d{2}-\d{2}$/.test(d) && tm) qs += "&depart=" + encodeURIComponent(d + "T" + ("0" + tm[1]).slice(-2) + ":" + tm[2]);
+      }catch(e){}
+      var ctrl = (typeof AbortController === "function") ? new AbortController() : null;
+      var timer = ctrl ? setTimeout(function(){ try{ ctrl.abort(); }catch(e){} }, 9000) : null;
+      try{
+        var h = { "Accept": "application/json" };
+        if(window.TAXI_API_KEY) h["X-API-Key"] = window.TAXI_API_KEY;
+        var res = await fetch(base + "/api/route?" + qs, ctrl ? { headers: h, signal: ctrl.signal } : { headers: h });
+        if(!res.ok) throw new Error("HTTP " + res.status);
+        var j = await res.json();
+        if(!j || !isFinite(Number(j.km)) || Number(j.km) <= 0) return null;
+        try{ console.log("[route] google " + (noTolls ? "notoll" : "toll") + " km=" + j.km + " mins=" + j.mins + " static=" + j.static_mins + " depart=" + j.depart); }catch(e){}
+        return { km: Number(j.km), mins: Math.max(1, Math.round(Number(j.mins) || 0)), google: true };
+      }catch(e){
+        try{ console.log("[route] google failed: " + (e && e.message)); }catch(x){}
+        return null;
+      }finally{
+        if(timer) clearTimeout(timer);
+      }
+    }
+
     async function routeKmWithOptions(fromLat, fromLon, noTolls){
+      const viaGoogle = await __vpsRoute(fromLat, fromLon, noTolls);
+      if(viaGoogle) return viaGoogle;
+
       const snapped = await __snapToRoad(fromLat, fromLon);
       const lat = snapped.lat, lon = snapped.lon;
 
