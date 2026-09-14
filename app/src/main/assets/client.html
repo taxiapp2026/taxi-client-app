@@ -5648,6 +5648,19 @@ async function __updatePickupMapAddr(){
     // Στέλνουμε ΟΛΕΣ τις εκδοχές που άκουσε στο Google και κρατάμε την πρώτη που
     // αναγνωρίζει — ό,τι δείχνει το πεδίο μετά έρχεται από το Google, όπως στο πληκτρολόγιο.
     // Αν δεν βρει τίποτα, γυρίζει false και μένει αυτούσιο ό,τι ακούστηκε.
+    // Η πρόταση της Google για ό,τι ακούστηκε: δεκτή μόνο αν μοιάζει με τα λόγια (τα πρώτα 4
+    // γράμματα κάθε λέξης — «σχολή» ↔ «Σχολικό», «Γραβάς» ↔ «Γκράβας» δεν πιάνει, μισό φτάνει).
+    // Ξένη γραφή (κυριλλικά/κινέζικα) δεν συγκρίνεται με ελληνικά ονόματα: κρατάμε την πρώτη.
+    function __speechPredMatches(pred, spoken){
+      var s = String(spoken||"");
+      if(!/[a-zA-ZͰ-Ͽἀ-῿]/.test(s)) return true;
+      var toks = __nameTokens(s);
+      if(!toks.length) return true;
+      var blob = __normalizeSpelling((pred.name||"") + " " + (pred.display_name||""));
+      var n = 0;
+      for(var i=0;i<toks.length;i++){ if(blob.indexOf(toks[i].slice(0,4)) !== -1) n++; }
+      return n / toks.length >= 0.5;
+    }
     async function __resolveSpeechToPlace(alts){
       var list = [];
       for(var i=0;i<(alts||[]).length;i++){
@@ -5674,6 +5687,24 @@ async function __updatePickupMapAddr(){
           console.log('[speech] applyPinFromHits("' + probes[k].query + '") -> ' + applied);
           if(applied) return true;
         }
+      }
+      // Ο geocoder του κινητού ξέρει διευθύνσεις, όχι σημεία («Σχολή Γραβάς»). Ρωτάμε τη Google
+      // Places (μέσω VPS) με ό,τι ακούστηκε, αυτούσιο — καταλαβαίνει ελληνικά, ρωσικά, κινέζικα.
+      for(var p=0;p<list.length;p++){
+        var spoken = String(list[p]||"").trim();
+        if(spoken.length < 3) continue;
+        try{
+          var preds = await __nativePlacesAutocomplete(spoken);
+          var bestPred = __bestPlacePred(preds, spoken);
+          console.log('[speech] places "' + spoken + '" -> ' + (preds?preds.length:0) + (bestPred ? ' best=' + JSON.stringify(bestPred.display_name||bestPred.name) + ' match=' + __speechPredMatches(bestPred, spoken) : ''));
+          if(bestPred && bestPred.place_id && __speechPredMatches(bestPred, spoken)){
+            var pdet = await __nativePlaceDetails(bestPred.place_id);
+            if(pdet && await __applyPlaceToPin(pdet, true)){
+              console.log('[speech] places applied "' + spoken + '"');
+              return true;
+            }
+          }
+        }catch(e){ console.log('[speech] places error ' + e); }
       }
       console.log('[speech] no candidate resolved, giving up (no slow fallback)');
       return false;
