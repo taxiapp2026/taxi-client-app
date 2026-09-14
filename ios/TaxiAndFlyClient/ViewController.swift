@@ -80,6 +80,18 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
     private var speechBestAlts: [String] = []
     private var speechDelivered = false
     private var speechSession = 0
+    // Δεύτερος recognizer ΣΤΑ ΕΛΛΗΝΙΚΑ, στον ίδιο ήχο — μόνο για το πεδίο διεύθυνσης ("auto+el")
+    // και μόνο όταν το κινητό δεν είναι ελληνικά/αγγλικά. Ο Ρώσος/Κινέζος λέει «Γαλάτσι»:
+    // ο recognizer της γλώσσας του γράφει «Галаци»/«加拉齐» που ο χάρτης δεν ξέρει, ο ελληνικός
+    // γράφει «Γαλάτσι» που το ξέρει. Καμία μετάφραση/μετατροπή — ίδιος ήχος, δεύτερο αυτί.
+    // Το JS δοκιμάζει τις εκδοχές στον χάρτη (ελληνική πρώτη) και κρατά την πρώτη που βρίσκεται.
+    private var speechGreekRecognizer: SFSpeechRecognizer?
+    private var speechGreekRequest: SFSpeechAudioBufferRecognitionRequest?
+    private var speechGreekTask: SFSpeechRecognitionTask?
+    private var speechGreekBestText = ""
+    private var speechGreekBestAlts: [String] = []
+    private var speechPrimaryDone = false
+    private var speechGreekDone = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -549,8 +561,21 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         let l = code.lowercased()
         if l.hasPrefix("en") { return Locale(identifier: "en-US") }
         if l.hasPrefix("el") { return Locale(identifier: "el-GR") }
-        // "auto": η γλώσσα της συσκευής (όπως στο Android)
+        // "auto" / "auto+el": η γλώσσα της συσκευής (όπως στο Android)
         return Locale.current
+    }
+
+    private func localeLanguage(_ l: Locale) -> String {
+        if #available(iOS 16.0, *) { return l.language.languageCode?.identifier.lowercased() ?? "" }
+        return l.languageCode?.lowercased() ?? ""
+    }
+
+    /// "auto+el" (πεδίο διεύθυνσης): αν το κινητό δεν είναι ελληνικά/αγγλικά, ακούμε ΚΑΙ ελληνικά.
+    /// Ελληνικό/αγγλικό κινητό: τίποτα δεν αλλάζει, ένας recognizer όπως πριν.
+    private func wantsGreekSecond(langCode: String, primary: Locale) -> Bool {
+        guard langCode.lowercased().hasSuffix("+el") else { return false }
+        let lang = localeLanguage(primary)
+        return lang != "el" && lang != "en"
     }
 
     private func startSpeechToText(langCode: String) {
@@ -592,6 +617,17 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         speechBestText = ""
         speechBestAlts = []
         speechDelivered = false
+        speechGreekBestText = ""
+        speechGreekBestAlts = []
+        speechPrimaryDone = false
+        speechGreekDone = false
+        var greekRecognizer: SFSpeechRecognizer? = nil
+        if wantsGreekSecond(langCode: langCode, primary: recognizer.locale),
+           let g = SFSpeechRecognizer(locale: Locale(identifier: "el-GR")), g.isAvailable {
+            greekRecognizer = g
+        }
+        speechGreekRecognizer = greekRecognizer
+        NSLog("speech primary=%@ greekSecond=%d", recognizer.locale.identifier, greekRecognizer == nil ? 0 : 1)
 
         let session = AVAudioSession.sharedInstance()
         do {
@@ -605,12 +641,16 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         let request = SFSpeechAudioBufferRecognitionRequest()
         request.shouldReportPartialResults = true
         speechRequest = request
+        let greekRequest: SFSpeechAudioBufferRecognitionRequest? = greekRecognizer == nil ? nil : SFSpeechAudioBufferRecognitionRequest()
+        greekRequest?.shouldReportPartialResults = true
+        speechGreekRequest = greekRequest
 
         let input = speechEngine.inputNode
         let format = input.outputFormat(forBus: 0)
         input.removeTap(onBus: 0)
         input.installTap(onBus: 0, bufferSize: 1024, format: format) { buffer, _ in
             request.append(buffer)
+            greekRequest?.append(buffer)
         }
         speechEngine.prepare()
         do {
@@ -634,15 +674,48 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
                         self.speechBestAlts = alts
                     }
                     if result.isFinal {
-                        self.finishSpeech(error: self.speechBestText.isEmpty ? "no_match" : "")
+                        self.speechPrimaryDone = true
+                        self.maybeFinishSpeech()
                         return
                     }
-                    if !text.isEmpty { self.speechPartialToJs(text: text, alts: alts) }
+                    // Ζωντανή γραφή: όσο ο ελληνικός δεν έχει γράψει τίποτα, δείχνουμε αυτό.
+                    if !text.isEmpty && self.speechGreekBestText.isEmpty { self.speechPartialToJs(text: text, alts: alts) }
                     self.restartSpeechSilenceTimer()
                 }
                 if error != nil {
                     // Σφάλμα ή «δεν άκουσα τίποτα»: παραδίδουμε ό,τι καλύτερο ακούστηκε, αλλιώς no_match.
-                    self.finishSpeech(error: self.speechBestText.isEmpty ? "no_match" : "")
+                    self.speechPrimaryDone = true
+                    self.maybeFinishSpeech()
+                }
+            }
+        }
+
+        if let greekRecognizer = greekRecognizer, let greekRequest = greekRequest {
+            speechGreekTask = greekRecognizer.recognitionTask(with: greekRequest) { [weak self] result, error in
+                DispatchQueue.main.async {
+                    guard let self = self, sid == self.speechSession else { return }
+                    if let result = result {
+                        let alts = result.transcriptions
+                            .map { $0.formattedString.trimmingCharacters(in: .whitespacesAndNewlines) }
+                            .filter { !$0.isEmpty }
+                        let text = result.bestTranscription.formattedString.trimmingCharacters(in: .whitespacesAndNewlines)
+                        if !text.isEmpty {
+                            self.speechGreekBestText = text
+                            self.speechGreekBestAlts = alts
+                        }
+                        if result.isFinal {
+                            self.speechGreekDone = true
+                            self.maybeFinishSpeech()
+                            return
+                        }
+                        // Ο ελληνικός προτιμάται: μόλις γράψει, η ζωντανή γραφή είναι δική του.
+                        if !text.isEmpty { self.speechPartialToJs(text: text, alts: alts) }
+                        self.restartSpeechSilenceTimer()
+                    }
+                    if error != nil {
+                        self.speechGreekDone = true
+                        self.maybeFinishSpeech()
+                    }
                 }
             }
         }
@@ -657,7 +730,7 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
     /// Όπως στο Android: μόλις σταματήσεις να μιλάς, το μικρόφωνο κλείνει μόνο του.
     private func restartSpeechSilenceTimer() {
         speechSilenceTimer?.invalidate()
-        let interval: TimeInterval = speechBestText.isEmpty ? 5.0 : 1.6
+        let interval: TimeInterval = (speechBestText.isEmpty && speechGreekBestText.isEmpty) ? 5.0 : 1.6
         speechSilenceTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { [weak self] _ in
             self?.endSpeechAudio()
         }
@@ -673,19 +746,44 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
             speechEngine.inputNode.removeTap(onBus: 0)
         }
         speechRequest?.endAudio()
+        speechGreekRequest?.endAudio()
         let sid = speechSession
         // Αν το isFinal αργήσει, παραδίδουμε ό,τι έχουμε.
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { [weak self] in
             guard let self = self, sid == self.speechSession, !self.speechDelivered else { return }
-            self.finishSpeech(error: self.speechBestText.isEmpty ? "no_match" : "")
+            self.finishSpeech(error: self.speechNoText ? "no_match" : "")
         }
+    }
+
+    private var speechNoText: Bool { speechBestText.isEmpty && speechGreekBestText.isEmpty }
+
+    /// Παραδίδουμε μόνο όταν έχουν τελειώσει ΚΑΙ οι δύο recognizers (αν τρέχει ο ελληνικός),
+    /// ώστε να μη χαθεί η ελληνική εκδοχή επειδή ο άλλος τελείωσε πρώτος. Το 2.5s
+    /// δίχτυ στο endSpeechAudio παραδίδει ό,τι υπάρχει αν κάποιος αργεί.
+    private func maybeFinishSpeech() {
+        guard speechPrimaryDone else { return }
+        if speechGreekRequest != nil && !speechGreekDone { return }
+        finishSpeech(error: speechNoText ? "no_match" : "")
     }
 
     private func finishSpeech(error: String) {
         if speechDelivered { return }
         speechDelivered = true
-        let text = speechBestText
-        let alts = speechBestAlts
+        let primary = speechBestText
+        let greek = speechGreekBestText
+        // Σειρά για τον χάρτη: ελληνική εκδοχή, εκδοχή γλώσσας κινητού, 2η ελληνική, 2η του κινητού…
+        // Το JS (__resolveSpeechToPlace) δοκιμάζει τις 3 πρώτες και κρατά την πρώτη που βρίσκεται.
+        // Χωρίς ελληνικό recognizer (el/en κινητό) η λίστα είναι ακριβώς όπως πριν.
+        var alts: [String] = []
+        let ordered = [greek, primary]
+            + Array(speechGreekBestAlts.dropFirst().prefix(1))
+            + Array(speechBestAlts.dropFirst().prefix(1))
+            + speechGreekBestAlts + speechBestAlts
+        for s in ordered {
+            let t = s.trimmingCharacters(in: .whitespacesAndNewlines)
+            if !t.isEmpty && !alts.contains(t) { alts.append(t) }
+        }
+        let text = greek.isEmpty ? primary : greek
         stopSpeechInternal()
         speechResultToJs(text: error.isEmpty ? text : "", error: error, alts: error.isEmpty ? alts : [])
     }
@@ -703,6 +801,11 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         speechTask?.cancel()
         speechTask = nil
         speechRequest = nil
+        speechGreekRequest?.endAudio()
+        speechGreekTask?.cancel()
+        speechGreekTask = nil
+        speechGreekRequest = nil
+        speechGreekRecognizer = nil
         _ = try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
     }
 

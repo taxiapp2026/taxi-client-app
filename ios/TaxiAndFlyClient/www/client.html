@@ -5676,8 +5676,45 @@ async function __updatePickupMapAddr(){
     function __addrNorm(s){
       return String(s||"").toLowerCase().replace(/ά/g,"α").replace(/έ/g,"ε").replace(/ή/g,"η").replace(/ί/g,"ι").replace(/ό/g,"ο").replace(/ύ/g,"υ").replace(/ώ/g,"ω").replace(/ς/g,"σ");
     }
+    // Κυριλλικά (ρωσικά/ουκρανικά/βουλγαρικά/σερβικά) → λατινικά φωνητικά, ΜΟΝΟ για την
+    // ερώτηση προς τον χάρτη — το πεδίο κρατά ό,τι έγραψε ο πελάτης. Ο χάρτης ξέρει
+    // «Galatsi»/«Γαλάτσι», όχι «Галаци» (έλεγχος: Nominatim 0 αποτελέσματα). Δεν αγγίζει
+    // κείμενο χωρίς κυριλλικά. Λίγα ρωσικά εξωνύμια που δεν μεταγράφονται (Пирей = Piraeus).
+    var __CYR_WORDS = {
+      "пирей":"Piraeus", "афины":"Athens", "аэропорт":"Airport", "порт":"Port",
+      "отель":"Hotel", "гостиница":"Hotel", "площадь":"Plateia", "улица":"Odos",
+      "проспект":"Leoforos", "вокзал":"Station", "станция":"Station", "метро":"Metro", "центр":"Kentro"
+    };
+    var __CYR_DIGRAPHS = [["ия","ia"],["ий","i"],["ый","i"],["ья","ia"],["ью","iu"],["ье","ie"]];
+    var __CYR_MAP = {
+      "а":"a","б":"b","в":"v","г":"g","д":"d","е":"e","ё":"yo","ж":"zh","з":"z","и":"i","й":"i",
+      "к":"k","л":"l","м":"m","н":"n","о":"o","п":"p","р":"r","с":"s","т":"t","у":"ou","ф":"f",
+      "х":"h","ц":"ts","ч":"ch","ш":"sh","щ":"sh","ъ":"","ы":"i","ь":"","э":"e","ю":"iu","я":"ia",
+      "і":"i","ї":"i","є":"e","ґ":"g","ј":"j","љ":"lj","њ":"nj","ћ":"ch","ђ":"dj","џ":"dz"
+    };
+    function __cyrillicToLatin(s){
+      var str = String(s||"");
+      if(!/[\u0400-\u04FF]/.test(str)) return str;
+      return str.split(/(\s+)/).map(function(tok){
+        var low = tok.toLowerCase();
+        if(Object.prototype.hasOwnProperty.call(__CYR_WORDS, low)) return __CYR_WORDS[low];
+        var out = "", i = 0;
+        while(i < low.length){
+          var hit = false;
+          for(var d = 0; d < __CYR_DIGRAPHS.length; d++){
+            var a = __CYR_DIGRAPHS[d][0];
+            if(low.substr(i, a.length) === a){ out += __CYR_DIGRAPHS[d][1]; i += a.length; hit = true; break; }
+          }
+          if(hit) continue;
+          var ch = low.charAt(i);
+          out += (__CYR_MAP[ch] !== undefined) ? __CYR_MAP[ch] : ch;
+          i++;
+        }
+        return out;
+      }).join("");
+    }
     function __canonicalPlaceQuery(q){
-      var raw = String(q||"").trim();
+      var raw = __cyrillicToLatin(String(q||"").trim());
       if(!raw) return raw;
       var n = __addrNorm(raw).replace(/[^a-z0-9α-ω\s]/g, " ").replace(/\s+/g, " ").trim();
       n = n.replace(/\b(pireus|pireas|pireuw|pireu|piraus|pyreus|piraieus|peireus|peiraus|piraias|peiraeus|piraeus|peiraias)\b/g, "piraeus");
@@ -14626,12 +14663,16 @@ async function routeKm(fromLat, fromLon){
     let _clientChatMicBase = '';
     let _clientChatMicStopTimer = null;
 
-    function _clientSpeechLangCode(){
+    function _clientSpeechLangCode(target){
       // ΜΗΝ το δέσεις με τη γλώσσα της εφαρμογής. Δοκιμάστηκε στο Honor και το en-US
       // έβγαλε "videos sport" / "beat ass part", ενώ το el-GR "πειραιώς πορτ".
       // Ακούμε στη γλώσσα της συσκευής, που ακούει καλύτερα, και η ΕΜΦΑΝΙΣΗ γίνεται
       // στη γλώσσα της εφαρμογής μέσω του geocoder (setUiLang).
-      return 'auto';
+      // Πεδίο διεύθυνσης: "auto+el" = γλώσσα συσκευής ΚΑΙ ελληνικά ταυτόχρονα (iPhone),
+      // μόνο όταν το κινητό δεν είναι ελληνικά/αγγλικά. Ο Ρώσος/Κινέζος λέει «Γαλάτσι» —
+      // ο ελληνικός recognizer το γράφει «Γαλάτσι» και ο χάρτης το βρίσκει. Καμία μετάφραση.
+      // Android: το "auto+el" διαβάζεται ως "auto" (ίδιο με πριν). Chat: μένει "auto".
+      return target === 'address' ? 'auto+el' : 'auto';
     }
 
     function _clientSpeechWebLang(code){
@@ -14822,7 +14863,7 @@ async function routeKm(fromLat, fromLon){
         }, 1800);
         return;
       }
-      const langCode = _clientSpeechLangCode();
+      const langCode = _clientSpeechLangCode('address');
       _clientSpeechTarget = 'address';
       _clientChatMicBase = String(input.value || '').trim();
       if(bridge){
