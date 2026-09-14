@@ -570,12 +570,12 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         return l.languageCode?.lowercased() ?? ""
     }
 
-    /// "auto+el" (πεδίο διεύθυνσης): αν το κινητό δεν είναι ελληνικά/αγγλικά, ακούμε ΚΑΙ ελληνικά.
-    /// Ελληνικό/αγγλικό κινητό: τίποτα δεν αλλάζει, ένας recognizer όπως πριν.
+    /// "auto+el" (πεδίο διεύθυνσης): αν το κινητό δεν είναι ελληνικό, ακούμε ΚΑΙ ελληνικά.
+    /// Και στο αγγλικό κινητό: ο Έλληνας με iPhone στα αγγλικά λέει «Εθνάρχου Μακαρίου» και ο
+    /// αγγλικός recognizer γράφει «Ethan Makariou» — κανένας χάρτης δεν το βρίσκει.
     private func wantsGreekSecond(langCode: String, primary: Locale) -> Bool {
         guard langCode.lowercased().hasSuffix("+el") else { return false }
-        let lang = localeLanguage(primary)
-        return lang != "el" && lang != "en"
+        return localeLanguage(primary) != "el"
     }
 
     private func startSpeechToText(langCode: String) {
