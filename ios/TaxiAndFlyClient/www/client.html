@@ -5422,8 +5422,14 @@ async function __updatePickupMapAddr(){
       }
       return true;
     }
+    // Η εφαρμογή είναι μόνο Αττική: ο geocoder του κινητού (Apple στο iPhone) έδωσε «Tania Hotel,
+    // Μήλος» για «Titania hotel». Ό,τι βρίσκει εκτός Αττικής δεν είναι παραλαβή — πετιέται.
+    function __inAtticaLatLon(lat, lon){
+      lat = parseFloat(lat); lon = parseFloat(lon);
+      return isFinite(lat) && isFinite(lon) && lat >= 37.55 && lat <= 38.45 && lon >= 22.95 && lon <= 24.25;
+    }
     function __hitsFromGoogle(arr){
-      return (arr||[]).map(function(a){
+      return (arr||[]).filter(function(a){ return a && __inAtticaLatLon(a.lat, a.lon); }).map(function(a){
         return {
           lat: a.lat,
           lon: a.lon,
