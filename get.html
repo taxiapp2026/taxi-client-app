@@ -52,17 +52,64 @@
       margin: 0;
     }
     .lang {
+      position: relative;
       font-family: system-ui, sans-serif;
       font-size: 0.8rem;
+      flex-shrink: 0;
     }
-    .lang select {
-      background: rgba(244, 241, 234, 0.04);
+    .lang-btn {
+      background: #1a2330;
       border: 1px solid var(--line);
       color: var(--fg);
       border-radius: 3px;
-      padding: 0.3rem 0.45rem;
-      max-width: 9.5rem;
+      padding: 0.4rem 0.65rem;
+      cursor: pointer;
+      min-width: 7.5rem;
+      text-align: left;
+      font: inherit;
     }
+    .lang-btn:hover,
+    .lang-btn[aria-expanded="true"] {
+      border-color: rgba(212, 163, 92, 0.55);
+      background: #243041;
+    }
+    .lang-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: calc(100% + 4px);
+      z-index: 50;
+      min-width: 11rem;
+      max-height: 16rem;
+      overflow-y: auto;
+      margin: 0;
+      padding: 0.25rem;
+      list-style: none;
+      background: #1a2330;
+      border: 1px solid rgba(212, 163, 92, 0.45);
+      border-radius: 4px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+    }
+    .lang.open .lang-menu { display: block; }
+    .lang-menu button {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: 0;
+      color: #f4f1ea;
+      font: inherit;
+      padding: 0.5rem 0.65rem;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .lang-menu button:hover,
+    .lang-menu button[aria-selected="true"] {
+      background: rgba(212, 163, 92, 0.22);
+      color: #fff;
+    }
+    html[dir="rtl"] .lang-menu { right: auto; left: 0; }
+    html[dir="rtl"] .lang-btn { text-align: right; }
     h1 {
       font-size: clamp(1.9rem, 5vw, 2.45rem);
       margin: 0 0 0.55rem;
@@ -120,9 +167,9 @@
     <img class="logo" src="logo.png" width="88" height="88" alt="Taxi and Fly" />
     <div class="top">
       <p class="tag" data-i18n="tag">Αθήνα ⇄ Αεροδρόμιο Ελευθέριος Βενιζέλος</p>
-      <div class="lang">
-        <label for="langSelect" class="visually-hidden" style="position:absolute;left:-9999px">Language</label>
-        <select id="langSelect" aria-label="Language"></select>
+      <div class="lang" id="langWrap">
+        <button type="button" class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">English</button>
+        <ul class="lang-menu" id="langMenu" role="listbox" aria-label="Language"></ul>
       </div>
     </div>
     <h1>Taxi and Fly</h1>
@@ -360,21 +407,48 @@
           var key = el.getAttribute("data-i18n");
           if (pack[key]) el.textContent = pack[key];
         });
-        var sel = document.getElementById("langSelect");
-        if (sel) sel.value = lang;
+        var btn = document.getElementById("langBtn");
+        if (btn) btn.textContent = NAMES[lang] || lang;
+        document.querySelectorAll("#langMenu button").forEach(function (b) {
+          b.setAttribute("aria-selected", b.getAttribute("data-lang") === lang ? "true" : "false");
+        });
         try { localStorage.setItem("taf_lang", lang); } catch (e) {}
       }
 
-      var sel = document.getElementById("langSelect");
-      if (sel) {
+      function closeLang() {
+        var wrap = document.getElementById("langWrap");
+        var btn = document.getElementById("langBtn");
+        if (wrap) wrap.classList.remove("open");
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      }
+
+      var menu = document.getElementById("langMenu");
+      var langBtn = document.getElementById("langBtn");
+      var langWrap = document.getElementById("langWrap");
+      if (menu && langBtn && langWrap) {
         Object.keys(NAMES).forEach(function (code) {
           if (!T[code]) return;
-          var opt = document.createElement("option");
-          opt.value = code;
-          opt.textContent = NAMES[code];
-          sel.appendChild(opt);
+          var li = document.createElement("li");
+          var b = document.createElement("button");
+          b.type = "button";
+          b.setAttribute("role", "option");
+          b.setAttribute("data-lang", code);
+          b.textContent = NAMES[code];
+          b.addEventListener("click", function () {
+            apply(code);
+            closeLang();
+          });
+          li.appendChild(b);
+          menu.appendChild(li);
         });
-        sel.addEventListener("change", function () { apply(sel.value); });
+        langBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          var open = !langWrap.classList.contains("open");
+          langWrap.classList.toggle("open", open);
+          langBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+        document.addEventListener("click", function () { closeLang(); });
+        langWrap.addEventListener("click", function (e) { e.stopPropagation(); });
       }
 
       var q = new URLSearchParams(location.search);
