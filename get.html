@@ -52,23 +52,16 @@
       margin: 0;
     }
     .lang {
-      display: flex;
-      gap: 0.35rem;
       font-family: system-ui, sans-serif;
       font-size: 0.8rem;
     }
-    .lang button {
-      background: transparent;
+    .lang select {
+      background: rgba(244, 241, 234, 0.04);
       border: 1px solid var(--line);
-      color: var(--muted);
-      border-radius: 3px;
-      padding: 0.25rem 0.55rem;
-      cursor: pointer;
-    }
-    .lang button.active {
       color: var(--fg);
-      border-color: rgba(212, 163, 92, 0.55);
-      background: rgba(212, 163, 92, 0.16);
+      border-radius: 3px;
+      padding: 0.3rem 0.45rem;
+      max-width: 9.5rem;
     }
     h1 {
       font-size: clamp(1.9rem, 5vw, 2.45rem);
@@ -127,9 +120,9 @@
     <img class="logo" src="logo.png" width="88" height="88" alt="Taxi and Fly" />
     <div class="top">
       <p class="tag" data-i18n="tag">Αθήνα ⇄ Αεροδρόμιο Ελευθέριος Βενιζέλος</p>
-      <div class="lang" role="group" aria-label="Language">
-        <button type="button" id="langEl" class="active">EL</button>
-        <button type="button" id="langEn">EN</button>
+      <div class="lang">
+        <label for="langSelect" class="visually-hidden" style="position:absolute;left:-9999px">Language</label>
+        <select id="langSelect" aria-label="Language"></select>
       </div>
     </div>
     <h1>Taxi and Fly</h1>
@@ -153,6 +146,12 @@
   </div>
   <script>
     (function () {
+      var NAMES = {
+        el: "Ελληνικά", en: "English", de: "Deutsch", fr: "Français", it: "Italiano",
+        es: "Español", ru: "Русский", pl: "Polski", ro: "Română", nl: "Nederlands",
+        tr: "Türkçe", ar: "العربية", zh: "中文", uk: "Українська", he: "עברית"
+      };
+      var RTL = { ar: 1, he: 1 };
       var T = {
         el: {
           tag: "Αθήνα ⇄ Αεροδρόμιο Ελευθέριος Βενιζέλος",
@@ -177,12 +176,183 @@
           note: "Taxi and Fly · Athens Airport transfer booking app. Tap Download to install the app.",
           title: "Taxi and Fly — Athens Airport Taxi",
           desc: "Book from anywhere for when you arrive in Athens at Eleftherios Venizelos Airport — wherever you are."
+        },
+        de: {
+          tag: "Athen ⇄ Flughafen Eleftherios Venizelos",
+          lead: "Buche von überall für deine Ankunft in Athen am Eleftherios Venizelos — egal wo du bist. Bei der Landung wartet dein Fahrer.",
+          p1: "Athen Flughafentaxi — Abholung bei Ankunft und Athen → Flughafen",
+          p2: "Termin in der App buchen — gute Preise, toller Service",
+          p3: "Professionelle Fahrer · einfache App · unten herunterladen",
+          ios: "Im App Store laden",
+          android: "Bei Google Play laden",
+          note: "Taxi and Fly · App für Athen-Flughafen-Transfers. Tippe Download zum Installieren.",
+          title: "Taxi and Fly — Athen Flughafentaxi",
+          desc: "Buche von überall für deine Ankunft in Athen am Flughafen Eleftherios Venizelos."
+        },
+        fr: {
+          tag: "Athènes ⇄ Aéroport Eleftherios Venizelos",
+          lead: "Réservez de n'importe où pour votre arrivée à Athènes à Eleftherios Venizelos — où que vous soyez. À l'atterrissage, votre chauffeur vous attend.",
+          p1: "Taxi aéroport Athènes — prise en charge à l'arrivée et Athènes → aéroport",
+          p2: "Réservez un rendez-vous dans l'app — bons prix, excellent service",
+          p3: "Chauffeurs professionnels · app simple · téléchargez ci-dessous",
+          ios: "Télécharger sur l'App Store",
+          android: "Télécharger sur Google Play",
+          note: "Taxi and Fly · App de réservation taxi aéroport Athènes. Appuyez sur Télécharger.",
+          title: "Taxi and Fly — Taxi Aéroport Athènes",
+          desc: "Réservez de n'importe où pour votre arrivée à Athènes à l'aéroport Eleftherios Venizelos."
+        },
+        it: {
+          tag: "Atene ⇄ Aeroporto Eleftherios Venizelos",
+          lead: "Prenota da ovunque per quando arrivi ad Atene all'Eleftherios Venizelos — ovunque tu sia. All'atterraggio, l'autista ti aspetta.",
+          p1: "Taxi aeroporto Atene — ritiro all'arrivo e Atene → aeroporto",
+          p2: "Prenota appuntamento nell'app — buoni prezzi, ottimo servizio",
+          p3: "Autisti professionali · app facile · scarica sotto",
+          ios: "Scarica dall'App Store",
+          android: "Scarica da Google Play",
+          note: "Taxi and Fly · App prenotazione taxi aeroporto Atene. Tocca Download per installare.",
+          title: "Taxi and Fly — Taxi Aeroporto Atene",
+          desc: "Prenota da ovunque per quando arrivi ad Atene all'aeroporto Eleftherios Venizelos."
+        },
+        es: {
+          tag: "Atenas ⇄ Aeropuerto Eleftherios Venizelos",
+          lead: "Reserva desde cualquier lugar para cuando llegues a Atenas en Eleftherios Venizelos — estés donde estés. Al aterrizar, tu conductor te espera.",
+          p1: "Taxi aeropuerto Atenas — recogida a la llegada y Atenas → aeropuerto",
+          p2: "Reserva cita en la app — buenos precios, gran servicio",
+          p3: "Conductores profesionales · app fácil · descarga abajo",
+          ios: "Descargar en App Store",
+          android: "Descargar en Google Play",
+          note: "Taxi and Fly · App de reserva de taxi aeropuerto Atenas. Pulsa Descargar para instalar.",
+          title: "Taxi and Fly — Taxi Aeropuerto Atenas",
+          desc: "Reserva desde cualquier lugar para cuando llegues a Atenas al aeropuerto Eleftherios Venizelos."
+        },
+        ru: {
+          tag: "Афины ⇄ Аэропорт Элефтериос Венизелос",
+          lead: "Бронируйте откуда угодно к прибытию в Афины в Элефтериос Венизелос — где бы вы ни были. По прилёту водитель вас ждёт.",
+          p1: "Такси аэропорт Афин — встреча по прилёту и Афины → аэропорт",
+          p2: "Запись в приложении — хорошие цены, отличный сервис",
+          p3: "Профессиональные водители · простое приложение · скачайте ниже",
+          ios: "Скачать в App Store",
+          android: "Скачать в Google Play",
+          note: "Taxi and Fly · Приложение для такси аэропорта Афин. Нажмите Скачать.",
+          title: "Taxi and Fly — Такси аэропорт Афины",
+          desc: "Бронируйте откуда угодно к прибытию в Афины в аэропорт Элефтериос Венизелос."
+        },
+        pl: {
+          tag: "Ateny ⇄ Lotnisko Eleftherios Venizelos",
+          lead: "Rezerwuj z dowolnego miejsca na przyjazd do Aten na Eleftherios Venizelos — gdziekolwiek jesteś. Po lądowaniu kierowca na Ciebie czeka.",
+          p1: "Taksówka lotnisko Ateny — odbiór po przylocie i Ateny → lotnisko",
+          p2: "Umów termin w aplikacji — dobre ceny, świetna obsługa",
+          p3: "Profesjonalni kierowcy · prosta aplikacja · pobierz poniżej",
+          ios: "Pobierz z App Store",
+          android: "Pobierz z Google Play",
+          note: "Taxi and Fly · Aplikacja rezerwacji taksówek lotnisko Ateny. Dotknij Pobierz.",
+          title: "Taxi and Fly — Taksówka lotnisko Ateny",
+          desc: "Rezerwuj z dowolnego miejsca na przyjazd do Aten na lotnisko Eleftherios Venizelos."
+        },
+        ro: {
+          tag: "Atena ⇄ Aeroportul Eleftherios Venizelos",
+          lead: "Rezervă de oriunde pentru când ajungi la Atena la Eleftherios Venizelos — oriunde ai fi. La aterizare, șoferul te așteaptă.",
+          p1: "Taxi aeroport Atena — preluare la sosire și Atena → aeroport",
+          p2: "Programează în aplicație — prețuri bune, serviciu excelent",
+          p3: "Șoferi profesioniști · aplicație ușoară · descarcă mai jos",
+          ios: "Descarcă din App Store",
+          android: "Descarcă din Google Play",
+          note: "Taxi and Fly · Aplicație rezervare taxi aeroport Atena. Apasă Descarcă.",
+          title: "Taxi and Fly — Taxi Aeroport Atena",
+          desc: "Rezervă de oriunde pentru când ajungi la Atena la aeroportul Eleftherios Venizelos."
+        },
+        nl: {
+          tag: "Athene ⇄ Luchthaven Eleftherios Venizelos",
+          lead: "Boek vanaf overal voor je aankomst in Athene op Eleftherios Venizelos — waar je ook bent. Bij landing wacht je chauffeur.",
+          p1: "Athene luchthaventaxi — ophalen bij aankomst en Athene → luchthaven",
+          p2: "Maak afspraak in de app — goede prijzen, geweldige service",
+          p3: "Professionele chauffeurs · eenvoudige app · download hieronder",
+          ios: "Download in App Store",
+          android: "Download in Google Play",
+          note: "Taxi and Fly · App voor Athene luchthaventaxi. Tik op Download om te installeren.",
+          title: "Taxi and Fly — Athene Luchthaventaxi",
+          desc: "Boek vanaf overal voor je aankomst in Athene op luchthaven Eleftherios Venizelos."
+        },
+        tr: {
+          tag: "Atina ⇄ Eleftherios Venizelos Havalimanı",
+          lead: "Nerede olursan ol, Atina'ya Eleftherios Venizelos'a varışın için her yerden rezervasyon yap. İndiğinde şoförün seni bekler.",
+          p1: "Atina havalimanı taksi — varış karşılama ve Atina → havalimanı",
+          p2: "Uygulamadan randevu al — iyi fiyatlar, harika hizmet",
+          p3: "Profesyonel şoförler · kolay uygulama · aşağıdan indir",
+          ios: "App Store'dan indir",
+          android: "Google Play'den indir",
+          note: "Taxi and Fly · Atina havalimanı taksi rezervasyon uygulaması. İndir'e dokun.",
+          title: "Taxi and Fly — Atina Havalimanı Taksi",
+          desc: "Nerede olursan ol, Atina Eleftherios Venizelos havalimanına varışın için her yerden rezervasyon yap."
+        },
+        ar: {
+          tag: "أثينا ⇄ مطار إليفثيريوس فينيزيلوس",
+          lead: "احجز من أي مكان لوصولك إلى أثينا في إليفثيريوس فينيزيلوس — أينما كنت. عند الهبوط، سائقك بانتظارك.",
+          p1: "تاكسي مطار أثينا — استقبال عند الوصول وأثينا → المطار",
+          p2: "احجز موعداً في التطبيق — أسعار جيدة وخدمة ممتازة",
+          p3: "سائقون محترفون · تطبيق سهل · حمّل أدناه",
+          ios: "تحميل من App Store",
+          android: "تحميل من Google Play",
+          note: "Taxi and Fly · تطبيق حجز تاكسي مطار أثينا. اضغط تحميل للتثبيت.",
+          title: "Taxi and Fly — تاكسي مطار أثينا",
+          desc: "احجز من أي مكان لوصولك إلى أثينا في مطار إليفثيريوس فينيزيلوس."
+        },
+        zh: {
+          tag: "雅典 ⇄ 埃莱夫塞里奥斯·韦尼泽洛斯机场",
+          lead: "无论你在哪里，都可以提前预约雅典埃莱夫塞里奥斯·韦尼泽洛斯机场接机。落地时司机已在等候。",
+          p1: "雅典机场出租车 — 抵达接机与雅典 → 机场",
+          p2: "在应用中预约 — 价格实惠，服务优质",
+          p3: "专业司机 · 简单应用 · 在下方下载",
+          ios: "从 App Store 下载",
+          android: "从 Google Play 下载",
+          note: "Taxi and Fly · 雅典机场打车预约应用。点击下载安装。",
+          title: "Taxi and Fly — 雅典机场出租车",
+          desc: "无论你在哪里，都可以提前预约雅典埃莱夫塞里奥斯·韦尼泽洛斯机场接机。"
+        },
+        uk: {
+          tag: "Афіни ⇄ Аеропорт Елефтеріос Венізелос",
+          lead: "Бронюйте звідусіль на прибуття до Афін в Елефтеріос Венізелос — де б ви не були. Після посадки водій на вас чекає.",
+          p1: "Таксі аеропорт Афін — зустріч по прильоту та Афіни → аеропорт",
+          p2: "Запис у застосунку — хороші ціни, чудовий сервіс",
+          p3: "Професійні водії · простий застосунок · завантажте нижче",
+          ios: "Завантажити з App Store",
+          android: "Завантажити з Google Play",
+          note: "Taxi and Fly · Застосунок бронювання таксі аеропорту Афін. Натисніть Завантажити.",
+          title: "Taxi and Fly — Таксі аеропорт Афіни",
+          desc: "Бронюйте звідусіль на прибуття до Афін в аеропорт Елефтеріос Венізелос."
+        },
+        he: {
+          tag: "אתונה ⇄ נמל התעופה אלפתריוס וניזלוס",
+          lead: "הזמינו מכל מקום לקראת הגעתכם לאתונה באלפתריוס וניזלוס — היכן שתהיו. בנחיתה הנהג מחכה לכם.",
+          p1: "מונית נמל תעופה אתונה — איסוף בהגעה ואתונה → נמל התעופה",
+          p2: "קבעו תור באפליקציה — מחירים טובים, שירות מעולה",
+          p3: "נהגים מקצועיים · אפליקציה קלה · הורידו למטה",
+          ios: "הורדה מ-App Store",
+          android: "הורדה מ-Google Play",
+          note: "Taxi and Fly · אפליקציית הזמנת מונית נמל תעופה אתונה. לחצו הורדה להתקנה.",
+          title: "Taxi and Fly — מונית נמל תעופה אתונה",
+          desc: "הזמינו מכל מקום לקראת הגעתכם לאתונה בנמל התעופה אלפתריוס וניזלוס."
         }
       };
 
+      function detectLang() {
+        var list = [];
+        try {
+          if (navigator.languages && navigator.languages.length) list = navigator.languages;
+          else if (navigator.language) list = [navigator.language];
+        } catch (e) {}
+        for (var i = 0; i < list.length; i++) {
+          var code = String(list[i] || "").toLowerCase().split("-")[0];
+          if (T[code]) return code;
+        }
+        return "en";
+      }
+
       function apply(lang) {
-        var pack = T[lang] || T.el;
+        if (!T[lang]) lang = "en";
+        var pack = T[lang];
         document.documentElement.lang = lang;
+        document.documentElement.dir = RTL[lang] ? "rtl" : "ltr";
         document.title = pack.title;
         var meta = document.querySelector('meta[name="description"]');
         if (meta) meta.setAttribute("content", pack.desc);
@@ -190,32 +360,34 @@
           var key = el.getAttribute("data-i18n");
           if (pack[key]) el.textContent = pack[key];
         });
-        var elBtn = document.getElementById("langEl");
-        var enBtn = document.getElementById("langEn");
-        if (elBtn) elBtn.classList.toggle("active", lang === "el");
-        if (enBtn) enBtn.classList.toggle("active", lang === "en");
+        var sel = document.getElementById("langSelect");
+        if (sel) sel.value = lang;
         try { localStorage.setItem("taf_lang", lang); } catch (e) {}
+      }
+
+      var sel = document.getElementById("langSelect");
+      if (sel) {
+        Object.keys(NAMES).forEach(function (code) {
+          if (!T[code]) return;
+          var opt = document.createElement("option");
+          opt.value = code;
+          opt.textContent = NAMES[code];
+          sel.appendChild(opt);
+        });
+        sel.addEventListener("change", function () { apply(sel.value); });
       }
 
       var q = new URLSearchParams(location.search);
       var qr = String(q.get("qr") || q.get("qrId") || "").replace(/[^A-Za-z0-9_-]/g, "");
-      var forced = (q.get("lang") || "").toLowerCase();
+      var forced = (q.get("lang") || "").toLowerCase().split("-")[0];
       var saved = "";
       try { saved = localStorage.getItem("taf_lang") || ""; } catch (e) {}
-      var browser = ((navigator.language || "el") + "").toLowerCase();
-      var lang = forced === "en" || forced === "el"
+      var lang = (forced && T[forced])
         ? forced
-        : (saved === "en" || saved === "el")
+        : (saved && T[saved])
           ? saved
-          : (browser.indexOf("el") === 0 ? "el" : "en");
-      // Greek market default when unclear
-      if (!forced && !saved && !browser) lang = "el";
-
+          : detectLang();
       apply(lang);
-      var elBtn = document.getElementById("langEl");
-      var enBtn = document.getElementById("langEn");
-      if (elBtn) elBtn.addEventListener("click", function () { apply("el"); });
-      if (enBtn) enBtn.addEventListener("click", function () { apply("en"); });
 
       var ios = "https://apps.apple.com/app/id6804729201";
       var android = "https://play.google.com/store/apps/details?id=com.taxiandfly.client" +
