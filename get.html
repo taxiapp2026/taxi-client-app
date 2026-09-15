@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Taxi and Fly — Athens Airport Taxi</title>
-  <meta name="description" content="Athens Airport (Eleftherios Venizelos) taxi. Book from anywhere. Easy app, good prices, great service. Driver ready when you land." />
+  <title>Taxi and Fly — Ταξί Αεροδρόμιο Αθήνα</title>
+  <meta name="description" content="Ταξί Αεροδρόμιο Αθήνας (Ελευθέριος Βενιζέλος). Κλείσε από όπου κι αν είσαι. Εύκολη εφαρμογή, καλές τιμές, καλή εξυπηρέτηση." />
   <style>
     :root {
       --bg: #0f1720;
@@ -26,13 +26,39 @@
       padding: 28px 20px 48px;
     }
     .wrap { max-width: 34rem; margin: 0 auto; }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
     .tag {
       font-family: system-ui, sans-serif;
       font-size: 0.75rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--accent);
-      margin: 0 0 0.75rem;
+      margin: 0;
+    }
+    .lang {
+      display: flex;
+      gap: 0.35rem;
+      font-family: system-ui, sans-serif;
+      font-size: 0.8rem;
+    }
+    .lang button {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      border-radius: 3px;
+      padding: 0.25rem 0.55rem;
+      cursor: pointer;
+    }
+    .lang button.active {
+      color: var(--fg);
+      border-color: rgba(212, 163, 92, 0.55);
+      background: rgba(212, 163, 92, 0.16);
     }
     h1 {
       font-size: clamp(1.9rem, 5vw, 2.45rem);
@@ -88,30 +114,98 @@
 </head>
 <body>
   <div class="wrap">
-    <p class="tag">Athens ⇄ Eleftherios Venizelos Airport</p>
+    <div class="top">
+      <p class="tag" data-i18n="tag">Αθήνα ⇄ Αεροδρόμιο Ελευθέριος Βενιζέλος</p>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" id="langEl" class="active">EL</button>
+        <button type="button" id="langEn">EN</button>
+      </div>
+    </div>
     <h1>Taxi and Fly</h1>
-    <p class="lead">
-      Coming to Athens from Europe or anywhere? Book your taxi from home.
-      When you land, your driver is ready — easy ride to your destination.
+    <p class="lead" data-i18n="lead">
+      Έρχεσαι στην Αθήνα από την Ευρώπη ή από οπουδήποτε; Κλείσε ταξί από το σπίτι σου.
+      Όταν προσγειωθείς, ο οδηγός σε περιμένει — εύκολη διαδρομή στον προορισμό σου.
     </p>
     <ul class="points">
-      <li>Athens Airport taxi — arrival pickup and Athens → airport</li>
-      <li>Book appointment in the app — good prices, great service</li>
-      <li>Professional drivers · easy app · download below</li>
+      <li data-i18n="p1">Ταξί αεροδρομίου Αθήνας — παραλαβή άφιξης και Αθήνα → αεροδρόμιο</li>
+      <li data-i18n="p2">Κλείσε ραντεβού στην εφαρμογή — καλές τιμές, καλή εξυπηρέτηση</li>
+      <li data-i18n="p3">Επαγγελματίες οδηγοί · εύκολη εφαρμογή · κατέβασε παρακάτω</li>
     </ul>
     <div class="btns">
-      <a class="btn primary" id="iosBtn" href="https://apps.apple.com/app/id6804729201">Download on App Store</a>
-      <a class="btn primary" id="androidBtn" href="https://play.google.com/store/apps/details?id=com.taxiandfly.client">Get it on Google Play</a>
+      <a class="btn primary" id="iosBtn" href="https://apps.apple.com/app/id6804729201" data-i18n="ios">Κατέβασμα από App Store</a>
+      <a class="btn primary" id="androidBtn" href="https://play.google.com/store/apps/details?id=com.taxiandfly.client" data-i18n="android">Κατέβασμα από Google Play</a>
     </div>
-    <p class="note">
-      Taxi and Fly · Athens Airport transfer booking app.
-      Tap Download to install the app.
+    <p class="note" data-i18n="note">
+      Taxi and Fly · Εφαρμογή κράτησης ταξί αεροδρομίου Αθήνας.
+      Πάτα Κατέβασμα για εγκατάσταση.
     </p>
   </div>
   <script>
     (function () {
+      var T = {
+        el: {
+          tag: "Αθήνα ⇄ Αεροδρόμιο Ελευθέριος Βενιζέλος",
+          lead: "Έρχεσαι στην Αθήνα από την Ευρώπη ή από οπουδήποτε; Κλείσε ταξί από το σπίτι σου. Όταν προσγειωθείς, ο οδηγός σε περιμένει — εύκολη διαδρομή στον προορισμό σου.",
+          p1: "Ταξί αεροδρομίου Αθήνας — παραλαβή άφιξης και Αθήνα → αεροδρόμιο",
+          p2: "Κλείσε ραντεβού στην εφαρμογή — καλές τιμές, καλή εξυπηρέτηση",
+          p3: "Επαγγελματίες οδηγοί · εύκολη εφαρμογή · κατέβασε παρακάτω",
+          ios: "Κατέβασμα από App Store",
+          android: "Κατέβασμα από Google Play",
+          note: "Taxi and Fly · Εφαρμογή κράτησης ταξί αεροδρομίου Αθήνας. Πάτα Κατέβασμα για εγκατάσταση.",
+          title: "Taxi and Fly — Ταξί Αεροδρόμιο Αθήνα",
+          desc: "Ταξί Αεροδρόμιο Αθήνας (Ελευθέριος Βενιζέλος). Κλείσε από όπου κι αν είσαι. Εύκολη εφαρμογή, καλές τιμές, καλή εξυπηρέτηση."
+        },
+        en: {
+          tag: "Athens ⇄ Eleftherios Venizelos Airport",
+          lead: "Coming to Athens from Europe or anywhere? Book your taxi from home. When you land, your driver is ready — easy ride to your destination.",
+          p1: "Athens Airport taxi — arrival pickup and Athens → airport",
+          p2: "Book appointment in the app — good prices, great service",
+          p3: "Professional drivers · easy app · download below",
+          ios: "Download on App Store",
+          android: "Get it on Google Play",
+          note: "Taxi and Fly · Athens Airport transfer booking app. Tap Download to install the app.",
+          title: "Taxi and Fly — Athens Airport Taxi",
+          desc: "Athens Airport (Eleftherios Venizelos) taxi. Book from anywhere. Easy app, good prices, great service. Driver ready when you land."
+        }
+      };
+
+      function apply(lang) {
+        var pack = T[lang] || T.el;
+        document.documentElement.lang = lang;
+        document.title = pack.title;
+        var meta = document.querySelector('meta[name="description"]');
+        if (meta) meta.setAttribute("content", pack.desc);
+        document.querySelectorAll("[data-i18n]").forEach(function (el) {
+          var key = el.getAttribute("data-i18n");
+          if (pack[key]) el.textContent = pack[key];
+        });
+        var elBtn = document.getElementById("langEl");
+        var enBtn = document.getElementById("langEn");
+        if (elBtn) elBtn.classList.toggle("active", lang === "el");
+        if (enBtn) enBtn.classList.toggle("active", lang === "en");
+        try { localStorage.setItem("taf_lang", lang); } catch (e) {}
+      }
+
       var q = new URLSearchParams(location.search);
       var qr = String(q.get("qr") || q.get("qrId") || "").replace(/[^A-Za-z0-9_-]/g, "");
+      var forced = (q.get("lang") || "").toLowerCase();
+      var saved = "";
+      try { saved = localStorage.getItem("taf_lang") || ""; } catch (e) {}
+      var browser = ((navigator.language || "el") + "").toLowerCase();
+      var lang = forced === "en" || forced === "el"
+        ? forced
+        : (saved === "en" || saved === "el")
+          ? saved
+          : (browser.indexOf("el") === 0 ? "el" : "en");
+      // Greek market default when unclear
+      if (!forced && !saved && !browser) lang = "el";
+
+      apply(lang);
+      var elBtn = document.getElementById("langEl");
+      var enBtn = document.getElementById("langEn");
+      if (elBtn) elBtn.addEventListener("click", function () { apply("el"); });
+      if (enBtn) enBtn.addEventListener("click", function () { apply("en"); });
+
       var ios = "https://apps.apple.com/app/id6804729201";
       var android = "https://play.google.com/store/apps/details?id=com.taxiandfly.client" +
         (qr ? "&referrer=" + encodeURIComponent("qrId=" + qr) : "");
