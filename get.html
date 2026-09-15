@@ -26,6 +26,16 @@
       padding: 28px 20px 48px;
     }
     .wrap { max-width: 34rem; margin: 0 auto; }
+    .logo {
+      display: block;
+      width: 5.5rem;
+      height: 5.5rem;
+      border-radius: 14px;
+      object-fit: cover;
+      margin: 0 0 1rem;
+      border: 1px solid var(--line);
+      background: #111;
+    }
     .top {
       display: flex;
       justify-content: space-between;
@@ -114,6 +124,7 @@
 </head>
 <body>
   <div class="wrap">
+    <img class="logo" src="logo.png" width="88" height="88" alt="Taxi and Fly" />
     <div class="top">
       <p class="tag" data-i18n="tag">Αθήνα ⇄ Αεροδρόμιο Ελευθέριος Βενιζέλος</p>
       <div class="lang" role="group" aria-label="Language">
