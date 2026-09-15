@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Taxi and Fly — Athens Airport Taxi</title>
   <meta name="description" content="Athens Airport (Eleftherios Venizelos) taxi. Book from anywhere. Easy app, good prices, great service. Driver ready when you land." />
-  <meta name="apple-itunes-app" content="app-id=6804729201" />
   <style>
     :root {
       --bg: #0f1720;
@@ -78,13 +77,6 @@
       background: rgba(212, 163, 92, 0.16);
     }
     a.btn:hover { background: rgba(244, 241, 234, 0.1); }
-    .status {
-      margin: 0 0 1rem;
-      font-family: system-ui, sans-serif;
-      font-size: 0.95rem;
-      color: var(--accent);
-      min-height: 1.3em;
-    }
     .note {
       margin-top: 1.75rem;
       font-size: 0.85rem;
@@ -102,7 +94,6 @@
       Coming to Athens from Europe or anywhere? Book your taxi from home.
       When you land, your driver is ready — easy ride to your destination.
     </p>
-    <p class="status" id="status"></p>
     <ul class="points">
       <li>Athens Airport taxi — arrival pickup and Athens → airport</li>
       <li>Book appointment in the app — good prices, great service</li>
@@ -114,52 +105,25 @@
     </div>
     <p class="note">
       Taxi and Fly · Athens Airport transfer booking app.
-      Tap Download to install. Driver QR links open the store automatically.
+      Tap Download to install the app.
     </p>
   </div>
   <script>
     (function () {
       var q = new URLSearchParams(location.search);
       var qr = String(q.get("qr") || q.get("qrId") || "").replace(/[^A-Za-z0-9_-]/g, "");
-      var forceDl = q.get("dl") === "1" || q.get("download") === "1";
       var ios = "https://apps.apple.com/app/id6804729201";
-      var playHttps = "https://play.google.com/store/apps/details?id=com.taxiandfly.client" +
-        (qr ? "&referrer=" + encodeURIComponent("qrId=" + qr) : "");
-      var playMarket = "market://details?id=com.taxiandfly.client" +
+      var android = "https://play.google.com/store/apps/details?id=com.taxiandfly.client" +
         (qr ? "&referrer=" + encodeURIComponent("qrId=" + qr) : "");
       var ua = navigator.userAgent || "";
-      var isIOS = /iPhone|iPad|iPod/i.test(ua) ||
-        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+      var isIOS = /iPhone|iPad|iPod/i.test(ua);
       var isAndroid = /Android/i.test(ua);
-      var isBot = /Googlebot|AdsBot|Mediapartners|Google-InspectionTool|bingbot|Slurp|DuckDuckBot|facebookexternalhit|Twitterbot|LinkedInBot|Applebot/i.test(ua);
       var iosBtn = document.getElementById("iosBtn");
       var androidBtn = document.getElementById("androidBtn");
-      var statusEl = document.getElementById("status");
       if (iosBtn) iosBtn.href = ios;
-      if (androidBtn) androidBtn.href = playHttps;
+      if (androidBtn) androidBtn.href = android;
       if (isIOS && androidBtn) androidBtn.style.opacity = "0.55";
       if (isAndroid && iosBtn) iosBtn.style.opacity = "0.55";
-      window.__TAF_LINKS = { ios: ios, android: playHttps };
-
-      function openStore() {
-        if (isIOS) {
-          location.replace(ios);
-          return;
-        }
-        if (isAndroid) {
-          location.replace(playMarket);
-          setTimeout(function () { location.replace(playHttps); }, 1200);
-        }
-      }
-
-      // Driver QR / explicit ?dl=1 → open store (not used as Google Ads Final URL).
-      // Normal ad traffic stays on this page (buttons = download) so Ads can approve.
-      if (!isBot && (qr || forceDl) && (isIOS || isAndroid)) {
-        if (statusEl) statusEl.textContent = isIOS ? "Opening App Store…" : "Opening Google Play…";
-        openStore();
-      } else if (!isBot && (isIOS || isAndroid) && statusEl) {
-        statusEl.textContent = "Tap Download below to install Taxi and Fly.";
-      }
     })();
   </script>
 </body>
