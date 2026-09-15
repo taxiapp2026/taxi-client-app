@@ -1,55 +1,132 @@
 <!DOCTYPE html>
-<html lang="el">
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Taxi and Fly</title>
-<meta name="robots" content="noindex">
-<style>
-  html,body{margin:0;min-height:100%;background:#0b0b0b;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
-  .wrap{max-width:420px;margin:0 auto;padding:48px 20px;text-align:center}
-  h1{font-size:26px;margin:0 0 6px;color:#FFD700}
-  p{opacity:.85;line-height:1.5;margin:0 0 26px}
-  a.btn{display:block;margin:12px 0;padding:16px;border-radius:14px;text-decoration:none;font-weight:800;font-size:17px;color:#111;background:#FFD700}
-  a.btn.dark{background:#fff}
-  .small{font-size:13px;opacity:.6;margin-top:28px}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Taxi and Fly — Athens Airport Taxi</title>
+  <meta name="description" content="Athens Airport (Eleftherios Venizelos) taxi. Book from anywhere. Easy app, good prices, great service. Driver ready when you land." />
+  <style>
+    :root {
+      --bg: #0f1720;
+      --fg: #f4f1ea;
+      --muted: rgba(244, 241, 234, 0.72);
+      --line: rgba(244, 241, 234, 0.28);
+      --accent: #d4a35c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(212, 163, 92, 0.18), transparent 55%),
+        radial-gradient(900px 500px at 100% 0%, rgba(90, 140, 180, 0.16), transparent 50%),
+        var(--bg);
+      color: var(--fg);
+      padding: 28px 20px 48px;
+    }
+    .wrap { max-width: 34rem; margin: 0 auto; }
+    .tag {
+      font-family: system-ui, sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 0.75rem;
+    }
+    h1 {
+      font-size: clamp(1.9rem, 5vw, 2.45rem);
+      margin: 0 0 0.55rem;
+      letter-spacing: 0.01em;
+      line-height: 1.15;
+    }
+    .lead {
+      margin: 0 0 1.25rem;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 1.05rem;
+    }
+    .points {
+      list-style: none;
+      margin: 0 0 1.5rem;
+      padding: 0;
+      font-family: system-ui, sans-serif;
+      font-size: 0.98rem;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+    .points li {
+      padding: 0.65rem 0;
+      border-top: 1px solid var(--line);
+    }
+    .points li:last-child { border-bottom: 1px solid var(--line); }
+    .btns { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 0.25rem; }
+    a.btn {
+      display: inline-block;
+      padding: 0.9rem 1.2rem;
+      border: 1px solid var(--line);
+      color: var(--fg);
+      text-decoration: none;
+      border-radius: 3px;
+      font-family: system-ui, sans-serif;
+      font-size: 0.95rem;
+      background: rgba(244, 241, 234, 0.04);
+    }
+    a.btn.primary {
+      border-color: rgba(212, 163, 92, 0.55);
+      background: rgba(212, 163, 92, 0.16);
+    }
+    a.btn:hover { background: rgba(244, 241, 234, 0.1); }
+    .note {
+      margin-top: 1.75rem;
+      font-size: 0.85rem;
+      color: rgba(244, 241, 234, 0.5);
+      font-family: system-ui, sans-serif;
+      line-height: 1.45;
+    }
+  </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>🚕 Taxi and Fly</h1>
-  <p id="msg">Άνοιγμα καταστήματος εφαρμογών…</p>
-  <a class="btn" id="btnPlay" href="#">▶ Google Play (Android)</a>
-  <a class="btn dark" id="btnApp" href="#"> App Store (iPhone)</a>
-  <div class="small">Αν δεν ανοίξει μόνο του, πάτησε το κατάστημα του κινητού σου.</div>
-</div>
-<script>
-(function(){
-  // Το QR του οδηγού δείχνει εδώ (get.html?qr=ID). iPhone → App Store, Android → Play Store
-  // (με το qrId στο referrer, όπως πριν), οτιδήποτε άλλο → δύο κουμπιά.
-  var q = new URLSearchParams(location.search);
-  var qr = String(q.get('qr') || q.get('qrId') || '').replace(/[^A-Za-z0-9_-]/g, '');
-  var PLAY = 'https://play.google.com/store/apps/details?id=com.taxiandfly.client' +
-             (qr ? '&referrer=' + encodeURIComponent('qrId=' + qr) : '');
-  var APP  = 'https://apps.apple.com/app/id6804729201';
-  var ua = navigator.userAgent || '';
-  var isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  var isAndroid = /Android/i.test(ua);
-  document.getElementById('btnPlay').href = PLAY;
-  document.getElementById('btnApp').href = APP;
-  var msg = document.getElementById('msg');
-  if (isIOS) {
-    msg.textContent = 'Άνοιγμα App Store…';
-    location.replace(APP);
-  } else if (isAndroid) {
-    msg.textContent = 'Άνοιγμα Google Play…';
-    // market:// ανοίγει απευθείας την εφαρμογή Play· αν λείπει, μένει το https link.
-    location.replace('market://details?id=com.taxiandfly.client' + (qr ? '&referrer=' + encodeURIComponent('qrId=' + qr) : ''));
-    setTimeout(function(){ location.replace(PLAY); }, 1200);
-  } else {
-    msg.textContent = 'Κατέβασε την εφαρμογή Taxi and Fly:';
-  }
-})();
-</script>
+  <div class="wrap">
+    <p class="tag">Athens ⇄ Eleftherios Venizelos Airport</p>
+    <h1>Taxi and Fly</h1>
+    <p class="lead">
+      Coming to Athens from Europe or anywhere? Book your taxi from home.
+      When you land, your driver is ready — easy ride to your destination.
+    </p>
+    <ul class="points">
+      <li>Athens Airport taxi — arrival pickup and Athens → airport</li>
+      <li>Book appointment in the app — good prices, great service</li>
+      <li>Professional drivers · easy app · download below</li>
+    </ul>
+    <div class="btns">
+      <a class="btn primary" id="iosBtn" href="https://apps.apple.com/app/id6804729201">Download on App Store</a>
+      <a class="btn primary" id="androidBtn" href="https://play.google.com/store/apps/details?id=com.taxiandfly.client">Get it on Google Play</a>
+    </div>
+    <p class="note">
+      Taxi and Fly · Athens Airport transfer booking app.
+      Choose your store to install — no automatic redirect.
+    </p>
+  </div>
+  <script>
+    (function () {
+      // QR from drivers: ?qr=ID keeps Play referrer. Never auto-redirect (Google Ads).
+      var q = new URLSearchParams(location.search);
+      var qr = String(q.get("qr") || q.get("qrId") || "").replace(/[^A-Za-z0-9_-]/g, "");
+      var ios = "https://apps.apple.com/app/id6804729201";
+      var android = "https://play.google.com/store/apps/details?id=com.taxiandfly.client" +
+        (qr ? "&referrer=" + encodeURIComponent("qrId=" + qr) : "");
+      var ua = navigator.userAgent || "";
+      var isIOS = /iPhone|iPad|iPod/i.test(ua);
+      var isAndroid = /Android/i.test(ua);
+      var iosBtn = document.getElementById("iosBtn");
+      var androidBtn = document.getElementById("androidBtn");
+      if (iosBtn) iosBtn.href = ios;
+      if (androidBtn) androidBtn.href = android;
+      if (isIOS && androidBtn) androidBtn.style.opacity = "0.55";
+      if (isAndroid && iosBtn) iosBtn.style.opacity = "0.55";
+      window.__TAF_LINKS = { ios: ios, android: android };
+    })();
+  </script>
 </body>
 </html>
