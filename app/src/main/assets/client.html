@@ -6090,7 +6090,10 @@ async function __updatePickupMapAddr(){
         __acDismiss();
         const typed = (mapAddressIn && mapAddressIn.value || "").trim();
         var wasTyping = pickupMapBox && pickupMapBox.classList.contains("pickup-typing");
-        if(typed.length >= 2){
+        // Αν το πεδίο δείχνει ακριβώς ό,τι ήδη βρέθηκε (φωνή / λίστα Google), η πινέζα είναι ήδη
+        // εκεί — ΜΗΝ ξαναψάξεις: «Αγία Μαρίνα, Πόρτο Ράφτη 19003» ξαναγύριζε από τον geocoder ως
+        // άλλη Αγία Μαρίνα (Χαϊδάρι) στο ΟΚ. Ξαναψάχνει μόνο αν ο πελάτης άλλαξε το κείμενο.
+        if(typed.length >= 2 && typed !== String(__pickupLastResolvedText || "").trim()){
           try{ await __geocodeToMarker(typed); }catch(e){}
         }
         if(wasTyping){
