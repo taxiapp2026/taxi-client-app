@@ -1934,6 +1934,8 @@
 
         #pickupMapBox .inner-container{
           padding:12px;
+          /* iPhone: ο τίτλος «Βάλε διεύθυνση» κάτω από το notch/ρολόι (safe area). Android: μένει 12px. */
+          padding-top:max(12px, calc(env(safe-area-inset-top, 0px) + 8px));
           min-height:100%;
           height:100%;
           display:flex;
@@ -4617,7 +4619,7 @@ const surnameIn = document.getElementById("surname");
           house_number: (adr.house_number||"").trim(),
           suburb: (adr.suburb||adr.neighbourhood||adr.quarter||"").trim(),
           city: (adr.city||adr.town||adr.village||adr.municipality||"").trim(),
-          postcode: (adr.postcode||"").toString().trim(),
+          postcode: __tkClean(adr.postcode),
           display_name: (j && j.display_name || "").trim()
         };
       }catch(e){ return {}; }
@@ -4625,7 +4627,7 @@ const surnameIn = document.getElementById("surname");
     async function __reversePostalNominatim(lat, lon){
       try{
         var d = await __nominatimReverseDetails(lat, lon);
-        return (d && d.postcode) ? String(d.postcode).trim() : "";
+        return (d && d.postcode) ? __tkClean(d.postcode) : "";
       }catch(e){ return ""; }
     }
 
@@ -5003,7 +5005,7 @@ async function __updatePickupMapAddr(){
         const name = item.name || (item.display_name || "").split(",")[0];
         const street = (adr.road || adr.pedestrian || adr.footway || "").trim();
         const city = (adr.city || adr.town || adr.village || adr.suburb || adr.municipality || adr.county || "").trim();
-        const postcode = (adr.postcode || "").trim();
+        const postcode = __tkClean(adr.postcode);
         const type = (item.type || item.class || "").toLowerCase();
         const icon = __isHotelHit(item) ? "🏨" : __acIcon(type + " " + (item.category||"") + " " + (item.subtitle||""));
 
@@ -5187,11 +5189,14 @@ async function __updatePickupMapAddr(){
       var tk = String(m[1]).replace(/\s/g,"");
       return tk.length === 5 ? tk : "";
     }
+    // Ο Geocoder του κινητού δίνει τον ΤΚ ως «104 31»· τον κρατάμε πάντα «10431»
+    // για να μην κολλάει δεύτερη φορά δίπλα στον ίδιο ΤΚ χωρίς κενό.
+    function __tkClean(s){ return String(s||"").replace(/\s/g,""); }
     function __formatFoundAddress(street, number, area, tk, fallback){
       street = String(street||"").trim();
       number = String(number||"").trim();
       area = String(area||"").trim();
-      tk = String(tk||"").replace(/\s/g,"");
+      tk = __tkClean(tk);
       var line = "";
       if(street && number) line = street + " " + number;
       else line = street || number || "";
@@ -5199,7 +5204,7 @@ async function __updatePickupMapAddr(){
         var low = line.toLowerCase();
         if(!low || low.indexOf(area.toLowerCase()) === -1) line = line ? (line + ", " + area) : area;
       }
-      if(tk && line.indexOf(tk) === -1) line = line ? (line + " " + tk) : tk;
+      if(tk && __tkClean(line).indexOf(tk) === -1) line = line ? (line + " " + tk) : tk;
       line = line.trim();
       if(line) return line;
       return String(fallback||"").replace(/,\s*(Greece|Ελλάδα)\s*$/i,"").trim();
@@ -5402,7 +5407,7 @@ async function __updatePickupMapAddr(){
       var street = String(det.road||"").trim();
       var num = String(det.house_number||"").trim();
       var area = String(det.suburb||det.city||"").trim();
-      var tk = String(det.postcode||"").trim() || __extractTkFromText(det.display_name||"");
+      var tk = __tkClean(det.postcode) || __extractTkFromText(det.display_name||"");
       if(fillTop && !tk){
         try{ tk = await __reversePostalNominatim(lat, lon) || ""; }catch(e){}
       }
@@ -5442,7 +5447,7 @@ async function __updatePickupMapAddr(){
             house_number: a.house_number || "",
             city: a.city || "",
             suburb: a.suburb || "",
-            postcode: a.postcode || ""
+            postcode: __tkClean(a.postcode)
           }
         };
       }).filter(function(x){ return isFinite(parseFloat(x.lat)) && isFinite(parseFloat(x.lon)); });
@@ -5470,7 +5475,7 @@ async function __updatePickupMapAddr(){
                   house_number: det.house_number || "",
                   city: det.city || "",
                   suburb: det.suburb || "",
-                  postcode: det.postcode || ""
+                  postcode: __tkClean(det.postcode)
                 },
                 _placeDet: det,
                 _placeList: places
@@ -5890,7 +5895,7 @@ async function __updatePickupMapAddr(){
       var housenumber= (adr.house_number||"").trim();
       var area       = (adr.suburb||adr.neighbourhood||adr.quarter||"").trim();
       var city       = (adr.city||adr.town||adr.village||adr.municipality||"").trim();
-      var postcode   = (adr.postcode||"").trim() || __extractTkFromText(item.display_name||"");
+      var postcode   = __tkClean(adr.postcode) || __extractTkFromText(item.display_name||"");
       if(!street) street = parsed.street || "";
       if(!housenumber) housenumber = parsed.number || "";
       if(!area) area = parsed.area || city;
@@ -6034,7 +6039,7 @@ async function __updatePickupMapAddr(){
           housenumber = (adr.house_number || "").trim();
           area = (adr.suburb || "").trim();
           city = (adr.city || "").trim();
-          postcode = (adr.postcode || "").trim() || __extractTkFromText(g[0].display_name || "");
+          postcode = __tkClean(adr.postcode) || __extractTkFromText(g[0].display_name || "");
           fallback = (g[0].display_name || "").trim();
         }
       }catch(e){}
@@ -6071,11 +6076,11 @@ async function __updatePickupMapAddr(){
       const st = (f1 ? f1.value : "").trim();
       const num = (f2 ? f2.value : "").trim();
       const city = (f3 ? f3.value : "").trim();
-      const zip = (f4 ? f4.value : "").trim();
+      const zip = __tkClean(f4 ? f4.value : "");
       let line = st;
       if(num && line.toLowerCase().indexOf(num.toLowerCase()) === -1) line = (line + " " + num).trim();
       if(city && line.toLowerCase().indexOf(city.toLowerCase()) === -1) line = line ? (line + ", " + city) : city;
-      if(zip && line.indexOf(zip) === -1) line = (line + " " + zip).trim();
+      if(zip && __tkClean(line).indexOf(zip) === -1) line = (line + " " + zip).trim();
       return line.trim();
     }
 
@@ -12031,20 +12036,25 @@ currentBookingStatus = "new";
       }
     }
 
-    function calcRouteBasePrice(km, dateStr, timeStr){
+    // Ραντεβού από αεροδρόμιο (Αεροδρόμιο→Αθήνα με ώρα): ταρίφα «τώρα» + 10 € (ραντεβού + αναμονή έως 1 ώρα).
+    function isAirportAppointmentTariff(dateStr, timeStr){
+      return isAirportToAthensMode() && !isAirportAthensNowPriceMode(dateStr, timeStr);
+    }
+    const AIRPORT_APPOINTMENT_EXTRA = 10;
+
+    // Ελάχιστη χρέωση: το ταξίμετρο ποτέ κάτω από 30 € μέρα / 40 € νύχτα (00:00–05:00).
+    // Κοντά στο αεροδρόμιο (Σπάτα, Λούτσα, Πόρτο Ράφτη, Κορωπί, Ραφήνα, Παλλήνη) το ταξίμετρο
+    // έβγαζε 11–27 € και κανείς οδηγός δεν πήγαινε. Ραντεβού: +10 € πάνω στην ελάχιστη (40/50).
+    // Δεν είναι όριο χιλιομέτρων — η τιμή μόνο ανεβαίνει με τα χλμ (πάνω από ~24 χλμ = ταξίμετρο).
+    function minFareFor(dateStr, timeStr){
       const night = isNightTariff(dateStr, timeStr);
-      if(isAirportToAthensMode() && !isAirportAthensNowPriceMode(dateStr, timeStr)){
-        // Ραντεβού: μέρα 1.20/km. Μετά τις 12 (00:00–05:00): ίδιος τύπος με διπλή ταρίφα 1.39/km
-        // (όχι ο τύπος Αθήνα→Αεροδρόμιο με έκπτωση — έβγαζε τη νύχτα ίδια/φθηνότερη από τη μέρα).
-        return calcAirportAthensBasePrice(km, night);
-      }
-      return calcBasePrice(km, night);
+      return (night ? 40 : 30) + (isAirportAppointmentTariff(dateStr, timeStr) ? AIRPORT_APPOINTMENT_EXTRA : 0);
     }
 
-    function calcAirportAthensBasePrice(km, night){
-      // Αεροδρόμιο → Αθήνα ραντεβού: σημαία 2€ + km*(1.20 μέρα / 1.39 νύχτα) + αεροδρόμιο 4€ + 2.5€
-      const perKm = night ? 1.39 : 1.20;
-      return Math.max(0, 2 + (perKm * km) + 4 + 2.5);
+    function calcRouteBasePrice(km, dateStr, timeStr){
+      const night = isNightTariff(dateStr, timeStr);
+      const base = calcBasePrice(km, night) + (isAirportAppointmentTariff(dateStr, timeStr) ? AIRPORT_APPOINTMENT_EXTRA : 0);
+      return Math.max(base, minFareFor(dateStr, timeStr));
     }
 
     function isNightTariff(dateStr, timeStr){
@@ -12121,11 +12131,17 @@ currentBookingStatus = "new";
 
     // Αεροδρόμιο → Αθήνα ραντεβού ημέρας: μία τιμή. Μετά τις 12 (00:00–05:00): διπλή χρέωση + εύρος.
     // «Τώρα» και Αθήνα→Αεροδρόμιο: εύρος πάντα.
-    function calcEffectiveRangeBuffer(dateStr, timeStr){
-      if(isAirportToAthensMode() && !isAirportAthensNowPriceMode(dateStr, timeStr) && !isNightTariff(dateStr, timeStr)){
+    // base (προαιρετικό): το εύρος δεν κατεβαίνει κάτω από την ελάχιστη χρέωση —
+    // στην ελάχιστη δείχνει ακριβώς «30€», λίγο πάνω της «30€ – 31€».
+    function calcEffectiveRangeBuffer(dateStr, timeStr, base){
+      if(isAirportAppointmentTariff(dateStr, timeStr) && !isNightTariff(dateStr, timeStr)){
         return 0;
       }
-      return calcRangeBuffer(dateStr, timeStr);
+      let buf = calcRangeBuffer(dateStr, timeStr);
+      if(typeof base === "number" && isFinite(base)){
+        buf = Math.max(0, Math.min(buf, base - minFareFor(dateStr, timeStr)));
+      }
+      return buf;
     }
 
     function formatPriceLabel(minP, maxP){
@@ -12278,7 +12294,7 @@ async function routeKm(fromLat, fromLon){
 
       const night = isNightTariff(dateStr, timeStr);
       const base = calcRouteBasePrice(kmRound, dateStr, timeStr);
-      const buf  = calcEffectiveRangeBuffer(dateStr, timeStr);
+      const buf  = calcEffectiveRangeBuffer(dateStr, timeStr, base);
 
       const minP = roundEuro(base - buf);
       const maxP = roundEuro(base + buf);
@@ -12657,7 +12673,7 @@ async function routeKm(fromLat, fromLon){
 
       const night = isNightTariff(dateIn.value, timeIn.value);
       const base  = calcRouteBasePrice(d.km, dateIn.value, timeIn.value);
-      const buf   = calcEffectiveRangeBuffer(dateIn.value, timeIn.value);
+      const buf   = calcEffectiveRangeBuffer(dateIn.value, timeIn.value, base);
       const minP  = roundEuro(base - buf);
       const maxP  = roundEuro(Math.max(base + buf, minP));
 
@@ -12774,7 +12790,7 @@ async function routeKm(fromLat, fromLon){
                 const kmR = Math.max(1, Math.round(km*10)/10);
                 __routeData.toll = { km: kmR, mins };
                 const base = calcRouteBasePrice(kmR, dateIn.value, timeIn.value);
-                const buf  = calcEffectiveRangeBuffer(dateIn.value, timeIn.value);
+                const buf  = calcEffectiveRangeBuffer(dateIn.value, timeIn.value, base);
                 const mn = roundEuro(base-buf), mx = roundEuro(base+buf);
                 console.log(`[TOLL] km=${kmR}, base=${base}, price=${formatPriceLabel(mn, mx)}`);
                 document.getElementById("routeTollDetail").textContent = `📏 ${kmR} km · ~${mins} ${((typeof window.__t==='function' && window.__t('priceMin')) || (lang==="en" ? "min" : "λεπτ."))} · ${formatPriceLabel(mn, mx)}`;
@@ -12788,7 +12804,7 @@ async function routeKm(fromLat, fromLon){
                 const kmR = Math.max(1, Math.round(km*10)/10);
                 __routeData.notoll = { km: kmR, mins };
                 const base = calcRouteBasePrice(kmR, dateIn.value, timeIn.value);
-                const buf  = calcEffectiveRangeBuffer(dateIn.value, timeIn.value);
+                const buf  = calcEffectiveRangeBuffer(dateIn.value, timeIn.value, base);
                 const mn = roundEuro(base-buf), mx = roundEuro(base+buf);
                 console.log(`[NOTOLL] km=${kmR}, base=${base}, price=${formatPriceLabel(mn, mx)}`);
                 document.getElementById("routeNotollDetail").textContent = `📏 ${kmR} km · ~${mins} ${((typeof window.__t==='function' && window.__t('priceMin')) || (lang==="en" ? "min" : "λεπτ."))} · ${formatPriceLabel(mn, mx)}`;

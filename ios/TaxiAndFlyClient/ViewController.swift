@@ -93,6 +93,50 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
     private var speechPrimaryDone = false
     private var speechGreekDone = false
 
+    // Λεξιλόγιο τοποθεσιών Αττικής για το αυτί της Apple (SFSpeechRecognizer.contextualStrings).
+    // Χωρίς αυτό «Πόρτο Ράφτη» γινόταν «πόρτο ράφι», «Γκράβας» «γραβάς», «Titania» «Tania».
+    // Δεν είναι φίλτρο: όταν ο ήχος μοιάζει, προτιμώνται αυτά αντί για τυχαίες λέξεις του λεξικού.
+    // Μαζί με taskHint = .search (σύντομες φράσεις/ονόματα, όχι πρόταση) — ό,τι κάνει και το Maps.
+    private static let speechPlacesGreek: [String] = [
+        "Αεροδρόμιο", "Σπάτα", "Λούτσα", "Αρτέμιδα", "Πόρτο Ράφτη", "Μαρκόπουλο", "Κορωπί", "Παιανία",
+        "Παλλήνη", "Γέρακας", "Πικέρμι", "Ραφήνα", "Νέα Μάκρη", "Μαραθώνας", "Γλυκά Νερά", "Κάντζα",
+        "Βάρη", "Βάρκιζα", "Βούλα", "Βουλιαγμένη", "Γλυφάδα", "Ελληνικό", "Άλιμος", "Παλαιό Φάληρο",
+        "Καλλιθέα", "Νέα Σμύρνη", "Πειραιάς", "Λιμάνι Πειραιά", "Κερατσίνι", "Νίκαια", "Κορυδαλλός",
+        "Αγία Παρασκευή", "Χολαργός", "Παπάγου", "Χαλάνδρι", "Βριλήσσια", "Μελίσσια", "Πεντέλη",
+        "Μαρούσι", "Κηφισιά", "Νέα Ερυθραία", "Εκάλη", "Ψυχικό", "Φιλοθέη", "Νέο Ηράκλειο", "Νέα Ιωνία",
+        "Γαλάτσι", "Κυψέλη", "Πατήσια", "Αμπελόκηποι", "Ζωγράφου", "Καισαριανή", "Βύρωνας", "Παγκράτι",
+        "Ηλιούπολη", "Αργυρούπολη", "Δάφνη", "Κολωνάκι", "Σύνταγμα", "Ομόνοια", "Μοναστηράκι", "Πλάκα",
+        "Ακρόπολη", "Θησείο", "Κουκάκι", "Πετράλωνα", "Εξάρχεια", "Περιστέρι", "Αιγάλεω", "Χαϊδάρι",
+        "Ίλιον", "Πετρούπολη", "Αχαρνές", "Μενίδι", "Σταθμός Λαρίσης", "ΚΤΕΛ Κηφισού", "Λαύριο", "Σούνιο",
+        "Ανάβυσσος", "Σαρωνίδα", "Λαγονήσι", "Κερατέα",
+        "Συγγρού", "Κηφισίας", "Μεσογείων", "Βουλιαγμένης", "Πατησίων", "Αλεξάνδρας", "Βασιλίσσης Σοφίας",
+        "Πειραιώς", "Ποσειδώνος", "Μαραθώνος", "Ερμού", "Σταδίου", "Πανεπιστημίου", "Ακαδημίας",
+        "Hilton", "Divani Caravel", "Grande Bretagne", "King George", "Titania", "Electra", "Intercontinental",
+        "Marriott", "Hyatt", "Radisson", "Novotel", "Wyndham", "Sofitel", "Athenaeum", "Four Seasons Astir",
+        "Royal Olympic", "Crowne Plaza", "Holiday Inn", "Stanley", "President", "NJV Athens Plaza"
+    ]
+    private static let speechPlacesLatin: [String] = [
+        "Airport", "Spata", "Loutsa", "Artemida", "Porto Rafti", "Markopoulo", "Koropi", "Paiania",
+        "Pallini", "Gerakas", "Pikermi", "Rafina", "Nea Makri", "Marathon", "Glyka Nera",
+        "Vari", "Varkiza", "Voula", "Vouliagmeni", "Glyfada", "Elliniko", "Alimos", "Paleo Faliro",
+        "Kallithea", "Nea Smyrni", "Piraeus", "Piraeus port", "Keratsini", "Nikaia", "Korydallos",
+        "Agia Paraskevi", "Cholargos", "Papagou", "Chalandri", "Halandri", "Vrilissia", "Melissia", "Penteli",
+        "Marousi", "Kifisia", "Nea Erythraia", "Ekali", "Psychiko", "Filothei", "Nea Ionia",
+        "Galatsi", "Kypseli", "Patisia", "Ambelokipi", "Zografou", "Kaisariani", "Vyronas", "Pangrati",
+        "Ilioupoli", "Argyroupoli", "Kolonaki", "Syntagma", "Omonia", "Monastiraki", "Plaka",
+        "Acropolis", "Thissio", "Koukaki", "Petralona", "Exarchia", "Peristeri", "Egaleo", "Chaidari",
+        "Ilion", "Petroupoli", "Acharnes", "Larissa station", "Kifissos bus station", "Lavrio", "Sounio",
+        "Anavyssos", "Saronida", "Lagonisi", "Keratea",
+        "Syngrou", "Kifisias", "Mesogeion", "Vouliagmenis", "Patision", "Alexandras", "Vasilissis Sofias",
+        "Pireos", "Poseidonos", "Marathonos", "Ermou", "Stadiou", "Panepistimiou", "Akadimias",
+        "Hilton", "Divani Caravel", "Grande Bretagne", "King George", "Titania", "Electra", "Intercontinental",
+        "Marriott", "Hyatt", "Radisson", "Novotel", "Wyndham", "Sofitel", "Athenaeum", "Four Seasons Astir",
+        "Royal Olympic", "Crowne Plaza", "Holiday Inn", "Stanley", "President", "NJV Athens Plaza"
+    ]
+    private func speechPlacesHint(for locale: Locale) -> [String] {
+        return localeLanguage(locale) == "el" ? Self.speechPlacesGreek : Self.speechPlacesLatin
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -640,9 +684,14 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
 
         let request = SFSpeechAudioBufferRecognitionRequest()
         request.shouldReportPartialResults = true
+        // Αναζήτηση τοποθεσίας, όχι υπαγόρευση πρότασης + λεξιλόγιο Αττικής (βλ. speechPlacesGreek).
+        request.taskHint = .search
+        request.contextualStrings = speechPlacesHint(for: recognizer.locale)
         speechRequest = request
         let greekRequest: SFSpeechAudioBufferRecognitionRequest? = greekRecognizer == nil ? nil : SFSpeechAudioBufferRecognitionRequest()
         greekRequest?.shouldReportPartialResults = true
+        greekRequest?.taskHint = .search
+        greekRequest?.contextualStrings = Self.speechPlacesGreek
         speechGreekRequest = greekRequest
 
         let input = speechEngine.inputNode
