@@ -7375,6 +7375,38 @@ listEl.appendChild(div);
           if (_ovApply) _listenBookingOverlayApply(bookingId, data);
         } catch (e) {}
 
+        // ✅ FIX 21/9 (μόνο Αεροδρόμιο→Αθήνα): η κάρτα ακολουθεί ΠΑΝΤΑ το στάδιο του οδηγού
+        // όπως το λέει ο server, σε ΚΑΘΕ δεδομένο — όχι μόνο τη στιγμή της αλλαγής. Αν χαθεί
+        // σήμα ή κοιμηθεί η εφαρμογή, στο πρώτο δεδομένο πάει στη σωστή οθόνη.
+        // Έφτασα → «στις αφίξεις» · ΝΑΙ/Προς Προορισμό → «η διαδρομή ξεκίνησε». Ποτέ πίσω στους αριθμούς.
+        try{
+          if(isAirportAthensBookingClient(data)){
+            const _stSync = String(data.status || '').trim().toLowerCase();
+            const _drvArrivedSync = (data.driverWaiting === true || _stSync === 'arrived');
+            const _tripStartedSync = (_stSync === 'arrived' && data.driverWaiting !== true) ||
+                                     data.tripStarted === true || data.driverStartedTrip === true;
+            const _stateSyncChanged = mutateFolderItemById(bookingId, function(item){
+              if(_drvArrivedSync && item.airportDriverArrived !== true){
+                item.airportDriverArrived = true;
+                item.airportDriverArrivedAt = data.driverWaitingAt || Date.now();
+              }
+              if(data.driverWaiting === true){
+                if(item.driverWaiting !== true) item.driverWaiting = true;
+                if(item.airportTripStarted === true || item.tripStarted === true){
+                  item.airportTripStarted = false;
+                  item.tripStarted = false;
+                }
+              }else if(_tripStartedSync && item.airportTripStarted !== true){
+                item.airportTripStarted = true;
+                item.tripStarted = true;
+                item.tripStartedAt = Date.now();
+                item.driverWaiting = false;
+              }
+            }, data);
+            if(_stateSyncChanged) renderFolder();
+          }
+        }catch(_airportStateSyncErr){}
+
         // ✅ Οδηγός έφτασε και περιμένει τον πελάτη
         if(data.driverWaiting === true && data.clientComingDown !== true){
           window._dwPhone = String(data.driverPhone || data.driver_phone || '');
