@@ -8705,7 +8705,7 @@ currentBookingStatus = "new";
           <div class="yellowLine">${tp().wait}</div>
           ${hintBlock}
           ${idLine}
-          <button class="main" onclick="goBack()">${tp().back}</button>
+          <button class="main" onclick="goBack()">${tp().cancelBtn}</button>
         `;
         return;
       }
@@ -8716,7 +8716,7 @@ currentBookingStatus = "new";
           ${base}
           <div class="yellowLine">${tp().interested} <span class="loading">—</span></div><br>
           ${idLine}
-          <button class="main" onclick="goBack()">${tp().back}</button>
+          <button class="main" onclick="goBack()">${tp().cancelBtn}</button>
         `;
         return;
       }
@@ -8881,7 +8881,7 @@ currentBookingStatus = "new";
         ${base}
         ${idLine}
         <small>Status: ${escapeHtml(status)}</small><br><br>
-        <button class="main" onclick="goBack()">${tp().back}</button>
+        <button class="main" onclick="goBack()">${tp().cancelBtn}</button>
       `;
     }
 
@@ -10456,7 +10456,7 @@ currentBookingStatus = "new";
           ${formatBookingSummary(booking)}
           <div class="yellowLine">${tp().wait} <span class="loading">—</span></div><br>
           <small>id: ${escapeHtml(bookingId)}</small><br><br>
-          <button class="main" onclick="goBack()">${tp().back}</button>
+          <button class="main" onclick="goBack()">${tp().cancelBtn}</button>
         `;
 
         // Start listening to this booking again
@@ -10954,7 +10954,7 @@ currentBookingStatus = "new";
           <b>${tp().done}</b><br><br>
           <div class="yellowLine">${tp().wait} <span class="loading">—</span></div><br>
           <small>id: ${bookingId}</small><br><br>
-          <button class="main" onclick="goBack()">${tp().back}</button>
+          <button class="main" onclick="goBack()">${tp().cancelBtn}</button>
         `;
 
         // ✅ Ξεκίνα να ακούς την κράτηση ξανά
@@ -11847,7 +11847,7 @@ currentBookingStatus = "new";
           ${formatBookingSummary(data)}
           <div class="yellowLine">${tp().wait} <span class="loading">—</span></div><br>
           <small>id: ${escapeHtml(bookingId)}</small><br><br>
-          <button class="main" onclick="goBack()">${tp().back}</button>
+          <button class="main" onclick="goBack()">${tp().cancelBtn}</button>
         `;
 
         try{
