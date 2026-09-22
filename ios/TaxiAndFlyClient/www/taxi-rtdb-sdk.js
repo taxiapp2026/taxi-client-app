@@ -364,6 +364,44 @@ async function getSocket() {
 
 const listeners = new Map();
 
+// ✅ FIX 22/9: Μετά από πτώση σήματος ξαναδιάβασε ΚΑΘΕ path και ειδοποίησε τους listeners.
+// Ο socket, όταν ξανασυνδέεται, έκανε μόνο "rtdb:subscribe" — δεν ζητούσε την τρέχουσα τιμή.
+// Έτσι ό,τι άλλαζε όσο η συσκευή ήταν εκτός δικτύου (π.χ. ο οδηγός πάτησε «Έφτασα»)
+// χανόταν οριστικά, και η οθόνη ξεκολλούσε μόνο αν ο πελάτης έκλεινε κι άνοιγε την εφαρμογή.
+let _resyncBusy = false;
+async function resyncAllListeners() {
+  if (_resyncBusy) return;
+  _resyncBusy = true;
+  try {
+    for (const subPath of Array.from(listeners.keys())) {
+      const cbs = listeners.get(subPath);
+      if (!cbs || cbs.size === 0) continue;
+      try {
+        const fresh = await apiGet(subPath);
+        const snap = new DataSnapshot(fresh, new Ref(null, subPath));
+        Array.from(cbs).forEach((cb) => { try { cb(snap); } catch (e) { console.error(e); } });
+      } catch (e) {
+        if (subPath.indexOf("/chat") < 0) console.error("resync refresh failed", subPath, e);
+      }
+    }
+  } finally {
+    _resyncBusy = false;
+  }
+}
+
+if (typeof window !== "undefined") {
+  // Επιστροφή δικτύου ή επιστροφή στην εφαρμογή: ξαναδιάβασε αμέσως, χωρίς να
+  // περιμένεις τον socket να καταλάβει ότι είχε πέσει.
+  try {
+    window.addEventListener("online", () => { resyncAllListeners(); });
+    if (typeof document !== "undefined") {
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) resyncAllListeners();
+      });
+    }
+  } catch (e) {}
+}
+
 async function ensureSocketListener(path) {
   const socket = await getSocket();
   if (!socket.__taxiRtdbBound) {
@@ -372,6 +410,7 @@ async function ensureSocketListener(path) {
       for (const subPath of listeners.keys()) {
         try { socket.emit("rtdb:subscribe", { path: subPath }); } catch (e) { console.error(e); }
       }
+      resyncAllListeners();
     });
     socket.on("rtdb:change", async ({ path: chPath }) => {
       for (const [subPath, cbs] of Array.from(listeners.entries())) {
