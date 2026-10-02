@@ -463,9 +463,24 @@
           : detectLang();
       apply(lang);
 
-      var ios = "https://apps.apple.com/app/id6804729201";
+      // utm_* από τη διαφήμιση περνάνε στο κατάστημα, για να μετράνε τα κατεβάσματα ανά πηγή.
+      function clean(v) { return String(v || "").replace(/[^A-Za-z0-9_.-]/g, "").slice(0, 40); }
+      var utmSource = clean(q.get("utm_source"));
+      var utmMedium = clean(q.get("utm_medium"));
+      var utmCampaign = clean(q.get("utm_campaign"));
+      var ref = [];
+      if (utmSource) ref.push("utm_source=" + utmSource);
+      if (utmMedium) ref.push("utm_medium=" + utmMedium);
+      if (utmCampaign) ref.push("utm_campaign=" + utmCampaign);
+      if (qr) ref.push("qrId=" + qr);
+
+      // pt = provider token από App Store Connect (Analytics → Campaigns). Κενό = απλό link.
+      var APPLE_PT = "";
+      var ct = clean([utmSource, utmCampaign].filter(Boolean).join("-"));
+      var ios = "https://apps.apple.com/app/id6804729201" +
+        (APPLE_PT && ct ? "?pt=" + APPLE_PT + "&ct=" + ct + "&mt=8" : "");
       var android = "https://play.google.com/store/apps/details?id=com.taxiandfly.client" +
-        (qr ? "&referrer=" + encodeURIComponent("qrId=" + qr) : "");
+        (ref.length ? "&referrer=" + encodeURIComponent(ref.join("&")) : "");
       var ua = navigator.userAgent || "";
       var isIOS = /iPhone|iPad|iPod/i.test(ua);
       var isAndroid = /Android/i.test(ua);
@@ -475,6 +490,10 @@
       if (androidBtn) androidBtn.href = android;
       if (isIOS && androidBtn) androidBtn.style.opacity = "0.55";
       if (isAndroid && iosBtn) iosBtn.style.opacity = "0.55";
+
+      // Από διαφήμιση (utm_source) σε κινητό: κατευθείαν στο κατάστημα, χωρίς δεύτερο πάτημα.
+      // Υπολογιστής και σκέτο get.html (Maps, QR) βλέπουν τη σελίδα όπως πριν.
+      if (utmSource && (isIOS || isAndroid)) location.replace(isIOS ? ios : android);
     })();
   </script>
 </body>
