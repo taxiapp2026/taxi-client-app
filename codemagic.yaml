@@ -19,7 +19,7 @@ workflows:
         XCODE_PROJECT: ios/TaxiAndFlyClient.xcodeproj
         XCODE_SCHEME: TaxiAndFlyClient
         APP_STORE_APPLE_ID: 6804729201
-      xcode: latest
+      xcode: 26.6
     scripts:
       - name: Set up keychain
         script: |
