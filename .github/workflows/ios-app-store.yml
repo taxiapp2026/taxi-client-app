@@ -1,0 +1,94 @@
+name: iOS App Store
+
+# Same steps as codemagic.yaml (ios-app-store), on a GitHub-hosted Mac.
+# Runs when the ios-appstore branch is pushed, or by hand from the Actions tab.
+on:
+  push:
+    branches: [ios-appstore]
+  workflow_dispatch:
+
+concurrency:
+  group: ios-app-store
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: macos-26
+    timeout-minutes: 60
+    env:
+      BUNDLE_ID: com.taxiandfly.client
+      XCODE_PROJECT: ios/TaxiAndFlyClient.xcodeproj
+      XCODE_SCHEME: TaxiAndFlyClient
+      APP_STORE_APPLE_ID: "6804729201"
+      APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
+      APP_STORE_CONNECT_KEY_IDENTIFIER: ${{ secrets.APP_STORE_CONNECT_KEY_IDENTIFIER }}
+      APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+      CERTIFICATE_PRIVATE_KEY: ${{ secrets.CERTIFICATE_PRIVATE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Xcode 26.6 (the Xcode that built 1.0.34)
+        run: |
+          ls -d /Applications/Xcode*.app
+          if [ -d /Applications/Xcode_26.6.app ]; then
+            sudo xcode-select -s /Applications/Xcode_26.6.app
+          else
+            sudo xcode-select -s "$(ls -d /Applications/Xcode_26*.app | sort -V | tail -1)"
+          fi
+          xcodebuild -version
+
+      - name: Install Codemagic CLI tools
+        run: |
+          pipx install codemagic-cli-tools
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Set up keychain
+        run: keychain initialize
+
+      - name: Fetch signing files
+        run: |
+          app-store-connect fetch-signing-files "$BUNDLE_ID" \
+            --type IOS_APP_STORE \
+            --create
+
+      - name: Add certificates to keychain
+        run: keychain add-certificates
+
+      - name: Set up code signing on Xcode project
+        run: xcode-project use-profiles
+
+      - name: Increment build number
+        run: |
+          cd ios
+          TF=$(app-store-connect get-latest-testflight-build-number "$APP_STORE_APPLE_ID" --platform IOS || true)
+          AS=$(app-store-connect get-latest-app-store-build-number "$APP_STORE_APPLE_ID" --platform IOS || true)
+          LATEST=0
+          for n in "$TF" "$AS" 32; do
+            case "$n" in
+              ''|*[!0-9]*) ;;
+              *) if [ "$n" -gt "$LATEST" ]; then LATEST="$n"; fi ;;
+            esac
+          done
+          NEW=$((LATEST + 1))
+          agvtool new-version -all "$NEW"
+          echo "iOS build number -> $NEW"
+
+      - name: Build IPA
+        run: |
+          xcode-project build-ipa \
+            --project "$GITHUB_WORKSPACE/$XCODE_PROJECT" \
+            --scheme "$XCODE_SCHEME"
+
+      - name: Upload to App Store Connect
+        run: app-store-connect publish --path "build/ios/ipa/*.ipa"
+
+      - name: Keep the IPA and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-build
+          path: |
+            build/ios/ipa/*.ipa
+            /tmp/xcodebuild_logs/*.log
+          if-no-files-found: ignore
+          retention-days: 3
