@@ -8226,12 +8226,33 @@ function isHomeVisible(){
       }
     }
 
-    // Immediate cancel when the client leaves the screen/app before closing the booking
+    // ✅ 9 Οκτ 2026: ΚΑΜΙΑ αυτόματη ακύρωση όταν ο πελάτης βγαίνει από την εφαρμογή (κλείδωμα οθόνης,
+    // άλλη εφαρμογή, κλείσιμο). Η κράτηση συνεχίζει στους οδηγούς· ακύρωση ΜΟΝΟ με «❌ Ακύρωση» / Πίσω.
+    // Στην επιστροφή ο watchdog ξεκινά από την αρχή (ο χρόνος έξω δεν μετράει ως «κόλλημα»).
     document.addEventListener("visibilitychange", () => {
-      if(document.visibilityState === "hidden") cancelIfBookingOpen("visibility_hidden");
+      if(document.visibilityState === "visible") lastBookingUpdateAt = Date.now();
     });
-    window.addEventListener("pagehide", () => cancelIfBookingOpen("pagehide"));
-    window.addEventListener("beforeunload", () => cancelIfBookingOpen("beforeunload"));
+
+    // ✅ 9 Οκτ 2026: αν η εφαρμογή ξανανοίξει από την αρχή ενώ η κράτηση ψάχνει ακόμα οδηγό / έχει προσφορά,
+    // ξαναδείξε την κράτηση (το resumeLastBookingIfAny τρέχει μόνο μέσα στο setLang, όχι στο άνοιγμα).
+    const RESUME_ON_BOOT_STATUSES = new Set(["new","pending","searching","dispatching","assigned","selected","driver_selected","step1","dispatch_sent","interested","offered"]);
+    (async function resumeOpenBookingOnBoot(){
+      try{
+        const lastId = loadLastBookingId();
+        if(!lastId) return;
+        await ensureAuth();
+        if(currentBookingId || window.currentBookingId) return;
+        const snap = await get(ref(db, `bookings/${lastId}`));
+        if(!snap.exists()) return;
+        const b = snap.val() || {};
+        if(b.clientLeft === true) return;
+        const st = readStatus(b);
+        if(!RESUME_ON_BOOT_STATUSES.has(st)) return;
+        if(currentBookingId || window.currentBookingId) return;
+        currentBookingStatus = st;
+        listenBooking(lastId);
+      }catch(e){}
+    })();
 
     function readStatus(b){ return String((b && b.status) || "new").trim().toLowerCase(); }
     function readHint(b){ return String((b && b.clientHint) || "").trim().toLowerCase(); }
@@ -9129,8 +9150,19 @@ currentBookingStatus = "new";
 // (re)start watchdog for this booking
       lastBookingUpdateAt = Date.now();
       if (watchdogTimer) { try{ clearInterval(watchdogTimer); }catch(e){} watchdogTimer = null; }
+      let _watchdogLastTickAt = Date.now();
       watchdogTimer = setInterval(async () => {
         try{
+          // ✅ 9 Οκτ 2026: ο χρόνος έξω από την εφαρμογή ΔΕΝ μετράει ως «κόλλημα». Στο παρασκήνιο το iPhone
+          // παγώνει την εφαρμογή → στην επιστροφή το dt θα ήταν τεράστιο και θα ακύρωνε την κράτηση.
+          const _wdNow = Date.now();
+          const _wdGap = _wdNow - _watchdogLastTickAt;
+          _watchdogLastTickAt = _wdNow;
+          if(document.hidden || _wdGap > WATCHDOG_INTERVAL_MS * 3){
+            lastBookingUpdateAt = _wdNow;
+            return;
+          }
+
           if(!currentBookingId) return;
 
           const st = String(currentBookingStatus||"").trim().toLowerCase();
