@@ -54,4 +54,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             completionHandler([.alert, .sound, .badge])
         }
     }
+
+    // ✅ 14/10 — Πάτημα σε ειδοποίηση chat → ανοίγει κατευθείαν η συνομιλία της κράτησης.
+    // Ο server βάζει type/bookingId στη ρίζα του APNs payload. Όλες οι άλλες ειδοποιήσεις: όπως πριν
+    // (απλώς ανοίγει η εφαρμογή).
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
+        let info = response.notification.request.content.userInfo
+        let type = (info["type"] as? String) ?? ""
+        let bookingId = (info["bookingId"] as? String) ?? ""
+        if type == "chat", !bookingId.isEmpty,
+           response.actionIdentifier == UNNotificationDefaultActionIdentifier {
+            DispatchQueue.main.async { [weak self] in
+                (self?.window?.rootViewController as? ViewController)?.openChatFromNotification(bookingId)
+            }
+        }
+        completionHandler()
+    }
 }

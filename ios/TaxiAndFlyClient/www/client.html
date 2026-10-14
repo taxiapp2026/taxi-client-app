@@ -14469,6 +14469,13 @@ async function routeKm(fromLat, fromLon){
       clientCurrentChatId = bookingId;
       _clientReadDriverTs = 0; // ✅ Reset για fresh start
       const overlay = document.getElementById('clientChatOverlay');
+      // 14/10: η οθόνη επιλογής διαδρομής έχει το μέγιστο z-index → από ειδοποίηση η συνομιλία άνοιγε
+      // ΑΠΟ ΚΑΤΩ της και δεν φαινόταν. Μόνο τότε ανεβαίνει από πάνω· αλλιώς όπως πριν.
+      try {
+        const rcs = document.getElementById('routeChoiceScreen');
+        const routeVisible = rcs && window.getComputedStyle(rcs).display !== 'none';
+        overlay.style.zIndex = routeVisible ? '2147483647' : '';
+      } catch(e) {}
       overlay.classList.add('open');
       document.body.style.overflow = 'hidden';
       document.getElementById('clientChatMessages').innerHTML = '';
@@ -14831,7 +14838,9 @@ async function routeKm(fromLat, fromLon){
               greekReady,
               new Promise(function(r){ setTimeout(function(){ r(text); }, 4000); })
             ]);
-            ClientBridge.sendChatNotification(driverToken, '💬 Μήνυμα από Πελάτη', greekText);
+            // 14/10: με την κράτηση → ο οδηγός πατάει την ειδοποίηση και ανοίγει αυτή η συνομιλία
+            if (ClientBridge.sendChatNotificationFor) ClientBridge.sendChatNotificationFor(driverToken, '💬 Μήνυμα από Πελάτη', greekText, String(bookingId));
+            else ClientBridge.sendChatNotification(driverToken, '💬 Μήνυμα από Πελάτη', greekText);
             console.log('CHAT_DEBUG: sendChatNotification called OK');
           } else {
             console.log('CHAT_DEBUG: SKIP notification - driverToken=' + !!driverToken + ' ClientBridge=' + !!window.ClientBridge);

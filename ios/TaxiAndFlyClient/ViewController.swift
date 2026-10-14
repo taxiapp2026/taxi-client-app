@@ -144,6 +144,34 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         loadClient()
     }
 
+    // ✅ 14/10 — Πάτημα σε ειδοποίηση chat → ανοίγει κατευθείαν η συνομιλία της κράτησης (όπως στο Android).
+    // Αν η σελίδα δεν έχει φορτώσει ακόμα (κρύα εκκίνηση από την ειδοποίηση), περιμένει το didFinish.
+    private var pendingChatBookingId: String?
+    private var pageLoaded = false
+
+    func openChatFromNotification(_ bookingId: String) {
+        let id = bookingId.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !id.isEmpty else { return }
+        pendingChatBookingId = id
+        flushPendingChat()
+    }
+
+    private func flushPendingChat() {
+        guard pageLoaded, webView != nil, let id = pendingChatBookingId else { return }
+        pendingChatBookingId = nil
+        guard let data = try? JSONSerialization.data(withJSONObject: [id]),
+              let arr = String(data: data, encoding: .utf8) else { return }
+        let js = "(function(id){var n=0;(function t(){try{if(typeof window.openClientChat==='function'&&window._clientDb){window.openClientChat(id);return;}}catch(e){}if(n++<40)setTimeout(t,250);})();})(\(arr)[0]);"
+        DispatchQueue.main.async { [weak self] in
+            self?.webView.evaluateJavaScript(js, completionHandler: nil)
+        }
+    }
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        pageLoaded = true
+        flushPendingChat()
+    }
+
     override var prefersStatusBarHidden: Bool { true }
 
     private func setupWebView() {
@@ -228,6 +256,8 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
             VpsPush.watchBooking(str(args, 0), webView: webView)
         case "sendChatNotification":
             VpsPush.sendChat(token: str(args, 0), title: str(args, 1), body: str(args, 2))
+        case "sendChatNotificationFor":
+            VpsPush.sendChat(token: str(args, 0), title: str(args, 1), body: str(args, 2), bookingId: str(args, 3))
         case "getFcmToken":
             VpsPush.webView = webView
             VpsPush.deliverPushTokenToJs()
@@ -894,6 +924,7 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         getApiUrl: function(){ return '\(AppConfig.apiUrl)'; },
         getFcmToken: function(){ call('getFcmToken',[]); return null; },
         sendChatNotification: function(token,title,body){ call('sendChatNotification',[token,title,body]); },
+        sendChatNotificationFor: function(token,title,body,bookingId){ call('sendChatNotificationFor',[token,title,body,bookingId]); },
         isAuthReady: function(){ return true; },
         log: function(m){ call('log',[m]); },
         startSpeechToText: function(lang){ call('startSpeechToText',[lang]); },
