@@ -5,6 +5,8 @@ import MapKit
 import CoreLocation
 import Speech
 import AVFoundation
+import CryptoKit
+import Security
 
 final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandler {
     private var webView: WKWebView!
@@ -923,6 +925,7 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         cancelClientUnconfirmedCheck: function(){ call('cancelClientUnconfirmedCheck',[]); },
         getApiUrl: function(){ return '\(AppConfig.apiUrl)'; },
         getFcmToken: function(){ call('getFcmToken',[]); return null; },
+        getDeviceInfo: function(){ return \(DeviceIdentity.jsLiteral); },
         sendChatNotification: function(token,title,body){ call('sendChatNotification',[token,title,body]); },
         sendChatNotificationFor: function(token,title,body,bookingId){ call('sendChatNotificationFor',[token,title,body,bookingId]); },
         isAuthReady: function(){ return true; },
@@ -941,6 +944,72 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
       window.AndroidBridge = b;
     })();
     """
+}
+
+/// Σταθερός κωδικός κινητού (κατά απάτης/μπλοκ), ίδια μορφή με το Android `getDeviceInfo()`:
+/// UUID στο Keychain (μένει μετά από απεγκατάσταση) → SHA-256 → 16 hex, + μοντέλο.
+private enum DeviceIdentity {
+    private static let service = "com.taxiandfly.client.deviceid"
+    private static let account = "device"
+
+    /// {"id","model"} ή "" αν δεν βγει κωδικός.
+    static let json: String = {
+        guard let raw = DeviceIdentity.loadOrCreate(), !raw.isEmpty else { return "" }
+        let digest = SHA256.hash(data: Data("taf-client|\(raw)".utf8))
+        let id = String(digest.map { String(format: "%02x", $0) }.joined().prefix(16))
+        let obj: [String: String] = ["id": id, "model": "Apple \(DeviceIdentity.machine())"]
+        guard let data = try? JSONSerialization.data(withJSONObject: obj),
+              let s = String(data: data, encoding: .utf8) else { return "" }
+        return s
+    }()
+
+    /// Το `json` ως JS string literal για το bridge script.
+    static var jsLiteral: String {
+        guard let data = try? JSONSerialization.data(withJSONObject: [DeviceIdentity.json]),
+              let arr = String(data: data, encoding: .utf8) else { return "''" }
+        return String(arr.dropFirst().dropLast())
+    }
+
+    private static func machine() -> String {
+        var info = utsname()
+        uname(&info)
+        let bytes = Mirror(reflecting: info.machine).children
+            .compactMap { $0.value as? Int8 }
+            .filter { $0 != 0 }
+            .map { UInt8(bitPattern: $0) }
+        return String(decoding: bytes, as: UTF8.self)
+    }
+
+    private static func read() -> String? {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: service,
+            kSecAttrAccount as String: account,
+            kSecReturnData as String: true,
+            kSecMatchLimit as String: kSecMatchLimitOne,
+        ]
+        var out: CFTypeRef?
+        guard SecItemCopyMatching(query as CFDictionary, &out) == errSecSuccess,
+              let d = out as? Data, let s = String(data: d, encoding: .utf8), !s.isEmpty else { return nil }
+        return s
+    }
+
+    private static func loadOrCreate() -> String? {
+        if let s = DeviceIdentity.read() { return s }
+        let fresh = UUID().uuidString
+        let add: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: service,
+            kSecAttrAccount as String: account,
+            kSecValueData as String: Data(fresh.utf8),
+            kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly,
+        ]
+        let st = SecItemAdd(add as CFDictionary, nil)
+        if st == errSecSuccess { return fresh }
+        if st == errSecDuplicateItem, let s = DeviceIdentity.read() { return s }
+        // Keychain μη διαθέσιμο → χωρίς κωδικό (μπλοκ μόνο ανά τηλέφωνο, όπως πριν).
+        return nil
+    }
 }
 
 private enum UNCenter {

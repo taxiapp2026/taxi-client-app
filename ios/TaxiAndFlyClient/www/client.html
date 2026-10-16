@@ -11895,6 +11895,12 @@ currentBookingStatus = "new";
         return;
       }
 
+      // Κρυφός κωδικός κινητού → ο server μπλοκάρει και ανά κινητό, όχι μόνο ανά τηλέφωνο.
+      try{
+        const _dev = (typeof window.__taxiDeviceInfo === "function") ? window.__taxiDeviceInfo() : null;
+        if(_dev){ data.clientDeviceId = _dev.id; data.clientDeviceModel = _dev.model || ""; }
+      }catch(e){}
+
       try{
         const apiBase = taxiApiBase();
         const created = await createBookingOnServer(apiBase, data);
@@ -13105,6 +13111,47 @@ async function routeKm(fromLat, fromLon){
         var KEY = "clientTermsAccepted_v1";
         var ACCEPTANCE_ID_KEY = "clientTermsAcceptanceId_v1";
 
+        // Σταθερός κωδικός κινητού (ClientBridge.getDeviceInfo: Android ANDROID_ID / iPhone Keychain) — κρυφά,
+        // μόνο για μπλοκ φάρσας. null σε παλιό bridge → τίποτα δεν αλλάζει.
+        window.__taxiDeviceInfo = window.__taxiDeviceInfo || function(){
+          try {
+            if (window.__taxiDevCache !== undefined) return window.__taxiDevCache;
+            var b = window.ClientBridge;
+            if (!b || typeof b.getDeviceInfo !== 'function') return null;
+            var raw = b.getDeviceInfo();
+            var j = raw ? JSON.parse(raw) : null;
+            var id = (j && /^[0-9a-f]{16}$/.test(String(j.id || ''))) ? String(j.id) : '';
+            window.__taxiDevCache = id
+              ? { id: id, code: id.slice(0, 4).toUpperCase(), model: String(j.model || '').slice(0, 60) }
+              : null;
+            return window.__taxiDevCache;
+          } catch(e) { return null; }
+        };
+        function deviceFields(){
+          var d = window.__taxiDeviceInfo();
+          return d ? { deviceId: d.id, deviceCode: d.code, deviceModel: d.model || null } : null;
+        }
+        // Παλιός πελάτης χωρίς κωδικό κινητού → προσθήκη μία φορά, μόνο αν η εγγραφή υπάρχει.
+        function ensureDeviceOnRecord(acceptanceId, attempt){
+          attempt = attempt || 0;
+          try {
+            var dev = deviceFields();
+            if(!dev || !acceptanceId) return;
+            var db  = window._clientDb;
+            var fns = window._clientDbFns || {};
+            if(!db || !fns.get || !fns.update || !fns.ref){
+              if(attempt < 40) setTimeout(function(){ ensureDeviceOnRecord(acceptanceId, attempt+1); }, 500);
+              return;
+            }
+            fns.get(fns.ref(db, 'apodoxes_pelaton/' + acceptanceId)).then(function(snap){
+              if(!snap || !snap.exists || !snap.exists()) return;
+              var cur = snap.val() || {};
+              if(cur.deviceId === dev.deviceId) return;
+              return fns.update(fns.ref(db, 'apodoxes_pelaton/' + acceptanceId), dev);
+            }).catch(function(err){ console.error('terms device update error', err); });
+          } catch(e){}
+        }
+
         function lockScroll(lock){
           try{
             document.documentElement.style.overflow = lock ? "hidden" : "";
@@ -13122,7 +13169,7 @@ async function routeKm(fromLat, fromLon){
           var anon = '';
           try { anon = String(window.__taxiAuthToken || localStorage.getItem('taxiAnonUid') || '').trim(); } catch(e) {}
           var label = anon ? ('Client ' + anon.slice(0, 16)) : 'Client (fresh install)';
-          return {
+          var payload = {
             fullName: label, name: label, surname: null,
             phone: anon || null,
             date: dateStr,
@@ -13134,6 +13181,9 @@ async function routeKm(fromLat, fromLon){
             lang: lang || "el",
             platform: "client-web"
           };
+          var dev = deviceFields();
+          if (dev) { payload.deviceId = dev.deviceId; payload.deviceCode = dev.deviceCode; payload.deviceModel = dev.deviceModel; }
+          return payload;
         }
 
         async function pushTermsDirect(data){
@@ -13189,6 +13239,7 @@ async function routeKm(fromLat, fromLon){
             if(existingId){
               fns.get(fns.ref(db, 'apodoxes_pelaton/' + existingId)).then(function(snap){
                 if(snap && snap.exists && snap.exists()){
+                  ensureDeviceOnRecord(existingId);
                   watchNameFieldsForTerms(existingId);
                   return;
                 }
@@ -13365,6 +13416,7 @@ async function routeKm(fromLat, fromLon){
               var existingId = localStorage.getItem(ACCEPTANCE_ID_KEY);
               if(existingId){
                 setTimeout(function(){ watchNameFieldsForTerms(existingId); }, 800);
+                setTimeout(function(){ ensureDeviceOnRecord(existingId); }, 1500);
               } else {
                 setTimeout(function(){ saveTermsAcceptanceToFirebase(window.lang || 'el'); }, 1200);
               }
