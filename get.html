@@ -483,6 +483,16 @@
       if (utmCampaign) ref.push("utm_campaign=" + utmCampaign);
       if (qr) ref.push("qrId=" + qr);
 
+      // QR οδηγού: ο server μετράει τη σάρωση (προτεραιότητα στα ραντεβού). Δεν καθυστερεί τη σελίδα.
+      if (qr) {
+        var scanUrl = "https://167-233-49-140.sslip.io/qr/scan?qr=" + encodeURIComponent(qr);
+        try {
+          if (!(navigator.sendBeacon && navigator.sendBeacon(scanUrl))) {
+            fetch(scanUrl, { method: "POST", mode: "no-cors", keepalive: true }).catch(function () {});
+          }
+        } catch (e) {}
+      }
+
       // pt = provider token από App Store Connect (Analytics → Campaigns). Κενό = απλό link.
       var APPLE_PT = "";
       var ct = clean([utmSource, utmCampaign].filter(Boolean).join("-"));
