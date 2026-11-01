@@ -2299,6 +2299,31 @@
         .airport-pickup-photo svg{width:100%;height:100%;display:block;shape-rendering:geometricPrecision;text-rendering:geometricPrecision;}
         .airport-pickup-caption{margin-top:4px;font-size:9.5px;line-height:1.08;color:#06140b;font-weight:900;text-align:center;}
         .airport-pickup-num{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:#00b94d;color:#fff;font-size:10px;font-weight:900;margin-right:2px;vertical-align:middle;}
+
+        /* ✅ 1/11 — «Μαζί σε μία παρέα»: η κάρτα έχει πολύ κείμενο και σε πολλά κινητά δεν χωρά στην οθόνη
+           (POCOPHONE: «Chat παρέας»/«Ακύρωση» κρύβονταν κάτω από το overflow:hidden). ΜΟΝΟ όταν η κάρτα είναι
+           «Μαζί» (.maziScrollable — το βάζει το _autoFitAirportCard αν υπάρχει .folderMaziBox) η οθόνη ΚΥΛΑΕΙ.
+           Η κανονική κράτηση δεν παίρνει ποτέ αυτή την κλάση → μένει ακριβώς όπως ήταν. */
+        #folderBox.athensAirportFullscreen.maziScrollable{
+          display:block !important;
+          overflow-x:hidden !important;
+          overflow-y:auto !important;
+          -webkit-overflow-scrolling:touch;
+          overscroll-behavior:contain;
+          touch-action:pan-y !important;
+        }
+        #folderBox.athensAirportFullscreen.maziScrollable #folderList,
+        #folderBox.athensAirportFullscreen.maziScrollable .folderItem,
+        #folderBox.athensAirportFullscreen.maziScrollable .athensAirportExpandedCard,
+        #folderBox.athensAirportFullscreen.maziScrollable .athensAirportExpandedCard .meta,
+        #folderBox.athensAirportFullscreen.maziScrollable .airport-live-panel,
+        #folderBox.athensAirportFullscreen.maziScrollable .airport-live-screen{
+          flex:0 0 auto !important;
+          min-height:auto !important;
+          height:auto !important;
+          max-height:none !important;
+          overflow:visible !important;
+        }
     </style>
 
     <!-- Leaflet (OpenStreetMap) -->
@@ -2610,7 +2635,7 @@
                 <p style="margin:0 0 10px 0;">• <b>Πληρωμή:</b> βάσει ταξιμέτρου + πρόσθετα αεροδρομίου + διόδια, απευθείας στον οδηγό</p>
                 <p style="margin:0 0 4px 0;"><b>🛬 Αεροδρόμιο → Αθήνα:</b></p>
                 <p style="margin:0 0 4px 0;">• <b>Ακύρωση:</b> οποτεδήποτε πριν την πτήση</p>
-                <p style="margin:0 0 10px 0;">• <b>Τιμή:</b> περιλαμβάνει ραντεβού, πρόσθετα αεροδρομίου και αναμονή έως 1 ώρα για καθυστέρηση πτήσης</p>
+                <p style="margin:0 0 10px 0;">• <b>Τιμή:</b> περιλαμβάνει ραντεβού, πρόσθετα αεροδρομίου και αναμονή έως 30 λεπτά για καθυστέρηση πτήσης</p>
                 <p style="margin:0 0 4px 0;">• <b>Ασφάλεια:</b> το ταξί πρέπει να είναι κίτρινο με εμφανή την ειδική άδεια</p>
 
                 <div style="height:1px; background:rgba(255,255,255,0.18); margin:12px 0;"></div>
@@ -2643,7 +2668,7 @@
                 <p style="margin:0 0 10px 0;">• <b>Payment:</b> taximeter + airport surcharges + tolls, paid directly to the driver</p>
                 <p style="margin:0 0 4px 0;"><b>🛬 Airport → Athens:</b></p>
                 <p style="margin:0 0 4px 0;">• <b>Cancellation:</b> any time before the flight</p>
-                <p style="margin:0 0 10px 0;">• <b>Price:</b> includes appointment, airport surcharges and waiting up to 1 hour for flight delays</p>
+                <p style="margin:0 0 10px 0;">• <b>Price:</b> includes appointment, airport surcharges and waiting up to 30 minutes for flight delays</p>
                 <p style="margin:0 0 4px 0;">• <b>Safety:</b> taxi must be yellow with special licence clearly visible</p>
 
                 <div style="height:1px; background:rgba(255,255,255,0.18); margin:12px 0;"></div>
@@ -3609,6 +3634,253 @@
           color:#fff;
         }
 
+        /* ===== «Μαζί σε μία μίσθωση» (δοκιμαστικό) — κάτω από το «Κάνε κράτηση», η κανονική τιμή μένει όπως είναι ===== */
+        /* Όταν φαίνεται το «Μαζί»: το «Κάνε κράτηση» μεγαλύτερο (κύριο κουμπί). Χωρίς .mazi-on η οθόνη μένει όπως ήταν. */
+        #priceOverlay.mazi-on #priceConfirmBtn{ padding:21px 20px; font-size:18px; }
+        #maziBox{ margin-top:18px; }
+        #maziBtn{
+          width:100%;
+          box-sizing:border-box;
+          height:50px;
+          padding:4px 16px;
+          margin:0;
+          border:2px solid #FFD700;
+          border-radius:14px;
+          background:rgba(255,215,0,.08);
+          color:#FFD700;
+          cursor:pointer;
+          display:flex;
+          flex-direction:column;
+          align-items:center;
+          justify-content:center;
+          gap:1px;
+        }
+        #maziBtnTitle{ font-size:16px; font-weight:800; letter-spacing:.3px; line-height:1.15; }
+        #maziBtnSub{ font-size:12px; font-weight:700; color:rgba(255,255,255,.85); line-height:1.2; }
+        /* Σελίδα ⓘ: πάνω από την οθόνη τιμής (9000), κάτω από τα μηνύματα (customAlert 99999). */
+        #maziInfoOverlay{
+          display:none;
+          position:fixed;
+          inset:0;
+          z-index:9500;
+          background:rgba(0,0,0,.88);
+          padding:max(14px, env(safe-area-inset-top, 0px)) 12px max(14px, env(safe-area-inset-bottom, 0px));
+          box-sizing:border-box;
+          align-items:center;
+          justify-content:center;
+        }
+        #maziInfoCard{
+          width:100%;
+          max-width:520px;
+          max-height:100%;
+          display:flex;
+          flex-direction:column;
+          background:#111;
+          border:1.5px solid rgba(255,215,0,.45);
+          border-radius:18px;
+          overflow:hidden;
+        }
+        #maziInfoScroll{
+          overflow-y:auto;
+          -webkit-overflow-scrolling:touch;
+          padding:18px 18px 8px 18px;
+          color:#eee;
+          font-size:14.5px;
+          line-height:1.5;
+        }
+        #maziInfoScroll h2{ color:#FFD700; font-size:20px; font-weight:900; text-align:center; margin:0 0 2px 0; }
+        #maziInfoScroll .mazi-subtitle{ text-align:center; color:#fff; opacity:.8; font-size:13px; font-weight:700; margin:0 0 10px 0; }
+        #maziInfoScroll h3{ color:#FFD700; font-size:15px; font-weight:800; margin:14px 0 4px 0; }
+        #maziInfoScroll p{ margin:0 0 6px 0; }
+        #maziInfoScroll ul{ margin:0 0 6px 0; padding-left:20px; }
+        #maziInfoScroll .mazi-bag{ display:block; margin:6px auto 2px auto; }
+        #maziInfoFooter{
+          padding:12px 16px 14px 16px;
+          border-top:1px solid rgba(255,255,255,.12);
+          background:#0b0b0b;
+        }
+        #maziAcceptRow{
+          display:flex;
+          gap:10px;
+          align-items:flex-start;
+          color:#fff;
+          font-size:14px;
+          font-weight:700;
+          margin:0 0 12px 0;
+          cursor:pointer;
+        }
+        #maziAcceptChk{ width:22px; height:22px; margin:0; flex-shrink:0; accent-color:#FFD700; }
+        #maziAcceptHint{
+          color:#FFD700;
+          font-size:13px;
+          font-weight:800;
+          margin:0 0 10px 0;
+          padding:8px 10px;
+          border:1px solid rgba(255,215,0,.5);
+          border-radius:10px;
+          background:rgba(255,215,0,.08);
+        }
+        /* Κεντρικό μόνιτορ: κάρτα «Μαζί» στη θέση του «ΑΝΑΜΟΝΗ ΓΙΑ ΚΡΑΤΗΣΗ» (ο τίτλος είναι ο τίτλος του μόνιτορ). */
+        .mazi-cm{
+          display:flex;
+          flex-direction:column;
+          box-sizing:border-box;
+          text-align:start;
+          font-size:17px;
+          line-height:1.4;
+          color:#eee;
+        }
+        .mazi-cm .mazi-fc-status{ color:#fff; font-weight:900; font-size:20px; text-align:center; margin:0 0 10px 0; }
+        .mazi-cm .mazi-fc-line{ opacity:.9; line-height:1.45; margin:0 0 4px 0; }
+        .mazi-cm .mazi-fc-foot{ padding-top:12px; }
+        .mazi-cm .mazi-fc-until{ color:#fff; font-size:16px; font-weight:700; line-height:1.45; }
+        .mazi-cm .mazi-fc-stop{
+          margin-top:12px;
+          width:100%;
+          padding:14px 10px;
+          border:2px solid #e05555;
+          border-radius:13px;
+          background:rgba(224,85,85,.10);
+          color:#ff8a8a;
+          font-weight:800;
+          font-size:18px;
+          cursor:pointer;
+        }
+        /* Οθόνη «Ψάχνουμε συνεπιβάτες»: πάνω από ⓘ (9500) και οθόνη τιμής (9000). */
+        #maziSearchOverlay{
+          display:none;
+          position:fixed;
+          inset:0;
+          z-index:9600;
+          background:rgba(0,0,0,.88);
+          padding:max(14px, env(safe-area-inset-top, 0px)) 12px max(14px, env(safe-area-inset-bottom, 0px));
+          box-sizing:border-box;
+          align-items:center;
+          justify-content:center;
+        }
+        #maziSearchCard{
+          width:100%;
+          max-width:520px;
+          background:#111;
+          border:1.5px solid rgba(255,215,0,.45);
+          border-radius:18px;
+          padding:20px 18px 16px 18px;
+          box-sizing:border-box;
+          color:#eee;
+        }
+        #maziSearchTitle{ color:#FFD700; font-size:20px; font-weight:900; text-align:center; margin:0 0 14px 0; }
+        .mazi-search-row{ display:flex; flex-direction:column; gap:2px; margin:0 0 10px 0; }
+        .mazi-search-row span{ font-size:12px; font-weight:700; color:rgba(255,255,255,.6); letter-spacing:.5px; }
+        .mazi-search-row b{ font-size:16px; color:#fff; }
+        #maziSearchNote, #maziSearchUntil{ font-size:14px; line-height:1.45; margin:8px 0 0 0; }
+        #maziSearchUntil{ color:rgba(255,255,255,.7); }
+        /* «Βρέθηκε κοινή μίσθωση»: γραμμές «τίτλος … τιμή» (οθόνη αναζήτησης + κάρτα μόνιτορ). */
+        #maziSearchTitle.found, .mazi-cm .mazi-fc-status.found{ color:#4ade80; }
+        #maziFoundRows{ margin:2px 0 0 0; padding-top:10px; border-top:1px solid rgba(255,255,255,.12); }
+        .mazi-kv{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin:0 0 7px 0; }
+        .mazi-kv span{ color:rgba(255,255,255,.65); font-size:13px; }
+        .mazi-kv b{ color:#fff; font-size:15px; text-align:end; }
+        .mazi-cm .mazi-kv{ margin:8px 0 0 0; }
+        .mazi-cm .mazi-kv span{ font-size:15px; }
+        .mazi-cm .mazi-kv b{ font-size:17px; }
+        /* «✅ ΣΥΜΦΩΝΩ»: πράσινο, πάνω από το «❌ Ακύρωση». */
+        #maziAgreeBtn, .mazi-cm .mazi-fc-agree{
+          width:100%;
+          border:none;
+          background:#22c55e;
+          color:#05230f;
+          font-weight:900;
+          cursor:pointer;
+        }
+        #maziAgreeBtn{ margin:16px 0 0 0; padding:14px 20px; border-radius:14px; font-size:16px; }
+        .mazi-cm .mazi-fc-agree{ margin-top:12px; padding:15px 10px; border-radius:13px; font-size:19px; }
+        #maziAgreeBtn:disabled, .mazi-cm .mazi-fc-agree:disabled{ opacity:.6; }
+        #maziSearchNote.agreed, .mazi-cm .mazi-fc-agreed{ color:#4ade80; font-weight:800; }
+        .mazi-cm .mazi-fc-agreed{ font-size:16px; line-height:1.4; }
+        /* Ποιοι συμφώνησαν / ποιους περιμένουμε + παράκληση «απαντήστε». */
+        .mazi-member{ color:#fff; font-size:14px; line-height:1.35; margin:0 0 6px 0; }
+        .mazi-member .mazi-wait{ color:rgba(255,255,255,.6); font-size:13px; }
+        .mazi-cm .mazi-member{ font-size:17px; margin:8px 0 0 0; }
+        .mazi-cm .mazi-member .mazi-wait{ font-size:15px; }
+        #maziSearchNote.ask, .mazi-cm .mazi-fc-ask{ color:#FFD700; font-weight:800; }
+        .mazi-cm .mazi-fc-ask{ font-size:16px; line-height:1.4; }
+        /* «🙋 ΑΝΑΛΑΜΒΑΝΩ» (κίτρινο) + ποιος είναι ο υπεύθυνος. */
+        #maziTakeBtn, .mazi-cm .mazi-fc-take{
+          width:100%;
+          border:none;
+          background:#FFD700;
+          color:#111;
+          font-weight:900;
+          cursor:pointer;
+        }
+        #maziTakeBtn{ margin:16px 0 0 0; padding:14px 20px; border-radius:14px; font-size:16px; }
+        .mazi-cm .mazi-fc-take{ margin-top:12px; padding:15px 10px; border-radius:13px; font-size:19px; }
+        #maziTakeBtn:disabled, .mazi-cm .mazi-fc-take:disabled{ opacity:.6; }
+        #maziSearchNote.resp, .mazi-cm .mazi-fc-resp{ color:#fff; font-weight:800; }
+        .mazi-cm .mazi-fc-resp{ font-size:16px; line-height:1.4; }
+        /* 26/10: το κείμενο της εξουσιοδότησης πάνω από το «✅ ΕΞΟΥΣΙΟΔΟΤΩ» + «👥 Chat παρέας». */
+        .mazi-cm .mazi-fc-auth{ margin-top:10px; padding:10px 12px; border:1px solid rgba(255,215,0,.55); border-radius:10px;
+          background:rgba(255,215,0,.07); color:#fff; font-size:15px; line-height:1.45; font-style:italic; }
+        .mazi-cm .mazi-fc-gc, .folderMaziGcBtn{ width:100%; margin-top:10px; padding:12px 10px; border-radius:12px;
+          border:2px solid #FFD700; background:#222; color:#FFD700; font-size:16px; font-weight:800; cursor:pointer; }
+        .folderMaziGcBtn{ border-radius:8px; padding:8px 12px; font-size:13px; font-weight:700; margin-top:8px; }
+        #maziGcOverlay{ position:fixed; inset:0; z-index:2147483646; background:#111; display:none; flex-direction:column; }
+        #maziGcOverlay.open{ display:flex; }
+        #maziGcMessages{ flex:1; overflow-y:auto; padding:12px; display:flex; flex-direction:column; gap:10px; }
+        .mazi-gc-sys{ align-self:stretch; background:rgba(255,215,0,.08); border:1px solid rgba(255,215,0,.45); border-radius:12px;
+          color:#fff; padding:10px 12px; font-size:14px; line-height:1.45; }
+        .mazi-gc-sys b{ color:#FFD700; }
+        /* «⚠️ Ένας συνεπιβάτης ακύρωσε…» */
+        #maziSearchNotice, .mazi-cm .mazi-fc-notice{ color:#fbbf24; font-weight:800; line-height:1.4; }
+        #maziSearchNotice{ font-size:15px; margin:0 0 12px 0; }
+        .mazi-cm .mazi-fc-notice{ font-size:16px; margin:0 0 10px 0; }
+        #maziStopBtn{
+          width:100%;
+          margin:16px 0 8px 0;
+          padding:13px 20px;
+          border:1.5px solid #e05555;
+          border-radius:14px;
+          background:rgba(224,85,85,.10);
+          color:#ff8a8a;
+          font-size:15px;
+          font-weight:800;
+          cursor:pointer;
+        }
+        #maziSearchClose{
+          width:100%;
+          padding:13px 20px;
+          border:1px solid rgba(255,255,255,.15);
+          border-radius:14px;
+          background:rgba(255,255,255,.06);
+          color:rgba(255,255,255,.85);
+          font-size:15px;
+          font-weight:700;
+          cursor:pointer;
+        }
+        #maziInfoBack{
+          width:100%;
+          padding:13px 20px;
+          border:1px solid rgba(255,255,255,.15);
+          border-radius:14px;
+          background:rgba(255,255,255,.06);
+          color:rgba(255,255,255,.85);
+          font-size:15px;
+          font-weight:700;
+          cursor:pointer;
+        }
+        #maziInfoLink{
+          display:block;
+          margin:6px auto 24px auto;
+          padding:4px 10px;
+          background:none;
+          border:none;
+          color:rgba(255,255,255,.75);
+          font-size:13px;
+          font-weight:700;
+          text-decoration:underline;
+          cursor:pointer;
+        }
+
         /* Taxi icon top decoration */
         .price-taxi-icon {
           text-align:center;
@@ -3677,8 +3949,30 @@
                 </div>
 
                 <button type="button" id="priceConfirmBtn"></button>
+
+                <!-- «Μαζί σε μία μίσθωση» (δοκιμαστικό): κρυφό, φαίνεται μόνο αν το επιτρέψει ο server -->
+                <div id="maziBox" style="display:none;">
+                    <button type="button" id="maziBtn">
+                        <span id="maziBtnTitle"></span>
+                        <span id="maziBtnSub"></span>
+                    </button>
+                    <button type="button" id="maziInfoLink"></button>
+                </div>
+
                 <button type="button" id="priceBackBtn"></button>
 
+            </div>
+        </div>
+    </div>
+
+    <!-- «Μαζί σε μία μίσθωση» — σελίδα ⓘ (δοκιμαστικό). Ανοίγει πάνω από την οθόνη τιμής· το «Πίσω» γυρνάει σε αυτήν. -->
+    <div id="maziInfoOverlay" style="display:none;" role="dialog" aria-modal="true">
+        <div id="maziInfoCard">
+            <div id="maziInfoScroll"></div>
+            <div id="maziInfoFooter">
+                <div id="maziAcceptHint" style="display:none;"></div>
+                <label id="maziAcceptRow"><input type="checkbox" id="maziAcceptChk"><span id="maziAcceptText"></span></label>
+                <button type="button" id="maziInfoBack"></button>
             </div>
         </div>
     </div>
@@ -4272,6 +4566,27 @@ const surnameIn = document.getElementById("surname");
     /* ===== PICKUP MAP (SAFE ADD) ===== */
     let __pickupLat = null;
     let __pickupLng = null;
+    // «Μαζί σε μία μίσθωση»: μόνο ΑΝΑΓΝΩΣΗ της πινέζας από έξω (αυτό το module δεν φαίνεται στα άλλα scripts).
+    // 27/10: χωρίς πινέζα (η διεύθυνση ήρθε έτοιμη, όχι από επιλογή) → το σημείο που βρήκε η τιμή από το ΙΔΙΟ κείμενο.
+    // Η πινέζα της κανονικής κράτησης δεν αλλάζει.
+    let __maziGeoPoint = null;   // { text, lat, lng }
+    const __maziNormText = function(t){ return String(t || "").replace(/\s+/g, " ").trim(); };
+    window.__maziPickupPoint = function(){
+      if(typeof __pickupLat === "number" && typeof __pickupLng === "number" && isFinite(__pickupLat) && isFinite(__pickupLng)){
+        return { lat: __pickupLat, lng: __pickupLng };
+      }
+      var t = __maziNormText((document.getElementById("pickup") || {}).value);
+      if(__maziGeoPoint && t && __maziGeoPoint.text === t) return { lat: __maziGeoPoint.lat, lng: __maziGeoPoint.lng };
+      return { lat: null, lng: null };
+    };
+    // Τελευταία λύση τη στιγμή του «Μαζί»: σημείο από το κείμενο της διεύθυνσης (ίδιος geocoder με την τιμή).
+    window.__maziGeocodePickup = function(text){
+      return geocodePickup(text).then(function(c){
+        if(!c || !isFinite(Number(c.lat)) || !isFinite(Number(c.lon))) return null;
+        __maziGeoPoint = { text: __maziNormText(text), lat: Number(c.lat), lng: Number(c.lon) };
+        return { lat: __maziGeoPoint.lat, lng: __maziGeoPoint.lng };
+      });
+    };
     let __pickupLastResolvedText = "";
     let __userIsTyping = false; // Flag to prevent overwriting when user types
 
@@ -6546,6 +6861,87 @@ async function __updatePickupMapAddr(){
     function _clientFolderCountdownHtml(it) {
       return '';
     }
+    // «Μαζί σε μία μίσθωση»: τα ΔΙΚΑ μου στοιχεία από τους επιβάτες της κοινής κράτησης. Αυτή την κράτηση την έχει στον
+    // Φάκελο ο υπεύθυνος που την έκανε → «δικός μου» = ο υπεύθυνος. Κανονική κράτηση → null.
+    function _maziMineFromBooking(b) {
+      if (!b || b.maziShared !== true || !b.maziPassengers) return null;
+      var raw = b.maziPassengers;
+      var ps = (Array.isArray(raw) ? raw : Object.keys(raw).map(function(k){ return raw[k]; })).filter(Boolean);
+      var me = ps.filter(function(p){ return p.responsible; })[0];
+      if (!me) return null;
+      // Όσοι δεν ήρθαν (ο οδηγός πάτησε ΟΧΙ στη στάση τους) → νέο ποσό για όσους μπήκαν.
+      var stops = b.maziStops || {};
+      var absent = ps.filter(function(p){ var s = stops[p.seq] || stops[String(p.seq)]; return s && s.state === 'absent'; });
+      // Όσοι ακύρωσαν τη θέση τους μετά την κράτηση (από τον δικό τους Φάκελο).
+      var cancelled = ps.filter(function(p){ var s = stops[p.seq] || stops[String(p.seq)]; return s && s.state === 'cancelled'; });
+      var present = ps.length - absent.length - cancelled.length;
+      var total = Number(b.maziTotal);
+      // Ώρα από το Maps του οδηγού (25/10), μόνο όσο γίνεται η παραλαβή και δεν έχει μπει ακόμα.
+      var mySt = stops[me.seq] || stops[String(me.seq)] || {};
+      // 27/10: ώρα ΜΟΝΟ όταν ο οδηγός πηγαίνει τώρα σε ΑΥΤΟΝ («όταν παίρνει τον έναν, να βγαίνει για τον άλλον»).
+      var eta = (b.maziPhase === 'pickup' && b.maziEta && b.maziEta.down && mySt.state !== 'boarded' && mySt.state !== 'arrived' &&
+                 Number(b.maziStopCurrent) === Number(me.seq))
+        ? (b.maziEta.down[me.seq] || b.maziEta.down[String(me.seq)]) : null;
+      return { size: ps.length, readyLocal: String(me.readyLocal || ''), pickupLocal: String(me.pickupLocal || ''),
+               share: Number(me.share), responsible: true,
+               downLocal: eta && eta.local ? String(eta.local) : '', earlierMin: eta ? Number(eta.earlierMin) || 0 : 0,
+               pickupState: b.maziPhase === 'to_airport' ? 'to_airport' : String(mySt.state || ''),
+               absentNames: absent.filter(function(p){ return !p.responsible; }).map(function(p){ return String(p.name || ''); }),
+               cancelledNames: cancelled.map(function(p){ return String(p.name || ''); }), present: present,
+               aloneLate: (typeof _maziLateWindow === 'function') && _maziLateWindow(b),
+               sharePresent: ((absent.length || cancelled.length) && present > 0 && isFinite(total)) ? Math.round(total / present * 100) / 100 : null };
+    }
+    // Η ώρα (⏰) της κάρτας: σε «Μαζί» η ΔΙΚΗ του — και μόλις έρθει η ώρα από το Maps του οδηγού, αυτή.
+    function _folderShownTime(it) {
+      var m = it && it.mazi;
+      return String((m && (m.downLocal || m.pickupLocal)) || (it && it.time) || '');
+    }
+    // «Μαζί»: ο επιβάτης είναι ήδη μέσα στο ταξί (27/10).
+    function _clientMaziOnBoard(it) {
+      var s = it && it.mazi && it.mazi.pickupState;
+      return s === 'boarded' || s === 'to_airport';
+    }
+    // «Μαζί»: οι δικές του γραμμές στην ΚΑΝΟΝΙΚΗ κάρτα του Φακέλου (μόνο σε κοινή μίσθωση).
+    function _clientFolderMaziHtml(it) {
+      var m = it && it.mazi;
+      if (!m) return '';
+      var T = function(k){ try { return (typeof window.__t === 'function' && window.__t(k)) || ''; } catch(e) { return ''; } };
+      var fmt = function(n){ return ((Math.round(n * 100) % 100 === 0) ? String(Math.round(n)) : n.toFixed(2).replace('.', T('maziDec') || ',')) + ' €'; };
+      // Κάποιος δεν ήρθε → το νέο ποσό (μοιρασμένο σε όσους μπήκαν).
+      var amount = (m.sharePresent != null && isFinite(m.sharePresent)) ? m.sharePresent : m.share;
+      var share = isFinite(amount) ? fmt(Number(amount)) : '';
+      var absentHtml = (m.absentNames && m.absentNames.length && share)
+        ? '<div style="color:#fbbf24;font-weight:800;margin:2px 0 4px 0;">' + escapeHtml(String(T('maziAbsentNotice') || '').replace('{names}', m.absentNames.join(', ')).replace('{amount}', share)) + '</div>'
+        : '';
+      if (m.cancelledNames && m.cancelledNames.length && share) {
+        // Έμεινε μόνος: πριν τις 12 «είστε μόνος, ποσό χωρίς τις εσωτερικές», μετά τις 12 «δεν μπαίνει άλλος, ολόκληρο ποσό».
+        if (m.present === 1) {
+          absentHtml += '<div style="color:#fbbf24;font-weight:800;margin:2px 0 4px 0;">' + escapeHtml(String(T('maziGcSeatCancelled') || '').replace('{name}', m.cancelledNames.join(', '))) + '</div>';
+          absentHtml += '<div style="color:#fbbf24;font-weight:800;margin:0 0 4px 0;">' + escapeHtml(String(T(m.aloneLate ? 'maziAloneLate' : 'maziAloneNow') || '').replace('{amount}', share)) + '</div>';
+        } else {
+          absentHtml += '<div style="color:#fbbf24;font-weight:800;margin:2px 0 4px 0;">' + escapeHtml(String(T('maziCancelledNotice') || '').replace('{names}', m.cancelledNames.join(', ')).replace('{amount}', share)) + '</div>';
+        }
+      }
+      // Επιβάτες = όσοι ΔΕΝ ακύρωσαν (όπως στον οδηγό) — αλλάζει σε κάθε ακύρωση.
+      var activeN = Number(m.size) - ((m.cancelledNames && m.cancelledNames.length) || 0);
+      var paxN = (isFinite(activeN) && activeN > 0) ? activeN : (m.size || '');
+      return '<div class="airport-expanded-meta-extra folderMaziBox" style="margin-top:6px;padding:8px 10px;border:1px solid rgba(255,215,0,.55);border-radius:10px;background:rgba(255,215,0,.07);line-height:1.4;">' +
+        '<div style="color:#FFD700;font-weight:900;">👥 ' + escapeHtml(T('maziBtnTitle')) + ' · ' + escapeHtml(T('maziPassengers')) + ': ' + escapeHtml(String(paxN)) + '</div>' +
+        absentHtml +
+        '<div>' + escapeHtml(T('maziBeOut')) + ': <b>' + escapeHtml(m.readyLocal) + '</b></div>' +
+        '<div>' + escapeHtml(T('maziTaxiAt')) + ': <b>' + escapeHtml(m.pickupLocal) + '</b></div>' +
+        // Η γραμμή της ώρας: μετά την παραλαβή γράφει «✅ Επιβιβαστήκατε» (27/10).
+        (_clientMaziOnBoard(it)
+          ? '<div style="color:#19ff77;font-weight:900;margin:3px 0;">' + escapeHtml(T('maziBoarded')) + '</div>'
+          : m.downLocal
+          ? '<div style="color:#fbbf24;font-weight:900;margin:3px 0;">' + escapeHtml(String(T('maziDownAt') || '').replace('{t}', m.downLocal) +
+              (m.earlierMin >= 2 ? ' ' + String(T('maziDownEarlier') || '').replace('{n}', m.earlierMin) : '')) + '</div>'
+          : '<div style="opacity:.75;font-size:.92em;">' + escapeHtml(T('maziDownHint')) + '</div>') +
+        (share ? '<div>' + escapeHtml(T('maziEstimate')) + ': <b>' + escapeHtml(share) + '</b></div>' : '') +
+        (m.responsible ? '<div style="font-weight:800;margin-top:4px;">' + escapeHtml(T('maziYouResponsible')) + '</div>'
+          : (m.lesseeNow ? '<div style="font-weight:800;margin-top:4px;">' + escapeHtml(T('maziYouLesseeNow')) + '</div>' : '')) +
+      '</div>';
+    }
     function _updateClientFolderCountdowns() {
       try {
         var nodes = document.querySelectorAll('[data-countdown-id]');
@@ -6706,11 +7102,18 @@ async function __updatePickupMapAddr(){
 
     // ✅ SAFE ADD: persist last active booking so client can see updates even after reopening the app
     const LAST_BOOKING_KEY = "client_last_booking_id_v1";
+    // «Μαζί» (26/10): η κάρτα συνεπιβάτη «<κράτηση>#m<σειρά>» ΔΕΝ είναι δική του κράτηση — το «#m…» χανόταν και η
+    // εφαρμογή «συνέχιζε» την κράτηση του μισθωτή (π.χ. «Ο οδηγός είναι κάτω» στη στάση του άλλου).
+    function _isMaziGuestId(id){ return /#m\d+$/.test(String(id || '')); }
     function saveLastBookingId(id){
-      try{ if(id) localStorage.setItem(LAST_BOOKING_KEY, String(id)); }catch(e){}
+      try{ if(id && !_isMaziGuestId(id)) localStorage.setItem(LAST_BOOKING_KEY, String(id)); }catch(e){}
     }
     function loadLastBookingId(){
-      try{ return String(localStorage.getItem(LAST_BOOKING_KEY)||"").trim() || null; }catch(e){ return null; }
+      try{
+        var id = String(localStorage.getItem(LAST_BOOKING_KEY)||"").trim();
+        if(_isMaziGuestId(id)){ localStorage.removeItem(LAST_BOOKING_KEY); return null; }
+        return id || null;
+      }catch(e){ return null; }
     }
     function clearLastBookingId(){
       try{ localStorage.removeItem(LAST_BOOKING_KEY); }catch(e){}
@@ -6950,6 +7353,8 @@ async function __updatePickupMapAddr(){
 
       // Start watching all folder bookings for driver cancellations
       for(const it of folder){
+        // «Μαζί»: η κάρτα επιβάτη ενημερώνεται από τον server (όχι όλη η κράτηση)· μόνο το δικό του chat.
+        if(it.maziGuest === true){ try{ watchChatForBooking(it.id); }catch(e){} continue; }
         watchFolderBooking(it.id);
       }
 
@@ -7015,7 +7420,7 @@ async function __updatePickupMapAddr(){
               <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
                 <div style="min-width:0;">
                   <div style="font-weight:900;font-size:16px;word-break:break-word;">📌 ${escapeHtml(shortTitle)}</div>
-                  <div style="opacity:.9;margin-top:8px;font-size:15px;">📅 ${escapeHtml(formatDateDMY(it.date || ""))} &nbsp; ⏰ ${escapeHtml(it.time || "")}</div>
+                  <div style="opacity:.9;margin-top:8px;font-size:15px;">📅 ${escapeHtml(formatDateDMY(it.date || ""))} &nbsp; ⏰ ${escapeHtml(_folderShownTime(it))}</div>
                   ${_clientFolderCountdownHtml(it)}
                 </div>
                 <div style="font-size:28px;color:rgba(255,255,255,.55);font-weight:900;flex-shrink:0;">›</div>
@@ -7141,7 +7546,7 @@ async function __updatePickupMapAddr(){
         div.innerHTML = `
           <div class="meta">
             ${airportExpandedBackHtml}
-            ${isCancelled ? `<div style="color:#ff4444;font-weight:900;margin-bottom:6px;">❌ ${FT('folderCancelled', lang==='en'?'CANCELLED BY DRIVER':'ΑΚΥΡΩΘΗΚΕ ΑΠΟ ΟΔΗΓΟ')}</div>` : ''}
+            ${isCancelled ? `<div style="color:#ff4444;font-weight:900;margin-bottom:6px;">❌ ${FT('folderCancelled', lang==='en'?'CANCELLED BY DRIVER':'ΑΚΥΡΩΘΗΚΕ ΑΠΟ ΟΔΗΓΟ')}</div>` : (it.maziSeatCancelled ? `<div style="color:#ff4444;font-weight:900;margin-bottom:6px;">❌ ${FT('folderCancelDone', lang==='en'?'You cancelled your seat.':'Ακυρώσατε τη θέση σας.')}</div>` : '')}
             ${safePhoto ? `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;cursor:pointer;" onclick="openDriverPhotoLightbox('${safePhoto}','${safePhotoLarge}')">
               <img src="${safePhoto}" style="width:30px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #FFD700;box-shadow:0 2px 8px rgba(0,0,0,0.35);flex-shrink:0;pointer-events:none;" alt="${FT('folderDriver', lang==='en'?'Driver':'Οδηγός')}" />
               <span style="color:rgba(255,255,255,0.5);font-size:11px;font-style:italic;">${FT('folderTapEnlarge', lang==='en'?'Tap to enlarge':'Πάτα για μεγέθυνση')}</span>
@@ -7150,17 +7555,19 @@ async function __updatePickupMapAddr(){
             ${safePhone ? `<div class="folderDriverPhone" style="opacity:.95;margin-top:2px;">📞 ${safePhone}</div>` : ''}
             ${safePlate ? `<div class="folderDriverPlate" style="margin-top:2px;">🚙 <span style="color:#FFD700;font-weight:700;">${FT('folderPlate', lang === 'en' ? 'License Plate' : 'Πινακίδα')}: ${safePlate}</span></div>` : ''}
             <div class="folderRouteLine" style="${safeName || safePhone ? 'margin-top:4px;' : ''}">🚕 ${escapeHtml((typeof window.__displayRouteLabel==='function')?window.__displayRouteLabel(it.route, it.pickup, it.routeMode):(it.route || it.pickup || ""))}</div>
-            <div class="airport-expanded-meta-extra folderDateLine" style="opacity:.9;margin-top:4px;">📅 ${escapeHtml(formatDateDMY(it.date || ""))} &nbsp; ⏰ ${escapeHtml(it.time || "")}</div>
+            <div class="airport-expanded-meta-extra folderDateLine" style="opacity:.9;margin-top:4px;">📅 ${escapeHtml(formatDateDMY(it.date || ""))} &nbsp; ⏰ ${escapeHtml(_folderShownTime(it))}</div>
+            ${_clientFolderMaziHtml(it)}
             ${_clientFolderCountdownHtml(it)}
             ${contactButtons}
             ${(!isCancelled && safePhone) ? '<button class="folderPrimaryAction folderChatBtn" type="button" onclick="openClientChat(\'' + safeId + '\')" style="background:#222;color:#FFD700;border:2px solid #FFD700;' + (_hideAirportExpandedMetaExtras ? 'width:100%;cursor:pointer;' : 'border-radius:8px;padding:8px 12px;font-size:13px;font-weight:700;margin-top:8px;cursor:pointer;width:100%;') + '">💬 ' + FT('clientChatTitle', (lang==='en'?'Chat with Driver':'Συνομιλία με Οδηγό')) + ' <span id="chatBadge_' + safeId + '" style="display:none;">🔴</span></button>' : ''}
-            ${(!isCancelled && safePhone) ? `<button type="button" onclick="event.stopPropagation();reportDriverNoShow('${safeId}',event)"
+            ${(!isCancelled && it.mazi && safeName) ? '<button class="folderPrimaryAction folderChatBtn" type="button" onclick="event.stopPropagation();if(window.__maziOpenGroupChat)window.__maziOpenGroupChat();" style="background:#222;color:#FFD700;border:2px solid #FFD700;' + (_hideAirportExpandedMetaExtras ? 'width:100%;cursor:pointer;' : 'border-radius:8px;padding:8px 12px;font-size:13px;font-weight:700;margin-top:8px;cursor:pointer;width:100%;') + '">' + escapeHtml(FT('maziGcBtn', '👥 Chat')) + ' <span class="maziGcBadge" style="display:' + ((window.__maziGcUnread && window.__maziGcUnread()) ? 'inline' : 'none') + ';">🔴</span></button>' : ''}
+            ${(!isCancelled && safePhone && it.maziGuest !== true) ? `<button type="button" onclick="event.stopPropagation();reportDriverNoShow('${safeId}',event)"
               class="folderPrimaryAction folderNoShowBtn" style="background:#ff6600;color:#fff;border:none;border-radius:8px;padding:8px 12px;font-size:13px;font-weight:700;margin-top:8px;cursor:pointer;width:100%;">
               ${FT('folderNoShow', lang === 'en' ? '⚠️ Driver not answering / did not arrive' : '⚠️ Ο οδηγός δεν απαντά/δεν ήρθε')}
             </button>` : ''}
           </div>
           <div style="display:flex;flex-direction:column;align-items:stretch;">
-            ${isCancelled ?
+            ${(isCancelled || it.maziSeatCancelled) ?
               `` :
               `<button type="button" class="cancelBtn folderActionBtn" onclick="event.stopPropagation();cancelFromFolder('${safeId}',event)">✖</button>`
             }
@@ -7197,6 +7604,8 @@ listEl.appendChild(div);
       try{
         var box = document.getElementById('folderBox');
         if(!box || !box.classList.contains('athensAirportFullscreen')) return;
+        // 1/11 — «Μαζί»: κάρτα με .folderMaziBox → η οθόνη κυλάει (βλ. CSS .maziScrollable). Κανονική → τίποτα.
+        try{ box.classList.toggle('maziScrollable', !!box.querySelector('.folderMaziBox')); }catch(_eMzScroll){}
         var card = box.querySelector('.athensAirportExpandedCard');
         if(!card) return;
         try{
@@ -7235,6 +7644,9 @@ listEl.appendChild(div);
     // Watch folder booking for driver cancellation
     function watchFolderBooking(bookingId){
       if(!bookingId) return;
+      // «Μαζί»: η κάρτα συνεπιβάτη «<κράτηση>#m<σειρά>» — το «#m…» χανόταν και άκουγε την κράτηση του ΜΙΣΘΩΤΗ
+      // («Ο οδηγός είναι κάτω» στη στάση του άλλου). Τη δική του στάση τη δείχνει ο server· εδώ μόνο το chat του.
+      if(_isMaziGuestId(bookingId)){ try{ watchChatForBooking(bookingId); }catch(e){} return; }
 
       // Don't add duplicate watchers
       if(folderWatchers.has(bookingId)) return;
@@ -7244,6 +7656,10 @@ listEl.appendChild(div);
       const bookingRef = ref(db, `bookings/${bookingId}`);
 
       const unsubscribe = onValue(bookingRef, (snapshot) => {
+        if(typeof maziHasLeftSeat === "function" && maziHasLeftSeat(bookingId)){
+          removeFromFolderAndUI(bookingId);
+          return;
+        }
         if(!snapshot.exists()){
           // Booking deleted
           if (typeof _clientClearStaleBooking === 'function') _clientClearStaleBooking(bookingId);
@@ -7284,6 +7700,27 @@ listEl.appendChild(div);
             if(data.isAirportNowBooking === true && item.isAirportNowBooking !== true){
               item.isAirportNowBooking = true;
             }
+            // «Μαζί σε μία μίσθωση»: η ΔΙΚΗ του ώρα/ποσό στην κάρτα (η ώρα της κράτησης είναι της 1ης παραλαβής).
+            const _mzMine = _maziMineFromBooking(data);
+            if(_mzMine) item.mazi = _mzMine;
+            // Ακύρωσε συνεπιβάτης → αναδυόμενο στον υπεύθυνο. Όχι σε αυτόν που μόλις ακύρωσε τη θέση του
+            // (αυτό το μήνυμα πάει στον οδηγό και στους άλλους).
+            var _myStop = (function(){
+              try{
+                var raw = data.maziPassengers;
+                var ps = (Array.isArray(raw) ? raw : Object.keys(raw || {}).map(function(k){ return raw[k]; })).filter(Boolean);
+                var me = ps.filter(function(p){ return p.responsible; })[0];
+                var L = data.maziLessee;
+                if(L && L.prevSeq != null) me = ps.filter(function(p){ return Number(p.seq) === Number(L.prevSeq); })[0] || me;
+                var st = (data.maziStops || {})[(me && me.seq)] || (data.maziStops || {})[String(me && me.seq)] || {};
+                return st.state === 'cancelled';
+              }catch(e){ return false; }
+            })();
+            if(!_myStop && !item.maziSeatCancelled && _mzMine && _mzMine.cancelledNames && _mzMine.cancelledNames.length && typeof window.__maziCancelPopup === 'function'){
+              const _amt = (_mzMine.sharePresent != null && isFinite(_mzMine.sharePresent)) ? _mzMine.sharePresent : _mzMine.share;
+              const _amtTxt = isFinite(_amt) ? ((Math.round(_amt * 100) % 100 === 0) ? String(Math.round(_amt)) : Number(_amt).toFixed(2).replace('.', ',')) + ' €' : '—';
+              setTimeout(function(){ window.__maziCancelPopup(bookingId, _mzMine.cancelledNames, _amtTxt, _mzMine.present === 1, _maziLateWindow(data)); }, 0);
+            }
             if(data.driverEta && typeof data.driverEta === 'object'){
               const _newEta = { minutes: Number(data.driverEta.minutes)||0, capturedAt: Number(data.driverEta.capturedAt)||0 };
               const _oldEta = item.driverEta || {};
@@ -7302,11 +7739,14 @@ listEl.appendChild(div);
            data.clientAcknowledgedCancel !== true &&
            !data.driverCancelledCannotFind &&
            !_driverCancelledCannotFindActive){  // ✅ μην ανοίξεις αν ήδη δείχνει αιτιολογία
-          console.log("Driver cancelled booking - showing overlay:", bookingId);
-
-          // Show cancellation overlay
-          currentCancelledBookingId = bookingId;
-          showCancellationNotification(bookingId, data);
+          // «Μαζί» μετά τις 12 ώρες: όχι το ΝΑΙ/ΟΧΙ της κοινής κράτησης. Ρωτάμε τον καθένα μόνος του.
+          if(data.maziShared === true && _maziLateWindow(data)){
+            try{ if(typeof window.__maziOfferLateFromBooking === "function") window.__maziOfferLateFromBooking(bookingId, data); }catch(e){}
+          } else {
+            console.log("Driver cancelled booking - showing overlay:", bookingId);
+            currentCancelledBookingId = bookingId;
+            showCancellationNotification(bookingId, data);
+          }
 
           // Update folder UI to show cancelled state
           renderFolder();
@@ -7541,6 +7981,59 @@ listEl.appendChild(div);
     window.deleteFolderItemFromAllRouteFolders = deleteFolderItemFromAllRouteFolders;
 
     // Remove booking from folder and update UI
+    // «Μαζί»: ο οδηγός ακύρωσε και ως την αναχώρηση έμειναν το πολύ 12 ώρες.
+    function _maziLateWindow(data){
+      try{
+        if(!data || data.maziShared !== true) return false;
+        if(data.maziLastMinute === true) return true;   // απόφαση server (31/10)
+        var s = String(data.maziDepartLocal || "").trim();
+        if(!s && data.date && data.time) s = String(data.date) + " " + String(data.time);
+        var m = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})/.exec(s);
+        if(!m) return false;
+        var dt = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]), Number(m[4]), Number(m[5]));
+        return !isNaN(dt.getTime()) && (dt.getTime() - Date.now() <= 12 * 3600e3);
+      }catch(e){ return false; }
+    }
+    window._maziLateWindow = _maziLateWindow;
+
+    function maziPlainBookingId(id){
+      return String(id || "").replace(/#m\d+$/i, "").trim();
+    }
+    // 1/11: το σημάδι «έφυγα από την κράτηση» κρατάει και ΠΟΙΑ αίτηση έφυγε. Αν το ΙΔΙΟ κινητό ξαναμπεί στην ΙΔΙΑ
+    // κράτηση με ΝΕΑ αίτηση (ΕΞΟΥΣΙΟΔΟΤΩ), το παλιό σημάδι δεν σβήνει πια την κάρτα του (maziClearLeftSeatIfOther).
+    function maziLeftSeatValue(bookingId){
+      var v = (window.__maziLeftSeats && window.__maziLeftSeats[bookingId]) || "";
+      if(!v){ try{ v = localStorage.getItem("maziLeftSeat_" + bookingId) || ""; }catch(e){} }
+      return v === true ? "1" : String(v || "");
+    }
+    function maziMarkLeftSeat(bookingId, requestId){
+      bookingId = maziPlainBookingId(bookingId);
+      if(!bookingId) return;
+      var old = maziLeftSeatValue(bookingId);
+      // Χωρίς αίτηση (π.χ. 2η κλήση από τον Φάκελο) → δεν χάνουμε την αίτηση που γράφτηκε ήδη.
+      var v = requestId ? String(requestId) : ((old && old !== "1") ? old : "1");
+      window.__maziLeftSeats = window.__maziLeftSeats || {};
+      window.__maziLeftSeats[bookingId] = v;
+      try{ localStorage.setItem("maziLeftSeat_" + bookingId, v); }catch(e){}
+    }
+    function maziHasLeftSeat(bookingId){
+      bookingId = maziPlainBookingId(bookingId);
+      if(!bookingId) return false;
+      return !!maziLeftSeatValue(bookingId);
+    }
+    // Ο server λέει ότι η ΤΩΡΙΝΗ αίτηση είναι μέσα στην κράτηση → σημάδι άλλης (παλιάς) αίτησης σβήνει.
+    function maziClearLeftSeatIfOther(bookingId, requestId){
+      bookingId = maziPlainBookingId(bookingId);
+      if(!bookingId || !requestId) return;
+      var v = maziLeftSeatValue(bookingId);
+      if(!v || v === String(requestId)) return;
+      try{ if(window.__maziLeftSeats) delete window.__maziLeftSeats[bookingId]; }catch(e){}
+      try{ localStorage.removeItem("maziLeftSeat_" + bookingId); }catch(e){}
+    }
+    window.__maziMarkLeftSeat = maziMarkLeftSeat;
+    window.__maziHasLeftSeat = maziHasLeftSeat;
+    window.__maziClearLeftSeatIfOther = maziClearLeftSeatIfOther;
+
     function removeFromFolderAndUI(bookingId){
       bookingId = String(bookingId || "").trim();
       if(!bookingId) return;
@@ -7572,6 +8065,83 @@ listEl.appendChild(div);
       if(folderBox && folderBox.style.display === "block") renderFolder();
     }
     window.removeFromFolderAndUI = removeFromFolderAndUI;
+
+    // «Μαζί» (25/10): το ραντεβού των ΑΛΛΩΝ επιβατών (εκτός του υπευθύνου) στον ΔΙΚΟ τους Φάκελο, κάρτα «<κράτηση>#m<σειρά>».
+    // Το κομμάτι «Μαζί» (κλασικό script) δεν βλέπει τον Φάκελο → εδώ, με τις ίδιες συναρτήσεις του Φακέλου.
+    window.__maziGuestFolder = {
+      upsert: function(item){
+        if(!item || !item.id || item.maziGuest !== true) return;
+        const before = findFolderItemEntry(item.id);
+        const beforeJson = before ? JSON.stringify(before.item) : "";
+        upsertFolderItem(item);
+        const after = findFolderItemEntry(item.id);
+        if(after && JSON.stringify(after.item) !== beforeJson){
+          const fb = document.getElementById("folderBox");
+          if(fb && fb.style.display === "block") renderFolder();
+        }
+      },
+      remove: function(id){ if(findFolderItemEntry(id)) removeFromFolderAndUI(id); },
+      ids: function(){
+        const out = [];
+        ["athens_airport", "airport_athens"].forEach(function(mode){
+          readFolderRaw(mode).forEach(function(x){ if(x && x.maziGuest === true && x.id) out.push(String(x.id)); });
+        });
+        return out;
+      },
+      get: function(id){ const e = findFolderItemEntry(id); return e ? e.item : null; }
+    };
+    window.__dropFolderBooking = removeFromFolderAndUI;
+
+    // «Μαζί» (25/10): αιτιολογία από τον επιβάτη που ακύρωσε τη θέση του — ΙΔΙΑ κόκκινη οθόνη με την κανονική ακύρωση
+    // (nsTitle / aitiologiaBodyCancel / cmSubmit)· πάει στις Αιτιολογίες Πελατών (client_cancel_aitiologia) με σημείωση
+    // «κοινή μίσθωση». Η κράτηση των άλλων ΔΕΝ πειράζεται.
+    window.__maziSeatAitiologia = function(it){
+      try{
+        const title = Tlang('nsTitle', 'Ακύρωση Κράτησης');
+        const body = Tlang('aitiologiaBodyCancel', 'Παρακαλούμε εξηγήστε γιατί ακυρώνετε.');
+        try{ const fb = document.getElementById('folderBox'); if(fb) fb.style.display = 'none'; }catch(e){}
+        window.__clientMonitorState = { type: 'mazi_cancel_aitiologia', bookingId: String(it.maziBookingId || '') };
+        _cmRender('cm-red', title,
+          '<div class="client-monitor-message">⚠️ ' + _cmEsc(title) + '</div>' +
+          '<div class="cm-body">' + _cmEsc(body) + '</div>' +
+          '<textarea id="maziCancelAitiologiaText" class="cm-ta" placeholder="' + _cmEsc(Tlang('cmExplainPh', 'Γράψτε την αιτιολογία σας...')) + '"></textarea>' +
+          '<div class="cm-row stack"><button class="cm-btn cm-no" id="maziCancelAitiologiaSend">✅ ' + _cmEsc(Tlang('cmSubmit', 'Υποβολή')) + '</button></div>'
+        );
+        const btn = document.getElementById('maziCancelAitiologiaSend');
+        if(!btn) return false;
+        btn.onclick = async function(){
+          const ta = document.getElementById('maziCancelAitiologiaText');
+          const text = ta ? String(ta.value || '').trim() : '';
+          if(!text){ alert(Tlang('aitiologiaNeed', 'Παρακαλούμε γράψτε μια αιτιολογία.')); return; }
+          btn.disabled = true;
+          try{
+            const dbx = window._clientDb, fns = window._clientDbFns || {};
+            const now = Date.now();
+            await fns.set(fns.ref(dbx, 'complaints/' + now + '_mazi_cancel_' + it.maziBookingId + '_' + Number(it.maziSeq)), {
+              type: 'client_cancel_aitiologia',
+              bookingId: String(it.maziBookingId),
+              maziShared: true,
+              maziSeq: Number(it.maziSeq),
+              clientName: it.name || '',
+              clientPhone: it.maziPhone || '',
+              observation: text,
+              note: 'Κοινή μίσθωση: ακύρωσε μόνο τη θέση του — η διαδρομή συνέχισε με τους άλλους.',
+              reportedAt: new Date(now).toISOString(),
+              timestamp: now
+            });
+          }catch(e){
+            btn.disabled = false;
+            alert(Tlang('aitiologiaFail', 'Η αποστολή απέτυχε. Παρακαλούμε δοκιμάστε ξανά.'));
+            return;
+          }
+          window.__clientMonitorState = { type: 'idle' };
+          try{ if(window.ClientMonitor && typeof window.ClientMonitor.idle === 'function') window.ClientMonitor.idle(); }catch(e){}
+          alert(Tlang('folderCancelDone', '✅ Το ραντεβού ακυρώθηκε.'));
+        };
+        setTimeout(function(){ try{ const ta = document.getElementById('maziCancelAitiologiaText'); if(ta) ta.focus(); }catch(e){} }, 280);
+        return true;
+      }catch(e){ return false; }
+    };
 
     window.deleteFolderItem = function(id){
       id = String(id || "").trim();
@@ -7749,6 +8319,32 @@ listEl.appendChild(div);
 
         const ok = await (window.showCancelConfirm || showCancelConfirm)(bookingInfo);
         if(!ok) return;
+
+        // «Μαζί»: ακυρώνει ΜΟΝΟ τη δική του θέση (και ο μισθωτής) → μισθωτής γίνεται ο επόμενος.
+        const _maziForceSeat = it.maziGuest === true || !!it.maziRequestId || it.maziShared === true;
+        const _maziSeatFn = window.__maziCancelOwnSeatForBooking || window.__maziCancelSeat;
+        if(_maziForceSeat || typeof window.__maziCancelOwnSeatForBooking === "function"){
+          const seatIt = Object.assign({}, it, { maziBookingId: it.maziBookingId || id });
+          const seatOk = (typeof _maziSeatFn === "function")
+            ? await (_maziForceSeat ? (window.__maziCancelSeat ? window.__maziCancelSeat(seatIt) : Promise.resolve(false)) : window.__maziCancelOwnSeatForBooking(id))
+            : false;
+          if(seatOk){
+            try{ if(typeof maziMarkLeftSeat === "function") maziMarkLeftSeat(it.maziBookingId || id); }catch(e){}
+            try{ if(typeof window.stopListenBooking === "function") window.stopListenBooking(); }catch(e){}
+            removeFromFolderAndUI(id);
+            try{ removeFromFolderAndUI(String(it.maziBookingId || id).replace(/#m\d+$/i, "")); }catch(e){}
+            try{ if(String(window._airportAthensExpandedFolderKey || "") === id) window._airportAthensExpandedFolderKey = ""; }catch(e){}
+            renderFolder();
+            if(!window.__maziSeatAitiologia(seatIt)){
+              alert((typeof window.__t==='function' && window.__t('folderCancelDone')) || (lang==="en" ? "Appointment cancelled." : "✅ Το ραντεβού ακυρώθηκε."));
+            }
+            return;
+          }
+          if(_maziForceSeat){
+            alert((typeof window.__t==='function' && window.__t('folderCancelFail')) || (lang==="en" ? "Cancel failed." : "❌ Αποτυχία ακύρωσης."));
+            return;
+          }
+        }
 
         await ensureAuth();
         await update(ref(db, `bookings/${id}`), {
@@ -8136,7 +8732,7 @@ function isHomeVisible(){
           <p>Η παραλαβή γίνεται από τις Εξόδους (Arrivals) — επίλεξε την Έξοδο 1-5,<br>
           όπου θα σας δοθούν αναλυτικές οδηγίες μέσα από την εφαρμογή.</p>
           <p><b>Πληρωμή:</b><br>
-          Η τιμή βγαίνει με βάση το ταξίμετρο, το ραντεβού, τα έξτρα του αεροδρομίου και την αναμονή μέχρι και μία ώρα μετά την άφιξή σας για τυχόν καθυστερήσεις.</p>
+          Η τιμή βγαίνει με βάση το ταξίμετρο, το ραντεβού, τα έξτρα του αεροδρομίου και την αναμονή μέχρι και 30 λεπτά μετά την άφιξή σας για τυχόν καθυστερήσεις.</p>
           <p><b>Ασφάλεια:</b><br>
           Για τη δική σας ασφάλεια,<br>
           το ταξί πρέπει να είναι κίτρινο για Αθήνα<br>
@@ -8156,7 +8752,7 @@ function isHomeVisible(){
           <p>Pickup takes place at the Exits (Arrivals) — choose Exit 1-5,<br>
           where detailed instructions will be given through the app.</p>
           <p><b>Payment:</b><br>
-          The price is based on the taximeter, the appointment, the airport extras and waiting time up to one hour after your arrival for any delays.</p>
+          The price is based on the taximeter, the appointment, the airport extras and waiting time up to 30 minutes after your arrival for any delays.</p>
           <p><b>Safety:</b><br>
           For your safety,<br>
           the taxi must be yellow for Athens<br>
@@ -8469,8 +9065,17 @@ function isHomeVisible(){
           _markAcceptedScreenDismissed(leavingId);
         }
       } catch(e) {}
+      var maziReleased = false;
       if (leavingWasOpen && leavingId) {
-        try { await cancelIfBookingOpen("client_back_button"); } catch(e) {}
+        // Πριν δεχτεί ο οδηγός: φεύγει από τον οδηγό. Η παρέα μένει και γυρνάει με «ο μισθωτής ακύρωσε».
+        try {
+          if (typeof window.__maziAbortBeforeDriver === "function") {
+            maziReleased = await window.__maziAbortBeforeDriver(leavingId);
+          }
+        } catch(e) {}
+        if (!maziReleased) {
+          try { await cancelIfBookingOpen("client_back_button"); } catch(e) {}
+        }
       }
       try{ stopListenBooking(); }catch(e){}
       // ✅ 16 Ιουλ 2026: το μόνιτορ ΔΕΝ μένει παγωμένο σε «Αναζητούμε οδηγό» μετά το Πίσω
@@ -8480,7 +9085,11 @@ function isHomeVisible(){
         retryLoopSource = '';
       }catch(e){}
       try{ if(typeof _cmIdle === 'function') _cmIdle(); }catch(e){}
-      try{ if(leavingWasOpen) removeFromFolderAndUI(leavingId); }catch(e){}
+      try{
+        if(leavingWasOpen && leavingId && !maziReleased){
+          removeFromFolderAndUI(leavingId);
+        }
+      }catch(e){}
       resultEl.style.display = "none";
       setHomeUIVisible(true);
       currentBookingId = null;
@@ -8563,6 +9172,7 @@ currentBookingStatus = "new";
 
     function addToFolderIfMissing(bookingId, b){
       if(!bookingId) return;
+      if(typeof maziHasLeftSeat === "function" && maziHasLeftSeat(bookingId)) return;
       try{
         if(localStorage.getItem('clientNoShowReported_' + String(bookingId)) === '1') return;
       }catch(e){}
@@ -8627,6 +9237,8 @@ currentBookingStatus = "new";
         if(clientPhone) existing.phone = clientPhone;
         if(incomingStatus) existing.status = incomingStatus;
         existing.routeMode = routeMode;
+        if(b.maziRequestId) existing.maziRequestId = String(b.maziRequestId);
+        if(b.maziShared === true || existing.maziRequestId) existing.maziShared = true;
         folder[existingIdx] = existing;
         saveFolderForRouteMode(folder, routeMode);
         if(isAccepted && !acceptedStatuses.has(previousStatus)){
@@ -8649,7 +9261,9 @@ currentBookingStatus = "new";
         licensePlate,
         status: incomingStatus,
         routeMode: routeMode,
-        isAirportNowBooking: b.isAirportNowBooking === true
+        isAirportNowBooking: b.isAirportNowBooking === true,
+        maziRequestId: b.maziRequestId ? String(b.maziRequestId) : (window.__maziActiveRequestId || ""),
+        maziShared: b.maziShared === true || !!(b.maziRequestId || window.__maziPendingBooking)
       });
       saveFolderForRouteMode(folder, routeMode);
       if(isAccepted){
@@ -8895,6 +9509,10 @@ currentBookingStatus = "new";
       }
 
       if(status === "driver_cancelled"){
+        if(b.maziShared === true && _maziLateWindow(b)){
+          try{ if(typeof window.__maziRefreshForLateSolo === "function") window.__maziRefreshForLateSolo(); }catch(e){}
+          return;
+        }
         // Driver cancelled - ask if driver notified client
         const driverConfirmedNotified = b.driverConfirmedClientNotified === true;
         const _dcEn = (typeof window.__isEn==='function') ? window.__isEn() : (lang === 'en');
@@ -9104,7 +9722,8 @@ currentBookingStatus = "new";
 
     function listenBooking(bookingId){
       bookingId = String(bookingId || '').trim();
-      if (!bookingId) return;
+      // Κάρτα συνεπιβάτη «Μαζί»: την ενημερώνει ο server (η δική του στάση), όχι η κράτηση του μισθωτή.
+      if (!bookingId || _isMaziGuestId(bookingId)) return;
       var prevActive = String(window._listenBookingActiveId || currentBookingId || '').trim();
       if (prevActive && prevActive !== bookingId) {
         _resetClientMonitorForNewBooking(bookingId, prevActive);
@@ -9228,6 +9847,12 @@ currentBookingStatus = "new";
         }catch(e){ console.error('overlay check error', e); }
 
         currentBookingStatus = readStatus(b); // IMPORTANT
+        try{
+          var _soloDone = String(currentBookingStatus || "").toLowerCase();
+          if(window.__maziSoloSearchOn && _soloDone && _soloDone !== "new" && _soloDone !== "searching" && _soloDone !== "interested" && _soloDone !== "offered"){
+            window.__maziSoloSearchOn = false;
+          }
+        }catch(e){}
         if (_clientLocallyAcceptedOffer(bookingId)) {
           const _stLocal = String(currentBookingStatus || "").trim().toLowerCase();
           if (_stLocal === "offered" || _stLocal === "interested") currentBookingStatus = "accepted";
@@ -9773,6 +10398,8 @@ currentBookingStatus = "new";
 
 
     function showDriverWaitingOverlay(bookingId){
+      // «Μαζί»: ποτέ για κάρτα συνεπιβάτη (το «κάτω» του το δείχνει το μόνιτορ «Μαζί» από τη ΔΙΚΗ του στάση).
+      if(_isMaziGuestId(bookingId)) return;
       try{
         const _dwIt = (loadFolder() || []).find(function(x){ return String(x.id||'') === String(bookingId); });
         if(_dwIt && isAirportAthensBookingClient(_dwIt)){
@@ -11819,6 +12446,85 @@ currentBookingStatus = "new";
       }
     }
 
+    // «Μαζί» μετά τις 12 ώρες: το ΝΑΙ φτιάχνει κανονική κράτηση για ΕΝΑΝ, στον ίδιο δρόμο με την επανάκληση.
+    window.__maziStartSoloBooking = async function(solo){
+      if(!solo || !solo.name || !solo.phone || !solo.pickup || !solo.date || !solo.time) throw new Error("solo");
+      try{ window.__maziPendingBooking = null; }catch(e){}
+      window.__maziSoloSearchOn = true;
+      const min = Number(solo.priceMin);
+      const max = Number(solo.priceMax);
+      const price = isFinite(min) && min > 0 ? min : 35;
+      const priceHi = isFinite(max) && max > 0 ? max : price;
+      const data = {
+        name: String(solo.name),
+        phone: String(solo.phone),
+        pickup: String(solo.pickup),
+        people: "1",
+        flightNum: "",
+        date: String(solo.date),
+        time: String(solo.time),
+        createdAt: Date.now(),
+        status: "new",
+        clientLang: (window.__deviceLang && window.__deviceLang() === "el") ? "el" : "en",
+        clientLangFull: (window.__deviceLang ? window.__deviceLang() : (window.lang || "el")),
+        routeMode: "athens_airport",
+        priceKm: null,
+        priceMin: price,
+        priceMax: priceHi,
+        autoPrice: price,
+        routeMinutes: 0,
+        maziSolo: true
+      };
+      if(solo.pickupLat != null && solo.pickupLng != null && isFinite(Number(solo.pickupLat)) && isFinite(Number(solo.pickupLng))){
+        data.pickupLat = Number(solo.pickupLat);
+        data.pickupLng = Number(solo.pickupLng);
+      }
+      try{
+        const _dev = (typeof window.__taxiDeviceInfo === "function") ? window.__taxiDeviceInfo() : null;
+        if(_dev){ data.clientDeviceId = _dev.id; data.clientDeviceModel = _dev.model || ""; }
+      }catch(e){}
+      await ensureAuth().catch(function(){});
+      const created = await createBookingOnServer(taxiApiBase(), data);
+      const bookingId = String(created.id || created.bookingId || created.name || "");
+      if(!bookingId) throw new Error("missing booking id");
+      if(solo.sharedBookingId){ try{ removeFromFolderAndUI(String(solo.sharedBookingId)); }catch(e){} }
+      currentBookingStatus = "new";
+      window.currentBookingId = bookingId;
+      try{
+        if(typeof _cmRender === "function"){
+          var _rbT = window.__t || function(){ return ""; };
+          _cmRender("cm-gold", _rbT("cmSearching") || "ΑΝΑΖΗΤΗΣΗ",
+            '<div class="client-monitor-message">🔄 ' + _cmEsc(_rbT("cmSearchingMsg") || "Αναζητούμε οδηγό...") + "</div>");
+        }
+      }catch(e){}
+      setHomeUIVisible(false);
+      resultEl.style.display = "block";
+      resultEl.innerHTML = `
+          <b>${tp().done}</b><br><br>
+          ${formatBookingSummary(data)}
+          <div class="yellowLine">${tp().wait} <span class="loading">—</span></div><br>
+          <small>id: ${escapeHtml(bookingId)}</small><br><br>
+          <button class="main" onclick="goBack()">${tp().cancelBtn}</button>
+        `;
+      try{
+        const folder = readFolderRaw("athens_airport").filter(function(x){ return !isTerminalFolderBooking(x); });
+        if(!folder.some(function(x){ return String(x.id || "") === bookingId; })){
+          folder.push({
+            id: bookingId, date: data.date, time: data.time, phone: data.phone,
+            route: data.pickup + " → ✈ Αεροδρόμιο", pickup: data.pickup,
+            status: "new", routeMode: "athens_airport"
+          });
+          saveFolderForRouteMode(folder, "athens_airport");
+        }
+        watchFolderBooking(bookingId);
+      }catch(e){}
+      listenBooking(bookingId);
+      try{
+        if(window.__CLIENT_FCM_TOKEN) update(ref(db, "bookings/" + bookingId), { clientFcmToken: window.__CLIENT_FCM_TOKEN }).catch(function(){});
+      }catch(e){}
+      return bookingId;
+    };
+
     async function submitBookingForm(precheckOpt){
       if(window.__bookingSubmitFlight){
         return window.__bookingSubmitFlight;
@@ -11849,6 +12555,14 @@ currentBookingStatus = "new";
       }
 
       const data = precheck.data || buildBookingFormData();
+
+      // «Μαζί σε μία μίσθωση»: ο αρχηγός ήρθε σε αυτή την οθόνη από την κοινή μίσθωση → ο server βάζει τους επιβάτες.
+      try{
+        if(window.__maziPendingBooking && window.__maziPendingBooking.requestId){
+          data.maziRequestId = String(window.__maziPendingBooking.requestId);
+          window.__maziActiveRequestId = data.maziRequestId;
+        }
+      }catch(e){}
 
       // ✅ SAFE ADD: Flag για κρατήσεις «Τώρα» από Αεροδρόμιο → Αθήνα
       // Αν η ώρα κράτησης είναι < 15 λεπτά από τώρα, σημαίνει ότι ο πελάτης
@@ -11940,7 +12654,9 @@ currentBookingStatus = "new";
               pickup: payload.pickup,
               status: 'new',
               routeMode: routeMode,
-              isAirportNowBooking: !!payload.isAirportNowBooking
+              isAirportNowBooking: !!payload.isAirportNowBooking,
+              maziRequestId: payload.maziRequestId || (window.__maziActiveRequestId || (window.__maziPendingBooking && window.__maziPendingBooking.requestId) || ""),
+              maziShared: !!(payload.maziRequestId || payload.maziShared || window.__maziPendingBooking)
             });
             saveFolderForRouteMode(folder, routeMode);
             return true;
@@ -11979,6 +12695,15 @@ currentBookingStatus = "new";
             <small>${escapeHtml(String(err.message || ''))}</small><br><br>
             <button class="main" onclick="goBack()">${tp().back}</button>
           `;
+        } else if (/mazi_member_left/.test(String(err && err.message || err))) {
+          // «Μαζί»: συνεπιβάτης ακύρωσε πριν σταλεί η κράτηση → δεν έγινε κράτηση, η αναζήτηση συνεχίζει.
+          try{ window.__maziPendingBooking = null; }catch(e){}
+          const _mzT = (typeof window.__t === 'function') ? window.__t : function(){ return ''; };
+          resultEl.innerHTML = `
+            <b>${escapeHtml(_mzT('maziMemberLeftBeforeBook') || '')}</b><br><br>
+            <button class="main" onclick="goBack()">${tp().back}</button>
+          `;
+          try{ if(typeof window.__maziRefreshForLateSolo === 'function') window.__maziRefreshForLateSolo(); }catch(e){}
         } else {
           resultEl.innerHTML = `
             <b>${tp().err}</b><br><br>
@@ -12012,6 +12737,8 @@ currentBookingStatus = "new";
         localStorage.removeItem('folderHasNewBooking');
       }catch(e){}
     }
+    // 1/11: και ο κώδικας «Μαζί» (άλλο script) αναβοσβήνει τον Φάκελο στους συνεπιβάτες.
+    try{ window.__startFolderBlink = startFolderBlink; }catch(e){}
 
     (function init(){
       try{
@@ -12109,7 +12836,7 @@ currentBookingStatus = "new";
       }
     }
 
-    // Ραντεβού από αεροδρόμιο (Αεροδρόμιο→Αθήνα με ώρα): ταρίφα «τώρα» + 10 € (ραντεβού + αναμονή έως 1 ώρα).
+    // Ραντεβού από αεροδρόμιο (Αεροδρόμιο→Αθήνα με ώρα): ταρίφα «τώρα» + 10 € (ραντεβού + αναμονή έως 30 λεπτά).
     function isAirportAppointmentTariff(dateStr, timeStr){
       return isAirportToAthensMode() && !isAirportAthensNowPriceMode(dateStr, timeStr);
     }
@@ -12160,7 +12887,7 @@ currentBookingStatus = "new";
 
     // ===== ΔΑΚΤΥΛΙΟΣ: fix price based on time =====
     function getDaktyliosFixPrice(dateStr, timeStr){
-      // 05:00-00:00 → 40€, 00:00-05:00 → 55€
+      // 05:00-00:00 → 50€, 00:00-05:00 → 65€ (25/10: ήταν 40/55)
       let h;
       try{
         if(dateStr && timeStr){
@@ -12169,12 +12896,10 @@ currentBookingStatus = "new";
           h = new Date().getHours();
         }
       }catch(e){ h = new Date().getHours(); }
-      // Αεροδρόμιο → Αθήνα ραντεβού: δακτύλιος 55€. «Τώρα» (<15 λεπτά): ίδιο με Αθήνα→Αεροδρόμιο (40/55).
-      if(isAirportToAthensMode() && !isAirportAthensNowPriceMode(dateStr, timeStr)) return 55;
-
-      // Αθήνα → Αεροδρόμιο μένει όπως ήταν: 40€ ημέρα / 55€ νύχτα
+      // Νόμος (25/10): ΚΑΙ ΟΙ ΔΥΟ κατευθύνσεις 50€ ημέρα / 65€ νύχτα (ήταν 40/55).
+      // Ραντεβού από αεροδρόμιο: +10 € αναμονή έως 30 λεπτά → 60/75.
       // Νύχτα: 00:00-04:59
-      return (h < 5) ? 55 : 40;
+      return ((h < 5) ? 65 : 50) + (isAirportAppointmentTariff(dateStr, timeStr) ? AIRPORT_APPOINTMENT_EXTRA : 0);
     }
 
     function discountByKm(km){
@@ -12303,6 +13028,10 @@ async function routeKm(fromLat, fromLon){
           const coords = await geocodePickup(pickupText);
           pickupLat = coords.lat;
           pickupLon = coords.lon;
+          // «Μαζί»: κρατάμε το σημείο για την αίτηση (27/10)· η πινέζα της κανονικής κράτησης μένει όπως είναι.
+          if(isFinite(Number(coords.lat)) && isFinite(Number(coords.lon))){
+            __maziGeoPoint = { text: __maziNormText(pickupText), lat: Number(coords.lat), lng: Number(coords.lon) };
+          }
         }
 
         // ===== ΕΛΕΓΧΟΣ ΔΑΚΤΥΛΙΟΥ =====
@@ -12581,6 +13310,7 @@ async function routeKm(fromLat, fromLon){
     // ===== ΔΙΑΔΡΟΜΕΣ: Με διόδια (Αττική Οδός) vs Χωρίς διόδια =====
     let __routeData = { toll: null, notoll: null };
     let __selectedRoute = null;
+    let __priceSeq = 0;   // κάθε «Δείξε τιμή» παίρνει νέο αριθμό· μόνο η τελευταία απάντηση γράφει τιμή
 
     // Waypoint Βάρης - αναγκάζει το OSRM να πάει χωρίς Αττική Οδό
     const WP_NOTOLL_LAT = 37.8330, WP_NOTOLL_LON = 23.7980; // Βάρη Αττικής
@@ -12815,14 +13545,17 @@ async function routeKm(fromLat, fromLon){
       document.getElementById("routeBtnNotoll").classList.remove("selected");
       document.getElementById("routeTollDetail").textContent   = ((typeof window.__t==='function' && window.__t('priceCalc')) || (lang==="en" ? "Calculating…" : "Υπολογισμός…"));
       document.getElementById("routeNotollDetail").textContent = ((typeof window.__t==='function' && window.__t('priceCalc')) || (lang==="en" ? "Calculating…" : "Υπολογισμός…"));
+      let noRoutePrice = false;
+      const priceSeq = ++__priceSeq;
 
       computeDynamicRange(pickupText, dateIn.value, timeIn.value)
         .then(async r=>{
+          if(priceSeq !== __priceSeq) return;
           priceRangeBig.style.animation = "none";
           if(r.daktylios){
             // ===== FIX PRICE ΔΑΚΤΥΛΙΟΣ =====
             document.getElementById("routeSelector").style.display = "none";
-            const isNight = (r.fixPrice === 55);
+            const isNight = isNightTariff(dateIn.value, timeIn.value);
             priceRangeBig.innerHTML = `<span style="font-size:38px;font-weight:900;color:#FFD700;">${r.fixPrice}€</span>`;
             void priceRangeBig.offsetWidth;
             priceRangeBig.style.animation = "";
@@ -12832,11 +13565,9 @@ async function routeKm(fromLat, fromLon){
             if(lbl) lbl.innerHTML = `<span style="color:#FFD700;font-weight:900;font-size:13px;letter-spacing:1px;">🚦 ${Tfix('priceFixTitle') || (lang==="en" ? "FIX PRICE – RING ROAD" : "FIX PRICE – ΔΑΚΤΥΛΙΟΣ")}</span>`;
             priceDistanceLine.innerHTML = `<span style="color:#aaa;font-size:13px;">${isNight ? (Tfix('priceNightLegal') || (lang==="en" ? "🌙 Night tariff (00:00–05:00) · Official price without discount" : "🌙 Νυχτερινό (00:00–05:00) · Νόμιμη τιμή χωρίς έκπτωση")) : (Tfix('priceDayLegal') || (lang==="en" ? "☀️ Daytime (05:00–00:00) · Official price without discount" : "☀️ Ημερήσιο (05:00–00:00) · Νόμιμη τιμή χωρίς έκπτωση"))}</span>`;
           } else {
-            // ===== ΕΜΦΑΝΙΣΗ ΕΠΙΛΟΓΗΣ ΔΙΑΔΡΟΜΗΣ =====
-            document.getElementById("routeSelector").style.display = "block";
-
-            // Αρχική τιμή χωρίς επιλογή (με συντομότερη διαδρομή)
-            priceRangeBig.textContent = ((typeof window.__t==='function' && window.__t('priceChooseRoute')) || (lang==="en" ? "Choose route ↑" : "Επίλεξε διαδρομή ↑"));
+            // ===== ΜΙΑ ΤΙΜΗ (29/10): η πιο γρήγορη διαδρομή με διόδια (Αττική Οδός όπου βοηθάει)· αν δεν υπολογιστεί → χωρίς
+            // διόδια. Χωρίς κουμπιά επιλογής — ο πελάτης βλέπει κατευθείαν την τιμή, όπως στον δακτύλιο.
+            document.getElementById("routeSelector").style.display = "none";
             priceDistanceLine.textContent = "";
             const lbl = document.getElementById("priceEstLabel");
             if(lbl) lbl.textContent = (typeof window.__t==='function' && window.__t('priceEstLabel')) || uiText("title");
@@ -12852,56 +13583,47 @@ async function routeKm(fromLat, fromLon){
             }
 
             if(fromLat && fromLon){
-              // Τρέχουμε και τις 2 διαδρομές παράλληλα
-              const [resToll, resNotoll] = await Promise.allSettled([
-                routeKmWithOptions(fromLat, fromLon, false), // με διόδια
-                routeKmWithOptions(fromLat, fromLon, true)   // χωρίς διόδια
-              ]);
-
-              if(resToll.status==="fulfilled"){
-                const { km, mins } = resToll.value;
-                const kmR = Math.max(1, Math.round(km*10)/10);
-                __routeData.toll = { km: kmR, mins };
-                const base = calcRouteBasePrice(kmR, dateIn.value, timeIn.value);
-                const buf  = calcEffectiveRangeBuffer(dateIn.value, timeIn.value, base);
-                const mn = roundEuro(base-buf), mx = roundEuro(base+buf);
-                console.log(`[TOLL] km=${kmR}, base=${base}, price=${formatPriceLabel(mn, mx)}`);
-                document.getElementById("routeTollDetail").textContent = `📏 ${kmR} km · ~${mins} ${((typeof window.__t==='function' && window.__t('priceMin')) || (lang==="en" ? "min" : "λεπτ."))} · ${formatPriceLabel(mn, mx)}`;
-              } else {
-                console.log(`[TOLL] FAILED`);
-                document.getElementById("routeTollDetail").textContent = ((typeof window.__t==='function' && window.__t('priceNotAvail')) || (lang==="en" ? "Not available" : "Δεν υπολογίστηκε"));
+              // ΠΑΝΤΑ μία τιμή: η πιο γρήγορη (με διόδια) → ξανά μία φορά (στιγμιαίο κόψιμο δικτύου) → χωρίς διόδια →
+              // τελευταία λύση ευθεία απόσταση × 1,35 (δρόμος). Μία κλήση Google αντί για δύο κάθε φορά.
+              const tryRoute = async (noTolls) => {
+                try{ return await routeKmWithOptions(fromLat, fromLon, noTolls); }catch(e){ return null; }
+              };
+              let res = await tryRoute(false), kind = "toll";
+              if(!res){ await new Promise(ok => setTimeout(ok, 1500)); res = await tryRoute(false); }
+              if(!res){ res = await tryRoute(true); kind = "notoll"; }
+              if(!res){
+                const R = 6371, rad = Math.PI / 180;
+                const dLat = (AIRPORT_LAT - fromLat) * rad, dLon = (AIRPORT_LON - fromLon) * rad;
+                const a = Math.sin(dLat/2) ** 2 + Math.cos(fromLat * rad) * Math.cos(AIRPORT_LAT * rad) * Math.sin(dLon/2) ** 2;
+                const roadKm = 2 * R * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)) * 1.35;
+                res = { km: roadKm, mins: Math.max(1, Math.round(roadKm / 50 * 60)) };
+                kind = "toll";
+                console.log(`[ROUTE] fallback air×1.35 km=${roadKm.toFixed(1)}`);
               }
-
-              if(resNotoll.status==="fulfilled"){
-                const { km, mins } = resNotoll.value;
-                const kmR = Math.max(1, Math.round(km*10)/10);
-                __routeData.notoll = { km: kmR, mins };
-                const base = calcRouteBasePrice(kmR, dateIn.value, timeIn.value);
-                const buf  = calcEffectiveRangeBuffer(dateIn.value, timeIn.value, base);
-                const mn = roundEuro(base-buf), mx = roundEuro(base+buf);
-                console.log(`[NOTOLL] km=${kmR}, base=${base}, price=${formatPriceLabel(mn, mx)}`);
-                document.getElementById("routeNotollDetail").textContent = `📏 ${kmR} km · ~${mins} ${((typeof window.__t==='function' && window.__t('priceMin')) || (lang==="en" ? "min" : "λεπτ."))} · ${formatPriceLabel(mn, mx)}`;
-              } else {
-                console.log(`[NOTOLL] FAILED`);
-                document.getElementById("routeNotollDetail").textContent = ((typeof window.__t==='function' && window.__t('priceNotAvail')) || (lang==="en" ? "Not available" : "Δεν υπολογίστηκε"));
-              }
-
+              const kmR = Math.max(1, Math.round(res.km*10)/10);
+              __routeData[kind] = { km: kmR, mins: res.mins };
+              console.log(`[${kind.toUpperCase()}] km=${kmR}, mins=${res.mins}`);
             }
 
-            // Κρατάμε confirm disabled μέχρι να επιλέξει
-            priceConfirmBtn.disabled = true;
-            priceConfirmBtn.style.opacity = "0.7";
-            return; // skip finally enable
+            // Ξαναπάτησε «Δείξε τιμή» (π.χ. άλλαξε διεύθυνση) όσο υπολογιζόταν → αυτή η απάντηση είναι παλιά.
+            if(priceSeq !== __priceSeq) return;
+            const pick = __routeData.toll ? "toll" : (__routeData.notoll ? "notoll" : null);
+            if(pick){ window.__selectRoute(pick); return; }
+            // Μόνο αν δεν βρέθηκε καν το σημείο της διεύθυνσης → «Δεν βρέθηκε τιμή / ελέγξτε τη διεύθυνση», «Κάνε κράτηση» κλειστό.
+            noRoutePrice = true;
+            throw new Error("route_failed");
           }
         })
         .catch(()=>{
+          if(priceSeq !== __priceSeq) return;
           priceRangeBig.textContent = uiText("bad");
           priceDistanceLine.textContent = uiText("bad2");
         })
         .finally(()=>{
-          // Ενεργοποιούμε κουμπί ΜΟΝΟ αν δεν χρειάζεται επιλογή διαδρομής (π.χ. Δακτύλιος)
-          if(!document.getElementById("routeSelector") ||
-             document.getElementById("routeSelector").style.display === "none"){
+          if(priceSeq !== __priceSeq) return;   // παλιά απάντηση — η νέα αποφασίζει για το κουμπί
+          // Ενεργοποιούμε κουμπί ΜΟΝΟ αν δεν χρειάζεται επιλογή διαδρομής (π.χ. Δακτύλιος) και βγήκε τιμή
+          if(!noRoutePrice && (!document.getElementById("routeSelector") ||
+             document.getElementById("routeSelector").style.display === "none")){
             priceConfirmBtn.disabled = false;
             priceConfirmBtn.style.opacity = "1";
             prefetchBookingSubmitChecks();
@@ -12928,6 +13650,87 @@ async function routeKm(fromLat, fromLon){
 
     // Back button
     priceBackBtn.addEventListener("click", hideOverlay);
+
+    // «Μαζί σε μία μίσθωση»: ο αρχηγός (πάτησε ΑΝΑΛΑΜΒΑΝΩ) έρχεται σε ΑΥΤΗ την οθόνη «Κάνε κράτηση», με την τιμή ΟΛΗΣ
+    // της μίσθωσης (σταθερή, όπως ο δακτύλιος — χωρίς επιλογή διαδρομής). Το «Κάνε κράτηση» περνά από τον ΙΔΙΟ δρόμο
+    // (priceConfirmBtn → submitBookingForm → POST /api/bookings)· ο server βάζει μέσα όλους τους επιβάτες. ΜΟΝΟ προσθήκη.
+    window.__maziOpenBooking = function(info){
+      if(!info || !info.requestId) return false;
+      window.__maziPendingBooking = { requestId: String(info.requestId) };
+      window.__maziActiveRequestId = String(info.requestId);
+      __priceSeq++;   // υπολογισμός κανονικής τιμής που τρέχει ακόμα δεν γράφει πάνω στο ποσό της παρέας
+      window.__maziFillForm(info);
+      const pickupText = String(pickupIn.value || info.pickup || "").trim();
+
+      try{ document.getElementById("folderBox").style.display="none"; }catch(e){}
+      refreshOverlayText();
+      // «Από:» = όλες οι στάσεις της κοινής μίσθωσης με τη σειρά (όχι μόνο η δική του).
+      const stops = Array.isArray(info.stops) ? info.stops.filter(Boolean) : [];
+      if(stops.length > 1){
+        priceFromValue.innerHTML = stops.map(function(s, i){ return (i + 1) + ". " + escapeHtml(String(s)); }).join("<br>");
+      } else {
+        priceFromValue.textContent = pickupText;
+      }
+      priceToValue.textContent   = uiText("airport");
+      priceOverlay.style.display = "flex";
+      _priceSoundPlayed = false;
+      document.body.classList.add("no-scroll");
+      prefetchBookingSubmitChecks();
+
+      __selectedRoute = null;
+      document.getElementById("routeSelector").style.display = "none";
+      const total = Number(info.total);
+      __dynKm  = null;
+      __dynMin = isFinite(total) ? total : null;
+      __dynMax = isFinite(total) ? total : null;
+
+      const T = (typeof window.__t==='function') ? window.__t : function(){ return ''; };
+      const totalTxt = isFinite(total)
+        ? ((Math.round(total * 100) % 100 === 0) ? String(Math.round(total)) : total.toFixed(2).replace(".", T('maziDec') || ","))
+        : "";
+      priceRangeBig.innerHTML = `<span style="font-size:38px;font-weight:900;color:#FFD700;">${escapeHtml(totalTxt)}€</span>`;
+      const lbl = document.getElementById("priceEstLabel");
+      if(lbl) lbl.innerHTML = `<span style="color:#FFD700;font-weight:900;font-size:13px;letter-spacing:1px;">👥 ${escapeHtml(T('maziBtnTitle') || "")}</span>`;
+      priceDistanceLine.textContent = `${T('maziPassengers') || ''}: ${info.size || ''}`;
+      priceConfirmBtn.disabled = false;
+      priceConfirmBtn.style.opacity = "1";
+      try{ if(!_priceSoundPlayed){ _priceSoundPlayed = true; playPriceRevealSound(); } }catch(e){}
+      return true;
+    };
+
+    // Τα στοιχεία του από την αίτηση «Μαζί» στην κανονική φόρμα — ΜΟΝΟ στα κενά πεδία (ό,τι έχει γράψει ο ίδιος μένει)·
+    // ημερομηνία/ώρα πάντα. Και για το «Δεν βρέθηκε κοινή μίσθωση» (29/10): πατάει μόνο «Δείξε τιμή» → «Κάνε κράτηση».
+    window.__maziFillForm = function(info){
+      if(!info) return;
+      try{
+        const nm = String(info.name || "").trim().split(/\s+/).filter(Boolean);
+        if(nm.length && !String(nameIn.value || "").trim()) nameIn.value = nm[0];
+        if(nm.length > 1 && !String(surnameIn.value || "").trim()) surnameIn.value = nm.slice(1).join(" ");
+      }catch(e){}
+      try{
+        const ph = String(info.phone || "").replace(/[^0-9+]/g, "");
+        if(ph.charAt(0) === "+" && !String(phoneIn.value || "").trim()){
+          // κωδικός χώρας = ο μεγαλύτερος που ταιριάζει στη λίστα· αλλιώς «custom» με ό,τι μένει πριν τα 10 τελευταία ψηφία
+          let cc = "";
+          Array.prototype.forEach.call((phoneCC && phoneCC.options) || [], function(o){
+            const v = String(o.value || "");
+            if(v.charAt(0) === "+" && ph.indexOf(v) === 0 && v.length > cc.length) cc = v;
+          });
+          if(phoneCC && cc){
+            phoneCC.value = cc;
+            phoneIn.value = ph.slice(cc.length);
+          } else if(phoneCC && ph.length > 11){
+            phoneCC.value = "custom";
+            const cust = document.getElementById("customCC");
+            if(cust) cust.value = ph.slice(0, ph.length - 10);
+            phoneIn.value = ph.slice(-10);
+          }
+          try{ if(typeof window.syncCustomCC === "function") window.syncCustomCC(phoneCC.value); }catch(e){}
+        }
+      }catch(e){}
+      try{ if(info.pickup && !String(pickupIn.value || "").trim()) pickupIn.value = info.pickup; }catch(e){}
+      try{ if(info.date) dateIn.value = info.date; if(info.time) timeIn.value = info.time; }catch(e){}
+    };
 
     // Confirm booking: trigger original submit flow safely
     priceConfirmBtn.addEventListener("click", async ()=>{
@@ -13009,6 +13812,1789 @@ async function routeKm(fromLat, fromLon){
             : 'Σφάλμα κατά την καταγραφή της καταγγελίας.');
         });
     }
+</script>
+
+<script>
+    // ===== «Μαζί σε μία μίσθωση» — δοκιμαστικό κουμπί στην οθόνη τιμής (2026-10-24) =====
+    // ΜΟΝΟ προσθήκη, κάτω από το «Κάνε κράτηση»: η κανονική τιμή, το «Κάνε κράτηση» και το «Πίσω» μένουν όπως ήταν.
+    // Φαίνεται μόνο αν ο server πει «ναι» για αυτό το κινητό ΚΑΙ ισχύουν οι όροι:
+    // Αθήνα → Αεροδρόμιο, 1 άτομο, αναχώρηση σε περισσότερες από searchCutoffHours ώρες.
+    // Την τιμή δεν την υπολογίζει: διαβάζει ό,τι δείχνει ήδη η οθόνη στο #priceRangeBig.
+    (function(){
+      var overlay   = document.getElementById("priceOverlay");
+      var box       = document.getElementById("maziBox");
+      var bigPrice  = document.getElementById("priceRangeBig");
+      var maziBtn   = document.getElementById("maziBtn");
+      var btnTitle  = document.getElementById("maziBtnTitle");
+      var btnSub    = document.getElementById("maziBtnSub");
+      var infoLink  = document.getElementById("maziInfoLink");
+      if(!overlay || !box || !bigPrice || !maziBtn) return;
+
+      var AVAIL_CACHE_MS = 5 * 60 * 1000;
+      var avail = null;   // { at, ok, settings }
+      var evalSeq = 0;
+
+      // Κείμενα από το i18n.js (15 γλώσσες, όπως το υπόλοιπο app). Ό,τι λείπει πέφτει σε αγγλικά → ελληνικά (window.__t).
+      function T(key){
+        try{ return (typeof window.__t === "function" && window.__t(key)) || ""; }catch(e){ return ""; }
+      }
+      function fill(str, vals){
+        return String(str || "").replace(/\{(\w+)\}/g, function(m, k){
+          return Object.prototype.hasOwnProperty.call(vals, k) ? String(vals[k]) : m;
+        });
+      }
+
+      function deviceId(){
+        try{
+          var d = (typeof window.__taxiDeviceInfo === "function") ? window.__taxiDeviceInfo() : null;
+          return (d && d.id) ? String(d.id) : "";
+        }catch(e){ return ""; }
+      }
+
+      function hoursUntilDeparture(){
+        try{
+          var d = String((document.getElementById("date") || {}).value || "").trim();
+          var t = String((document.getElementById("time") || {}).value || "").trim().replace(".", ":");
+          var dp = d.split("-").map(Number), tp = t.split(":").map(Number);
+          if(dp.length !== 3 || tp.length < 2 || dp.some(isNaN) || tp.slice(0, 2).some(isNaN)) return NaN;
+          var ms = new Date(dp[0], dp[1] - 1, dp[2], tp[0], tp[1], 0, 0).getTime();
+          return (ms - Date.now()) / 3600000;
+        }catch(e){ return NaN; }
+      }
+
+      // Ίδιος έλεγχος με το isAirportToAthensMode() (εκείνο είναι μέσα στο module script και δεν φαίνεται εδώ).
+      function isAirportToAthens(){
+        try{
+          return (window._clientRouteMode === "airport_athens") ||
+                 (sessionStorage.getItem("clientRouteMode") === "airport_athens");
+        }catch(e){
+          return (window._clientRouteMode === "airport_athens");
+        }
+      }
+
+      function conditionsOk(s){
+        if(isAirportToAthens()) return false;
+        if(parseInt((document.getElementById("people") || {}).value, 10) !== 1) return false;
+        var cutoff = Number(s && s.searchCutoffHours);
+        if(!isFinite(cutoff) || cutoff <= 0) cutoff = 12;
+        var h = hoursUntilDeparture();
+        return isFinite(h) && h > cutoff;
+      }
+
+      function fetchAvailability(){
+        var id = deviceId();
+        if(!id) return Promise.resolve({ ok: false });
+        if(avail && Date.now() - avail.at < AVAIL_CACHE_MS) return Promise.resolve(avail);
+        var base = String(window.TAXI_API_URL || "").replace(/\/$/, "");
+        if(!base) return Promise.resolve({ ok: false });
+        var headers = { "Accept": "application/json" };
+        if(window.TAXI_API_KEY) headers["X-API-Key"] = String(window.TAXI_API_KEY).trim();
+        var ctrl = (typeof AbortController === "function") ? new AbortController() : null;
+        var timer = ctrl ? setTimeout(function(){ try{ ctrl.abort(); }catch(e){} }, 5000) : null;
+        return fetch(base + "/api/mazi/available?deviceId=" + encodeURIComponent(id), ctrl ? { headers: headers, signal: ctrl.signal } : { headers: headers })
+          .then(function(r){ return r.ok ? r.json() : {}; })
+          .then(function(j){
+            avail = { at: Date.now(), ok: !!(j && j.available === true), settings: (j && j.settings) || {} };
+            return avail;
+          })
+          .catch(function(){ return { ok: false }; })
+          .finally(function(){ if(timer) clearTimeout(timer); });
+      }
+
+      function render(){
+        if(!overlay.classList.contains("mazi-on")) return;
+        var s = (avail && avail.settings) || {};
+        var minP = Number(s.minPassengers) || 2;
+        var maxP = Number(s.maxPassengers) || 4;
+        var internalMin = Number(s.internalMinimum);
+        if(!isFinite(internalMin) || internalMin < 0) internalMin = 4;
+
+        btnTitle.textContent = "👥 " + T("maziBtnTitle");
+        infoLink.textContent = "ⓘ " + T("maziInfoLink");
+
+        var priceText = String(bigPrice.textContent || "").replace(/\s+/g, " ").trim();
+        var nums = (priceText.indexOf("€") !== -1 ? (priceText.match(/\d+(?:[.,]\d+)?/g) || []) : [])
+          .map(function(x){ return parseFloat(x.replace(",", ".")); })
+          .filter(function(n){ return isFinite(n) && n > 0; });
+        if(nums.length){
+          var lo = Math.min.apply(null, nums), hi = Math.max.apply(null, nums);
+          // 25/10: σταθερή προσθήκη ανά μέγεθος παρέας (groupExtra, π.χ. 2→5, 3→10)· χωρίς αυτήν το ελάχιστο των εσωτερικών.
+          var ex = s.groupExtra || {};
+          var exMax = Number(ex[maxP]), exMin = Number(ex[minP]);
+          var pLo = Math.round((lo + (isFinite(exMax) ? exMax : internalMin)) / maxP);
+          var pHi = Math.round((hi + (isFinite(exMin) ? exMin : internalMin)) / minP);
+          btnSub.textContent = fill(T("maziPerPerson"), { lo: pLo, hi: pHi });
+        } else {
+          btnSub.textContent = priceText || "…";
+        }
+      }
+
+      function hide(){
+        overlay.classList.remove("mazi-on");
+        box.style.display = "none";
+      }
+
+      function evaluate(){
+        var seq = ++evalSeq;
+        hide();
+        fetchAvailability().then(function(a){
+          if(seq !== evalSeq || overlay.style.display !== "flex") return;
+          // Ήρθε εδώ ο αρχηγός μιας κοινής μίσθωσης → καθαρή οθόνη «Κάνε κράτηση», χωρίς κουμπί «Μαζί».
+          if(window.__maziPendingBooking) return;
+          if(!a || !a.ok || !conditionsOk(a.settings)) return;
+          overlay.classList.add("mazi-on");
+          box.style.display = "block";
+          render();
+        });
+      }
+
+      // Άνοιγμα/κλείσιμο της οθόνης τιμής (ο υπάρχων κώδικας αλλάζει μόνο το style.display).
+      var wasOpen = overlay.style.display === "flex";
+      new MutationObserver(function(){
+        var open = overlay.style.display === "flex";
+        if(open === wasOpen) return;
+        wasOpen = open;
+        if(open) evaluate(); else { evalSeq++; hide(); }
+      }).observe(overlay, { attributes: true, attributeFilter: ["style"] });
+
+      // Η τιμή αλλάζει (φόρτωση, επιλογή διαδρομής, γλώσσα) → ανανέωση του ποσού ανά άτομο.
+      new MutationObserver(render).observe(bigPrice, { childList: true, characterData: true, subtree: true });
+
+      // Πάτημα «Μαζί» → όροι → στοιχεία → αίτηση στον server → «Ψάχνουμε συνεπιβάτες» (startSearch πιο κάτω).
+      maziBtn.addEventListener("click", function(){ startSearch(); });
+
+      // ===== Σελίδα ⓘ: όλες οι πληροφορίες. Οι αριθμοί έρχονται από τις ρυθμίσεις του server (Admin). =====
+      var infoOverlay = document.getElementById("maziInfoOverlay");
+      var infoScroll  = document.getElementById("maziInfoScroll");
+      var acceptChk   = document.getElementById("maziAcceptChk");
+      var acceptText  = document.getElementById("maziAcceptText");
+      var infoBack    = document.getElementById("maziInfoBack");
+      // v2 (26/10): νέοι όροι — μισθωτής, εξουσιοδότηση, κοινό chat, πληρωμή στο POS → ο πελάτης τους ξαναδέχεται.
+      var ACCEPT_KEY  = "maziTermsAccepted_v2";
+
+      function cfg(){
+        var s = (avail && avail.settings) || {};
+        var lug = s.luggage || {};
+        function num(v, d){ v = Number(v); return isFinite(v) ? v : d; }
+        function hhmm(v, d){ v = String(v || ""); return /^\d{2}:\d{2}$/.test(v) ? v : d; }
+        function cm(v){ v = Number(v); return (v === null || !isFinite(v) || v <= 0) ? null : Math.round(v); }
+        return {
+          minP: num(s.minPassengers, 2), maxP: num(s.maxPassengers, 4), cutoff: num(s.searchCutoffHours, 12),
+          window: num(s.timeWindowMinutes, 15), gapMin: num(s.pickupGapMinutesMin, 5), gapMax: num(s.pickupGapMinutesMax, 7),
+          gapKm: num(s.pickupGapKmMax, 2),
+          ready: num(s.readyBeforeMinutes, 5), wait: num(s.driverWaitMinutes, 2),
+          kmDay: num(s.internalPerKmDay, 0.9), kmNight: num(s.internalPerKmNight, 1.25),
+          nightFrom: hhmm(s.nightFrom, "00:00"), nightTo: hhmm(s.nightTo, "05:00"),
+          waitHour: num(s.waitingPerHour, 20), intMin: num(s.internalMinimum, 4),
+          ex2: num((s.groupExtra || {})["2"], 5), ex3: num((s.groupExtra || {})["3"], 10),
+          bags: num(lug.perPassenger, 1),
+          L: cm(lug.lengthCm), W: cm(lug.widthCm), H: cm(lug.heightCm)
+        };
+      }
+
+      function money(n){
+        var s = (Math.round(n * 100) % 100 === 0) ? String(Math.round(n)) : n.toFixed(2);
+        return s.replace(".", T("maziDec") || ",");
+      }
+
+      function bagSvg(c){
+        var cmTxt = " " + T("maziCm");
+        var lenTxt = T("maziBagLen") + " " + (c.L ? c.L + cmTxt : "—");
+        var widTxt = T("maziBagWid") + " " + (c.W ? c.W + cmTxt : "—");
+        return '<svg class="mazi-bag" width="190" height="168" viewBox="0 0 190 168" aria-hidden="true">' +
+          '<rect x="48" y="16" width="34" height="16" rx="6" fill="none" stroke="#FFD700" stroke-width="3"/>' +
+          '<rect x="30" y="30" width="70" height="98" rx="11" fill="rgba(255,215,0,.12)" stroke="#FFD700" stroke-width="3"/>' +
+          '<line x1="50" y1="42" x2="50" y2="116" stroke="#FFD700" stroke-opacity=".45" stroke-width="2"/>' +
+          '<line x1="80" y1="42" x2="80" y2="116" stroke="#FFD700" stroke-opacity=".45" stroke-width="2"/>' +
+          '<circle cx="44" cy="134" r="5" fill="#FFD700"/><circle cx="86" cy="134" r="5" fill="#FFD700"/>' +
+          '<line x1="114" y1="30" x2="114" y2="128" stroke="#fff" stroke-width="1.5"/>' +
+          '<line x1="109" y1="30" x2="119" y2="30" stroke="#fff" stroke-width="1.5"/>' +
+          '<line x1="109" y1="128" x2="119" y2="128" stroke="#fff" stroke-width="1.5"/>' +
+          '<text x="122" y="83" fill="#fff" font-size="12" font-weight="700">' + lenTxt + '</text>' +
+          '<line x1="30" y1="150" x2="100" y2="150" stroke="#fff" stroke-width="1.5"/>' +
+          '<line x1="30" y1="145" x2="30" y2="155" stroke="#fff" stroke-width="1.5"/>' +
+          '<line x1="100" y1="145" x2="100" y2="155" stroke="#fff" stroke-width="1.5"/>' +
+          '<text x="65" y="166" fill="#fff" font-size="12" font-weight="700" text-anchor="middle">' + widTxt + '</text>' +
+          '</svg>';
+      }
+
+      function buildInfoHtml(){
+        var c = cfg();
+        var dims = [c.L, c.W, c.H].filter(function(v){ return v; });
+        var vals = {
+          minP: c.minP, maxP: c.maxP, cutoff: c.cutoff, later: Math.max(24, c.cutoff * 2),
+          window: c.window, gapMin: c.gapMin, gapMax: c.gapMax, km: c.gapKm, ready: c.ready, wait: c.wait,
+          kmDay: money(c.kmDay), kmNight: money(c.kmNight), night: c.nightFrom + "–" + c.nightTo,
+          waitHour: money(c.waitHour), intMin: money(c.intMin), ex2: money(c.ex2), ex3: money(c.ex3),
+          bags: (c.bags === 1) ? T("maziBagsOne") : fill(T("maziBagsMany"), { n: c.bags }),
+          dims: dims.length ? dims.join(" × ") + " " + T("maziCm") : T("maziDimsTbd"),
+          bagSvg: bagSvg(c)
+        };
+        return "<h2>👥 " + T("maziBtnTitle") + "</h2>" +
+          '<div class="mazi-subtitle">' + T("maziSubtitle") + "</div>" +
+          fill(T("maziInfoHtml"), vals);
+      }
+
+      function isInfoOpen(){ return !!infoOverlay && infoOverlay.style.display === "flex"; }
+
+      function readAccepted(){
+        try{ return !!localStorage.getItem(ACCEPT_KEY); }catch(e){ return false; }
+      }
+
+      function openInfo(){
+        if(!infoOverlay || !infoScroll) return;
+        infoScroll.innerHTML = buildInfoHtml();
+        if(acceptText) acceptText.textContent = T("maziAccept");
+        if(infoBack) infoBack.textContent = "← " + (T("pickupMapClose") || "Πίσω");
+        var rtl = false;
+        try{
+          var l = (typeof window.__activeLang === "function") ? window.__activeLang() : window.lang;
+          rtl = !!(window.__LANGS && window.__LANGS[l] && window.__LANGS[l].dir === "rtl");
+        }catch(e){}
+        infoScroll.dir = rtl ? "rtl" : "ltr";
+        var acceptRow = document.getElementById("maziAcceptRow");
+        if(acceptRow) acceptRow.dir = rtl ? "rtl" : "ltr";
+        if(acceptChk) acceptChk.checked = readAccepted();
+        hookAndroidBack();
+        infoOverlay.style.display = "flex";
+        infoScroll.scrollTop = 0;
+      }
+
+      function closeInfo(){
+        if(infoOverlay) infoOverlay.style.display = "none";
+        pendingStart = false;
+        if(acceptHint) acceptHint.style.display = "none";
+      }
+
+      // Το «πίσω» του κινητού: κλείνει πρώτα το ⓘ αν είναι ανοιχτό.
+      // Δεν αλλάζει τη window.__clientHandleAndroidBack — μόνο την «τυλίγει».
+      function hookAndroidBack(){
+        var cur = window.__clientHandleAndroidBack;
+        if(cur && cur.__maziWrapped) return;
+        var wrapped = function(){
+          if(isInfoOpen()){ closeInfo(); return true; }
+          // Κοινό chat της παρέας ανοιχτό → κλείνει αυτό (26/10).
+          if(typeof window.__maziGcIsOpen === "function" && window.__maziGcIsOpen()){ window.__maziGcClose(); return true; }
+          return (typeof cur === "function") ? cur.apply(this, arguments) : false;
+        };
+        wrapped.__maziWrapped = true;
+        window.__clientHandleAndroidBack = wrapped;
+      }
+
+      infoLink.addEventListener("click", openInfo);
+      if(infoBack) infoBack.addEventListener("click", closeInfo);
+      if(acceptChk) acceptChk.addEventListener("change", function(){
+        try{
+          if(acceptChk.checked) localStorage.setItem(ACCEPT_KEY, String(Date.now()));
+          else localStorage.removeItem(ACCEPT_KEY);
+        }catch(e){}
+        // Ήρθε εδώ από το «Μαζί» για να αποδεχτεί τους όρους → μόλις τσεκάρει, συνεχίζει μόνο του.
+        if(acceptChk.checked && pendingStart){
+          closeInfo();
+          startSearch();
+        }
+      });
+      // Αν κλείσει η οθόνη τιμής, κλείνει και το ⓘ.
+      new MutationObserver(function(){ if(overlay.style.display !== "flex") closeInfo(); })
+        .observe(overlay, { attributes: true, attributeFilter: ["style"] });
+      // Η κράτηση του αρχηγού διαβάζει το σημάδι «Μαζί» αμέσως μόλις πατηθεί το «Κάνε κράτηση» (η οθόνη κλείνει πριν).
+      // Αν η οθόνη κλείσει και δεν ξανανοίξει σε 5″ (π.χ. πάτησε Πίσω), το σημάδι σβήνει → η επόμενη κράτηση είναι κανονική.
+      var pendingClearTimer = null;
+      new MutationObserver(function(){
+        if(overlay.style.display === "flex"){ if(pendingClearTimer){ clearTimeout(pendingClearTimer); pendingClearTimer = null; } return; }
+        if(!window.__maziPendingBooking || pendingClearTimer) return;
+        pendingClearTimer = setTimeout(function(){
+          pendingClearTimer = null;
+          if(overlay.style.display !== "flex") window.__maziPendingBooking = null;
+        }, 5000);
+      }).observe(overlay, { attributes: true, attributeFilter: ["style"] });
+
+      // ===== Βήμα 5: αίτηση στον server → «Ψάχνουμε συνεπιβάτες» στο κεντρικό μόνιτορ. Τίποτα δεν πάει στους οδηγούς. =====
+      var acceptHint    = document.getElementById("maziAcceptHint");
+      var pendingStart  = false;
+      var sending       = false;
+
+      function val(id){
+        var e = document.getElementById(id);
+        return e ? String(e.value || "").trim() : "";
+      }
+
+      // Ίδιοι κανόνες με την κανονική κράτηση: όνομα, επώνυμο, τηλέφωνο (ελληνικό = 10 ψηφία).
+      function contact(){
+        var first = val("name"), last = val("surname");
+        var ccEl = document.getElementById("phoneCountryCode");
+        var cc = ccEl ? String(ccEl.value || "+30") : "+30";
+        if(cc === "custom"){ var cu = val("customCC"); cc = cu.charAt(0) === "+" ? cu : "+" + cu; }
+        var digits = val("phone").replace(/[^0-9]/g, "");
+        var ok = !!first && !!last && digits.length >= 5 && /^\+\d{1,4}$/.test(cc) && !(cc === "+30" && digits.length !== 10);
+        // Συμπληρωμένα όλα αλλά ελληνικό τηλέφωνο χωρίς 10 ψηφία → το ίδιο μήνυμα με την κανονική κράτηση.
+        var badGreek = !!first && !!last && cc === "+30" && digits.length > 0 && digits.length !== 10;
+        return { ok: ok, badGreek: badGreek, name: (first + " " + last).trim(), phone: cc + digits.replace(/^0+/, "") };
+      }
+
+      function priceRange(){
+        var t = String(bigPrice.textContent || "");
+        var nums = (t.indexOf("€") !== -1 ? (t.match(/\d+(?:[.,]\d+)?/g) || []) : [])
+          .map(function(x){ return parseFloat(x.replace(",", ".")); })
+          .filter(function(n){ return isFinite(n) && n > 0; });
+        return nums.length ? { lo: Math.min.apply(null, nums), hi: Math.max.apply(null, nums) } : { lo: null, hi: null };
+      }
+
+      function apiPost(path, body){
+        var base = String(window.TAXI_API_URL || "").replace(/\/$/, "");
+        var headers = { "Content-Type": "application/json", "Accept": "application/json" };
+        if(window.TAXI_API_KEY) headers["X-API-Key"] = String(window.TAXI_API_KEY).trim();
+        var ctrl = (typeof AbortController === "function") ? new AbortController() : null;
+        var timer = ctrl ? setTimeout(function(){ try{ ctrl.abort(); }catch(e){} }, 10000) : null;
+        var opts = { method: "POST", headers: headers, body: JSON.stringify(body) };
+        if(ctrl) opts.signal = ctrl.signal;
+        return fetch(base + path, opts)
+          .then(function(r){ return r.json().catch(function(){ return {}; }); })
+          .then(function(j){ if(timer) clearTimeout(timer); return j || {}; }, function(e){ if(timer) clearTimeout(timer); throw e; });
+      }
+
+      function say(text){
+        if(typeof window.showCustomAlert === "function") window.showCustomAlert(text, { icon: "👥", title: T("maziName"), btnText: "OK" });
+        else alert(text);
+      }
+
+      // «YYYY-MM-DD HH:MM» αναχώρησης: true όταν έμειναν το πολύ 12 ώρες (μετά τις 12).
+      function departIsLate(local){
+        var m = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})/.exec(String(local || "").trim());
+        if(!m) return false;
+        var dt = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]), Number(m[4]), Number(m[5]));
+        return !isNaN(dt.getTime()) && (dt.getTime() - Date.now() <= 12 * 3600e3);
+      }
+
+      // «Ακύρωσε συνεπιβάτης» / «Μείνατε μόνος» (25/10): αναδυόμενο ΜΙΑ φορά για κάθε όνομα, όπου κι αν είναι ο πελάτης
+      // (μόνιτορ, Φάκελος, φόρμα). Το καλούν ο επιβάτης (guestFolderSync) και ο υπεύθυνος (watchFolderBooking).
+      // Πριν τις 12: «μείνατε μόνος, εάν περάσουν οι 12 ώρες καλέστε ταξί μόνος». Μετά τις 12: «καλέστε ταξί μόνος».
+      window.__maziCancelPopup = function(bookingId, names, amountTxt, alone, late){
+        try{
+          if(typeof window.__maziHasLeftSeat === "function" && window.__maziHasLeftSeat(bookingId)) return;
+          var key = "maziSeenCancel_" + bookingId;
+          var seen = [];
+          try{ seen = JSON.parse(localStorage.getItem(key) || "[]") || []; }catch(e){}
+          var fresh = (names || []).filter(function(n){ return n && seen.indexOf(n) < 0; });
+          if(!fresh.length) return;
+          try{ localStorage.setItem(key, JSON.stringify(seen.concat(fresh))); }catch(e){}
+          var txt = alone
+            ? fill(T("maziGcSeatCancelled"), { name: fresh.join(", ") }) + " " + fill(T(late ? "maziAloneLate" : "maziAloneNow"), { amount: amountTxt })
+            : fill(T("maziCancelledNotice"), { names: fresh.join(", "), amount: amountTxt });
+          if(typeof window.showCustomAlert === "function") window.showCustomAlert(txt, { icon: alone ? "👤" : "⚠️", title: T("maziName"), btnText: "OK" });
+          else alert(txt);
+        }catch(e){}
+      };
+
+      // «YYYY-MM-DD HH:MM» → «DD/MM/YYYY HH:MM»
+      function fmtLocal(s){
+        var m = /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2})$/.exec(String(s || ""));
+        return m ? (m[3] + "/" + m[2] + "/" + m[1] + " " + m[4] + ":" + m[5]) : String(s || "");
+      }
+
+      // Η παρέα που βρήκε ο server (μόνο σε «proposed»). Πρόταση χωρίς παρέα = ακόμα ψάχνει.
+      function foundGroup(r){ return (r && r.status === "proposed" && r.group && r.group.me) ? r.group : null; }
+      function isSearching(r){ return !!r && (r.status === "searching" || (r.status === "proposed" && !foundGroup(r))); }
+
+      // «⚠️ Ένας συνεπιβάτης ακύρωσε…» — ο server το στέλνει όσο ισχύει (μέχρι να αλλάξει πάλι η παρέα).
+      function noticeText(r){
+        var n = r && r.notice;
+        if(!n) return "";
+        // Ακύρωσε ο μισθωτής (26/10) → ο επόμενος γίνεται μισθωτής (ΣΥΜΦΩΝΩ), οι άλλοι ξαναεξουσιοδοτούν.
+        var g = foundGroup(r);
+        if(n.prevLessee && g && g.responsible){
+          return g.responsible.me ? fill(T("maziLesseeGoneMe"), { prev: n.prevLessee })
+            : fill(T("maziLesseeGoneOther"), { prev: n.prevLessee, name: g.responsible.name });
+        }
+        if(n.type === "member_cancelled") return T("maziNoticeLeft");
+        if(n.type === "member_cancelled_regrouped") return T("maziNoticeRegrouped");
+        if(n.type === "member_joined_regrouped") return T("maziNoticeJoined");
+        if(n.type === "booking_cancelled"){
+          // Ο οδηγός ακύρωσε και ο μισθωτής είπε ΟΧΙ (27/10): σαφές ότι η παρέα μένει και τι γίνεται τώρα.
+          if(n.reason === "driver" && g){
+            var lesseeMe = g.lessee ? !!g.lessee.me : !!(g.responsible && g.responsible.me);
+            return lesseeMe ? fill(T("maziDriverCancelledKeepLessee"), { btn: T("priceConfirm") }) : T("maziDriverCancelledKeepGuest");
+          }
+          // Ο μισθωτής ακύρωσε την κράτηση πριν τη δεχτεί οδηγός (27/10): η παρέα μένει — οι άλλοι μπορούν να περιμένουν ή να φύγουν.
+          if(n.reason === "lessee" && g){
+            var lesseeMe2 = g.lessee ? !!g.lessee.me : !!(g.responsible && g.responsible.me);
+            return lesseeMe2 ? fill(T("maziLesseeCancelledMe"), { btn: T("priceConfirm") }) : T("maziLesseeCancelledGuest");
+          }
+          return T("retryCancelTitle");
+        }
+        return "";
+      }
+
+      // Οι ΑΛΛΟΙ επιβάτες βλέπουν ως πληροφορία ό,τι βλέπει ο υπεύθυνος για την κράτηση (ίδια κείμενα, 15 γλώσσες).
+      function bookingStateText(st){
+        if(st === "searching") return "🔄 " + T("cmSearchingMsg");
+        if(st === "interested") return T("bookInterested");
+        if(st === "offered") return T("bookOfferedTitle");
+        if(st === "accepted") return "✅ " + T("cmSavedTitle");
+        if(st === "no_driver") return T("retryNoDriverTitle");
+        if(st === "driver_cancelled") return T("retryCancelTitle");
+        return T("maziBooked");
+      }
+
+      // Συμφώνησαν όλοι της παρέας (τότε δεν γράφουμε «περιμένουμε τους υπόλοιπους»).
+      function allAgreed(g){
+        return !!(g && Array.isArray(g.members) && g.members.length && g.members.every(function(m){ return m && m.agreed; }));
+      }
+
+      // «Βρέθηκε»: ό,τι αφορά ΑΥΤΟΝ τον πελάτη — άτομα, ποιοι συμφώνησαν (μόνο ονόματα), οι δικές του ώρες, το δικό του ποσό.
+      // Μετά από αλλαγή παρέας οι τιμές αλλάζουν κατευθείαν (χωρίς «ήταν …» — απόφαση χρήστη)· το μήνυμα από πάνω το λέει.
+      function foundNodes(g){
+        var out = [kvRow(T("maziPassengers"), String(g.size || ""))];
+        var list = Array.isArray(g.members) ? g.members : null;
+        if(list){
+          var yes = list.filter(function(m){ return m && m.agreed; }).length;
+          out.push(kvRow(T("maziAgreedLbl"), yes + " / " + list.length));
+          list.forEach(function(m){ if(m) out.push(memberRow(m)); });
+        } else if(g.others && g.others.length){
+          out.push(kvRow(T("maziWith"), g.others.join(", ")));
+        }
+        out.push(kvRow(T("maziBeOut"), g.me.readyLocal || ""));
+        out.push(kvRow(T("maziTaxiAt"), g.me.pickupLocal || ""));
+        // Ως να ξεκινήσει ο οδηγός οι ώρες είναι ενδεικτικές (μετά έρχεται η ώρα από το Maps του).
+        if(!(g.myPickup && g.myPickup.downLocal)){
+          var hint = document.createElement("div");
+          hint.className = "mazi-fc-until";
+          hint.textContent = T("maziDownHint");
+          out.push(hint);
+        }
+        out.push(kvRow(T("maziDriverWaits"), fill(T("maziMinutesN"), { n: g.waitMinutes })));
+        // Αν κάποιος δεν ήρθε, το ποσό μοιράζεται σε όσους μπήκαν (νέο ποσό).
+        var pp = isFinite(Number(g.sharePresent)) && g.sharePresent !== null ? Number(g.sharePresent) : Number(g.perPerson);
+        if(isFinite(pp)) out.push(kvRow(T("maziEstimate"), money(pp) + " €"));
+        return out;
+      }
+
+      // «✅ Εσείς» / «⏳ Όνομα — περιμένουμε απάντηση».
+      function memberRow(m){
+        var d = document.createElement("div");
+        d.className = "mazi-member";
+        // 🙋 = ο ΤΩΡΙΝΟΣ μισθωτής (αν ο πρώτος δεν ήρθε / ακύρωσε, ο επόμενος — ο server στέλνει «lessee»).
+        var isLessee = (m.lessee === true || m.lessee === false) ? m.lessee : !!m.responsible;
+        d.appendChild(document.createTextNode((m.agreed ? "✅ " : "⏳ ") + (m.me ? T("maziYou") : String(m.name || "")) + (isLessee ? " 🙋" : "")));
+        if(!m.agreed){
+          var w = document.createElement("span");
+          w.className = "mazi-wait";
+          w.textContent = " — " + T("maziWaitingAnswer");
+          d.appendChild(w);
+        }
+        return d;
+      }
+
+      function kvRow(label, value){
+        var d = document.createElement("div");
+        d.className = "mazi-kv";
+        var s = document.createElement("span"); s.textContent = label;
+        var b = document.createElement("b"); b.textContent = value;
+        d.appendChild(s); d.appendChild(b);
+        return d;
+      }
+
+      function startSearch(){
+        if(sending) return;
+        if(!readAccepted()){
+          pendingStart = true;
+          openInfo();
+          if(acceptHint){ acceptHint.textContent = T("maziAcceptFirst"); acceptHint.style.display = "block"; }
+          return;
+        }
+        var who = contact();
+        if(!who.ok){ say(who.badGreek ? "📞 " + T("bookGreekPhone") : T("maziFillAll")); return; }
+        var id = deviceId();
+        if(!id){ say(T("maziErr")); return; }
+        var pr = priceRange();
+        var pt = null;
+        try{ pt = (typeof window.__maziPickupPoint === "function") ? window.__maziPickupPoint() : null; }catch(e){}
+        var acceptedAt = 0;
+        try{ acceptedAt = Number(localStorage.getItem(ACCEPT_KEY)) || 0; }catch(e){}
+        sending = true;
+        maziBtn.disabled = true;
+        // Χωρίς σημείο στον χάρτη η αίτηση δεν ταιριάζει με κανέναν (27/10) → πρώτα το σημείο από τη διεύθυνση.
+        var hasPt = !!(pt && typeof pt.lat === "number" && isFinite(pt.lat) && typeof pt.lng === "number" && isFinite(pt.lng));
+        var ptReady = (hasPt || typeof window.__maziGeocodePickup !== "function")
+          ? Promise.resolve(pt)
+          : window.__maziGeocodePickup(val("pickup")).catch(function(){ return null; });
+        ptReady.then(function(p){ return apiPost("/api/mazi/requests", {
+          deviceId: id,
+          name: who.name,
+          phone: who.phone,
+          lang: (typeof window.__activeLang === "function") ? window.__activeLang() : (window.lang || "el"),
+          pickup: val("pickup"),
+          pickupLat: p && typeof p.lat === "number" ? p.lat : null,
+          pickupLng: p && typeof p.lng === "number" ? p.lng : null,
+          date: val("date"),
+          time: val("time"),
+          priceMin: pr.lo,
+          priceMax: pr.hi,
+          termsVersion: 2,
+          termsAcceptedAt: acceptedAt,
+          // Για την ειδοποίηση «ο οδηγός φτάνει περίπου στις …» (25/10).
+          pushToken: String(window.__CLIENT_FCM_TOKEN || "")
+        }); }).then(function(j){
+          // Όπως η κανονική κράτηση: κλείνει η οθόνη τιμής, ο πελάτης βλέπει τη διαδικασία στο κεντρικό μόνιτορ.
+          if(j.ok && j.request){
+            setMonitor(j.request, true);
+            try{ if(typeof window.hideOverlay === "function") window.hideOverlay(); }catch(e){}
+            // 1/11: στην αρχική να φαίνεται ΑΜΕΣΩΣ το μόνιτορ — η σελίδα έμενε κυλισμένη κάτω (στη φόρμα)
+            // και έπρεπε να ανέβει ο πελάτης για να το δει.
+            try{
+              setTimeout(function(){
+                try{
+                  var mb = document.getElementById("clientCentralMonitor");
+                  if(mb && mb.scrollIntoView) mb.scrollIntoView({ block: "center", behavior: "smooth" });
+                  else window.scrollTo(0, 0);
+                }catch(_eSc){ try{ window.scrollTo(0, 0); }catch(_e2){} }
+              }, 200);
+            }catch(_eSc0){}
+            return;
+          }
+          if(j.error === "too_late") say(fill(T("maziTooLate"), { cutoff: j.cutoffHours || cfg().cutoff }));
+          else if(j.error === "bad_input") say(T("maziFillAll"));
+          else say(T("maziErr"));
+        }, function(){
+          say(T("maziErr"));
+        }).then(function(){
+          sending = false;
+          maziBtn.disabled = false;
+        });
+      }
+
+      // «✅ ΣΥΜΦΩΝΩ» → ο server γράφει ΜΟΝΟ την απάντηση· επιστρέφει την αίτηση όπως είναι τώρα (ή null).
+      function sendAgree(id){
+        return apiPost("/api/mazi/requests/" + encodeURIComponent(id) + "/agree", { deviceId: deviceId() })
+          .then(function(j){ return (j && j.ok && j.request) ? j.request : null; }, function(){ return null; });
+      }
+
+      // «🙋 ΑΝΑΛΑΜΒΑΝΩ» → ο server το δίνει στον πρώτο. Επιστρέφει { request, taken } (taken = το πρόλαβε άλλος).
+      function sendTake(id){
+        return apiPost("/api/mazi/requests/" + encodeURIComponent(id) + "/take", { deviceId: deviceId() })
+          .then(function(j){ return { request: (j && j.request) || null, taken: !!(j && j.error === "taken") }; },
+                function(){ return { request: null, taken: false }; });
+      }
+
+      // ΑΝΑΛΑΜΒΑΝΩ → ο αρχηγός πάει στην ΚΑΝΟΝΙΚΗ οθόνη «Κάνε κράτηση» (τιμή όλης της μίσθωσης). Η κράτηση γίνεται από τον
+      // κανονικό δρόμο της εφαρμογής· ο server βάζει μέσα όλους τους επιβάτες. Μετά όλα όπως στην κανονική κράτηση.
+      function openNormalBooking(r){
+        var g = foundGroup(r);
+        if(!g || !g.responsible || !g.responsible.me || g.bookingId || !allAgreed(g)) return false;
+        if(typeof window.__maziOpenBooking !== "function") return false;
+        // Οι στάσεις με τη σειρά της διαδρομής: και οι τρεις, με διεύθυνση και ώρα.
+        var stops = (Array.isArray(g.members) ? g.members : []).map(function(m){
+          var label = m.me ? T("maziYou") : String(m.name || "");
+          var addr = m.pickup || (m.me ? (r.pickup || "") : "");
+          var when = m.pickupLocal || (m.me ? (g.me && g.me.pickupLocal) : "") || "";
+          var extra = [addr, when].filter(Boolean).join(" · ");
+          return extra ? (label + " — " + extra) : label;
+        });
+        return window.__maziOpenBooking({
+          requestId: r.id,
+          name: r.contact && r.contact.name,
+          phone: r.contact && r.contact.phone,
+          stops: stops,
+          pickup: r.pickup,
+          date: String(g.departLocal || r.departLocal || "").slice(0, 10),
+          time: g.me.pickupLocal,
+          total: g.total,
+          size: g.size
+        });
+      }
+
+      // ===== Κεντρικό μόνιτορ: όλη η διαδικασία «Μαζί» ως την κράτηση (ο Φάκελος δεν τη δείχνει). =====
+      // Μπαίνει ΜΟΝΟ στη θέση του «ΑΝΑΜΟΝΗ ΓΙΑ ΚΡΑΤΗΣΗ» (window.__cmIdleHtml / __cmIdleTitle): όταν το μόνιτορ δείχνει κάτι
+      // από κανονική κράτηση, δεν αγγίζεται. Ο αρχηγός, μόλις γίνει η κράτηση, συνεχίζει με την ΚΑΝΟΝΙΚΗ ροή.
+      var infoHost      = document.getElementById("info");
+      var monitorReq    = null;   // η αίτηση που δείχνει το μόνιτορ (null = το κανονικό «ΑΝΑΜΟΝΗ ΓΙΑ ΚΡΑΤΗΣΗ»)
+      var monitorSig    = "";     // ό,τι δείχνει τώρα η κάρτα (για να μην ξαναζωγραφίζεται χωρίς αλλαγή)
+      var leaderBooked  = false;  // ο αρχηγός έκανε την κράτηση (τότε η «Μαζί» δεν φαίνεται — κανονική ροή)
+      var idleKick      = null;
+      var origIdleHtml  = window.__cmIdleHtml;
+      var origIdleTitle = window.__cmIdleTitle;
+
+      // Το token ειδοποιήσεων πάει στον server μία φορά (και ξανά μόνο αν αλλάξει) — για «ο οδηγός φτάνει …».
+      var sentPushToken = "";
+      function pushTokenQs(){
+        var t = String(window.__CLIENT_FCM_TOKEN || "");
+        if(!t || t === sentPushToken) return "";
+        sentPushToken = t;
+        return "&pushToken=" + encodeURIComponent(t);
+      }
+
+      function apiGet(path){
+        var base = String(window.TAXI_API_URL || "").replace(/\/$/, "");
+        var headers = { "Accept": "application/json" };
+        if(window.TAXI_API_KEY) headers["X-API-Key"] = String(window.TAXI_API_KEY).trim();
+        var ctrl = (typeof AbortController === "function") ? new AbortController() : null;
+        var timer = ctrl ? setTimeout(function(){ try{ ctrl.abort(); }catch(e){} }, 8000) : null;
+        var opts = { headers: headers };
+        if(ctrl) opts.signal = ctrl.signal;
+        return fetch(base + path, opts)
+          .then(function(r){ return r.json().catch(function(){ return {}; }); })
+          .then(function(j){ if(timer) clearTimeout(timer); return j || {}; }, function(e){ if(timer) clearTimeout(timer); throw e; });
+      }
+
+      function line(cls, text){
+        var d = document.createElement("div");
+        d.className = cls;
+        d.textContent = text;
+        return d;
+      }
+
+      // Τι δείχνει το μόνιτορ: όσο ψάχνει, όταν βρεθεί παρέα, ως την κράτηση. Ο αρχηγός μετά την κράτηση → τίποτα (κανονική ροή).
+      // ===== Παραλαβή με στάσεις: ό,τι βλέπει ο κάθε επιβάτης — ΙΔΙΑ κείμενα/οθόνες με την κανονική ροή. =====
+      var aitDone = {};        // «<κράτηση>#<σειρά>» → έστειλε αιτιολογία από εδώ
+      var comingDown = {};     // «<κράτηση>#<σειρά>» → πάτησε «Εντάξει, κατεβαίνω!»
+      var tripFbShown = {};
+      function stopKey(g){ return String(g.bookingId) + "#" + String(g.me && g.me.seq); }
+
+      // Η ΔΙΚΗ του φάση στην παραλαβή (ο οδηγός πάει από τον έναν στον άλλον).
+      function pickupText(p){
+        var s = p && p.state;
+        if(s === "coming") return T("folderDriverComing");
+        if(s === "other") return T("maziPickOther");
+        if(s === "arrived") return T("dwMonMsg");
+        if(s === "boarded" || s === "to_airport") return String(T("folderTripStarted") || "").replace(/<br\s*\/?>/gi, " ");
+        if(s === "done") return T("tripCompletedTitle");
+        if(s === "absent") return T("nsTitle");
+        return "";
+      }
+
+      // Γράφει στη ΔΙΚΗ του στάση (bookings/<id>/maziStops/<σειρά>/…) — όχι στην κράτηση των άλλων.
+      function stopWrite(g, field, val){
+        try{
+          var dbx = window._clientDb, fns = window._clientDbFns || {};
+          if(dbx && fns.set && fns.ref) return Promise.resolve(fns.set(fns.ref(dbx, "bookings/" + g.bookingId + "/maziStops/" + Number(g.me.seq) + "/" + field), val));
+        }catch(e){}
+        return Promise.reject(new Error("no db"));
+      }
+
+      // Αιτιολογία «δεν ήρθα»: πάει στις Αιτιολογίες Πελατών (complaints) όπως η κανονική, με σημείωση «κοινή μίσθωση»·
+      // η κράτηση ΔΕΝ κλείνει (η διαδρομή συνέχισε με τους άλλους).
+      function sendAitiologia(r, g, reason, label, text){
+        var now = Date.now();
+        var dbx = window._clientDb, fns = window._clientDbFns || {};
+        var c = r.contact || {};
+        var jobs = [stopWrite(g, "aitiologia", { reason: reason, reasonLabel: label, reasonText: text, at: now })];
+        try{
+          if(dbx && fns.set && fns.ref){
+            jobs.push(Promise.resolve(fns.set(fns.ref(dbx, "complaints/" + now + "_mazi_noshow_" + g.bookingId + "_" + Number(g.me.seq)), {
+              type: "client_no_show_reason",
+              bookingId: g.bookingId,
+              maziShared: true,
+              maziSeq: Number(g.me.seq),
+              clientName: c.name || "",
+              clientPhone: c.phone || "",
+              reason: reason,
+              reasonLabel: label,
+              reasonText: text,
+              note: "Κοινή μίσθωση: δεν ήρθε αυτός ο επιβάτης — η διαδρομή συνέχισε με τους άλλους.",
+              reportedAt: new Date(now).toISOString(),
+              timestamp: now
+            })));
+          }
+        }catch(e){}
+        return Promise.all(jobs);
+      }
+
+      // Η κόκκινη οθόνη αιτιολογίας — ίδια κείμενα/κουμπιά με την κανονική (nsTitle, nsBody, nsReason1–4…).
+      function renderAitiologia(holder, r, g){
+        var labels = {
+          sleep: T("nsReason1"), wrong_place: T("nsReason2"), late: T("nsReason3"), other: T("nsReason4")
+        };
+        var plain = function(s){ return String(s || "").replace(/^\S+\s*/, ""); };
+        var msg = document.createElement("div");
+        msg.className = "client-monitor-message";
+        msg.style.whiteSpace = "pre-line";
+        msg.textContent = String(T("nsBody") || "").replace(/<br\s*\/?>/gi, "\n");
+        holder.appendChild(msg);
+        var lbl = document.createElement("div");
+        lbl.className = "cm-body";
+        lbl.style.cssText = "color:#FFD700!important;font-weight:900!important;text-align:left!important;";
+        lbl.textContent = T("nsReasonLabel");
+        holder.appendChild(lbl);
+        var row = document.createElement("div");
+        row.className = "cm-row stack";
+        var box = document.createElement("div");
+        box.style.cssText = "display:none;margin-top:8px;width:100%;";
+        var ta = document.createElement("textarea");
+        ta.className = "cm-ta";
+        ta.placeholder = T("ph_nsOtherText");
+        box.appendChild(ta);
+        var submit = function(reason){
+          var text = reason === "other" ? String(ta.value || "").trim() : plain(labels[reason]);
+          if(reason === "other" && !text){ alert(T("nsNeedOther")); return; }
+          aitDone[stopKey(g)] = true;
+          sendAitiologia(r, g, reason, plain(labels[reason]), text).catch(function(){});
+          setMonitor(monitorReq, true);
+        };
+        ["sleep", "wrong_place", "late", "other"].forEach(function(k){
+          var b = document.createElement("button");
+          b.type = "button";
+          b.className = "cm-btn cm-gray";
+          b.style.cssText = "text-align:left!important;";
+          b.textContent = labels[k];
+          b.addEventListener("click", function(){
+            if(k === "other"){ box.style.display = "block"; return; }   // όπως η κανονική: έτοιμος λόγος → αμέσως
+            submit(k);
+          });
+          row.appendChild(b);
+        });
+        holder.appendChild(row);
+        holder.appendChild(box);
+        var srow = document.createElement("div");
+        srow.className = "cm-row stack";
+        var sb = document.createElement("button");
+        sb.type = "button";
+        sb.className = "cm-btn cm-no";
+        sb.textContent = T("nsSubmitBtn");
+        sb.addEventListener("click", function(){ submit("other"); });
+        srow.appendChild(sb);
+        holder.appendChild(srow);
+      }
+
+      // «Πώς ήταν η διαδρομή»: η ΙΔΙΑ οθόνη (#tripCompletedOverlay) με την κανονική· η απάντηση του καθενός χωριστά.
+      function showTripFeedback(r, g){
+        var key = stopKey(g);
+        try{ if(tripFbShown[key] || localStorage.getItem("maziTripFbDone_" + key)) return; }catch(e){}
+        var ov = document.getElementById("tripCompletedOverlay");
+        if(!ov) return;
+        tripFbShown[key] = true;
+        var orig = window.tripCompletedOk;
+        if(typeof orig === "function" && !orig.__maziWrapped){
+          var wrapped = function(){
+            var m = window.__maziTripFb;
+            if(!m) return orig.apply(this, arguments);
+            window.__maziTripFb = null;
+            var fbEl = document.getElementById("tripCompletedFeedback");
+            var text = fbEl ? String(fbEl.value || "").trim() : "";
+            ov.style.display = "none";
+            document.body.classList.remove("no-scroll");
+            if(fbEl) fbEl.value = "";
+            try{ localStorage.setItem("maziTripFbDone_" + m.key, "1"); }catch(e){}
+            if(text){
+              var now = Date.now();
+              var dbx = window._clientDb, fns = window._clientDbFns || {};
+              stopWrite(m.g, "tripFeedback", { text: text, at: now }).catch(function(){});
+              try{
+                if(dbx && fns.set && fns.ref) fns.set(fns.ref(dbx, "complaints/" + now + "_mazi_tripfb_" + m.g.bookingId + "_" + Number(m.g.me.seq)), {
+                  type: "client_trip_feedback", bookingId: m.g.bookingId, maziShared: true, maziSeq: Number(m.g.me.seq),
+                  clientName: m.name, clientPhone: m.phone, clientComment: text, observation: text, reasonText: text,
+                  reportedAt: new Date(now).toISOString(), timestamp: now
+                });
+              }catch(e){}
+            }
+          };
+          wrapped.__maziWrapped = true;
+          window.tripCompletedOk = wrapped;
+        }
+        var c = r.contact || {};
+        window.__maziTripFb = { key: key, g: g, name: c.name || "", phone: c.phone || "" };
+        var titleEl = document.getElementById("tripCompletedTitle");
+        var bodyEl = document.getElementById("tripCompletedBody");
+        var fbEl = document.getElementById("tripCompletedFeedback");
+        var okEl = document.getElementById("tripCompletedOkBtn");
+        if(titleEl) titleEl.innerHTML = T("tripCompletedTitle");
+        if(bodyEl) bodyEl.innerHTML = T("tcBody");
+        if(fbEl){ fbEl.value = ""; fbEl.placeholder = T("ph_tripCompletedFeedback"); }
+        if(okEl) okEl.textContent = T("tcOk");
+        ov.style.display = "flex";
+        document.body.classList.add("no-scroll");
+      }
+
+      function lateSoloKey(bid){ return "maziLateSolo_" + String(bid || ""); }
+      function lateSoloAnswer(bid){
+        try{ return localStorage.getItem(lateSoloKey(bid)) || ""; }catch(e){ return ""; }
+      }
+      function closeLateSolo(){
+        var ov = document.getElementById("maziLateSoloOverlay");
+        if(ov) ov.remove();
+        document.body.classList.remove("no-scroll");
+      }
+      function lateSoloThanks(){
+        var old = document.getElementById("maziLateSoloThanks");
+        if(old) old.remove();
+        var title = T("retryThanksTitle") || "Ευχαριστούμε!";
+        var msg = T("retryThanksMsg") || "";
+        var ov = document.createElement("div");
+        ov.id = "maziLateSoloThanks";
+        ov.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:100000;display:flex;align-items:center;justify-content:center;padding:20px;";
+        ov.innerHTML = '<div style="background:#1a1a1a;border:2px solid #FFD700;border-radius:18px;padding:22px 18px;max-width:420px;width:100%;text-align:center;">' +
+          '<div style="color:#FFD700;font-weight:900;font-size:20px;margin-bottom:12px;">' + title + '</div>' +
+          '<div style="color:#fff;font-size:16px;line-height:1.45;margin-bottom:16px;">' + msg + '</div>' +
+          '<button type="button" id="maziLateThanksOk" style="background:#FFD700;color:#000;border:none;border-radius:12px;padding:14px;font-weight:900;width:100%;">' + (T("cmOk") || "Εντάξει") + '</button></div>';
+        document.body.appendChild(ov);
+        document.body.classList.add("no-scroll");
+        ov.querySelector("#maziLateThanksOk").addEventListener("click", function(){
+          ov.remove();
+          document.body.classList.remove("no-scroll");
+        });
+      }
+      function dropSharedCard(g){
+        try{
+          var gf = window.__maziGuestFolder;
+          if(gf && g && g.me) gf.remove(String(g.bookingId) + "#m" + Number(g.me.seq));
+        }catch(e){}
+        try{ if(g && g.bookingId && window.__dropFolderBooking) window.__dropFolderBooking(String(g.bookingId)); }catch(e){}
+      }
+      var lateSoloBusy = false;
+      function phoneTail(p){ return String(p || "").replace(/\D/g, "").slice(-10); }
+      // Μετά τις 12 ώρες η παρέα έχει κλείσει. Το ερώτημα «μόνος σου;» βγαίνει από την κράτηση, όχι από την παρέα.
+      window.__maziOfferLateFromBooking = function(bookingId, b){
+        if(!b || b.maziShared !== true || !bookingId) return;
+        if(typeof window._maziLateWindow === "function" && !window._maziLateWindow(b)) return;
+        if(lateSoloAnswer(bookingId) || document.getElementById("maziLateSoloOverlay")) return;
+        var who = contact();
+        var list = b.maziPassengers;
+        var pax = Array.isArray(list) ? list : (list ? Object.keys(list).map(function(k){ return list[k]; }) : []);
+        var mine = phoneTail(who.phone);
+        var me = pax.filter(function(p){ return p && mine && phoneTail(p.phone) === mine; })[0];
+        if(!me && mine && phoneTail(b.phone) === mine){
+          me = { name: b.name, phone: b.phone, pickup: b.pickup, pickupLat: b.pickupLat, pickupLng: b.pickupLng, pickupLocal: b.time };
+        }
+        if(!me) return;
+        offerLateSolo({
+          status: "proposed",
+          group: {
+            me: { seq: me.seq || 0 },
+            lateDriverCancel: true,
+            bookingId: String(bookingId),
+            solo: {
+              name: me.name || who.name,
+              phone: me.phone || who.phone,
+              pickup: me.pickup || b.pickup || "",
+              pickupLat: me.pickupLat != null ? me.pickupLat : null,
+              pickupLng: me.pickupLng != null ? me.pickupLng : null,
+              date: String(b.date || String(b.maziDepartLocal || "").slice(0, 10)),
+              time: String(me.pickupLocal || b.time || ""),
+              priceMin: null,
+              priceMax: null
+            }
+          }
+        });
+      };
+
+      function offerLateSolo(r){
+        var g = foundGroup(r);
+        if(!g || !g.lateDriverCancel || !g.bookingId || !g.solo) return;
+        if(lateSoloAnswer(g.bookingId)) return;
+        if(document.getElementById("maziLateSoloOverlay")) return;
+        var ov = document.createElement("div");
+        ov.id = "maziLateSoloOverlay";
+        ov.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:100000;display:flex;align-items:center;justify-content:center;padding:20px;";
+        var title = T("retryCancelTitle") || "❌ Ακύρωση Κράτησης";
+        var msg = T("maziLateSoloAsk") || "";
+        ov.innerHTML = '<div style="background:#111;border:2px solid #FFD700;border-radius:18px;padding:22px 18px;max-width:440px;width:100%;text-align:center;">' +
+          '<div style="color:#ff4444;font-weight:900;font-size:20px;margin-bottom:12px;">' + title + '</div>' +
+          '<div style="color:#fff;font-size:16px;line-height:1.45;margin-bottom:16px;">' + msg + '</div>' +
+          '<div style="display:flex;gap:10px;">' +
+            '<button type="button" id="maziLateYes" style="flex:1;background:#28a745;color:#fff;border:none;border-radius:12px;padding:14px;font-weight:900;">' + (T("cmYes") || "ΝΑΙ") + '</button>' +
+            '<button type="button" id="maziLateNo" style="flex:1;background:#dc3545;color:#fff;border:none;border-radius:12px;padding:14px;font-weight:900;">' + (T("cmNo") || "ΟΧΙ") + '</button>' +
+          '</div></div>';
+        document.body.appendChild(ov);
+        document.body.classList.add("no-scroll");
+        ov.querySelector("#maziLateNo").addEventListener("click", function(){
+          try{ localStorage.setItem(lateSoloKey(g.bookingId), "no"); }catch(e){}
+          closeLateSolo();
+          dropSharedCard(g);
+          // Το μόνιτορ καθαρίζει τώρα, όχι στην επόμενη ανανέωση από τον server.
+          try{ setMonitor(lastReq, true); }catch(e){}
+          lateSoloThanks();
+        });
+        ov.querySelector("#maziLateYes").addEventListener("click", function(){
+          if(lateSoloBusy) return;
+          lateSoloBusy = true;
+          var btn = ov.querySelector("#maziLateYes");
+          if(btn) btn.disabled = true;
+          var solo = Object.assign({ sharedBookingId: g.bookingId }, g.solo || {});
+          var fn = window.__maziStartSoloBooking;
+          if(typeof fn !== "function"){ lateSoloBusy = false; if(btn) btn.disabled = false; say(T("maziErr")); return; }
+          Promise.resolve(fn(solo)).then(function(){
+            try{ localStorage.setItem(lateSoloKey(g.bookingId), "yes"); }catch(e){}
+            closeLateSolo();
+            dropSharedCard(g);
+            lateSoloBusy = false;
+          }, function(){
+            lateSoloBusy = false;
+            window.__maziSoloSearchOn = false;
+            if(btn) btn.disabled = false;
+            say(T("maziErr"));
+          });
+        });
+      }
+
+      // «Δεν βρέθηκε κοινή μίσθωση»: φαίνεται ως να πατήσει «Εντάξει» (ή ως την ώρα αναχώρησης — ο server σταματά να τη στέλνει).
+      var expiredSeen = {};
+      var expiredFilled = {};   // η φόρμα γεμίζει μία φορά — μετά ό,τι αλλάξει ο ίδιος μένει
+      function expiredWasSeen(id){
+        if(expiredSeen[id]) return true;
+        try{ return !!localStorage.getItem("maziExpiredSeen_" + id); }catch(e){ return false; }
+      }
+
+      function forMonitor(r){
+        if(r && r.status === "expired") return expiredWasSeen(r.id) ? null : r;
+        var g = foundGroup(r);
+        if(g && g.lateDriverCancel && lateSoloAnswer(g.bookingId)) return null;
+        if(g && g.bookingId && g.responsible && g.responsible.me){
+          // Ο αρχηγός συνεχίζει με την κανονική ροή — εκτός αν ΔΕΝ ήρθε (η κοινή μίσθωση συνέχισε): αιτιολογία εδώ.
+          if(g.myPickup && g.myPickup.state === "absent" && !g.myPickup.aitiologiaDone && !aitDone[stopKey(g)]) return r;
+          return null;
+        }
+        // Επιβάτης (25/10): μόλις ο οδηγός αποδεχτεί, το ραντεβού είναι στον Φάκελό του και το μόνιτορ γυρίζει στο κανονικό.
+        // Ξαναβγαίνει ΜΟΝΟ όπου και στην κανονική ροή: ο οδηγός είναι κάτω · αιτιολογία «δεν ήρθα» · «πώς ήταν».
+        if(g && g.bookingId && (g.bookingState === "accepted" || g.bookingState === "done")){
+          var pk = g.myPickup, key = stopKey(g);
+          if(pk && pk.state === "arrived" && !comingDown[key]) return r;
+          if(pk && pk.state === "absent" && !pk.aitiologiaDone && !aitDone[key]) return r;
+          var fbDone = false;
+          try{ fbDone = !!(tripFbShown[key] || localStorage.getItem("maziTripFbDone_" + key)); }catch(e){}
+          if(pk && pk.state === "done" && !fbDone) return r;
+          return null;
+        }
+        return (isSearching(r) || g) ? r : null;
+      }
+
+      function monitorOn(){ return !!monitorReq && !isAirportToAthens(); }
+
+      window.__cmIdleTitle = function(){
+        if(monitorOn()) return "👥 " + T("maziBtnTitle");
+        return origIdleTitle ? origIdleTitle.apply(this, arguments) : "CLIENT MONITOR";
+      };
+      window.__cmIdleHtml = function(){
+        if(monitorOn()) return '<div class="mazi-cm"></div>';
+        // Ο αρχηγός ξαναγύρισε στην «άδεια» εικόνα (π.χ. πάτησε «Ακύρωση» στην κράτηση) → ρωτάμε τον server: αν η κράτηση
+        // ακυρώθηκε, η παρέα ξεκλειδώνει και επιστρέφει η «Μαζί» με «🚕 Κάνε κράτηση».
+        if(leaderBooked && !idleKick) idleKick = setTimeout(function(){ idleKick = null; refreshMonitor(true); }, 400);
+        return origIdleHtml ? origIdleHtml.apply(this, arguments) : "";
+      };
+
+      // Το μόνιτορ δείχνει ΑΚΡΙΒΩΣ το κανονικό «ΑΝΑΜΟΝΗ ΓΙΑ ΚΡΑΤΗΣΗ» (τίποτα από κανονική κράτηση);
+      function plainIdle(box){
+        var st = window.__clientMonitorState || {};
+        if(st.type && st.type !== "idle") return false;
+        var tmp = document.createElement("div");
+        try{ tmp.innerHTML = origIdleHtml ? origIdleHtml() : ""; }catch(e){ return false; }
+        var want = ((origIdleTitle ? origIdleTitle() : "") + tmp.textContent).replace(/\s+/g, "");
+        return !!want && String(box.textContent || "").replace(/\s+/g, "") === want;
+      }
+
+      // Ξαναζωγραφίζει την «άδεια» εικόνα (ίδια μορφή με το ClientMonitor.idle(), χωρίς να κλείνει παράθυρα).
+      function paintIdle(box){
+        box.className = "cm-green";
+        box.innerHTML = '<div class="client-monitor-screen"><div class="client-monitor-title"></div>' + window.__cmIdleHtml() + "</div>";
+        box.querySelector(".client-monitor-title").textContent = window.__cmIdleTitle();
+      }
+
+      // Νέα κατάσταση (server ή κουμπί). Αλλάζει το μόνιτορ ΜΟΝΟ όταν δείχνει την «άδεια» εικόνα ή την κάρτα «Μαζί».
+      // force = μόλις απάντησε ο server σε κουμπί της κάρτας (το κουμπί είναι ακόμα «πατημένο»).
+      // ===== «Μαζί»: το ραντεβού στον Φάκελο ΚΑΘΕ επιβάτη (25/10) =====
+      // Όλοι (και ο αρχικός μισθωτής αν κράτησε από τη φόρμα, και οι συνεπιβάτες, και όποιος ΓΙΝΕΤΑΙ μισθωτής μετά
+      // ακύρωση) κρατάνε κάρτα «<κράτηση>#m<σειρά>». ΠΡΙΝ (27/10): όταν responsible.me το σβήναμε → μετά μεταφορά
+      // μισθωτή χανόταν από τον Φάκελο του Honor (δεν είχε κανονική κράτηση δική του).
+      var guestTokenSent = {};
+      var guestBooked = false;   // επιβάτης με κλεισμένο ραντεβού → συνεχίζουμε να ρωτάμε τον server ακόμα κι αν το μόνιτορ είναι κανονικό
+      function guestFolderSync(r){
+        var gf = window.__maziGuestFolder;
+        guestBooked = false;
+        if(!gf) return;
+        try{
+          var g = foundGroup(r);
+          // 1/11: το ΙΔΙΟ κινητό ξαναμπήκε στην ΙΔΙΑ κράτηση με ΝΕΑ αίτηση (ΕΞΟΥΣΙΟΔΟΤΩ) → το «έφυγα» ήταν της παλιάς.
+          try{
+            var pk0 = (g && g.myPickup) || {};
+            if(g && g.bookingId && g.me && g.me.agreed && r && r.id && pk0.state !== "cancelled" && pk0.state !== "absent" &&
+               typeof window.__maziClearLeftSeatIfOther === "function") window.__maziClearLeftSeatIfOther(g.bookingId, r.id);
+          }catch(_eRejoin){}
+          if(g && g.bookingId && typeof window.__maziHasLeftSeat === "function" && window.__maziHasLeftSeat(g.bookingId)){
+            gf.ids().forEach(function(id){ gf.remove(id); });
+            try{ if(typeof window.removeFromFolderAndUI === "function") window.removeFromFolderAndUI(String(g.bookingId)); }catch(e){}
+            return;
+          }
+          if(g && g.lateDriverCancel && lateSoloAnswer(g.bookingId)){
+            gf.ids().forEach(function(id){ gf.remove(id); });
+            return;
+          }
+          // Ο μισθωτής που έστειλε την κράτηση έχει ήδη την κανονική κάρτα. Όχι και δεύτερη ίδια.
+          // Όποιος γίνεται μισθωτής μετά (χωρίς δική του κάρτα) κρατάει την κάρτα «#m».
+          var own = g && g.bookingId ? gf.get(String(g.bookingId)) : null;
+          if(own && own.maziGuest !== true){
+            guestBooked = true;
+            gf.ids().forEach(function(id){ gf.remove(id); });
+            return;
+          }
+          var mb = g && g.myBooking;
+          var pk = (g && g.myPickup) || {};
+          var amLessee = !!(g && g.responsible && g.responsible.me);
+          var ended = !mb || !g.bookingId || pk.state === "done" ||
+            ["done", "completed", "closed", "finished"].indexOf(String(mb.status || "")) >= 0;
+          var keep = ended ? "" : String(g.bookingId) + "#m" + Number(g.me.seq);
+          gf.ids().forEach(function(id){ if(id !== keep) gf.remove(id); });
+          if(!keep) return;
+          guestBooked = true;
+          var d = mb.driver || {};
+          gf.upsert({
+            id: keep, maziGuest: true, maziBookingId: String(g.bookingId), maziSeq: Number(g.me.seq), maziRequestId: r.id,
+            // Σβήνει ό,τι είχε μείνει από τον παλιό παρακολουθητή της κράτησης του μισθωτή (26/10).
+            driverWaiting: false, airportDriverArrived: false, airportTripStarted: false, tripStarted: false,
+            routeMode: "athens_airport", pickup: mb.pickup || r.pickup || "", route: mb.pickup || r.pickup || "",
+            date: mb.date || "", time: mb.time || "", status: mb.status || "",
+            name: (r.contact && r.contact.name) || "", maziPhone: (r.contact && r.contact.phone) || "",
+            driverName: d.name || "", driverPhone: d.phone || "", licensePlate: d.plate || "",
+            driverPhoto: d.photo || "", driverPhotoLarge: d.photoLarge || "",
+            mazi: {
+              size: g.size, readyLocal: g.me.readyLocal || "", pickupLocal: g.me.pickupLocal || "",
+              share: Number(g.perPerson), responsible: amLessee,
+              // Ο μισθωτής δεν ήρθε / ακύρωσε και μισθωτής έγινε ΑΥΤΟΣ → «🙋 Είστε πλέον ο μισθωτής».
+              lesseeNow: !!(g.lessee && g.lessee.me && g.lessee.changed),
+              absentNames: g.absentNames || [], cancelledNames: g.cancelledNames || [],
+              aloneLate: departIsLate(g.departLocal),
+              sharePresent: (g.sharePresent != null && isFinite(Number(g.sharePresent))) ? Number(g.sharePresent) : null,
+              downLocal: (pk.state === "coming" || pk.state === "other") ? (pk.downLocal || "") : "",
+              earlierMin: Number(pk.earlierMin) || 0,
+              pickupState: String(pk.state || "")
+            }
+          });
+          // 1/11: ο Φάκελος αναβοσβήνει ΚΑΙ στους συνεπιβάτες μόλις κλείσει το ραντεβού (αποδοχή οδηγού) — όπως
+          // στον μισθωτή. Μία φορά ανά ραντεβού· σταματάει όταν ανοίξει ο Φάκελος (stopFolderBlink).
+          try{
+            var accSt = ["accepted", "booked", "confirmed", "on_the_way", "arrived", "boarding", "in_progress", "picked_up", "started"];
+            var blinkKey = "maziGuestBlink_" + keep;
+            if(accSt.indexOf(String(mb.status || "").toLowerCase()) >= 0 && !localStorage.getItem(blinkKey)){
+              localStorage.setItem(blinkKey, "1");
+              localStorage.setItem("folderHasNewBooking", keep);
+              if(typeof window.__startFolderBlink === "function") window.__startFolderBlink();
+            }
+          }catch(_eBlink){}
+          // Ακύρωσε κάποιος συνεπιβάτης → αναδυόμενο στους ΑΛΛΟΥΣ (όχι σε αυτόν που ακύρωσε).
+          var cn = g.cancelledNames || [];
+          var myGone = (pk && (pk.state === "cancelled" || pk.state === "absent")) || (typeof window.__maziHasLeftSeat === "function" && window.__maziHasLeftSeat(g.bookingId));
+          if(cn.length && !myGone){
+            var present = Number(g.size) - (g.absentNames || []).length - cn.length;
+            var amt = (g.sharePresent != null && isFinite(Number(g.sharePresent))) ? Number(g.sharePresent) : Number(g.perPerson);
+            window.__maziCancelPopup(g.bookingId, cn, isFinite(amt) ? money(amt) + " €" : "—", present === 1, departIsLate(g.departLocal));
+          }
+          // Ο οδηγός στέλνει την ειδοποίηση chat στο token ΑΥΤΟΥ του επιβάτη (maziChats/<σειρά>/clientFcmToken).
+          var tok = String(window.__CLIENT_FCM_TOKEN || "");
+          var dbx = window._clientDb, fns = window._clientDbFns || {};
+          if(tok && guestTokenSent[keep] !== tok && dbx && fns.set && fns.ref){
+            guestTokenSent[keep] = tok;
+            var base = "bookings/" + g.bookingId + "/maziChats/" + Number(g.me.seq);
+            var lng = (typeof window.__activeLang === "function") ? window.__activeLang() : (window.lang || "el");
+            Promise.all([
+              Promise.resolve(fns.set(fns.ref(dbx, base + "/clientFcmToken"), tok)),
+              Promise.resolve(fns.set(fns.ref(dbx, base + "/clientLang"), lng))
+            ]).catch(function(){ guestTokenSent[keep] = ""; });
+          }
+        }catch(e){}
+      }
+
+      // «✖ Ακύρωση» από τον Φάκελο: μόνο η ΔΙΚΗ του θέση — και του μισθωτή (γίνεται ο επόμενος).
+      window.__maziCancelSeat = function(it){
+        var id = deviceId();
+        if(!id || !it) return Promise.resolve(false);
+        function post(reqId){
+          if(!reqId) return Promise.resolve(false);
+          return apiPost("/api/mazi/requests/" + encodeURIComponent(reqId) + "/cancel-seat", { deviceId: id })
+            .then(function(j){
+              if(j && j.ok){
+                setMonitor(null, true);
+                try{ if(typeof window.__maziMarkLeftSeat === "function") window.__maziMarkLeftSeat(bid || it.maziBookingId || it.id, reqId); }catch(e){}
+                try{ if(typeof window.stopListenBooking === "function") window.stopListenBooking(); }catch(e){}
+                return true;
+              }
+              return false;
+            }, function(){ return false; });
+        }
+        var bid = String(it.maziBookingId || it.id || "");
+        if(it.maziRequestId) return post(it.maziRequestId);
+        var g = foundGroup(lastReq);
+        if(lastReq && g && bid && String(g.bookingId || "") === bid) return post(lastReq.id);
+        if(window.__maziActiveRequestId && bid && String(window.currentBookingId || "") === bid) return post(window.__maziActiveRequestId);
+        return apiGet("/api/mazi/requests/active?deviceId=" + encodeURIComponent(id)).then(function(j){
+          var r = j && j.request;
+          var gg = r && foundGroup(r);
+          if(r && gg && bid && String(gg.bookingId || "") === bid) return post(r.id);
+          return false;
+        }, function(){ return false; });
+      };
+      window.__maziAbortBeforeDriver = function(bookingId){
+        var id = deviceId();
+        var bid = String(bookingId || "");
+        if(!id || !bid) return Promise.resolve(false);
+        return apiPost("/api/mazi/bookings/" + encodeURIComponent(bid) + "/abort-before-driver", { deviceId: id })
+          .then(function(j){
+            if(j && j.ok && j.released){
+              try{ if(typeof window.stopListenBooking === "function") window.stopListenBooking(); }catch(e){}
+              try{ if(typeof window.__maziRefreshForLateSolo === "function") window.__maziRefreshForLateSolo(); }catch(e){}
+              return true;
+            }
+            return false;
+          }, function(){ return false; });
+      };
+      window.__maziCancelOwnSeatForBooking = function(bookingId){
+        var bid = String(bookingId || "");
+        if(!bid) return Promise.resolve(false);
+        var item = null;
+        try{
+          var e = typeof findFolderItemEntry === "function" ? findFolderItemEntry(bid) : null;
+          item = e && e.item;
+        }catch(err){}
+        var isMazi = !!(item && (item.maziShared === true || item.maziGuest === true || item.maziRequestId));
+        if(!item && !isMazi && !(window.__maziActiveRequestId && String(window.currentBookingId || "") === bid)) return Promise.resolve(false);
+        return window.__maziCancelSeat({
+          id: bid,
+          maziBookingId: bid,
+          maziRequestId: (item && item.maziRequestId) || (String(window.currentBookingId || "") === bid ? (window.__maziActiveRequestId || "") : ""),
+          maziSeq: item && item.maziSeq,
+          name: (item && item.name) || "",
+          maziPhone: (item && item.maziPhone) || ""
+        });
+      };
+
+      // ===== Κοινό chat της παρέας (26/10): τα μηνύματα της εφαρμογής (δημιουργία, εξουσιοδότηση, πλάνο διαδρομής,
+      // πληρωμή) = ψηφιακό συμφωνητικό, και ό,τι γράφουν οι επιβάτες. Τα φυλάει ο server· τα βλέπουν ΜΟΝΟ τα μέλη. =====
+      var lastReq = null;   // η τελευταία ενεργή αίτηση (και όταν το μόνιτορ δείχνει το κανονικό, π.χ. μετά την κράτηση)
+      var gc = { reqId: null, groupId: null, mySeq: 0, msgs: [], lastId: 0, timer: null, tx: {}, busy: {}, first: false };
+
+      function gcSeen(gid){ try{ return Number(localStorage.getItem("maziGcSeen_" + gid)) || 0; }catch(e){ return 0; } }
+      function gcUnread(g){ return !!(g && g.id && Number(g.chatLastId) > gcSeen(g.id)); }
+      function gcLang(){ return (typeof window.__activeLang === "function") ? window.__activeLang() : (window.lang || "el"); }
+
+      function groupChatButton(cls, g){
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = cls;
+        b.textContent = T("maziGcBtn") + (gcUnread(g) ? " 🔴" : "");
+        b.addEventListener("click", function(){ window.__maziOpenGroupChat(); });
+        return b;
+      }
+
+      // 🔴 στο κουμπί της κάρτας του Φακέλου (την κάρτα τη ζωγραφίζει ο κανονικός κώδικας).
+      function gcBadges(){
+        var on = gcUnread(foundGroup(lastReq));
+        try{ document.querySelectorAll(".maziGcBadge").forEach(function(s){ s.style.display = on ? "inline" : "none"; }); }catch(e){}
+      }
+
+      // Ίδια εμφάνιση με τη «Συνομιλία με Οδηγό» (ίδια χρώματα, φούσκες, ώρα).
+      function gcOverlay(){
+        var ov = document.getElementById("maziGcOverlay");
+        if(ov) return ov;
+        ov = document.createElement("div");
+        ov.id = "maziGcOverlay";
+        ov.innerHTML =
+          '<div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#1a1a1a;border-bottom:1px solid #333;flex-shrink:0;">' +
+            '<div style="color:#FFD700;font-weight:900;font-size:16px;">👥 <span id="maziGcTitle"></span></div>' +
+            '<button id="maziGcBack" type="button" style="background:transparent;color:#FFD700;border:2px solid #FFD700;border-radius:8px;padding:8px 18px;font-size:14px;font-weight:700;cursor:pointer;flex-shrink:0;"></button>' +
+          '</div>' +
+          '<div id="maziGcMessages"></div>' +
+          '<div style="padding:10px 12px;background:#1a1a1a;display:flex;gap:8px;align-items:flex-end;border-top:1px solid #333;flex-shrink:0;">' +
+            '<textarea id="maziGcInput" rows="2" style="flex:1;min-width:0;background:#2a2a2a;color:#fff;border:1px solid #444;border-radius:12px;padding:10px 12px;font-size:14px;resize:none;font-family:inherit;box-sizing:border-box;outline:none;"></textarea>' +
+            '<button id="maziGcSend" type="button" style="background:#FFD700;color:#000;border:none;border-radius:12px;padding:12px 16px;font-size:18px;font-weight:900;cursor:pointer;flex-shrink:0;line-height:1;">➤</button>' +
+          '</div>';
+        document.body.appendChild(ov);
+        ov.querySelector("#maziGcBack").addEventListener("click", function(){ window.__maziGcClose(); });
+        ov.querySelector("#maziGcSend").addEventListener("click", gcSend);
+        return ov;
+      }
+
+      // Μήνυμα της εφαρμογής → κείμενο στη γλώσσα ΑΥΤΟΥ του επιβάτη (ο server φυλάει μόνο τα στοιχεία).
+      function gcSysText(m){
+        var d = m.data || {};
+        if(m.code === "created"){
+          return (d.prevLessee ? fill(T("maziGcCreatedPrev"), { prev: d.prevLessee }) + " " : "") + fill(T("maziGcCreated"), { name: d.lessee || "" });
+        }
+        if(m.code === "authorized") return fill(T("maziGcAuthorized"), { others: (d.others || []).join(", "), name: d.lessee || "" });
+        if(m.code === "route"){
+          var stops = (d.stops || []).map(function(s, i){
+            return s.lessee ? fill(T("maziGcStopLessee"), { name: s.name || "" }) : fill(T("maziGcStopN"), { n: i + 1, name: s.name || "" });
+          });
+          return fill(T("maziGcRoute"), { route: stops.join(" ➔ ") });
+        }
+        if(m.code === "payment") return fill(T("maziGcPayment"), { name: d.lessee || "" });
+        // Ο μισθωτής δεν ήρθε / ακύρωσε → μισθωτής ο επόμενος.
+        if(m.code === "lessee_changed"){
+          return fill(T(d.reason === "absent" ? "maziGcLesseeAbsent" : "maziGcLesseeCancelled"), { prev: d.prev || "" }) + " " +
+            fill(T("maziGcLesseeNew"), { name: d.lessee || "" });
+        }
+        // Ακύρωσε θέση / μπήκε νέος (≥12 ώρες πριν) → νέο ποσό και στοιχεία στο chat παρέας.
+        if(m.code === "seat_cancelled"){
+          var amt = (d.share != null && isFinite(Number(d.share))) ? String(d.share).replace(".", ",") : "—";
+          var aloneKey = d.alone ? ((d.lastMinute === true || departIsLate(gc.departLocal)) ? "maziGcSeatAloneLate" : "maziGcSeatAlone") : "maziGcSeatNewShare";
+          return fill(T("maziGcSeatCancelled"), { name: d.name || "" }) + " " +
+            fill(T(aloneKey), { amount: d.alone ? amt + " €" : amt });
+        }
+        if(m.code === "member_joined"){
+          var amtJ = (d.share != null && isFinite(Number(d.share))) ? String(d.share).replace(".", ",") : "—";
+          return fill(T("maziGcMemberJoined"), { name: d.name || "", amount: amtJ, n: d.size != null ? String(d.size) : "" });
+        }
+        if(m.code === "driver_cancelled"){
+          return fill(T("maziDriverCancelledKeepLessee"), { btn: T("priceConfirm") || "Κάνε κράτηση" });
+        }
+        return "";
+      }
+
+      // Μήνυμα άλλου επιβάτη σε άλλη γλώσσα → μετάφραση (ίδια υπηρεσία με το chat του οδηγού)· ως τότε το πρωτότυπο.
+      function gcShown(m, lang){
+        var src = String(m.text || "");
+        if(!src || !m.lang || m.lang === lang || typeof clientTranslateText !== "function") return src;
+        var k = m.id + ":" + lang;
+        if(gc.tx[k]) return gc.tx[k];
+        if(!gc.busy[k]){
+          gc.busy[k] = true;
+          var code = function(l){ return l === "zh" ? "zh-CN" : l; };
+          clientTranslateText(src, code(m.lang), code(lang)).then(function(out){
+            var t = String(out || "").trim();
+            gc.tx[k] = (t && t.indexOf("MYMEMORY") < 0) ? t : src;
+            gcRender();
+          }, function(){ gc.tx[k] = src; });
+        }
+        return src;
+      }
+
+      function gcRender(){
+        var box = document.getElementById("maziGcMessages");
+        if(!box) return;
+        var stick = gc.first || (box.scrollHeight - box.scrollTop - box.clientHeight < 60);
+        var lang = gcLang();
+        box.innerHTML = "";
+        gc.msgs.forEach(function(m){
+          var time = m.at ? new Date(m.at).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }) : "";
+          var wrap = document.createElement("div");
+          if(m.kind === "sys"){
+            wrap.className = "mazi-gc-sys";
+            var hd = document.createElement("b");
+            hd.textContent = "🤖 " + T("maziGcApp") + " · " + time;
+            var tx = document.createElement("div");
+            tx.textContent = gcSysText(m);
+            wrap.appendChild(hd);
+            wrap.appendChild(tx);
+          } else {
+            var mine = Number(m.seq) === Number(gc.mySeq);
+            wrap.style.cssText = "display:flex;flex-direction:column;align-items:" + (mine ? "flex-end" : "flex-start") + ";" + (m.pending ? "opacity:.55;" : "");
+            var bub = document.createElement("div");
+            bub.className = mine ? "chat-bubble-me" : "chat-bubble-other";
+            bub.textContent = mine ? String(m.text || "") : gcShown(m, lang);
+            var tm = document.createElement("div");
+            tm.className = "chat-time";
+            tm.textContent = (mine ? (T("chatYou") || "") : String(m.name || "")) + " · " + time;
+            wrap.appendChild(bub);
+            wrap.appendChild(tm);
+          }
+          box.appendChild(wrap);
+        });
+        if(stick) box.scrollTop = box.scrollHeight;
+        gc.first = false;
+      }
+
+      function gcFetch(){
+        var id = deviceId();
+        if(!gc.reqId || !id) return Promise.resolve();
+        var want = gc.reqId;
+        return apiGet("/api/mazi/requests/" + encodeURIComponent(want) + "/chat?deviceId=" + encodeURIComponent(id) + "&after=" + gc.lastId)
+          .then(function(j){
+            if(want !== gc.reqId || !j || !j.ok) return;
+            gc.mySeq = Number(j.mySeq) || 0;
+            var add = (j.messages || []).filter(function(m){ return Number(m.id) > gc.lastId; });
+            if(add.length){
+              gc.lastId = Number(add[add.length - 1].id);
+              gc.msgs = gc.msgs.filter(function(m){ return !m.pending; }).concat(add)
+                .concat(gc.msgs.filter(function(m){ return m.pending; }));
+              gcRender();
+            }
+            // Ό,τι είδε όσο είναι ανοιχτό → όχι πια 🔴.
+            try{ if(gc.groupId && gc.lastId) localStorage.setItem("maziGcSeen_" + gc.groupId, String(gc.lastId)); }catch(e){}
+            gcBadges();
+          }).catch(function(){});
+      }
+
+      function gcSend(){
+        var inp = document.getElementById("maziGcInput");
+        var text = String((inp && inp.value) || "").trim();
+        if(!text || !gc.reqId) return;
+        inp.value = "";
+        var pend = { pending: true, kind: "user", seq: gc.mySeq, text: text, at: Date.now() };
+        gc.msgs.push(pend);
+        gcRender();
+        apiPost("/api/mazi/requests/" + encodeURIComponent(gc.reqId) + "/chat", { deviceId: deviceId(), text: text, lang: gcLang() })
+          .then(function(j){
+            gc.msgs = gc.msgs.filter(function(m){ return m !== pend; });
+            if(!j || !j.ok){ gcRender(); if(inp && !inp.value) inp.value = text; say(T("maziErr")); return; }
+            return gcFetch();
+          }, function(){
+            gc.msgs = gc.msgs.filter(function(m){ return m !== pend; });
+            gcRender();
+            if(inp && !inp.value) inp.value = text;
+            say(T("maziErr"));
+          });
+      }
+
+      window.__maziGcUnread = function(){ return gcUnread(foundGroup(lastReq)); };
+      window.__maziGcIsOpen = function(){
+        var ov = document.getElementById("maziGcOverlay");
+        return !!(ov && ov.classList.contains("open"));
+      };
+      window.__maziGcClose = function(){
+        var ov = document.getElementById("maziGcOverlay");
+        if(ov) ov.classList.remove("open");
+        document.body.style.overflow = "";
+        if(gc.timer){ clearInterval(gc.timer); gc.timer = null; }
+        gcBadges();
+        setMonitor(lastReq, true);
+      };
+      // Από το μόνιτορ ή από την κάρτα του Φακέλου (μισθωτής και συνεπιβάτες).
+      window.__maziOpenGroupChat = function(){
+        var start = function(r){
+          var g = foundGroup(r);
+          if(!r || !g){ say(T("maziErr")); return; }
+          if(gc.groupId !== g.id){ gc.msgs = []; gc.lastId = 0; gc.tx = {}; gc.busy = {}; }
+          gc.reqId = r.id;
+          gc.groupId = g.id;
+          gc.departLocal = g.departLocal || "";
+          gc.first = true;
+          hookAndroidBack();
+          var ov = gcOverlay();
+          ov.querySelector("#maziGcTitle").textContent = T("maziGcTitle");
+          ov.querySelector("#maziGcBack").textContent = T("clientChatBackBtn") || "←";
+          ov.querySelector("#maziGcInput").placeholder = T("ph_clientChatInput") || "";
+          ov.dir = (window.__LANGS && window.__LANGS[gcLang()] && window.__LANGS[gcLang()].dir === "rtl") ? "rtl" : "ltr";
+          ov.classList.add("open");
+          document.body.style.overflow = "hidden";
+          gcRender();
+          gcFetch();
+          if(gc.timer) clearInterval(gc.timer);
+          gc.timer = setInterval(gcFetch, 4000);
+        };
+        if(foundGroup(lastReq)){ start(lastReq); return; }
+        var id = deviceId();
+        if(!id){ say(T("maziErr")); return; }
+        apiGet("/api/mazi/requests/active?deviceId=" + encodeURIComponent(id)).then(function(j){
+          if(j && j.ok){ lastReq = j.request || null; start(lastReq); } else say(T("maziErr"));
+        }, function(){ say(T("maziErr")); });
+      };
+
+      function setMonitor(r, force){
+        lastReq = r;
+        // Νέα αναζήτηση «Μαζί»: το μόνιτορ πρέπει να δείξει «ψάχνουμε», όχι να μείνει στην αναμονή
+        // από την προηγούμενη επανάκληση ενός ατόμου.
+        if(isSearching(r)) window.__maziSoloSearchOn = false;
+        try{ offerLateSolo(r); }catch(e){}
+        gcBadges();
+        guestFolderSync(r);
+        liveSync(r);
+        var g0 = foundGroup(r);
+        leaderBooked = !!(g0 && g0.bookingId && g0.responsible && g0.responsible.me);
+        monitorReq = forMonitor(r);
+        if(monitorReq || guestBooked) startPoll();
+        // Η σημαία κρατάει την επανάκληση ενός ατόμου μόνο όταν δεν υπάρχει νέα «Μαζί» να φανεί.
+        if(window.__maziSoloSearchOn && !monitorReq) return;
+        var box = document.getElementById("clientCentralMonitor");
+        if(!box) return;
+        var holder = box.querySelector(".mazi-cm");
+        if(holder && monitorOn()){
+          if(force || (JSON.stringify(monitorReq) !== monitorSig && !holder.querySelector("button:disabled"))) fillMonitor(holder);
+          return;
+        }
+        if(holder || (monitorOn() && plainIdle(box))) paintIdle(box);
+      }
+
+      function fillMonitor(holder){
+        var box = document.getElementById("clientCentralMonitor");
+        var r = monitorReq;
+        if(!monitorOn()){ if(box) paintIdle(box); return; }
+        holder.innerHTML = "";
+        monitorSig = JSON.stringify(r);
+        var g = foundGroup(r);
+        var searching = isSearching(r);
+        // Παραλαβή με στάσεις: τίτλος/χρώμα όπως στην κανονική ροή (κάτω = πράσινο, αιτιολογία = κόκκινο).
+        var pk = (g && g.bookingId) ? g.myPickup : null;
+        var monTitle = "👥 " + T("maziBtnTitle"), monCls = "cm-gold";
+        if(pk && pk.state === "absent" && !pk.aitiologiaDone && !aitDone[stopKey(g)]){
+          renderAitiologia(holder, r, g);
+          applyMon(box, T("nsTitle"), "cm-red");
+          return;
+        }
+        // Ο οδηγός είναι κάτω στη ΔΙΚΗ του στάση → η ΙΔΙΑ οθόνη με την κανονική (🚕, μήνυμα, «Εντάξει, κατεβαίνω!»), χωρίς
+        // τα υπόλοιπα της κάρτας «Μαζί» (26/10: «κοίτα τι βγήκε»).
+        if(pk && pk.state === "arrived" && !comingDown[stopKey(g)]){
+          var dwIcon = document.createElement("div");
+          dwIcon.className = "cm-icon";
+          dwIcon.textContent = "🚕";
+          holder.appendChild(dwIcon);
+          holder.appendChild(line("client-monitor-message", T("dwMonMsg")));
+          var dwBtn = document.createElement("button");
+          dwBtn.type = "button";
+          dwBtn.className = "cm-btn cm-ok";
+          dwBtn.style.cssText = "width:100%;margin-top:10px;";
+          dwBtn.textContent = T("dwMonBtn");
+          dwBtn.addEventListener("click", function(){
+            comingDown[stopKey(g)] = true;   // ο οδηγός βλέπει «Ο πελάτης … Κατεβαίνει»
+            stopWrite(g, "clientComingDown", true).catch(function(){});
+            setMonitor(monitorReq, true);
+          });
+          holder.appendChild(dwBtn);
+          applyMon(box, T("dwMonTitle"), "cm-green");
+          return;
+        }
+        // Τέλος διαδρομής: ΜΟΝΟ το «πώς ήταν» (πάνω από όλα, όπως η κανονική)· από κάτω το μόνιτορ ήδη καθαρό — η κάρτα
+        // «Μαζί» δεν ξαναβγαίνει μετά την κράτηση (27/10: «έμενε στο τέλος για λίγο και έφευγε»).
+        if(pk && pk.state === "done"){
+          showTripFeedback(r, g);
+          monitorReq = null;
+          if(box) paintIdle(box);
+          return;
+        }
+        // Έληξε χωρίς παρέα (12 ώρες πριν, 29/10): μόνο «Δεν βρέθηκε» — η κανονική κράτηση γίνεται από τη φόρμα
+        // («Δείξε τιμή» → «Κάνε κράτηση»), τα στοιχεία είναι ήδη γραμμένα εκεί.
+        if(r.status === "expired"){
+          if(!expiredFilled[r.id] && typeof window.__maziFillForm === "function"){
+            expiredFilled[r.id] = true;
+            var dl = String(r.departLocal || "");
+            try{
+              window.__maziFillForm({
+                name: r.contact && r.contact.name, phone: r.contact && r.contact.phone, pickup: r.pickup,
+                date: dl.slice(0, 10), time: dl.slice(11, 16)
+              });
+            }catch(e){}
+          }
+          holder.appendChild(line("mazi-fc-status", T("maziNotFound")));
+          holder.appendChild(line("mazi-fc-line", "📅 " + fmtLocal(r.departLocal)));
+          holder.appendChild(line("mazi-fc-line", "📍 " + (r.pickup || "")));
+          var ef = document.createElement("div");
+          ef.className = "mazi-fc-foot";
+          ef.appendChild(line("mazi-fc-ask", fill(T("maziNotFoundBook"), { price: T("priceBtnShow"), book: T("priceConfirm") })));
+          var eb = document.createElement("button");
+          eb.type = "button";
+          eb.className = "mazi-fc-take";
+          eb.textContent = T("cmOk") || "OK";
+          eb.addEventListener("click", function(){
+            expiredSeen[r.id] = true;
+            try{ localStorage.setItem("maziExpiredSeen_" + r.id, "1"); }catch(e){}
+            setMonitor(r, true);
+          });
+          ef.appendChild(eb);
+          holder.appendChild(ef);
+          holder.dir = monitorDir();
+          applyMon(box, monTitle, monCls);
+          return;
+        }
+        var st = line("mazi-fc-status", g ? T("maziFound") : T("maziSearchTitle"));
+        if(g) st.classList.add("found");
+        holder.appendChild(st);
+        var nt = noticeText(r);
+        if(nt) holder.appendChild(line("mazi-fc-notice", nt));
+        // Κάποιος δεν ήρθε → «⚠️ Δεν ήρθε: … Νέο ποσό: …» (το ποσό μοιράζεται σε όσους μπήκαν).
+        if(g && g.absentNames && g.absentNames.length && isFinite(Number(g.sharePresent))){
+          holder.appendChild(line("mazi-fc-notice", fill(T("maziAbsentNotice"), { names: g.absentNames.join(", "), amount: money(Number(g.sharePresent)) + " €" })));
+        }
+        // Κάποιος ακύρωσε τη θέση του μετά την κράτηση → «⚠️ Ακύρωσε: … Νέο ποσό: …».
+        if(g && g.cancelledNames && g.cancelledNames.length && isFinite(Number(g.sharePresent))){
+          var amtTxt = money(Number(g.sharePresent)) + " €";
+          var leftN = Number(g.size) - ((g.absentNames || []).length) - g.cancelledNames.length;
+          if(leftN === 1 && g.bookingId){
+            var lateAlone = g.lastMinute === true || departIsLate(g.departLocal);
+            holder.appendChild(line("mazi-fc-notice", fill(T("maziGcSeatCancelled"), { name: g.cancelledNames.join(", ") })));
+            holder.appendChild(line("mazi-fc-notice", fill(T(lateAlone ? "maziAloneLate" : "maziAloneNow"), { amount: amtTxt })));
+            if(!(typeof window.__maziHasLeftSeat === "function" && window.__maziHasLeftSeat(g.bookingId))){
+              window.__maziCancelPopup(g.bookingId, g.cancelledNames, amtTxt, true, lateAlone);
+            }
+          } else {
+            holder.appendChild(line("mazi-fc-notice", fill(T("maziCancelledNotice"), { names: g.cancelledNames.join(", "), amount: amtTxt })));
+          }
+        }
+        holder.appendChild(line("mazi-fc-line", "📅 " + fmtLocal(g ? g.departLocal : r.departLocal)));
+        holder.appendChild(line("mazi-fc-line", "📍 " + (r.pickup || "")));
+        if(g) foundNodes(g).forEach(function(n){ holder.appendChild(n); });
+        // Κάτω-κάτω στην κάρτα: μήνυμα + κουμπιά.
+        var foot = document.createElement("div");
+        foot.className = "mazi-fc-foot";
+        // Όσο ψάχνει: «Αν δεν βρεθεί παρέα ως τις [12 ώρες πριν], … κανονικό ταξί».
+        if(searching && r.cutoffLocal) foot.appendChild(line("mazi-fc-until", fill(T("maziSearchUntil"), { until: fmtLocal(r.cutoffLocal) })));
+        // Μισθωτής = ο 1ος που παραλαμβάνεται (ο server τον βάζει μόνος του): ΣΥΜΦΩΝΩ. Συνεπιβάτης: ΕΞΟΥΣΙΟΔΟΤΩ (26/10).
+        var lessee = (g && g.responsible) || null;
+        var authorize = !!(lessee && !lessee.me);
+        if(g && g.me.agreed && !allAgreed(g)) foot.appendChild(line("mazi-fc-agreed", authorize ? T("maziYouAuthorized") : T("maziYouAgreed")));
+        if(g && !g.me.agreed){
+          foot.appendChild(line("mazi-fc-ask", T("maziPleaseAnswer")));
+          if(authorize) foot.appendChild(line("mazi-fc-auth", fill(T("maziAuthorizeText"), { name: lessee.name })));
+          var ab = document.createElement("button");
+          ab.type = "button";
+          ab.className = "mazi-fc-agree";
+          ab.textContent = authorize ? T("maziAuthorizeBtn") : T("maziAgreeBtn");
+          ab.addEventListener("click", function(){
+            if(ab.disabled) return;
+            ab.disabled = true;
+            sendAgree(r.id).then(function(nr){
+              if(nr){ setMonitor(nr, true); return; }
+              ab.disabled = false;
+              say(T("maziErr"));
+            });
+          });
+          foot.appendChild(ab);
+        }
+        // Υπεύθυνος: ποιος είναι — ή, αν συμφώνησαν όλοι και δεν υπάρχει ακόμα, «🙋 ΑΝΑΛΑΜΒΑΝΩ».
+        var resp = (g && g.responsible) || null;
+        var booked = !!(g && g.bookingId);
+        // Μετά την κράτηση: αν ο μισθωτής δεν ήρθε / ακύρωσε, ο ΤΩΡΙΝΟΣ μισθωτής (ο επόμενος).
+        var lesseeTxt = "";
+        if(g && g.lessee && g.lessee.changed){
+          lesseeTxt = g.lessee.me ? T("maziYouLesseeNow") : fill(T("maziLesseeNowIs"), { name: g.lessee.name });
+        } else if(resp){
+          lesseeTxt = resp.me ? T("maziYouResponsible") : fill(T("maziResponsibleIs"), { name: resp.name });
+        }
+        if(booked){
+          // Η κανονική κράτηση έγινε (την κάνει ο υπεύθυνος): εδώ μόνο ως πληροφορία η φάση της — ψάχνει οδηγό, ενδιαφέρεται, έγινε…
+          // Στην παραλαβή: η ΔΙΚΗ του φάση (έρχεται / κάτω / μέσα / αεροδρόμιο / τέλος) με τα κείμενα της κανονικής ροής.
+          var pkText = pk ? pickupText(pk) : "";
+          // Ο οδηγός ακύρωσε / δεν βρέθηκε (27/10): ο συνεπιβάτης μαθαίνει ότι αποφασίζει ο μισθωτής (εκείνος έχει το ΝΑΙ/ΟΧΙ).
+          var lname = (g.lessee && g.lessee.name) || (resp && resp.name) || "";
+          var meLessee = g.lessee ? !!g.lessee.me : !!(resp && resp.me);
+          var goneTxt = g.lateDriverCancel ? T("maziLateSoloAsk")
+            : (!meLessee && lname && g.bookingState === "driver_cancelled") ? fill(T("maziDriverCancelledGuest"), { name: lname })
+            : (!meLessee && lname && g.bookingState === "no_driver") ? fill(T("maziNoDriverGuest"), { name: lname }) : "";
+          foot.appendChild(line("mazi-fc-resp", pkText || goneTxt || bookingStateText(g.bookingState)));
+          // Ώρα από το Maps του οδηγού: «⏰ Ο οδηγός φτάνει περίπου στις … — να είστε κάτω» (+ πόσο νωρίτερα από το πλάνο).
+          if(pk && pk.downLocal && (pk.state === "coming" || pk.state === "other")){
+            var early = Number(pk.earlierMin) >= 2 ? " " + fill(T("maziDownEarlier"), { n: Number(pk.earlierMin) }) : "";
+            foot.appendChild(line("mazi-fc-notice", fill(T("maziDownAt"), { t: pk.downLocal }) + early));
+          }
+          if(pk && pk.state === "arrived" && !comingDown[stopKey(g)]){
+            var cdb = document.createElement("button");
+            cdb.type = "button";
+            cdb.className = "mazi-fc-agree";
+            cdb.textContent = T("dwMonBtn");
+            cdb.addEventListener("click", function(){
+              comingDown[stopKey(g)] = true;   // ο οδηγός βλέπει «Ο πελάτης … Κατεβαίνει»
+              stopWrite(g, "clientComingDown", true).catch(function(){});
+              setMonitor(monitorReq, true);
+            });
+            foot.appendChild(cdb);
+          }
+          if(lesseeTxt) foot.appendChild(line("mazi-fc-resp", lesseeTxt));
+        } else if(resp){
+          foot.appendChild(line("mazi-fc-resp", resp.me ? T("maziYouResponsible") : fill(T("maziResponsibleIs"), { name: resp.name })));
+          // Ο αρχηγός (αν βγήκε από την οθόνη χωρίς κράτηση): ξαναπάει στην ΚΑΝΟΝΙΚΗ οθόνη «Κάνε κράτηση» — όχι δικός μας δρόμος.
+          if(resp.me && allAgreed(g)){
+            var kb = document.createElement("button");
+            kb.type = "button";
+            kb.className = "mazi-fc-take";
+            kb.textContent = "🚕 " + T("priceConfirm");
+            kb.addEventListener("click", function(){ openNormalBooking(r); });
+            foot.appendChild(kb);
+          }
+        } else if(g && allAgreed(g)){
+          foot.appendChild(line("mazi-fc-ask", fill(T("maziTakeInfo"), { until: fmtLocal(r.cutoffLocal) })));
+          var tb = document.createElement("button");
+          tb.type = "button";
+          tb.className = "mazi-fc-take";
+          tb.textContent = T("maziTakeBtn");
+          tb.addEventListener("click", function(){
+            if(tb.disabled) return;
+            tb.disabled = true;
+            sendTake(r.id).then(function(x){
+              if(x.taken) say(T("maziTakenByOther"));
+              if(x.request){ setMonitor(x.request, true); if(!x.taken) openNormalBooking(x.request); return; }
+              tb.disabled = false;
+              say(T("maziErr"));
+            });
+          });
+          foot.appendChild(tb);
+        }
+        // Κοινό chat της παρέας (μηνύματα της εφαρμογής + των επιβατών).
+        if(g) foot.appendChild(groupChatButton("mazi-fc-gc", g));
+        // Ο συνεπιβάτης φεύγει μόνο από τη θέση του, όσο ο οδηγός δεν έχει αποδεχτεί
+        // (ψάχνει, ακύρωσε, δεν βρέθηκε). Μετά την αποδοχή φεύγει από τον Φάκελο.
+        var meLesseeNow = g && (g.lessee ? !!g.lessee.me : !!(g.responsible && g.responsible.me));
+        var driverHasAccepted = g && (g.bookingState === "accepted" || g.bookingState === "done");
+        if(booked && g && !meLesseeNow && !driverHasAccepted && !g.lateDriverCancel){
+          var lb = document.createElement("button");
+          lb.type = "button";
+          lb.className = "mazi-fc-stop";
+          lb.textContent = T("bookCancelBtn");
+          lb.addEventListener("click", function(){ leaveSeatFromMonitor(r, g, lb); });
+          foot.appendChild(lb);
+        }
+        if(!booked){
+          var b = document.createElement("button");
+          b.type = "button";
+          b.className = "mazi-fc-stop";
+          b.textContent = g ? T("bookCancelBtn") : T("maziStopBtn");
+          b.addEventListener("click", function(){ stopFromMonitor(r, b); });
+          foot.appendChild(b);
+        }
+        if(foot.childNodes.length) holder.appendChild(foot);
+        holder.dir = monitorDir();
+        // Κίτρινο πλαίσιο μόνιτορ όσο φαίνεται η «Μαζί» (η «άδεια» εικόνα ξαναβάζει το πράσινο)· «κάτω» = πράσινο.
+        applyMon(box, monTitle, monCls);
+      }
+
+      function monitorDir(){
+        var rtl = false;
+        try{
+          var l = (typeof window.__activeLang === "function") ? window.__activeLang() : window.lang;
+          rtl = !!(window.__LANGS && window.__LANGS[l] && window.__LANGS[l].dir === "rtl");
+        }catch(e){}
+        return rtl ? "rtl" : "ltr";
+      }
+
+      function applyMon(box, title, cls){
+        if(!box) return;
+        var t = box.querySelector(".client-monitor-title");
+        if(t) t.textContent = title;
+        box.classList.remove("cm-green", "cm-gold", "cm-red");
+        box.classList.add(cls);
+      }
+
+      // Υπάρχει ενεργή αναζήτηση γι' αυτό το κινητό; Μόνο για κινητά που επιτρέπει ο διακόπτης (αλλιώς ούτε ρωτάμε).
+      var lastRefresh = 0;
+      window.__maziRefreshForLateSolo = function(){ refreshMonitor(true); };
+
+      function refreshMonitor(force){
+        if(!force && Date.now() - lastRefresh < 3000) return;
+        lastRefresh = Date.now();
+        var id = deviceId();
+        if(!id) return;
+        fetchAvailability().then(function(a){
+          if(!a || !a.at) return;                 // χωρίς δίκτυο → μένει ό,τι φαίνεται
+          if(!a.ok){ setMonitor(null); return; }
+          return apiGet("/api/mazi/requests/active?deviceId=" + encodeURIComponent(id) + pushTokenQs()).then(function(j){
+            if(j && j.ok) setMonitor(j.request || null);
+          });
+        }).catch(function(){});
+      }
+
+      // Συνεπιβάτης, μετά την ακύρωση οδηγού (πριν τις 12): μόνο η δική του θέση, μετά αιτιολογία.
+      function leaveSeatFromMonitor(r, g, btn){
+        if(!r || !g || btn.disabled) return;
+        if(!window.confirm(T("maziCancelAsk"))) return;
+        btn.disabled = true;
+        var it = {
+          maziRequestId: r.id,
+          maziBookingId: String(g.bookingId || ""),
+          maziSeq: Number(g.me && g.me.seq),
+          name: (r.contact && r.contact.name) || "",
+          maziPhone: (r.contact && r.contact.phone) || ""
+        };
+        var fn = window.__maziCancelSeat;
+        if(typeof fn !== "function"){ btn.disabled = false; say(T("maziErr")); return; }
+        Promise.resolve(fn(it)).then(function(ok){
+          if(!ok){ btn.disabled = false; say(T("maziErr")); return; }
+          try{ dropSharedCard(g); }catch(e){}
+          if(typeof window.__maziSeatAitiologia !== "function" || !window.__maziSeatAitiologia(it)){
+            say(T("folderCancelDone") || "✅ Το ραντεβού ακυρώθηκε.");
+          }
+        }, function(){
+          btn.disabled = false;
+          say(T("maziErr"));
+        });
+      }
+
+      function stopFromMonitor(r, btn){
+        if(!r || !r.id || btn.disabled) return;
+        if(!window.confirm(foundGroup(r) ? T("maziCancelAsk") : T("maziStopAsk"))) return;
+        btn.disabled = true;
+        apiPost("/api/mazi/requests/" + encodeURIComponent(r.id) + "/cancel", { deviceId: deviceId() })
+          .then(function(j){
+            // Σταμάτησε (ή είχε ήδη σταματήσει) → το μόνιτορ γυρνάει αμέσως στο «ΑΝΑΜΟΝΗ ΓΙΑ ΚΡΑΤΗΣΗ».
+            if((j.ok && j.request) || j.error === "not_found"){ setMonitor(null, true); return; }
+            btn.disabled = false;
+            // Ο μισθωτής πρόλαβε και στέλνει / έστειλε την κράτηση: τώρα δεν ακυρώνεται από εδώ.
+            if(j.error === "booked"){ say(T("maziBookingSending")); refreshMonitor(true); return; }
+            say(T("maziErr"));
+          }, function(){
+            btn.disabled = false;
+            say(T("maziErr"));
+          });
+      }
+
+      // Κάθε φορά που ο κανονικός κώδικας ζωγραφίζει την «άδεια» εικόνα με την κάρτα «Μαζί», τη γεμίζουμε
+      // (και ρωτάμε τον server αν άλλαξε κάτι).
+      if(infoHost){
+        new MutationObserver(function(){
+          var holder = infoHost.querySelector(".mazi-cm:empty");
+          if(!holder) return;
+          fillMonitor(holder);
+          refreshMonitor();
+        }).observe(infoHost, { childList: true, subtree: true });
+      }
+      setTimeout(function(){ refreshMonitor(true); }, 1500);
+      document.addEventListener("visibilitychange", function(){ if(document.visibilityState === "visible") refreshMonitor(); });
+
+      // Όσο υπάρχει «Μαζί» στο μόνιτορ, ρωτάμε τον server κάθε 15″ → το «Ψάχνουμε» γίνεται μόνο του «✅ Βρέθηκε».
+      // Μόλις τελειώσει, σταματάει.
+      // 27/10: κάθε 4″ όσο φαίνεται η πρόταση παρέας πριν την κράτηση (ποιος συμφώνησε — «καθυστερεί ότι οι άλλοι
+      // ενέκριναν»)· αλλιώς κάθε 15″ όπως πριν. Μετά την κράτηση ακούει ζωντανά (liveSync).
+      var POLL_MS   = 4000;
+      var SLOW_MS   = 15000;
+      var lastPoll  = 0;
+      var pollTimer = null;
+
+      function startPoll(){
+        if(!pollTimer) pollTimer = setInterval(pollTick, POLL_MS);
+      }
+
+      function stopPoll(){
+        if(pollTimer){ clearInterval(pollTimer); pollTimer = null; }
+      }
+
+      function pollTick(){
+        if(!monitorReq && !guestBooked){ stopPoll(); return; }
+        var gp = foundGroup(lastReq);
+        if(!(gp && !gp.bookingId) && Date.now() - lastPoll < SLOW_MS - 500) return;
+        lastPoll = Date.now();
+        var id = deviceId();
+        if(!id) return;
+        apiGet("/api/mazi/requests/active?deviceId=" + encodeURIComponent(id) + pushTokenQs()).then(function(j){
+          // Όχι την ώρα που ο πελάτης πατάει κουμπί της κάρτας (το setMonitor το ελέγχει).
+          if(j && j.ok) setMonitor(j.request || null);
+        }).catch(function(){});
+      }
+
+      // Ζωντανά, όπως η κανονική κράτηση (27/10: «ήρθαν όλα αλλά καθυστερημένα»): ο επιβάτης ακούει από τη στιγμή που
+      // στάλθηκε η κράτηση ως το τέλος ΜΟΝΟ την κατάσταση της κράτησης + τη δική του στάση + τη φάση της παραλαβής (όχι
+      // στοιχεία των άλλων) → κάθε αλλαγή φέρνει αμέσως τον server, αντί για ως 15″ αργότερα. Το 15″ μένει για ό,τι άλλο.
+      var live = null;   // { key, offs, sig }
+      var liveLog = "";
+      function liveSync(r){
+        var g = foundGroup(r);
+        var guest = !!(g && g.bookingId && g.me && !(g.responsible && g.responsible.me));
+        // Ακούει ως ότου βγει το «πώς ήταν» (27/10: το «τέλος» της κράτησης ερχόταν λίγο πριν το «τέλος» της παραλαβής
+        // και σταματούσε να ακούει ανάμεσα — δεν έβγαινε ποτέ).
+        var fb = false;
+        try{ fb = !!(guest && (tripFbShown[stopKey(g)] || localStorage.getItem("maziTripFbDone_" + stopKey(g)))); }catch(e){}
+        var key = (guest && !fb) ? String(g.bookingId) + "#" + Number(g.me.seq) : "";
+        try{
+          var pk0 = (g && g.myPickup) || {};
+          var sig0 = [key, g && g.bookingState, pk0.state, !!monitorReq, guestBooked].join("|");
+          if(sig0 !== liveLog){ liveLog = sig0; console.log("[mazi] live " + sig0); }
+        }catch(e){}
+        if(live && live.key === key) return;
+        if(live){ live.offs.forEach(function(off){ try{ off(); }catch(e){} }); live = null; }
+        if(!key) return;
+        var db = window._clientDb, fns = window._clientDbFns || {};
+        if(!db || !fns.onValue || !fns.ref) return;   // η σύνδεση δεν είναι έτοιμη → ξαναδοκιμάζει στον επόμενο έλεγχο
+        var cur = live = { key: key, offs: [], sig: {} };
+        ["status", "maziStops/" + Number(g.me.seq), "maziPhase"].forEach(function(sub){
+          try{
+            var off = fns.onValue(fns.ref(db, "bookings/" + g.bookingId + "/" + sub), function(snap){
+              var v = JSON.stringify((snap && snap.val()) || null);
+              var first = !Object.prototype.hasOwnProperty.call(cur.sig, sub);
+              var changed = cur.sig[sub] !== v;
+              cur.sig[sub] = v;
+              if(sub === "status" && String((snap && snap.val()) || "") === "driver_cancelled" && fns.get){
+                Promise.resolve(fns.get(fns.ref(db, "bookings/" + g.bookingId))).then(function(s){
+                  var b = s && s.exists && s.exists() ? s.val() : (s && s.val ? s.val() : null);
+                  if(b && window.__maziOfferLateFromBooking) window.__maziOfferLateFromBooking(g.bookingId, b);
+                }).catch(function(){});
+              }
+              if(live === cur && !first && changed) refreshMonitor(true);
+            });
+            if(typeof off === "function") cur.offs.push(off);
+          }catch(e){}
+        });
+      }
+    })();
 </script>
 
 <!-- === PREMIUM CANCEL CONFIRMATION DIALOG === -->
@@ -14135,7 +16721,10 @@ async function routeKm(fromLat, fromLon){
 
               var hasNotif = _clientBookingHasPendingNotification(it);
               try {
-                if (it.date && it.time) {
+                // «Μαζί» (26/10): η κάρτα συνεπιβάτη «<κράτηση>#m<σειρά>» ΔΕΝ παρακολουθείται σαν κράτηση — το «#m…» χανόταν
+                // και άκουγε την κράτηση του μισθωτή (άνοιγε «Ο οδηγός είναι κάτω» στη στάση του άλλου). Οι ειδοποιήσεις
+                // του συνεπιβάτη έρχονται από τον server (η δική του στάση).
+                if (it.date && it.time && it.maziGuest !== true) {
                   if (typeof _clientScheduleAthensT200 === 'function') _clientScheduleAthensT200(it.id, it);
                   if (window.ClientBridge && ClientBridge.watchBookingForNotifications) {
                     ClientBridge.watchBookingForNotifications(it.id);
@@ -14517,6 +17106,17 @@ async function routeKm(fromLat, fromLon){
     let clientChatUnsub = null;
     const clientChatWatchers = new Map();
 
+    // «Μαζί» (25/10): κάθε επιβάτης εκτός του υπευθύνου έχει ΔΙΚΟ του chat με τον οδηγό — «<κράτηση>#m<σειρά>» =
+    // bookings/<κράτηση>/maziChats/<σειρά> (ίδιο με την εφαρμογή οδηγού). Κάθε άλλη κράτηση: bookings/<id>, όπως πριν.
+    function _clientChatBase(id) {
+      var m = /^(.+)#m(\d+)$/.exec(String(id || ''));
+      return m ? 'bookings/' + m[1] + '/maziChats/' + Number(m[2]) : 'bookings/' + id;
+    }
+    function _clientChatBookingId(id) {
+      var m = /^(.+)#m(\d+)$/.exec(String(id || ''));
+      return m ? m[1] : String(id || '');
+    }
+
     window.openClientChat = function openClientChat(bookingId) {
       clientCurrentChatId = bookingId;
       _clientReadDriverTs = 0; // ✅ Reset για fresh start
@@ -14541,17 +17141,17 @@ async function routeKm(fromLat, fromLon){
       try {
         const db = window._clientDb, fns = window._clientDbFns || {};
         if (db && fns.ref && fns.get) {
-          fns.get(fns.ref(db, 'bookings/' + bookingId + '/chat_read_driver')).then(function(snap) {
+          fns.get(fns.ref(db, _clientChatBase(bookingId) + '/chat_read_driver')).then(function(snap) {
             _clientReadDriverTs = snap ? (snap.val() || 0) : 0;
           }).catch(function(){});
           // ✅ Γράψε αμέσως chat_read_client για να μην ξαναεμφανιστεί badge
-          fns.get(fns.ref(db, 'bookings/' + bookingId + '/chat')).then(function(snap) {
+          fns.get(fns.ref(db, _clientChatBase(bookingId) + '/chat')).then(function(snap) {
             const msgs = snap ? (snap.val() || {}) : {};
             const driverMsgs = Object.values(msgs).filter(function(m){ return m && m.sender === 'driver'; });
             const latest = driverMsgs.reduce(function(max, m){ return Math.max(max, m.ts||0); }, 0);
             if (latest > _clientReadClientWrittenTs && fns.set) {
               _clientReadClientWrittenTs = latest;
-              fns.set(fns.ref(db, 'bookings/' + bookingId + '/chat_read_client'), latest);
+              fns.set(fns.ref(db, _clientChatBase(bookingId) + '/chat_read_client'), latest);
             }
           }).catch(function(){});
         }
@@ -14584,11 +17184,11 @@ async function routeKm(fromLat, fromLon){
         }
         try {
           // Παρακολούθα chat_read_driver για read receipts
-          _clientReadUnsub = fns.onValue(fns.ref(db, 'bookings/' + bookingId + '/chat_read_driver'), (snap) => {
+          _clientReadUnsub = fns.onValue(fns.ref(db, _clientChatBase(bookingId) + '/chat_read_driver'), (snap) => {
             _clientReadDriverTs = Math.max(_clientReadDriverTs, snap ? (snap.val() || 0) : 0);
             renderClientChatMessages(_clientLastMsgs, _clientReadDriverTs);
           });
-          const r = fns.ref(db, 'bookings/' + bookingId + '/chat');
+          const r = fns.ref(db, _clientChatBase(bookingId) + '/chat');
           clientChatUnsub = fns.onValue(r, (snap) => {
   const serverMsgs = snap.val() || {};
   Object.keys(_clientPendingMsgs).forEach(function(key) {
@@ -14622,7 +17222,7 @@ async function routeKm(fromLat, fromLon){
       if (lastDriverTs > _clientReadClientWrittenTs) {
         _clientReadClientWrittenTs = lastDriverTs;
         fns.set(
-          fns.ref(db, 'bookings/' + bookingId + '/chat_read_client'),
+          fns.ref(db, _clientChatBase(bookingId) + '/chat_read_client'),
           lastDriverTs
         );
       }
@@ -14699,11 +17299,11 @@ async function routeKm(fromLat, fromLon){
         }
 
         function pollChat() {
-          fns.get(fns.ref(db, 'bookings/' + bookingId + '/chat_read_client')).then((snap) => {
+          fns.get(fns.ref(db, _clientChatBase(bookingId) + '/chat_read_client')).then((snap) => {
             const readTs = snap ? (snap.val() || 0) : 0;
             if (readTs > lastTs) lastTs = readTs;
           }).catch(() => {});
-          fns.get(fns.ref(db, 'bookings/' + bookingId + '/chat')).then((snap) => {
+          fns.get(fns.ref(db, _clientChatBase(bookingId) + '/chat')).then((snap) => {
             const msgs = snap ? (snap.val() || {}) : {};
             const driverMsgs = Object.values(msgs).filter(m => m && m.sender === 'driver');
             const latest = driverMsgs.reduce((max, m) => Math.max(max, m.ts || 0), 0);
@@ -14861,7 +17461,7 @@ async function routeKm(fromLat, fromLon){
         const srcLang = _clientChatLang();
         const rec = { sender: 'client', text: text, ts: msgTs, isAuto: false };
         if (srcLang === 'el') rec.textEl = text;
-        const msgRef = await fns.push(fns.ref(db, 'bookings/' + bookingId + '/chat'), rec);
+        const msgRef = await fns.push(fns.ref(db, _clientChatBase(bookingId) + '/chat'), rec);
         let greekReady = Promise.resolve(text);
         if (srcLang !== 'el') {
           greekReady = clientTranslateText(text, _chatTmCode(srcLang), 'el').then(function(textEl){
@@ -14873,7 +17473,7 @@ async function routeKm(fromLat, fromLon){
         // ✅ Notification στον driver — διαβάζουμε token από drivers/{pin}/fcmToken
         try {
           console.log('CHAT_DEBUG: bookingId=' + bookingId);
-          const pinSnap = await fns.get(fns.ref(db, 'bookings/' + bookingId + '/targetDriverId'));
+          const pinSnap = await fns.get(fns.ref(db, 'bookings/' + _clientChatBookingId(bookingId) + '/targetDriverId'));
           const driverPin = pinSnap ? pinSnap.val() : null;
           console.log('CHAT_DEBUG: driverPin=' + driverPin);
           let driverToken = null;
@@ -14891,8 +17491,14 @@ async function routeKm(fromLat, fromLon){
               new Promise(function(r){ setTimeout(function(){ r(text); }, 4000); })
             ]);
             // 14/10: με την κράτηση → ο οδηγός πατάει την ειδοποίηση και ανοίγει αυτή η συνομιλία
-            if (ClientBridge.sendChatNotificationFor) ClientBridge.sendChatNotificationFor(driverToken, '💬 Μήνυμα από Πελάτη', greekText, String(bookingId));
-            else ClientBridge.sendChatNotification(driverToken, '💬 Μήνυμα από Πελάτη', greekText);
+            // «Μαζί»: «<κράτηση>#m<σειρά>» → ανοίγει το chat ΑΥΤΟΥ του επιβάτη· ο τίτλος με το όνομά του.
+            let chatTitle = '💬 Μήνυμα από Πελάτη';
+            try {
+              const guest = (window.__maziGuestFolder && window.__maziGuestFolder.get) ? window.__maziGuestFolder.get(bookingId) : null;
+              if (guest && guest.name) chatTitle = '💬 Μήνυμα από ' + guest.name;
+            } catch(e) {}
+            if (ClientBridge.sendChatNotificationFor) ClientBridge.sendChatNotificationFor(driverToken, chatTitle, greekText, String(bookingId));
+            else ClientBridge.sendChatNotification(driverToken, chatTitle, greekText);
             console.log('CHAT_DEBUG: sendChatNotification called OK');
           } else {
             console.log('CHAT_DEBUG: SKIP notification - driverToken=' + !!driverToken + ' ClientBridge=' + !!window.ClientBridge);

@@ -2358,7 +2358,7 @@
         '<p><b>Πώς λειτουργεί:</b><br>Συμπληρώνετε τα στοιχεία σας και επιλέγετε την ώρα άφιξής σας.<br>Ο οδηγός είναι ήδη προγραμματισμένος και σας περιμένει στο αεροδρόμιο.</p>'+
         '<p>Μόλις αποβιβαστείτε από το αεροπλάνο και παραλάβετε τις αποσκευές σας,<br>ενημερώνετε τον οδηγό μέσα από την εφαρμογή για να έρθει να σας παραλάβει.</p>'+
         '<p>Η παραλαβή γίνεται από τις Εξόδους (Arrivals) — επίλεξε την Έξοδο 1-5,<br>όπου θα σας δοθούν αναλυτικές οδηγίες μέσα από την εφαρμογή.</p>'+
-        '<p><b>Πληρωμή:</b><br>Η τιμή βγαίνει με βάση το ταξίμετρο, το ραντεβού, τα έξτρα του αεροδρομίου και την αναμονή μέχρι και μία ώρα μετά την άφιξή σας για τυχόν καθυστερήσεις.</p>'+
+        '<p><b>Πληρωμή:</b><br>Η τιμή βγαίνει με βάση το ταξίμετρο, το ραντεβού, τα έξτρα του αεροδρομίου και την αναμονή μέχρι και 30 λεπτά μετά την άφιξή σας για τυχόν καθυστερήσεις.</p>'+
         '<p><b>Ασφάλεια:</b><br>Για τη δική σας ασφάλεια,<br>το ταξί πρέπει να είναι κίτρινο για Αθήνα<br>και ο οδηγός υποχρεούται να έχει τα στοιχεία του εμφανή.</p>'+
         '<p><b>Ευθύνη:</b><br>Η ευθύνη για κάθε μεταφορά και συναλλαγή<br>ανήκει αποκλειστικά στον οδηγό και στον πελάτη.</p>'+
         '<p>Η εφαρμογή λειτουργεί μόνο ως πλατφόρμα διασύνδεσης<br>και δεν φέρει καμία ευθύνη.</p>',
@@ -2379,7 +2379,7 @@
         '<p><b>How it works:</b><br>Fill in your details and select your arrival time.<br>The driver is already scheduled and waiting for you at the airport.</p>'+
         '<p>Once you leave the airplane and collect your luggage,<br>notify the driver through the app so they can come to pick you up.</p>'+
         '<p>Pickup takes place at the Exits (Arrivals) — choose Exit 1-5,<br>where detailed instructions will be given through the app.</p>'+
-        '<p><b>Payment:</b><br>The price is based on the taximeter, the appointment, the airport extras and waiting time up to one hour after your arrival for any delays.</p>'+
+        '<p><b>Payment:</b><br>The price is based on the taximeter, the appointment, the airport extras and waiting time up to 30 minutes after your arrival for any delays.</p>'+
         '<p><b>Safety:</b><br>For your safety,<br>the taxi must be yellow for Athens<br>and the driver must have their details clearly visible.</p>'+
         '<p><b>Responsibility:</b><br>Responsibility for every transfer and transaction<br>belongs exclusively to the driver and the customer.</p>'+
         '<p>The app operates only as a connection platform<br>and bears no responsibility.</p>',
@@ -2399,7 +2399,7 @@
         '<p><b>Cum funcționează:</b><br>Completezi datele și alegi ora sosirii.<br>Șoferul te așteaptă la aeroport.</p>'+
         '<p>După bagaje, anunți șoferul din aplicație ca să vină să te preia.</p>'+
         '<p>Preluarea la Ieșiri (Sosiri) — alege Ieșirea 1-5.</p>'+
-        '<p><b>Plata:</b> taximetru, programare, extra aeroport și așteptare până la o oră.</p>'+
+        '<p><b>Plata:</b> taximetru, programare, extra aeroport și așteptare până la 30 de minute.</p>'+
         '<p><b>Răspundere:</b> aparține exclusiv șoferului și clientului. Aplicația este doar platformă de conectare.</p>',
         '← Înapoi')
     },
@@ -2417,7 +2417,7 @@
         '<p><b>Hoe het werkt:</b><br>Vul gegevens in en kies aankomsttijd.<br>De chauffeur wacht op de luchthaven.</p>'+
         '<p>Na bagage meldt u via de app zodat de chauffeur u ophaalt.</p>'+
         '<p>Ophalen bij Uitgangen (Arrivals) — kies Uitgang 1-5.</p>'+
-        '<p><b>Betaling:</b> taxameter, afspraak, luchthavenextra’s en wachten tot één uur.</p>'+
+        '<p><b>Betaling:</b> taxameter, afspraak, luchthavenextra’s en wachten tot 30 minuten.</p>'+
         '<p><b>Verantwoordelijkheid:</b> exclusief bij chauffeur en klant. De app is alleen platform.</p>',
         '← Terug')
     },
@@ -2435,7 +2435,7 @@
         '<p><b>Як це працює:</b><br>Заповніть дані й оберіть час прибуття.<br>Водій чекає в аеропорту.</p>'+
         '<p>Після багажу повідомте водія в додатку, щоб він забрав вас.</p>'+
         '<p>Подача біля Виходів (Arrivals) — оберіть Вихід 1-5.</p>'+
-        '<p><b>Оплата:</b> таксометр, зустріч, аеропортові надбавки та очікування до години.</p>'+
+        '<p><b>Оплата:</b> таксометр, зустріч, аеропортові надбавки та очікування до 30 хвилин.</p>'+
         '<p><b>Відповідальність:</b> виключно водія та клієнта. Додаток — лише платформа.</p>',
         '← Назад')
     },
@@ -2453,7 +2453,7 @@
         '<p><b>איך זה עובד:</b><br>מלאו פרטים ובחרו שעת הגעה.<br>הנהג ממתין בנמל התעופה.</p>'+
         '<p>אחרי המזוודות עדכנו את הנהג באפליקציה כדי שיבוא לאסוף.</p>'+
         '<p>האיסוף ביציאות (Arrivals) — בחרו יציאה 1-5.</p>'+
-        '<p><b>תשלום:</b> מונה, פגישה, תוספות נמל תעופה והמתנה עד שעה.</p>'+
+        '<p><b>תשלום:</b> מונה, פגישה, תוספות נמל תעופה והמתנה עד 30 דקות.</p>'+
         '<p><b>אחריות:</b> בלעדית של הנהג והלקוח. האפליקציה היא רק פלטפורמה.</p>',
         '← חזרה')
     },
@@ -2472,7 +2472,7 @@
         '<p><b>So funktioniert es:</b><br>Fülle deine Daten aus und wähle deine Ankunftszeit.<br>Der Fahrer ist bereits eingeplant und wartet am Flughafen auf dich.</p>'+
         '<p>Sobald du das Flugzeug verlassen und dein Gepäck abgeholt hast,<br>benachrichtige den Fahrer in der App, damit er dich abholt.</p>'+
         '<p>Die Abholung erfolgt an den Ausgängen (Arrivals) — wähle Ausgang 1–5,<br>dort erhältst du genaue Anweisungen in der App.</p>'+
-        '<p><b>Zahlung:</b><br>Der Preis richtet sich nach Taxameter, Termin, Flughafenaufschlägen und Wartezeit bis zu einer Stunde nach deiner Ankunft bei Verspätung.</p>'+
+        '<p><b>Zahlung:</b><br>Der Preis richtet sich nach Taxameter, Termin, Flughafenaufschlägen und Wartezeit bis zu 30 Minuten nach deiner Ankunft bei Verspätung.</p>'+
         '<p><b>Sicherheit:</b><br>Zu deiner Sicherheit muss das Taxi in Athen gelb sein<br>und der Fahrer muss seine Daten sichtbar haben.</p>'+
         '<p><b>Verantwortung:</b><br>Die Verantwortung für jede Fahrt und Zahlung<br>liegt ausschließlich bei Fahrer und Kunde.</p>'+
         '<p>Die App ist nur eine Vermittlungsplattform<br>und übernimmt keine Haftung.</p>',
@@ -2493,7 +2493,7 @@
         '<p><b>Fonctionnement :</b><br>Remplissez vos informations et choisissez votre heure d\'arrivée.<br>Le chauffeur est déjà prévu et vous attend à l\'aéroport.</p>'+
         '<p>Dès que vous descendez de l\'avion et récupérez vos bagages,<br>prévenez le chauffeur dans l\'application pour qu\'il vienne vous chercher.</p>'+
         '<p>La prise en charge se fait aux Sorties (Arrivals) — choisissez la Sortie 1-5,<br>où des instructions détaillées vous seront données dans l\'application.</p>'+
-        '<p><b>Paiement :</b><br>Le tarif est basé sur le taximètre, le rendez-vous, les extras aéroport et l\'attente jusqu\'à une heure après votre arrivée en cas de retard.</p>'+
+        '<p><b>Paiement :</b><br>Le tarif est basé sur le taximètre, le rendez-vous, les extras aéroport et l\'attente jusqu\'à 30 minutes après votre arrivée en cas de retard.</p>'+
         '<p><b>Sécurité :</b><br>Pour votre sécurité,<br>le taxi doit être jaune à Athènes<br>et le chauffeur doit avoir ses informations visibles.</p>'+
         '<p><b>Responsabilité :</b><br>La responsabilité de chaque course et paiement<br>appartient exclusivement au chauffeur et au client.</p>'+
         '<p>L\'application n\'est qu\'une plateforme de mise en relation<br>et n\'assume aucune responsabilité.</p>',
@@ -2514,7 +2514,7 @@
         '<p><b>Come funziona:</b><br>Compila i tuoi dati e seleziona l\'orario di arrivo.<br>L\'autista è già programmato e ti aspetta in aeroporto.</p>'+
         '<p>Appena scendi dall\'aereo e ritiri i bagagli,<br>avvisa l\'autista nell\'app perché venga a prenderti.</p>'+
         '<p>Il ritiro avviene alle Uscite (Arrivals) — scegli l\'Uscita 1-5,<br>dove riceverai istruzioni dettagliate nell\'app.</p>'+
-        '<p><b>Pagamento:</b><br>Il prezzo si basa sul tassametro, l\'appuntamento, gli extra aeroportuali e l\'attesa fino a un\'ora dopo il tuo arrivo in caso di ritardi.</p>'+
+        '<p><b>Pagamento:</b><br>Il prezzo si basa sul tassametro, l\'appuntamento, gli extra aeroportuali e l\'attesa fino a 30 minuti dopo il tuo arrivo in caso di ritardi.</p>'+
         '<p><b>Sicurezza:</b><br>Per la tua sicurezza,<br>il taxi deve essere giallo ad Atene<br>e l\'autista deve avere i suoi dati visibili.</p>'+
         '<p><b>Responsabilità:</b><br>La responsabilità di ogni trasferimento e transazione<br>spetta esclusivamente all\'autista e al cliente.</p>'+
         '<p>L\'app opera solo come piattaforma di collegamento<br>e non ha alcuna responsabilità.</p>',
@@ -2535,7 +2535,7 @@
         '<p><b>Cómo funciona:</b><br>Completa tus datos y elige tu hora de llegada.<br>El conductor ya está programado y te espera en el aeropuerto.</p>'+
         '<p>Cuando bajes del avión y recojas el equipaje,<br>avisa al conductor en la app para que venga a recogerte.</p>'+
         '<p>La recogida es en las Salidas (Arrivals) — elige la Salida 1-5,<br>donde recibirás instrucciones detalladas en la app.</p>'+
-        '<p><b>Pago:</b><br>El precio se basa en el taxímetro, la cita, los extras del aeropuerto y la espera de hasta una hora tras tu llegada por retrasos.</p>'+
+        '<p><b>Pago:</b><br>El precio se basa en el taxímetro, la cita, los extras del aeropuerto y la espera de hasta 30 minutos tras tu llegada por retrasos.</p>'+
         '<p><b>Seguridad:</b><br>Para tu seguridad,<br>el taxi debe ser amarillo en Atenas<br>y el conductor debe tener sus datos visibles.</p>'+
         '<p><b>Responsabilidad:</b><br>La responsabilidad de cada traslado y transacción<br>pertenece exclusivamente al conductor y al cliente.</p>'+
         '<p>La app funciona solo como plataforma de conexión<br>y no asume ninguna responsabilidad.</p>',
@@ -2556,7 +2556,7 @@
         '<p><b>Как это работает:</b><br>Заполните данные и выберите время прилёта.<br>Водитель уже назначен и ждёт вас в аэропорту.</p>'+
         '<p>Когда выйдете из самолёта и получите багаж,<br>сообщите водителю в приложении, чтобы он приехал за вами.</p>'+
         '<p>Подача у Выходов (Arrivals) — выберите Выход 1–5,<br>там в приложении будут подробные инструкции.</p>'+
-        '<p><b>Оплата:</b><br>Цена по таксометру, встрече, аэропортовым доплатам и ожиданию до одного часа после прилёта при задержке.</p>'+
+        '<p><b>Оплата:</b><br>Цена по таксометру, встрече, аэропортовым доплатам и ожиданию до 30 минут после прилёта при задержке.</p>'+
         '<p><b>Безопасность:</b><br>Для вашей безопасности такси в Афинах должно быть жёлтым,<br>а данные водителя — на виду.</p>'+
         '<p><b>Ответственность:</b><br>Ответственность за каждую поездку и расчёт<br>лежит исключительно на водителе и клиенте.</p>'+
         '<p>Приложение — только платформа связи<br>и не несёт ответственности.</p>',
@@ -2577,7 +2577,7 @@
         '<p><b>Jak to działa:</b><br>Uzupełnij dane i wybierz godzinę przylotu.<br>Kierowca jest już zaplanowany i czeka na ciebie na lotnisku.</p>'+
         '<p>Gdy wysiądziesz z samolotu i odbierzesz bagaż,<br>powiadom kierowcę w aplikacji, aby przyjechał cię odebrać.</p>'+
         '<p>Odbiór przy Wyjściach (Arrivals) — wybierz Wyjście 1–5,<br>gdzie w aplikacji dostaniesz szczegółowe instrukcje.</p>'+
-        '<p><b>Płatność:</b><br>Cena według taksometru, spotkania, dopłat lotniskowych i oczekiwania do godziny po przylocie przy opóźnieniu.</p>'+
+        '<p><b>Płatność:</b><br>Cena według taksometru, spotkania, dopłat lotniskowych i oczekiwania do 30 minut po przylocie przy opóźnieniu.</p>'+
         '<p><b>Bezpieczeństwo:</b><br>Dla twojego bezpieczeństwa taksówka w Atenach musi być żółta,<br>a dane kierowcy widoczne.</p>'+
         '<p><b>Odpowiedzialność:</b><br>Odpowiedzialność za każdy przejazd i płatność<br>spoczywa wyłącznie na kierowcy i kliencie.</p>'+
         '<p>Aplikacja działa tylko jako platforma połączeń<br>i nie ponosi odpowiedzialności.</p>',
@@ -2598,7 +2598,7 @@
         '<p><b>Nasıl çalışır:</b><br>Bilgilerinizi doldurun ve varış saatinizi seçin.<br>Sürücü zaten planlanmıştır ve havalimanında sizi bekler.</p>'+
         '<p>Uçaktan inip bagajınızı aldıktan sonra,<br>sürücüyü uygulamadan bilgilendirin ki sizi alsın.</p>'+
         '<p>Alış Çıkışlarda (Arrivals) yapılır — Çıkış 1-5\'i seçin,<br>ayrıntılı talimatlar uygulamada verilir.</p>'+
-        '<p><b>Ödeme:</b><br>Ücret taksimetre, randevu, havalimanı ekstraları ve gecikmede varışınızdan sonra bir saate kadar beklemeye göre çıkar.</p>'+
+        '<p><b>Ödeme:</b><br>Ücret taksimetre, randevu, havalimanı ekstraları ve gecikmede varışınızdan sonra 30 dakikaya kadar beklemeye göre çıkar.</p>'+
         '<p><b>Güvenlik:</b><br>Güvenliğiniz için Atina\'da taksi sarı olmalı<br>ve sürücünün bilgileri görünür olmalıdır.</p>'+
         '<p><b>Sorumluluk:</b><br>Her transfer ve işlemin sorumluluğu<br>yalnızca sürücüye ve müşteriye aittir.</p>'+
         '<p>Uygulama yalnızca bağlantı platformudur<br>ve sorumluluk taşımaz.</p>',
@@ -2619,7 +2619,7 @@
         '<p><b>كيف تعمل:</b><br>أكمل بياناتك واختر وقت وصولك.<br>السائق مجدول مسبقًا وينتظرك في المطار.</p>'+
         '<p>بعد النزول من الطائرة واستلام الأمتعة،<br>أخبر السائق عبر التطبيق ليأتي لاستلامك.</p>'+
         '<p>الاستلام من المخارج (الوصول) — اختر المخرج 1-5،<br>حيث ستحصل على تعليمات مفصلة في التطبيق.</p>'+
-        '<p><b>الدفع:</b><br>السعر حسب العداد والموعد ورسوم المطار والانتظار حتى ساعة بعد وصولك عند التأخير.</p>'+
+        '<p><b>الدفع:</b><br>السعر حسب العداد والموعد ورسوم المطار والانتظار حتى 30 دقيقة بعد وصولك عند التأخير.</p>'+
         '<p><b>الأمان:</b><br>لأمانك يجب أن يكون التاكسي أصفر في أثينا<br>وأن تكون بيانات السائق ظاهرة.</p>'+
         '<p><b>المسؤولية:</b><br>المسؤولية عن كل نقل ومعاملة<br>تقع حصريًا على السائق والعميل.</p>'+
         '<p>التطبيق منصة ربط فقط<br>ولا يتحمل أي مسؤولية.</p>',
@@ -2640,7 +2640,7 @@
         '<p><b>如何运作：</b><br>填写资料并选择到达时间。<br>司机已安排好，在机场等候您。</p>'+
         '<p>下飞机并领取行李后，<br>请通过应用通知司机前来接您。</p>'+
         '<p>接机在到达出口（Arrivals）——请选择出口 1-5，<br>应用内会给出详细指引。</p>'+
-        '<p><b>付款：</b><br>价格按计价器、预约、机场附加费，以及航班延误时到达后最多一小时等候计算。</p>'+
+        '<p><b>付款：</b><br>价格按计价器、预约、机场附加费，以及航班延误时到达后最多30分钟等候计算。</p>'+
         '<p><b>安全：</b><br>为了您的安全，雅典出租车必须为黄色，<br>司机须明显出示资料。</p>'+
         '<p><b>责任：</b><br>每次运送和交易的责任<br>仅属于司机和乘客。</p>'+
         '<p>应用仅为对接平台，<br>不承担任何责任。</p>',
@@ -3238,25 +3238,1641 @@
 
 
   var TERMS = {
-    el:{ termsTitle:"Ενημέρωση & Αποδοχή", termsAccept:"Αποδέχομαι τους όρους & την Πολιτική Απορρήτου", termsOnce:"(Θα εμφανιστεί μόνο την πρώτη φορά.)", termsBody:"<p style=\"margin:0 0 10px 0;\">Η εφαρμογή λειτουργεί αποκλειστικά ως πλατφόρμα διασύνδεσης με πιστοποιημένους οδηγούς ταξί. Την ευθύνη για κάθε μεταφορά, ασφάλεια και συναλλαγή φέρει αποκλειστικά ο οδηγός.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Αθήνα → Αεροδρόμιο:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Ακύρωση:</b> μέχρι 1 ώρα πριν από τον Φάκελο</p><p style=\"margin:0 0 10px 0;\">• <b>Πληρωμή:</b> βάσει ταξιμέτρου + πρόσθετα αεροδρομίου + διόδια, απευθείας στον οδηγό</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Αεροδρόμιο → Αθήνα:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Ακύρωση:</b> οποτεδήποτε πριν την πτήση</p><p style=\"margin:0 0 10px 0;\">• <b>Τιμή:</b> περιλαμβάνει ραντεβού, πρόσθετα αεροδρομίου και αναμονή έως 1 ώρα για καθυστέρηση πτήσης</p><p style=\"margin:0 0 4px 0;\">• <b>Ασφάλεια:</b> το ταξί πρέπει να είναι κίτρινο με εμφανή την ειδική άδεια</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Προστασία Προσωπικών Δεδομένων (GDPR)</p><p style=\"margin:0 0 6px 0;\"><b>Υπεύθυνος επεξεργασίας:</b> Ιωάννης Τρανταλίδης.</p><p style=\"margin:0 0 6px 0;\"><b>Ποια δεδομένα:</b> όνομα, τηλέφωνο, σημείο παραλαβής (τοποθεσία/πινέζα) και τα στοιχεία της κράτησης.</p><p style=\"margin:0 0 6px 0;\"><b>Σκοπός & νομική βάση:</b> αποκλειστικά η διεκπεραίωση της κράτησης και η σύνδεσή σου με τον οδηγό — βάσει της εκτέλεσης της υπηρεσίας και της συγκατάθεσής σου.</p><p style=\"margin:0 0 6px 0;\"><b>Κοινοποίηση:</b> τα στοιχεία δίνονται ΜΟΝΟ στον οδηγό που αναλαμβάνει τη μεταφορά. Δεν πωλούνται ούτε διαβιβάζονται σε τρίτους για διαφήμιση.</p><p style=\"margin:0 0 6px 0;\"><b>Διατήρηση:</b> κρατούνται όσο χρειάζεται για την κράτηση. Μπορείς να τα διαγράψεις οποιαδήποτε στιγμή μέσα από την εφαρμογή· επιπλέον τα αρχεία κρατήσεων καθαρίζονται αυτόματα (έως ~30 ημέρες μετά).</p><p style=\"margin:0 0 6px 0;\"><b>Τα δικαιώματά σου:</b> μπορείς να ζητήσεις πρόσβαση, διόρθωση, διαγραφή ή ανάκληση της συγκατάθεσης οποιαδήποτε στιγμή, μέσα από την εφαρμογή ή με email.</p><p style=\"margin:0 0 6px 0;\"><b>Επικοινωνία GDPR:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Πάροχοι/αποδέκτες:</b> για τη λειτουργία της εφαρμογής χρησιμοποιούμε ασφαλή διακομιστή στην ΕΕ (Hetzner), υπηρεσία ειδοποιήσεων (Google Firebase) και υπηρεσίες χαρτών (Google Maps, MapTiler, OpenStreetMap). Ορισμένες από αυτές ενδέχεται να επεξεργάζονται δεδομένα και εκτός ΕΕ, με τις προβλεπόμενες νομικές εγγυήσεις.</p><p style=\"margin:0 0 6px 0;\"><b>Δικαίωμα καταγγελίας:</b> αν θεωρείς ότι δεν τηρήθηκαν τα δικαιώματά σου, μπορείς να απευθυνθείς και στην Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Ασφάλεια:</b> τα δεδομένα φυλάσσονται σε ασφαλή διακομιστή.</p>" },
-    en:{ termsTitle:"Information & Acceptance", termsAccept:"I Accept the Terms & Privacy Policy", termsOnce:"(Will only appear once.)", termsBody:"<p style=\"margin:0 0 10px 0;\">The app operates exclusively as a connection platform with certified taxi drivers. Full responsibility for every transfer, safety and transaction lies exclusively with the driver.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Athens → Airport:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Cancellation:</b> up to 1 hour before, from the Folder</p><p style=\"margin:0 0 10px 0;\">• <b>Payment:</b> taximeter + airport surcharges + tolls, paid directly to the driver</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Airport → Athens:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Cancellation:</b> any time before the flight</p><p style=\"margin:0 0 10px 0;\">• <b>Price:</b> includes appointment, airport surcharges and waiting up to 1 hour for flight delays</p><p style=\"margin:0 0 4px 0;\">• <b>Safety:</b> taxi must be yellow with special licence clearly visible</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Personal Data Protection (GDPR)</p><p style=\"margin:0 0 6px 0;\"><b>Data controller:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>What data:</b> name, phone, pickup point (location/pin) and the booking details.</p><p style=\"margin:0 0 6px 0;\"><b>Purpose & legal basis:</b> solely to carry out your booking and connect you with the driver — based on performance of the service and your consent.</p><p style=\"margin:0 0 6px 0;\"><b>Sharing:</b> your data is given ONLY to the driver who takes the transfer. It is never sold or shared with third parties for advertising.</p><p style=\"margin:0 0 6px 0;\"><b>Retention:</b> kept only as long as needed for the booking. You can delete them anytime from within the app; booking records are also cleaned up automatically (up to ~30 days after).</p><p style=\"margin:0 0 6px 0;\"><b>Your rights:</b> you may request access, correction, deletion or withdrawal of consent at any time, from within the app or by email.</p><p style=\"margin:0 0 6px 0;\"><b>GDPR contact:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Providers/recipients:</b> to run the app we use a secure EU server (Hetzner), a notification service (Google Firebase) and map services (Google Maps, MapTiler, OpenStreetMap). Some of these may also process data outside the EU, under the appropriate legal safeguards.</p><p style=\"margin:0 0 6px 0;\"><b>Right to complain:</b> if you believe your rights were not respected, you may also contact the Hellenic Data Protection Authority (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Security:</b> data is stored on a secure server.</p>" },
-    de:{ termsTitle:"Information & Zustimmung", termsAccept:"Ich akzeptiere die Bedingungen & Datenschutzrichtlinie", termsOnce:"(Wird nur einmal angezeigt.)", termsBody:"<p style=\"margin:0 0 10px 0;\">Die App dient ausschließlich als Vermittlungsplattform zu zertifizierten Taxifahrern. Die volle Verantwortung für jede Fahrt, Sicherheit und Zahlung liegt ausschließlich beim Fahrer.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Athen → Flughafen:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Stornierung:</b> bis 1 Stunde vorher über den Ordner</p><p style=\"margin:0 0 10px 0;\">• <b>Zahlung:</b> Taxameter + Flughafenzuschläge + Maut, direkt an den Fahrer</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Flughafen → Athen:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Stornierung:</b> jederzeit vor dem Flug</p><p style=\"margin:0 0 10px 0;\">• <b>Preis:</b> inkl. Termin, Flughafenzuschläge und Wartezeit bis 1 Stunde bei Flugverspätung</p><p style=\"margin:0 0 4px 0;\">• <b>Sicherheit:</b> Taxi muss gelb sein, Sonderlizenz gut sichtbar</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Schutz personenbezogener Daten (DSGVO)</p><p style=\"margin:0 0 6px 0;\"><b>Verantwortlicher:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>Welche Daten:</b> Name, Telefon, Abholpunkt (Standort/Pin) und Buchungsdetails.</p><p style=\"margin:0 0 6px 0;\"><b>Zweck & Rechtsgrundlage:</b> ausschließlich zur Durchführung der Buchung und Verbindung mit dem Fahrer — aufgrund der Vertragserfüllung und Ihrer Einwilligung.</p><p style=\"margin:0 0 6px 0;\"><b>Weitergabe:</b> Daten gehen NUR an den Fahrer der Fahrt. Kein Verkauf und keine Weitergabe zu Werbezwecken.</p><p style=\"margin:0 0 6px 0;\"><b>Speicherung:</b> nur so lange wie für die Buchung nötig. Löschung jederzeit in der App; Buchungsakten werden auch automatisch bereinigt (bis ca. 30 Tage danach).</p><p style=\"margin:0 0 6px 0;\"><b>Ihre Rechte:</b> Auskunft, Berichtigung, Löschung oder Widerruf der Einwilligung jederzeit in der App oder per E-Mail.</p><p style=\"margin:0 0 6px 0;\"><b>DSGVO-Kontakt:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Anbieter/Empfänger:</b> sicherer EU-Server (Hetzner), Benachrichtigungsdienst (Google Firebase) und Kartendienste (Google Maps, MapTiler, OpenStreetMap). Einige können Daten auch außerhalb der EU verarbeiten, mit den vorgesehenen Garantien.</p><p style=\"margin:0 0 6px 0;\"><b>Beschwerderecht:</b> Hellenische Datenschutzbehörde (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Sicherheit:</b> Daten werden auf einem sicheren Server gespeichert.</p>" },
-    fr:{ termsTitle:"Information & Acceptation", termsAccept:"J'accepte les conditions et la politique de confidentialité", termsOnce:"(N'apparaît qu'une seule fois.)", termsBody:"<p style=\"margin:0 0 10px 0;\">L'application fonctionne exclusivement comme plateforme de mise en relation avec des chauffeurs de taxi certifiés. La responsabilité de chaque trajet, de la sécurité et du paiement incombe exclusivement au chauffeur.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Athènes → Aéroport :</b></p><p style=\"margin:0 0 4px 0;\">• <b>Annulation :</b> jusqu'à 1 heure avant, depuis le Dossier</p><p style=\"margin:0 0 10px 0;\">• <b>Paiement :</b> taximètre + majorations aéroport + péages, directement au chauffeur</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Aéroport → Athènes :</b></p><p style=\"margin:0 0 4px 0;\">• <b>Annulation :</b> à tout moment avant le vol</p><p style=\"margin:0 0 10px 0;\">• <b>Prix :</b> inclut le rendez-vous, majorations aéroport et attente jusqu'à 1 heure en cas de retard de vol</p><p style=\"margin:0 0 4px 0;\">• <b>Sécurité :</b> taxi jaune avec licence spéciale bien visible</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Protection des données personnelles (RGPD)</p><p style=\"margin:0 0 6px 0;\"><b>Responsable du traitement :</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>Quelles données :</b> nom, téléphone, point de prise en charge (lieu/épingle) et détails de la réservation.</p><p style=\"margin:0 0 6px 0;\"><b>Finalité & base légale :</b> uniquement pour réaliser la réservation et vous connecter au chauffeur — exécution du service et votre consentement.</p><p style=\"margin:0 0 6px 0;\"><b>Partage :</b> données données UNIQUEMENT au chauffeur du trajet. Jamais vendues ni partagées à des fins publicitaires.</p><p style=\"margin:0 0 6px 0;\"><b>Conservation :</b> uniquement le temps nécessaire. Suppression possible à tout moment dans l'app ; nettoyage automatique des dossiers (jusqu'à ~30 jours après).</p><p style=\"margin:0 0 6px 0;\"><b>Vos droits :</b> accès, rectification, suppression ou retrait du consentement à tout moment, dans l'app ou par e-mail.</p><p style=\"margin:0 0 6px 0;\"><b>Contact RGPD :</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Prestataires :</b> serveur UE sécurisé (Hetzner), notifications (Google Firebase) et cartes (Google Maps, MapTiler, OpenStreetMap). Certains peuvent traiter des données hors UE avec les garanties prévues.</p><p style=\"margin:0 0 6px 0;\"><b>Droit de réclamation :</b> Autorité hellénique de protection des données (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Sécurité :</b> données stockées sur un serveur sécurisé.</p>" },
-    it:{ termsTitle:"Informazioni e accettazione", termsAccept:"Accetto i termini e l'informativa sulla privacy", termsOnce:"(Apparirà solo la prima volta.)", termsBody:"<p style=\"margin:0 0 10px 0;\">L'app funziona esclusivamente come piattaforma di collegamento con tassisti certificati. La responsabilità di ogni trasferimento, sicurezza e pagamento spetta esclusivamente all'autista.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Atene → Aeroporto:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Cancellazione:</b> fino a 1 ora prima dalla Cartella</p><p style=\"margin:0 0 10px 0;\">• <b>Pagamento:</b> tassametro + supplementi aeroportuali + pedaggi, direttamente all'autista</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Aeroporto → Atene:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Cancellazione:</b> in qualsiasi momento prima del volo</p><p style=\"margin:0 0 10px 0;\">• <b>Prezzo:</b> include appuntamento, supplementi aeroportuali e attesa fino a 1 ora per ritardi del volo</p><p style=\"margin:0 0 4px 0;\">• <b>Sicurezza:</b> taxi giallo con licenza speciale ben visibile</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Protezione dei dati personali (GDPR)</p><p style=\"margin:0 0 6px 0;\"><b>Titolare del trattamento:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>Quali dati:</b> nome, telefono, punto di prelievo (posizione/pin) e dettagli della prenotazione.</p><p style=\"margin:0 0 6px 0;\"><b>Finalità e base giuridica:</b> solo per eseguire la prenotazione e collegarti all'autista — esecuzione del servizio e il tuo consenso.</p><p style=\"margin:0 0 6px 0;\"><b>Condivisione:</b> i dati vanno SOLO all'autista del trasferimento. Non sono venduti né condivisi per pubblicità.</p><p style=\"margin:0 0 6px 0;\"><b>Conservazione:</b> solo per il tempo necessario. Puoi cancellarli in qualsiasi momento dall'app; i record vengono anche ripuliti automaticamente (fino a ~30 giorni dopo).</p><p style=\"margin:0 0 6px 0;\"><b>I tuoi diritti:</b> accesso, rettifica, cancellazione o revoca del consenso in qualsiasi momento, dall'app o via e-mail.</p><p style=\"margin:0 0 6px 0;\"><b>Contatto GDPR:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Fornitori:</b> server UE sicuro (Hetzner), notifiche (Google Firebase) e mappe (Google Maps, MapTiler, OpenStreetMap). Alcuni possono trattare dati anche fuori UE con le garanzie previste.</p><p style=\"margin:0 0 6px 0;\"><b>Diritto di reclamo:</b> Autorità ellenica per la protezione dei dati (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Sicurezza:</b> i dati sono conservati su un server sicuro.</p>" },
-    es:{ termsTitle:"Información y aceptación", termsAccept:"Acepto los términos y la política de privacidad", termsOnce:"(Solo aparecerá una vez.)", termsBody:"<p style=\"margin:0 0 10px 0;\">La app funciona exclusivamente como plataforma de conexión con taxistas certificados. La responsabilidad de cada traslado, seguridad y pago corresponde exclusivamente al conductor.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Atenas → Aeropuerto:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Cancelación:</b> hasta 1 hora antes desde la Carpeta</p><p style=\"margin:0 0 10px 0;\">• <b>Pago:</b> taxímetro + recargos de aeropuerto + peajes, directamente al conductor</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Aeropuerto → Atenas:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Cancelación:</b> en cualquier momento antes del vuelo</p><p style=\"margin:0 0 10px 0;\">• <b>Precio:</b> incluye cita, recargos de aeropuerto y espera de hasta 1 hora por retrasos del vuelo</p><p style=\"margin:0 0 4px 0;\">• <b>Seguridad:</b> el taxi debe ser amarillo con licencia especial bien visible</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Protección de datos personales (RGPD)</p><p style=\"margin:0 0 6px 0;\"><b>Responsable del tratamiento:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>Qué datos:</b> nombre, teléfono, punto de recogida (ubicación/pin) y detalles de la reserva.</p><p style=\"margin:0 0 6px 0;\"><b>Finalidad y base legal:</b> únicamente para realizar la reserva y conectarte con el conductor — ejecución del servicio y tu consentimiento.</p><p style=\"margin:0 0 6px 0;\"><b>Compartir:</b> los datos se dan SOLO al conductor del traslado. No se venden ni se comparten con fines publicitarios.</p><p style=\"margin:0 0 6px 0;\"><b>Conservación:</b> solo el tiempo necesario. Puedes eliminarlos en cualquier momento desde la app; también se limpian automáticamente (hasta ~30 días después).</p><p style=\"margin:0 0 6px 0;\"><b>Tus derechos:</b> acceso, rectificación, eliminación o retirada del consentimiento en cualquier momento, desde la app o por correo.</p><p style=\"margin:0 0 6px 0;\"><b>Contacto RGPD:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Proveedores:</b> servidor UE seguro (Hetzner), notificaciones (Google Firebase) y mapas (Google Maps, MapTiler, OpenStreetMap). Algunos pueden tratar datos fuera de la UE con las garantías previstas.</p><p style=\"margin:0 0 6px 0;\"><b>Derecho de reclamación:</b> Autoridad Helénica de Protección de Datos (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Seguridad:</b> los datos se almacenan en un servidor seguro.</p>" },
-    ru:{ termsTitle:"Информация и согласие", termsAccept:"Принимаю условия и политику конфиденциальности", termsOnce:"(Появится только один раз.)", termsBody:"<p style=\"margin:0 0 10px 0;\">Приложение работает исключительно как платформа связи с сертифицированными водителями такси. Полная ответственность за каждую поездку, безопасность и оплату лежит исключительно на водителе.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Афины → Аэропорт:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Отмена:</b> не позднее чем за 1 час из Папки</p><p style=\"margin:0 0 10px 0;\">• <b>Оплата:</b> таксометр + аэропортовые сборы + дорожные сборы, напрямую водителю</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Аэропорт → Афины:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Отмена:</b> в любое время до вылета</p><p style=\"margin:0 0 10px 0;\">• <b>Цена:</b> включает встречу, аэропортовые сборы и ожидание до 1 часа при задержке рейса</p><p style=\"margin:0 0 4px 0;\">• <b>Безопасность:</b> такси должно быть жёлтым со специальной лицензией на виду</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Защита персональных данных (GDPR)</p><p style=\"margin:0 0 6px 0;\"><b>Оператор данных:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>Какие данные:</b> имя, телефон, точка подачи (место/пин) и детали заказа.</p><p style=\"margin:0 0 6px 0;\"><b>Цель и правовая основа:</b> только для выполнения заказа и связи с водителем — исполнение услуги и ваше согласие.</p><p style=\"margin:0 0 6px 0;\"><b>Передача:</b> данные передаются ТОЛЬКО водителю поездки. Не продаются и не передаются для рекламы.</p><p style=\"margin:0 0 6px 0;\"><b>Хранение:</b> только пока нужно для заказа. Удаление в любое время в приложении; записи также очищаются автоматически (до ~30 дней после).</p><p style=\"margin:0 0 6px 0;\"><b>Ваши права:</b> доступ, исправление, удаление или отзыв согласия в любое время в приложении или по email.</p><p style=\"margin:0 0 6px 0;\"><b>Контакт GDPR:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Поставщики:</b> защищённый сервер в ЕС (Hetzner), уведомления (Google Firebase) и карты (Google Maps, MapTiler, OpenStreetMap). Некоторые могут обрабатывать данные вне ЕС с предусмотренными гарантиями.</p><p style=\"margin:0 0 6px 0;\"><b>Право на жалобу:</b> Греческий орган по защите данных (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Безопасность:</b> данные хранятся на защищённом сервере.</p>" },
-    pl:{ termsTitle:"Informacja i akceptacja", termsAccept:"Akceptuję warunki i politykę prywatności", termsOnce:"(Pojawi się tylko raz.)", termsBody:"<p style=\"margin:0 0 10px 0;\">Aplikacja działa wyłącznie jako platforma łącząca z certyfikowanymi taksówkarzami. Pełna odpowiedzialność za każdy przewóz, bezpieczeństwo i płatność spoczywa wyłącznie na kierowcy.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Ateny → Lotnisko:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Anulowanie:</b> do 1 godziny wcześniej z Folderu</p><p style=\"margin:0 0 10px 0;\">• <b>Płatność:</b> taksometr + opłaty lotniskowe + myto, bezpośrednio kierowcy</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Lotnisko → Ateny:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Anulowanie:</b> w dowolnym momencie przed lotem</p><p style=\"margin:0 0 10px 0;\">• <b>Cena:</b> obejmuje spotkanie, opłaty lotniskowe i oczekiwanie do 1 godziny przy opóźnieniu lotu</p><p style=\"margin:0 0 4px 0;\">• <b>Bezpieczeństwo:</b> taksówka musi być żółta ze specjalną licencją widoczną</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Ochrona danych osobowych (RODO)</p><p style=\"margin:0 0 6px 0;\"><b>Administrator:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>Jakie dane:</b> imię, telefon, punkt odbioru (lokalizacja/pinezka) i szczegóły rezerwacji.</p><p style=\"margin:0 0 6px 0;\"><b>Cel i podstawa prawna:</b> wyłącznie realizacja rezerwacji i połączenie z kierowcą — wykonanie usługi oraz Twoja zgoda.</p><p style=\"margin:0 0 6px 0;\"><b>Udostępnianie:</b> dane trafiają TYLKO do kierowcy przejazdu. Nie są sprzedawane ani udostępniane do reklamy.</p><p style=\"margin:0 0 6px 0;\"><b>Przechowywanie:</b> tylko tak długo, jak potrzeba. Możesz je usunąć w dowolnym momencie w aplikacji; rekordy są też czyszczone automatycznie (do ~30 dni później).</p><p style=\"margin:0 0 6px 0;\"><b>Twoje prawa:</b> dostęp, sprostowanie, usunięcie lub cofnięcie zgody w dowolnym momencie w aplikacji lub e-mailem.</p><p style=\"margin:0 0 6px 0;\"><b>Kontakt RODO:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Dostawcy:</b> bezpieczny serwer UE (Hetzner), powiadomienia (Google Firebase) i mapy (Google Maps, MapTiler, OpenStreetMap). Niektórzy mogą przetwarzać dane poza UE z przewidzianymi gwarancjami.</p><p style=\"margin:0 0 6px 0;\"><b>Prawo do skargi:</b> Grecki organ ochrony danych (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Bezpieczeństwo:</b> dane przechowywane są na bezpiecznym serwerze.</p>" },
-    ro:{ termsTitle:"Informare și acceptare", termsAccept:"Accept termenii și politica de confidențialitate", termsOnce:"(Va apărea o singură dată.)", termsBody:"<p style=\"margin:0 0 10px 0;\">Aplicația funcționează exclusiv ca platformă de conectare cu șoferi de taxi certificați. Responsabilitatea pentru fiecare transfer, siguranță și plată aparține exclusiv șoferului.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Atena → Aeroport:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Anulare:</b> cu până la 1 oră înainte din Dosar</p><p style=\"margin:0 0 10px 0;\">• <b>Plată:</b> taximetru + taxe aeroport + taxe drum, direct șoferului</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Aeroport → Atena:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Anulare:</b> oricând înainte de zbor</p><p style=\"margin:0 0 10px 0;\">• <b>Preț:</b> include programarea, taxele de aeroport și așteptare până la 1 oră pentru întârzieri de zbor</p><p style=\"margin:0 0 4px 0;\">• <b>Siguranță:</b> taxiul trebuie să fie galben, cu licența specială vizibilă</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Protecția datelor personale (GDPR)</p><p style=\"margin:0 0 6px 0;\"><b>Operator:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>Ce date:</b> nume, telefon, punct de preluare (locație/pin) și detaliile rezervării.</p><p style=\"margin:0 0 6px 0;\"><b>Scop și temei legal:</b> exclusiv pentru realizarea rezervării și conectarea cu șoferul — executarea serviciului și consimțământul tău.</p><p style=\"margin:0 0 6px 0;\"><b>Partajare:</b> datele se dau DOAR șoferului care face transferul. Nu se vând și nu se partajează pentru publicitate.</p><p style=\"margin:0 0 6px 0;\"><b>Păstrare:</b> doar cât este necesar. Le poți șterge oricând din aplicație; înregistrările se curăță și automat (până la ~30 zile după).</p><p style=\"margin:0 0 6px 0;\"><b>Drepturile tale:</b> acces, corectare, ștergere sau retragerea consimțământului oricând, din aplicație sau prin e-mail.</p><p style=\"margin:0 0 6px 0;\"><b>Contact GDPR:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Furnizori:</b> server UE securizat (Hetzner), notificări (Google Firebase) și hărți (Google Maps, MapTiler, OpenStreetMap). Unii pot prelucra date și în afara UE, cu garanțiile prevăzute.</p><p style=\"margin:0 0 6px 0;\"><b>Dreptul de plângere:</b> Autoritatea elenă de protecție a datelor (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Securitate:</b> datele sunt stocate pe un server securizat.</p>" },
-    nl:{ termsTitle:"Informatie & acceptatie", termsAccept:"Ik accepteer de voorwaarden en het privacybeleid", termsOnce:"(Verschijnt slechts één keer.)", termsBody:"<p style=\"margin:0 0 10px 0;\">De app werkt uitsluitend als koppelingsplatform met gecertificeerde taxichauffeurs. De volledige verantwoordelijkheid voor elke rit, veiligheid en betaling ligt uitsluitend bij de chauffeur.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Athene → Luchthaven:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Annulering:</b> tot 1 uur van tevoren via de Map</p><p style=\"margin:0 0 10px 0;\">• <b>Betaling:</b> taxameter + luchthaventoeslagen + tol, rechtstreeks aan de chauffeur</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Luchthaven → Athene:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Annulering:</b> op elk moment vóór de vlucht</p><p style=\"margin:0 0 10px 0;\">• <b>Prijs:</b> inclusief afspraak, luchthaventoeslagen en wachten tot 1 uur bij vluchtvertraging</p><p style=\"margin:0 0 4px 0;\">• <b>Veiligheid:</b> taxi moet geel zijn met speciale vergunning duidelijk zichtbaar</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Bescherming van persoonsgegevens (AVG)</p><p style=\"margin:0 0 6px 0;\"><b>Verwerkingsverantwoordelijke:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>Welke gegevens:</b> naam, telefoon, ophaalpunt (locatie/pin) en boekingsgegevens.</p><p style=\"margin:0 0 6px 0;\"><b>Doel & rechtsgrond:</b> uitsluitend om de boeking uit te voeren en u met de chauffeur te verbinden — uitvoering van de dienst en uw toestemming.</p><p style=\"margin:0 0 6px 0;\"><b>Delen:</b> gegevens gaan ALLEEN naar de chauffeur van de rit. Nooit verkocht of gedeeld voor reclame.</p><p style=\"margin:0 0 6px 0;\"><b>Bewaring:</b> alleen zo lang als nodig. U kunt ze altijd in de app wissen; records worden ook automatisch opgeschoond (tot ~30 dagen daarna).</p><p style=\"margin:0 0 6px 0;\"><b>Uw rechten:</b> inzage, correctie, verwijdering of intrekking van toestemming altijd via de app of e-mail.</p><p style=\"margin:0 0 6px 0;\"><b>AVG-contact:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Leveranciers:</b> beveiligde EU-server (Hetzner), meldingen (Google Firebase) en kaarten (Google Maps, MapTiler, OpenStreetMap). Sommige kunnen ook buiten de EU verwerken met de voorgeschreven waarborgen.</p><p style=\"margin:0 0 6px 0;\"><b>Klachtrecht:</b> Hellenische gegevensbeschermingsautoriteit (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Beveiliging:</b> gegevens worden op een beveiligde server opgeslagen.</p>" },
-    tr:{ termsTitle:"Bilgilendirme ve kabul", termsAccept:"Şartları ve Gizlilik Politikasını kabul ediyorum", termsOnce:"(Yalnızca bir kez görünür.)", termsBody:"<p style=\"margin:0 0 10px 0;\">Uygulama yalnızca sertifikalı taksi şoförleriyle bağlantı platformu olarak çalışır. Her transfer, güvenlik ve ödemenin tüm sorumluluğu yalnızca şoföre aittir.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Atina → Havalimanı:</b></p><p style=\"margin:0 0 4px 0;\">• <b>İptal:</b> Klasörden en fazla 1 saat önce</p><p style=\"margin:0 0 10px 0;\">• <b>Ödeme:</b> taksimetre + havalimanı ek ücretleri + geçiş ücretleri, doğrudan şoföre</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Havalimanı → Atina:</b></p><p style=\"margin:0 0 4px 0;\">• <b>İptal:</b> uçuştan önce herhangi bir zamanda</p><p style=\"margin:0 0 10px 0;\">• <b>Fiyat:</b> randevu, havalimanı ek ücretleri ve uçuş gecikmesinde 1 saate kadar beklemeyi içerir</p><p style=\"margin:0 0 4px 0;\">• <b>Güvenlik:</b> taksi sarı olmalı, özel ruhsat görünür olmalı</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Kişisel verilerin korunması (GDPR)</p><p style=\"margin:0 0 6px 0;\"><b>Veri sorumlusu:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>Hangi veriler:</b> ad, telefon, alınış noktası (konum/pin) ve rezervasyon bilgileri.</p><p style=\"margin:0 0 6px 0;\"><b>Amaç ve hukuki dayanak:</b> yalnızca rezervasyonu yürütmek ve sizi şoförle bağlamak — hizmetin ifası ve onayınız.</p><p style=\"margin:0 0 6px 0;\"><b>Paylaşım:</b> veriler YALNIZCA transferi yapan şoföre verilir. Satılmaz ve reklam için paylaşılmaz.</p><p style=\"margin:0 0 6px 0;\"><b>Saklama:</b> yalnızca gerekli olduğu süre. Uygulamadan istediğiniz zaman silebilirsiniz; kayıtlar da otomatik temizlenir (sonrasında ~30 güne kadar).</p><p style=\"margin:0 0 6px 0;\"><b>Haklarınız:</b> erişim, düzeltme, silme veya onayın geri çekilmesi istediğiniz zaman uygulamadan veya e-posta ile.</p><p style=\"margin:0 0 6px 0;\"><b>GDPR iletişimi:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Sağlayıcılar:</b> güvenli AB sunucusu (Hetzner), bildirimler (Google Firebase) ve haritalar (Google Maps, MapTiler, OpenStreetMap). Bazıları öngörülen güvencelerle AB dışında da veri işleyebilir.</p><p style=\"margin:0 0 6px 0;\"><b>Şikayet hakkı:</b> Yunan Veri Koruma Kurumu (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Güvenlik:</b> veriler güvenli bir sunucuda saklanır.</p>" },
-    ar:{ termsTitle:"معلومات والموافقة", termsAccept:"أوافق على الشروط وسياسة الخصوصية", termsOnce:"(تظهر مرة واحدة فقط.)", termsBody:"<p style=\"margin:0 0 10px 0;\">يعمل التطبيق حصريًا كمنصة ربط بسائقي تاكسي معتمدين. المسؤولية الكاملة عن كل نقل وسلامة ومعاملة تقع حصريًا على السائق.</p><p style=\"margin:0 0 4px 0;\"><b>✈ أثينا → المطار:</b></p><p style=\"margin:0 0 4px 0;\">• <b>الإلغاء:</b> حتى ساعة واحدة قبل الموعد من المجلد</p><p style=\"margin:0 0 10px 0;\">• <b>الدفع:</b> عداد + رسوم المطار + رسوم الطرق، مباشرة للسائق</p><p style=\"margin:0 0 4px 0;\"><b>🛬 المطار → أثينا:</b></p><p style=\"margin:0 0 4px 0;\">• <b>الإلغاء:</b> في أي وقت قبل الرحلة</p><p style=\"margin:0 0 10px 0;\">• <b>السعر:</b> يشمل الموعد ورسوم المطار والانتظار حتى ساعة لتأخر الرحلة</p><p style=\"margin:0 0 4px 0;\">• <b>السلامة:</b> يجب أن يكون التاكسي أصفر مع رخصة خاصة ظاهرة</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 حماية البيانات الشخصية (GDPR)</p><p style=\"margin:0 0 6px 0;\"><b>المسؤول عن المعالجة:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>ما البيانات:</b> الاسم والهاتف ونقطة الالتقاط (الموقع/الدبوس) وتفاصيل الحجز.</p><p style=\"margin:0 0 6px 0;\"><b>الغرض والأساس القانوني:</b> فقط لتنفيذ الحجز وربطك بالسائق — أداء الخدمة وموافقتك.</p><p style=\"margin:0 0 6px 0;\"><b>المشاركة:</b> تُعطى البيانات فقط لسائق النقل. لا تُباع ولا تُشارك للإعلان.</p><p style=\"margin:0 0 6px 0;\"><b>الاحتفاظ:</b> فقط للمدة اللازمة. يمكنك حذفها في أي وقت من التطبيق؛ كما تُنظَّف السجلات تلقائيًا (حتى ~30 يومًا بعد ذلك).</p><p style=\"margin:0 0 6px 0;\"><b>حقوقك:</b> الوصول أو التصحيح أو الحذف أو سحب الموافقة في أي وقت من التطبيق أو عبر البريد.</p><p style=\"margin:0 0 6px 0;\"><b>جهة اتصال GDPR:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>المزودون:</b> خادم آمن في الاتحاد الأوروبي (Hetzner) وإشعارات (Google Firebase) وخرائط (Google Maps وMapTiler وOpenStreetMap). قد يعالج بعضها بيانات خارج الاتحاد الأوروبي بالضمانات المقررة.</p><p style=\"margin:0 0 6px 0;\"><b>حق الشكوى:</b> هيئة حماية البيانات اليونانية (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>الأمان:</b> تُخزَّن البيانات على خادم آمن.</p>" },
-    zh:{ termsTitle:"须知与接受", termsAccept:"我接受条款和隐私政策", termsOnce:"（仅显示一次。）", termsBody:"<p style=\"margin:0 0 10px 0;\">本应用仅作为与持证出租车司机的对接平台。每次行程、安全与交易的全部责任仅由司机承担。</p><p style=\"margin:0 0 4px 0;\"><b>✈ 雅典 → 机场：</b></p><p style=\"margin:0 0 4px 0;\">• <b>取消：最晚提前 1 小时在文件夹中操作:</b> </p><p style=\"margin:0 0 10px 0;\">• <b>付款：计价器 + 机场附加费 + 通行费，直接付给司机:</b> </p><p style=\"margin:0 0 4px 0;\"><b>🛬 机场 → 雅典：</b></p><p style=\"margin:0 0 4px 0;\">• <b>取消：起飞前随时可取消:</b> </p><p style=\"margin:0 0 10px 0;\">• <b>价格：含预约、机场附加费及航班延误最多 1 小时等待:</b> </p><p style=\"margin:0 0 4px 0;\">• <b>安全：出租车须为黄色，并清晰展示特别执照:</b> </p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 个人数据保护（GDPR）</p><p style=\"margin:0 0 6px 0;\"><b>数据控制者：Ioannis Trantalidis。:</b> </p><p style=\"margin:0 0 6px 0;\"><b>哪些数据：姓名、电话、上车点（位置/图钉）及预订详情。:</b> </p><p style=\"margin:0 0 6px 0;\"><b>目的与法律依据：仅用于完成预订并连接司机——基于服务履行与您的同意。:</b> </p><p style=\"margin:0 0 6px 0;\"><b>共享：数据仅提供给承接行程的司机。不出售、不用于广告分享。:</b> </p><p style=\"margin:0 0 6px 0;\"><b>保留：仅保留预订所需时间。可随时在应用内删除；记录也会自动清理（约 30 天内）。:</b> </p><p style=\"margin:0 0 6px 0;\"><b>您的权利：可随时在应用内或通过电子邮件请求访问、更正、删除或撤回同意。:</b> </p><p style=\"margin:0 0 6px 0;\"><b>GDPR 联系：mail:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>服务商：欧盟安全服务器（Hetzner）、通知（Google Firebase）与地图（Google Maps、MapTiler、OpenStreetMap）。部分可能在欧盟外处理数据，并具备相应法律保障。:</b> </p><p style=\"margin:0 0 6px 0;\"><b>投诉权：希腊数据保护局（www.dpa.gr）。:</b> </p><p style=\"margin:0 0 0 0;\"><b>安全：数据存储在安全服务器上。:</b> </p>" },
-    uk:{ termsTitle:"Інформація та прийняття", termsAccept:"Приймаю умови та політику конфіденційності", termsOnce:"(З’явиться лише один раз.)", termsBody:"<p style=\"margin:0 0 10px 0;\">Додаток працює виключно як платформа зв’язку з сертифікованими водіями таксі. Повну відповідальність за кожну поїздку, безпеку та оплату несе виключно водій.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Афіни → Аеропорт:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Скасування:</b> не пізніше ніж за 1 годину з Папки</p><p style=\"margin:0 0 10px 0;\">• <b>Оплата:</b> таксометр + аеропортові збори + дорожні збори, безпосередньо водію</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Аеропорт → Афіни:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Скасування:</b> будь-коли до рейсу</p><p style=\"margin:0 0 10px 0;\">• <b>Ціна:</b> включає зустріч, аеропортові збори та очікування до 1 години при затримці рейсу</p><p style=\"margin:0 0 4px 0;\">• <b>Безпека:</b> таксі має бути жовтим зі спеціальною ліцензією на видноті</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Захист персональних даних (GDPR)</p><p style=\"margin:0 0 6px 0;\"><b>Оператор даних:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>Які дані:</b> ім’я, телефон, точка подачі (місце/пін) і деталі бронювання.</p><p style=\"margin:0 0 6px 0;\"><b>Мета та правова підстава:</b> лише для виконання бронювання та зв’язку з водієм — виконання послуги та ваша згода.</p><p style=\"margin:0 0 6px 0;\"><b>Передача:</b> дані передаються ЛИШЕ водію поїздки. Не продаються і не передаються для реклами.</p><p style=\"margin:0 0 6px 0;\"><b>Зберігання:</b> лише стільки, скільки потрібно. Можна видалити будь-коли в додатку; записи також очищаються автоматично (до ~30 днів після).</p><p style=\"margin:0 0 6px 0;\"><b>Ваші права:</b> доступ, виправлення, видалення або відкликання згоди будь-коли в додатку чи електронною поштою.</p><p style=\"margin:0 0 6px 0;\"><b>Контакт GDPR:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Постачальники:</b> захищений сервер в ЄС (Hetzner), сповіщення (Google Firebase) і карти (Google Maps, MapTiler, OpenStreetMap). Деякі можуть обробляти дані поза ЄС із передбаченими гарантіями.</p><p style=\"margin:0 0 6px 0;\"><b>Право на скаргу:</b> Грецький орган захисту даних (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Безпека:</b> дані зберігаються на захищеному сервері.</p>" },
-    he:{ termsTitle:"מידע ואישור", termsAccept:"אני מאשר/ת את התנאים ומדיניות הפרטיות", termsOnce:"(יוצג פעם אחת בלבד.)", termsBody:"<p style=\"margin:0 0 10px 0;\">האפליקציה פועלת אך ורק כפלטפורמת חיבור לנהגי מונית מוסמכים. האחריות המלאה לכל נסיעה, בטיחות ותשלום מוטלת בלעדית על הנהג.</p><p style=\"margin:0 0 4px 0;\"><b>✈ אתונה → נמל התעופה:</b></p><p style=\"margin:0 0 4px 0;\">• <b>ביטול:</b> עד שעה לפני מהתיקייה</p><p style=\"margin:0 0 10px 0;\">• <b>תשלום:</b> מונה + תוספות נמל תעופה + אגרות, ישירות לנהג</p><p style=\"margin:0 0 4px 0;\"><b>🛬 נמל התעופה → אתונה:</b></p><p style=\"margin:0 0 4px 0;\">• <b>ביטול:</b> בכל עת לפני הטיסה</p><p style=\"margin:0 0 10px 0;\">• <b>מחיר:</b> כולל פגישה, תוספות נמל תעופה והמתנה עד שעה לעיכוב טיסה</p><p style=\"margin:0 0 4px 0;\">• <b>בטיחות:</b> המונית חייבת להיות צהובה עם רישיון מיוחד גלוי</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 הגנת מידע אישי (GDPR)</p><p style=\"margin:0 0 6px 0;\"><b>אחראי על העיבוד:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>אילו נתונים:</b> שם, טלפון, נקודת איסוף (מיקום/סיכה) ופרטי ההזמנה.</p><p style=\"margin:0 0 6px 0;\"><b>מטרה ובסיס משפטי:</b> רק לביצוע ההזמנה וחיבורכם לנהג — ביצוע השירות והסכמתכם.</p><p style=\"margin:0 0 6px 0;\"><b>שיתוף:</b> הנתונים ניתנים רק לנהג הנסיעה. לא נמכרים ולא משותפים לפרסום.</p><p style=\"margin:0 0 6px 0;\"><b>שמירה:</b> רק כל עוד נדרש. ניתן למחוק בכל עת מהאפליקציה; הרשומות גם מנוקות אוטומטית (עד כ־30 יום לאחר מכן).</p><p style=\"margin:0 0 6px 0;\"><b>הזכויות שלכם:</b> גישה, תיקון, מחיקה או משיכת הסכמה בכל עת מהאפליקציה או במייל.</p><p style=\"margin:0 0 6px 0;\"><b>יצירת קשר GDPR:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>ספקים:</b> שרת מאובטח באיחוד האירופי (Hetzner), התראות (Google Firebase) ומפות (Google Maps, MapTiler, OpenStreetMap). חלקם עשויים לעבד נתונים גם מחוץ לאיחוד עם הערבויות הנדרשות.</p><p style=\"margin:0 0 6px 0;\"><b>זכות לתלונה:</b> רשות הגנת המידע היוונית (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>אבטחה:</b> הנתונים נשמרים בשרת מאובטח.</p>" }
+    el:{ termsTitle:"Ενημέρωση & Αποδοχή", termsAccept:"Αποδέχομαι τους όρους & την Πολιτική Απορρήτου", termsOnce:"(Θα εμφανιστεί μόνο την πρώτη φορά.)", termsBody:"<p style=\"margin:0 0 10px 0;\">Η εφαρμογή λειτουργεί αποκλειστικά ως πλατφόρμα διασύνδεσης με πιστοποιημένους οδηγούς ταξί. Την ευθύνη για κάθε μεταφορά, ασφάλεια και συναλλαγή φέρει αποκλειστικά ο οδηγός.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Αθήνα → Αεροδρόμιο:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Ακύρωση:</b> μέχρι 1 ώρα πριν από τον Φάκελο</p><p style=\"margin:0 0 10px 0;\">• <b>Πληρωμή:</b> βάσει ταξιμέτρου + πρόσθετα αεροδρομίου + διόδια, απευθείας στον οδηγό</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Αεροδρόμιο → Αθήνα:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Ακύρωση:</b> οποτεδήποτε πριν την πτήση</p><p style=\"margin:0 0 10px 0;\">• <b>Τιμή:</b> περιλαμβάνει ραντεβού, πρόσθετα αεροδρομίου και αναμονή έως 30 λεπτά για καθυστέρηση πτήσης</p><p style=\"margin:0 0 4px 0;\">• <b>Ασφάλεια:</b> το ταξί πρέπει να είναι κίτρινο με εμφανή την ειδική άδεια</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Προστασία Προσωπικών Δεδομένων (GDPR)</p><p style=\"margin:0 0 6px 0;\"><b>Υπεύθυνος επεξεργασίας:</b> Ιωάννης Τρανταλίδης.</p><p style=\"margin:0 0 6px 0;\"><b>Ποια δεδομένα:</b> όνομα, τηλέφωνο, σημείο παραλαβής (τοποθεσία/πινέζα) και τα στοιχεία της κράτησης.</p><p style=\"margin:0 0 6px 0;\"><b>Σκοπός & νομική βάση:</b> αποκλειστικά η διεκπεραίωση της κράτησης και η σύνδεσή σου με τον οδηγό — βάσει της εκτέλεσης της υπηρεσίας και της συγκατάθεσής σου.</p><p style=\"margin:0 0 6px 0;\"><b>Κοινοποίηση:</b> τα στοιχεία δίνονται ΜΟΝΟ στον οδηγό που αναλαμβάνει τη μεταφορά. Δεν πωλούνται ούτε διαβιβάζονται σε τρίτους για διαφήμιση.</p><p style=\"margin:0 0 6px 0;\"><b>Διατήρηση:</b> κρατούνται όσο χρειάζεται για την κράτηση. Μπορείς να τα διαγράψεις οποιαδήποτε στιγμή μέσα από την εφαρμογή· επιπλέον τα αρχεία κρατήσεων καθαρίζονται αυτόματα (έως ~30 ημέρες μετά).</p><p style=\"margin:0 0 6px 0;\"><b>Τα δικαιώματά σου:</b> μπορείς να ζητήσεις πρόσβαση, διόρθωση, διαγραφή ή ανάκληση της συγκατάθεσης οποιαδήποτε στιγμή, μέσα από την εφαρμογή ή με email.</p><p style=\"margin:0 0 6px 0;\"><b>Επικοινωνία GDPR:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Πάροχοι/αποδέκτες:</b> για τη λειτουργία της εφαρμογής χρησιμοποιούμε ασφαλή διακομιστή στην ΕΕ (Hetzner), υπηρεσία ειδοποιήσεων (Google Firebase) και υπηρεσίες χαρτών (Google Maps, MapTiler, OpenStreetMap). Ορισμένες από αυτές ενδέχεται να επεξεργάζονται δεδομένα και εκτός ΕΕ, με τις προβλεπόμενες νομικές εγγυήσεις.</p><p style=\"margin:0 0 6px 0;\"><b>Δικαίωμα καταγγελίας:</b> αν θεωρείς ότι δεν τηρήθηκαν τα δικαιώματά σου, μπορείς να απευθυνθείς και στην Αρχή Προστασίας Δεδομένων Προσωπικού Χαρακτήρα (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Ασφάλεια:</b> τα δεδομένα φυλάσσονται σε ασφαλή διακομιστή.</p>" },
+    en:{ termsTitle:"Information & Acceptance", termsAccept:"I Accept the Terms & Privacy Policy", termsOnce:"(Will only appear once.)", termsBody:"<p style=\"margin:0 0 10px 0;\">The app operates exclusively as a connection platform with certified taxi drivers. Full responsibility for every transfer, safety and transaction lies exclusively with the driver.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Athens → Airport:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Cancellation:</b> up to 1 hour before, from the Folder</p><p style=\"margin:0 0 10px 0;\">• <b>Payment:</b> taximeter + airport surcharges + tolls, paid directly to the driver</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Airport → Athens:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Cancellation:</b> any time before the flight</p><p style=\"margin:0 0 10px 0;\">• <b>Price:</b> includes appointment, airport surcharges and waiting up to 30 minutes for flight delays</p><p style=\"margin:0 0 4px 0;\">• <b>Safety:</b> taxi must be yellow with special licence clearly visible</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Personal Data Protection (GDPR)</p><p style=\"margin:0 0 6px 0;\"><b>Data controller:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>What data:</b> name, phone, pickup point (location/pin) and the booking details.</p><p style=\"margin:0 0 6px 0;\"><b>Purpose & legal basis:</b> solely to carry out your booking and connect you with the driver — based on performance of the service and your consent.</p><p style=\"margin:0 0 6px 0;\"><b>Sharing:</b> your data is given ONLY to the driver who takes the transfer. It is never sold or shared with third parties for advertising.</p><p style=\"margin:0 0 6px 0;\"><b>Retention:</b> kept only as long as needed for the booking. You can delete them anytime from within the app; booking records are also cleaned up automatically (up to ~30 days after).</p><p style=\"margin:0 0 6px 0;\"><b>Your rights:</b> you may request access, correction, deletion or withdrawal of consent at any time, from within the app or by email.</p><p style=\"margin:0 0 6px 0;\"><b>GDPR contact:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Providers/recipients:</b> to run the app we use a secure EU server (Hetzner), a notification service (Google Firebase) and map services (Google Maps, MapTiler, OpenStreetMap). Some of these may also process data outside the EU, under the appropriate legal safeguards.</p><p style=\"margin:0 0 6px 0;\"><b>Right to complain:</b> if you believe your rights were not respected, you may also contact the Hellenic Data Protection Authority (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Security:</b> data is stored on a secure server.</p>" },
+    de:{ termsTitle:"Information & Zustimmung", termsAccept:"Ich akzeptiere die Bedingungen & Datenschutzrichtlinie", termsOnce:"(Wird nur einmal angezeigt.)", termsBody:"<p style=\"margin:0 0 10px 0;\">Die App dient ausschließlich als Vermittlungsplattform zu zertifizierten Taxifahrern. Die volle Verantwortung für jede Fahrt, Sicherheit und Zahlung liegt ausschließlich beim Fahrer.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Athen → Flughafen:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Stornierung:</b> bis 1 Stunde vorher über den Ordner</p><p style=\"margin:0 0 10px 0;\">• <b>Zahlung:</b> Taxameter + Flughafenzuschläge + Maut, direkt an den Fahrer</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Flughafen → Athen:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Stornierung:</b> jederzeit vor dem Flug</p><p style=\"margin:0 0 10px 0;\">• <b>Preis:</b> inkl. Termin, Flughafenzuschläge und Wartezeit bis 30 Minuten bei Flugverspätung</p><p style=\"margin:0 0 4px 0;\">• <b>Sicherheit:</b> Taxi muss gelb sein, Sonderlizenz gut sichtbar</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Schutz personenbezogener Daten (DSGVO)</p><p style=\"margin:0 0 6px 0;\"><b>Verantwortlicher:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>Welche Daten:</b> Name, Telefon, Abholpunkt (Standort/Pin) und Buchungsdetails.</p><p style=\"margin:0 0 6px 0;\"><b>Zweck & Rechtsgrundlage:</b> ausschließlich zur Durchführung der Buchung und Verbindung mit dem Fahrer — aufgrund der Vertragserfüllung und Ihrer Einwilligung.</p><p style=\"margin:0 0 6px 0;\"><b>Weitergabe:</b> Daten gehen NUR an den Fahrer der Fahrt. Kein Verkauf und keine Weitergabe zu Werbezwecken.</p><p style=\"margin:0 0 6px 0;\"><b>Speicherung:</b> nur so lange wie für die Buchung nötig. Löschung jederzeit in der App; Buchungsakten werden auch automatisch bereinigt (bis ca. 30 Tage danach).</p><p style=\"margin:0 0 6px 0;\"><b>Ihre Rechte:</b> Auskunft, Berichtigung, Löschung oder Widerruf der Einwilligung jederzeit in der App oder per E-Mail.</p><p style=\"margin:0 0 6px 0;\"><b>DSGVO-Kontakt:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Anbieter/Empfänger:</b> sicherer EU-Server (Hetzner), Benachrichtigungsdienst (Google Firebase) und Kartendienste (Google Maps, MapTiler, OpenStreetMap). Einige können Daten auch außerhalb der EU verarbeiten, mit den vorgesehenen Garantien.</p><p style=\"margin:0 0 6px 0;\"><b>Beschwerderecht:</b> Hellenische Datenschutzbehörde (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Sicherheit:</b> Daten werden auf einem sicheren Server gespeichert.</p>" },
+    fr:{ termsTitle:"Information & Acceptation", termsAccept:"J'accepte les conditions et la politique de confidentialité", termsOnce:"(N'apparaît qu'une seule fois.)", termsBody:"<p style=\"margin:0 0 10px 0;\">L'application fonctionne exclusivement comme plateforme de mise en relation avec des chauffeurs de taxi certifiés. La responsabilité de chaque trajet, de la sécurité et du paiement incombe exclusivement au chauffeur.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Athènes → Aéroport :</b></p><p style=\"margin:0 0 4px 0;\">• <b>Annulation :</b> jusqu'à 1 heure avant, depuis le Dossier</p><p style=\"margin:0 0 10px 0;\">• <b>Paiement :</b> taximètre + majorations aéroport + péages, directement au chauffeur</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Aéroport → Athènes :</b></p><p style=\"margin:0 0 4px 0;\">• <b>Annulation :</b> à tout moment avant le vol</p><p style=\"margin:0 0 10px 0;\">• <b>Prix :</b> inclut le rendez-vous, majorations aéroport et attente jusqu'à 30 minutes en cas de retard de vol</p><p style=\"margin:0 0 4px 0;\">• <b>Sécurité :</b> taxi jaune avec licence spéciale bien visible</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Protection des données personnelles (RGPD)</p><p style=\"margin:0 0 6px 0;\"><b>Responsable du traitement :</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>Quelles données :</b> nom, téléphone, point de prise en charge (lieu/épingle) et détails de la réservation.</p><p style=\"margin:0 0 6px 0;\"><b>Finalité & base légale :</b> uniquement pour réaliser la réservation et vous connecter au chauffeur — exécution du service et votre consentement.</p><p style=\"margin:0 0 6px 0;\"><b>Partage :</b> données données UNIQUEMENT au chauffeur du trajet. Jamais vendues ni partagées à des fins publicitaires.</p><p style=\"margin:0 0 6px 0;\"><b>Conservation :</b> uniquement le temps nécessaire. Suppression possible à tout moment dans l'app ; nettoyage automatique des dossiers (jusqu'à ~30 jours après).</p><p style=\"margin:0 0 6px 0;\"><b>Vos droits :</b> accès, rectification, suppression ou retrait du consentement à tout moment, dans l'app ou par e-mail.</p><p style=\"margin:0 0 6px 0;\"><b>Contact RGPD :</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Prestataires :</b> serveur UE sécurisé (Hetzner), notifications (Google Firebase) et cartes (Google Maps, MapTiler, OpenStreetMap). Certains peuvent traiter des données hors UE avec les garanties prévues.</p><p style=\"margin:0 0 6px 0;\"><b>Droit de réclamation :</b> Autorité hellénique de protection des données (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Sécurité :</b> données stockées sur un serveur sécurisé.</p>" },
+    it:{ termsTitle:"Informazioni e accettazione", termsAccept:"Accetto i termini e l'informativa sulla privacy", termsOnce:"(Apparirà solo la prima volta.)", termsBody:"<p style=\"margin:0 0 10px 0;\">L'app funziona esclusivamente come piattaforma di collegamento con tassisti certificati. La responsabilità di ogni trasferimento, sicurezza e pagamento spetta esclusivamente all'autista.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Atene → Aeroporto:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Cancellazione:</b> fino a 1 ora prima dalla Cartella</p><p style=\"margin:0 0 10px 0;\">• <b>Pagamento:</b> tassametro + supplementi aeroportuali + pedaggi, direttamente all'autista</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Aeroporto → Atene:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Cancellazione:</b> in qualsiasi momento prima del volo</p><p style=\"margin:0 0 10px 0;\">• <b>Prezzo:</b> include appuntamento, supplementi aeroportuali e attesa fino a 30 minuti per ritardi del volo</p><p style=\"margin:0 0 4px 0;\">• <b>Sicurezza:</b> taxi giallo con licenza speciale ben visibile</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Protezione dei dati personali (GDPR)</p><p style=\"margin:0 0 6px 0;\"><b>Titolare del trattamento:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>Quali dati:</b> nome, telefono, punto di prelievo (posizione/pin) e dettagli della prenotazione.</p><p style=\"margin:0 0 6px 0;\"><b>Finalità e base giuridica:</b> solo per eseguire la prenotazione e collegarti all'autista — esecuzione del servizio e il tuo consenso.</p><p style=\"margin:0 0 6px 0;\"><b>Condivisione:</b> i dati vanno SOLO all'autista del trasferimento. Non sono venduti né condivisi per pubblicità.</p><p style=\"margin:0 0 6px 0;\"><b>Conservazione:</b> solo per il tempo necessario. Puoi cancellarli in qualsiasi momento dall'app; i record vengono anche ripuliti automaticamente (fino a ~30 giorni dopo).</p><p style=\"margin:0 0 6px 0;\"><b>I tuoi diritti:</b> accesso, rettifica, cancellazione o revoca del consenso in qualsiasi momento, dall'app o via e-mail.</p><p style=\"margin:0 0 6px 0;\"><b>Contatto GDPR:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Fornitori:</b> server UE sicuro (Hetzner), notifiche (Google Firebase) e mappe (Google Maps, MapTiler, OpenStreetMap). Alcuni possono trattare dati anche fuori UE con le garanzie previste.</p><p style=\"margin:0 0 6px 0;\"><b>Diritto di reclamo:</b> Autorità ellenica per la protezione dei dati (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Sicurezza:</b> i dati sono conservati su un server sicuro.</p>" },
+    es:{ termsTitle:"Información y aceptación", termsAccept:"Acepto los términos y la política de privacidad", termsOnce:"(Solo aparecerá una vez.)", termsBody:"<p style=\"margin:0 0 10px 0;\">La app funciona exclusivamente como plataforma de conexión con taxistas certificados. La responsabilidad de cada traslado, seguridad y pago corresponde exclusivamente al conductor.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Atenas → Aeropuerto:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Cancelación:</b> hasta 1 hora antes desde la Carpeta</p><p style=\"margin:0 0 10px 0;\">• <b>Pago:</b> taxímetro + recargos de aeropuerto + peajes, directamente al conductor</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Aeropuerto → Atenas:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Cancelación:</b> en cualquier momento antes del vuelo</p><p style=\"margin:0 0 10px 0;\">• <b>Precio:</b> incluye cita, recargos de aeropuerto y espera de hasta 30 minutos por retrasos del vuelo</p><p style=\"margin:0 0 4px 0;\">• <b>Seguridad:</b> el taxi debe ser amarillo con licencia especial bien visible</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Protección de datos personales (RGPD)</p><p style=\"margin:0 0 6px 0;\"><b>Responsable del tratamiento:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>Qué datos:</b> nombre, teléfono, punto de recogida (ubicación/pin) y detalles de la reserva.</p><p style=\"margin:0 0 6px 0;\"><b>Finalidad y base legal:</b> únicamente para realizar la reserva y conectarte con el conductor — ejecución del servicio y tu consentimiento.</p><p style=\"margin:0 0 6px 0;\"><b>Compartir:</b> los datos se dan SOLO al conductor del traslado. No se venden ni se comparten con fines publicitarios.</p><p style=\"margin:0 0 6px 0;\"><b>Conservación:</b> solo el tiempo necesario. Puedes eliminarlos en cualquier momento desde la app; también se limpian automáticamente (hasta ~30 días después).</p><p style=\"margin:0 0 6px 0;\"><b>Tus derechos:</b> acceso, rectificación, eliminación o retirada del consentimiento en cualquier momento, desde la app o por correo.</p><p style=\"margin:0 0 6px 0;\"><b>Contacto RGPD:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Proveedores:</b> servidor UE seguro (Hetzner), notificaciones (Google Firebase) y mapas (Google Maps, MapTiler, OpenStreetMap). Algunos pueden tratar datos fuera de la UE con las garantías previstas.</p><p style=\"margin:0 0 6px 0;\"><b>Derecho de reclamación:</b> Autoridad Helénica de Protección de Datos (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Seguridad:</b> los datos se almacenan en un servidor seguro.</p>" },
+    ru:{ termsTitle:"Информация и согласие", termsAccept:"Принимаю условия и политику конфиденциальности", termsOnce:"(Появится только один раз.)", termsBody:"<p style=\"margin:0 0 10px 0;\">Приложение работает исключительно как платформа связи с сертифицированными водителями такси. Полная ответственность за каждую поездку, безопасность и оплату лежит исключительно на водителе.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Афины → Аэропорт:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Отмена:</b> не позднее чем за 1 час из Папки</p><p style=\"margin:0 0 10px 0;\">• <b>Оплата:</b> таксометр + аэропортовые сборы + дорожные сборы, напрямую водителю</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Аэропорт → Афины:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Отмена:</b> в любое время до вылета</p><p style=\"margin:0 0 10px 0;\">• <b>Цена:</b> включает встречу, аэропортовые сборы и ожидание до 30 минут при задержке рейса</p><p style=\"margin:0 0 4px 0;\">• <b>Безопасность:</b> такси должно быть жёлтым со специальной лицензией на виду</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Защита персональных данных (GDPR)</p><p style=\"margin:0 0 6px 0;\"><b>Оператор данных:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>Какие данные:</b> имя, телефон, точка подачи (место/пин) и детали заказа.</p><p style=\"margin:0 0 6px 0;\"><b>Цель и правовая основа:</b> только для выполнения заказа и связи с водителем — исполнение услуги и ваше согласие.</p><p style=\"margin:0 0 6px 0;\"><b>Передача:</b> данные передаются ТОЛЬКО водителю поездки. Не продаются и не передаются для рекламы.</p><p style=\"margin:0 0 6px 0;\"><b>Хранение:</b> только пока нужно для заказа. Удаление в любое время в приложении; записи также очищаются автоматически (до ~30 дней после).</p><p style=\"margin:0 0 6px 0;\"><b>Ваши права:</b> доступ, исправление, удаление или отзыв согласия в любое время в приложении или по email.</p><p style=\"margin:0 0 6px 0;\"><b>Контакт GDPR:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Поставщики:</b> защищённый сервер в ЕС (Hetzner), уведомления (Google Firebase) и карты (Google Maps, MapTiler, OpenStreetMap). Некоторые могут обрабатывать данные вне ЕС с предусмотренными гарантиями.</p><p style=\"margin:0 0 6px 0;\"><b>Право на жалобу:</b> Греческий орган по защите данных (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Безопасность:</b> данные хранятся на защищённом сервере.</p>" },
+    pl:{ termsTitle:"Informacja i akceptacja", termsAccept:"Akceptuję warunki i politykę prywatności", termsOnce:"(Pojawi się tylko raz.)", termsBody:"<p style=\"margin:0 0 10px 0;\">Aplikacja działa wyłącznie jako platforma łącząca z certyfikowanymi taksówkarzami. Pełna odpowiedzialność za każdy przewóz, bezpieczeństwo i płatność spoczywa wyłącznie na kierowcy.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Ateny → Lotnisko:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Anulowanie:</b> do 1 godziny wcześniej z Folderu</p><p style=\"margin:0 0 10px 0;\">• <b>Płatność:</b> taksometr + opłaty lotniskowe + myto, bezpośrednio kierowcy</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Lotnisko → Ateny:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Anulowanie:</b> w dowolnym momencie przed lotem</p><p style=\"margin:0 0 10px 0;\">• <b>Cena:</b> obejmuje spotkanie, opłaty lotniskowe i oczekiwanie do 30 minut przy opóźnieniu lotu</p><p style=\"margin:0 0 4px 0;\">• <b>Bezpieczeństwo:</b> taksówka musi być żółta ze specjalną licencją widoczną</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Ochrona danych osobowych (RODO)</p><p style=\"margin:0 0 6px 0;\"><b>Administrator:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>Jakie dane:</b> imię, telefon, punkt odbioru (lokalizacja/pinezka) i szczegóły rezerwacji.</p><p style=\"margin:0 0 6px 0;\"><b>Cel i podstawa prawna:</b> wyłącznie realizacja rezerwacji i połączenie z kierowcą — wykonanie usługi oraz Twoja zgoda.</p><p style=\"margin:0 0 6px 0;\"><b>Udostępnianie:</b> dane trafiają TYLKO do kierowcy przejazdu. Nie są sprzedawane ani udostępniane do reklamy.</p><p style=\"margin:0 0 6px 0;\"><b>Przechowywanie:</b> tylko tak długo, jak potrzeba. Możesz je usunąć w dowolnym momencie w aplikacji; rekordy są też czyszczone automatycznie (do ~30 dni później).</p><p style=\"margin:0 0 6px 0;\"><b>Twoje prawa:</b> dostęp, sprostowanie, usunięcie lub cofnięcie zgody w dowolnym momencie w aplikacji lub e-mailem.</p><p style=\"margin:0 0 6px 0;\"><b>Kontakt RODO:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Dostawcy:</b> bezpieczny serwer UE (Hetzner), powiadomienia (Google Firebase) i mapy (Google Maps, MapTiler, OpenStreetMap). Niektórzy mogą przetwarzać dane poza UE z przewidzianymi gwarancjami.</p><p style=\"margin:0 0 6px 0;\"><b>Prawo do skargi:</b> Grecki organ ochrony danych (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Bezpieczeństwo:</b> dane przechowywane są na bezpiecznym serwerze.</p>" },
+    ro:{ termsTitle:"Informare și acceptare", termsAccept:"Accept termenii și politica de confidențialitate", termsOnce:"(Va apărea o singură dată.)", termsBody:"<p style=\"margin:0 0 10px 0;\">Aplicația funcționează exclusiv ca platformă de conectare cu șoferi de taxi certificați. Responsabilitatea pentru fiecare transfer, siguranță și plată aparține exclusiv șoferului.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Atena → Aeroport:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Anulare:</b> cu până la 1 oră înainte din Dosar</p><p style=\"margin:0 0 10px 0;\">• <b>Plată:</b> taximetru + taxe aeroport + taxe drum, direct șoferului</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Aeroport → Atena:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Anulare:</b> oricând înainte de zbor</p><p style=\"margin:0 0 10px 0;\">• <b>Preț:</b> include programarea, taxele de aeroport și așteptare până la 30 de minute pentru întârzieri de zbor</p><p style=\"margin:0 0 4px 0;\">• <b>Siguranță:</b> taxiul trebuie să fie galben, cu licența specială vizibilă</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Protecția datelor personale (GDPR)</p><p style=\"margin:0 0 6px 0;\"><b>Operator:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>Ce date:</b> nume, telefon, punct de preluare (locație/pin) și detaliile rezervării.</p><p style=\"margin:0 0 6px 0;\"><b>Scop și temei legal:</b> exclusiv pentru realizarea rezervării și conectarea cu șoferul — executarea serviciului și consimțământul tău.</p><p style=\"margin:0 0 6px 0;\"><b>Partajare:</b> datele se dau DOAR șoferului care face transferul. Nu se vând și nu se partajează pentru publicitate.</p><p style=\"margin:0 0 6px 0;\"><b>Păstrare:</b> doar cât este necesar. Le poți șterge oricând din aplicație; înregistrările se curăță și automat (până la ~30 zile după).</p><p style=\"margin:0 0 6px 0;\"><b>Drepturile tale:</b> acces, corectare, ștergere sau retragerea consimțământului oricând, din aplicație sau prin e-mail.</p><p style=\"margin:0 0 6px 0;\"><b>Contact GDPR:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Furnizori:</b> server UE securizat (Hetzner), notificări (Google Firebase) și hărți (Google Maps, MapTiler, OpenStreetMap). Unii pot prelucra date și în afara UE, cu garanțiile prevăzute.</p><p style=\"margin:0 0 6px 0;\"><b>Dreptul de plângere:</b> Autoritatea elenă de protecție a datelor (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Securitate:</b> datele sunt stocate pe un server securizat.</p>" },
+    nl:{ termsTitle:"Informatie & acceptatie", termsAccept:"Ik accepteer de voorwaarden en het privacybeleid", termsOnce:"(Verschijnt slechts één keer.)", termsBody:"<p style=\"margin:0 0 10px 0;\">De app werkt uitsluitend als koppelingsplatform met gecertificeerde taxichauffeurs. De volledige verantwoordelijkheid voor elke rit, veiligheid en betaling ligt uitsluitend bij de chauffeur.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Athene → Luchthaven:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Annulering:</b> tot 1 uur van tevoren via de Map</p><p style=\"margin:0 0 10px 0;\">• <b>Betaling:</b> taxameter + luchthaventoeslagen + tol, rechtstreeks aan de chauffeur</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Luchthaven → Athene:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Annulering:</b> op elk moment vóór de vlucht</p><p style=\"margin:0 0 10px 0;\">• <b>Prijs:</b> inclusief afspraak, luchthaventoeslagen en wachten tot 30 minuten bij vluchtvertraging</p><p style=\"margin:0 0 4px 0;\">• <b>Veiligheid:</b> taxi moet geel zijn met speciale vergunning duidelijk zichtbaar</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Bescherming van persoonsgegevens (AVG)</p><p style=\"margin:0 0 6px 0;\"><b>Verwerkingsverantwoordelijke:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>Welke gegevens:</b> naam, telefoon, ophaalpunt (locatie/pin) en boekingsgegevens.</p><p style=\"margin:0 0 6px 0;\"><b>Doel & rechtsgrond:</b> uitsluitend om de boeking uit te voeren en u met de chauffeur te verbinden — uitvoering van de dienst en uw toestemming.</p><p style=\"margin:0 0 6px 0;\"><b>Delen:</b> gegevens gaan ALLEEN naar de chauffeur van de rit. Nooit verkocht of gedeeld voor reclame.</p><p style=\"margin:0 0 6px 0;\"><b>Bewaring:</b> alleen zo lang als nodig. U kunt ze altijd in de app wissen; records worden ook automatisch opgeschoond (tot ~30 dagen daarna).</p><p style=\"margin:0 0 6px 0;\"><b>Uw rechten:</b> inzage, correctie, verwijdering of intrekking van toestemming altijd via de app of e-mail.</p><p style=\"margin:0 0 6px 0;\"><b>AVG-contact:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Leveranciers:</b> beveiligde EU-server (Hetzner), meldingen (Google Firebase) en kaarten (Google Maps, MapTiler, OpenStreetMap). Sommige kunnen ook buiten de EU verwerken met de voorgeschreven waarborgen.</p><p style=\"margin:0 0 6px 0;\"><b>Klachtrecht:</b> Hellenische gegevensbeschermingsautoriteit (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Beveiliging:</b> gegevens worden op een beveiligde server opgeslagen.</p>" },
+    tr:{ termsTitle:"Bilgilendirme ve kabul", termsAccept:"Şartları ve Gizlilik Politikasını kabul ediyorum", termsOnce:"(Yalnızca bir kez görünür.)", termsBody:"<p style=\"margin:0 0 10px 0;\">Uygulama yalnızca sertifikalı taksi şoförleriyle bağlantı platformu olarak çalışır. Her transfer, güvenlik ve ödemenin tüm sorumluluğu yalnızca şoföre aittir.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Atina → Havalimanı:</b></p><p style=\"margin:0 0 4px 0;\">• <b>İptal:</b> Klasörden en fazla 1 saat önce</p><p style=\"margin:0 0 10px 0;\">• <b>Ödeme:</b> taksimetre + havalimanı ek ücretleri + geçiş ücretleri, doğrudan şoföre</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Havalimanı → Atina:</b></p><p style=\"margin:0 0 4px 0;\">• <b>İptal:</b> uçuştan önce herhangi bir zamanda</p><p style=\"margin:0 0 10px 0;\">• <b>Fiyat:</b> randevu, havalimanı ek ücretleri ve uçuş gecikmesinde 30 dakikaya kadar beklemeyi içerir</p><p style=\"margin:0 0 4px 0;\">• <b>Güvenlik:</b> taksi sarı olmalı, özel ruhsat görünür olmalı</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Kişisel verilerin korunması (GDPR)</p><p style=\"margin:0 0 6px 0;\"><b>Veri sorumlusu:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>Hangi veriler:</b> ad, telefon, alınış noktası (konum/pin) ve rezervasyon bilgileri.</p><p style=\"margin:0 0 6px 0;\"><b>Amaç ve hukuki dayanak:</b> yalnızca rezervasyonu yürütmek ve sizi şoförle bağlamak — hizmetin ifası ve onayınız.</p><p style=\"margin:0 0 6px 0;\"><b>Paylaşım:</b> veriler YALNIZCA transferi yapan şoföre verilir. Satılmaz ve reklam için paylaşılmaz.</p><p style=\"margin:0 0 6px 0;\"><b>Saklama:</b> yalnızca gerekli olduğu süre. Uygulamadan istediğiniz zaman silebilirsiniz; kayıtlar da otomatik temizlenir (sonrasında ~30 güne kadar).</p><p style=\"margin:0 0 6px 0;\"><b>Haklarınız:</b> erişim, düzeltme, silme veya onayın geri çekilmesi istediğiniz zaman uygulamadan veya e-posta ile.</p><p style=\"margin:0 0 6px 0;\"><b>GDPR iletişimi:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Sağlayıcılar:</b> güvenli AB sunucusu (Hetzner), bildirimler (Google Firebase) ve haritalar (Google Maps, MapTiler, OpenStreetMap). Bazıları öngörülen güvencelerle AB dışında da veri işleyebilir.</p><p style=\"margin:0 0 6px 0;\"><b>Şikayet hakkı:</b> Yunan Veri Koruma Kurumu (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Güvenlik:</b> veriler güvenli bir sunucuda saklanır.</p>" },
+    ar:{ termsTitle:"معلومات والموافقة", termsAccept:"أوافق على الشروط وسياسة الخصوصية", termsOnce:"(تظهر مرة واحدة فقط.)", termsBody:"<p style=\"margin:0 0 10px 0;\">يعمل التطبيق حصريًا كمنصة ربط بسائقي تاكسي معتمدين. المسؤولية الكاملة عن كل نقل وسلامة ومعاملة تقع حصريًا على السائق.</p><p style=\"margin:0 0 4px 0;\"><b>✈ أثينا → المطار:</b></p><p style=\"margin:0 0 4px 0;\">• <b>الإلغاء:</b> حتى ساعة واحدة قبل الموعد من المجلد</p><p style=\"margin:0 0 10px 0;\">• <b>الدفع:</b> عداد + رسوم المطار + رسوم الطرق، مباشرة للسائق</p><p style=\"margin:0 0 4px 0;\"><b>🛬 المطار → أثينا:</b></p><p style=\"margin:0 0 4px 0;\">• <b>الإلغاء:</b> في أي وقت قبل الرحلة</p><p style=\"margin:0 0 10px 0;\">• <b>السعر:</b> يشمل الموعد ورسوم المطار والانتظار حتى 30 دقيقة لتأخر الرحلة</p><p style=\"margin:0 0 4px 0;\">• <b>السلامة:</b> يجب أن يكون التاكسي أصفر مع رخصة خاصة ظاهرة</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 حماية البيانات الشخصية (GDPR)</p><p style=\"margin:0 0 6px 0;\"><b>المسؤول عن المعالجة:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>ما البيانات:</b> الاسم والهاتف ونقطة الالتقاط (الموقع/الدبوس) وتفاصيل الحجز.</p><p style=\"margin:0 0 6px 0;\"><b>الغرض والأساس القانوني:</b> فقط لتنفيذ الحجز وربطك بالسائق — أداء الخدمة وموافقتك.</p><p style=\"margin:0 0 6px 0;\"><b>المشاركة:</b> تُعطى البيانات فقط لسائق النقل. لا تُباع ولا تُشارك للإعلان.</p><p style=\"margin:0 0 6px 0;\"><b>الاحتفاظ:</b> فقط للمدة اللازمة. يمكنك حذفها في أي وقت من التطبيق؛ كما تُنظَّف السجلات تلقائيًا (حتى ~30 يومًا بعد ذلك).</p><p style=\"margin:0 0 6px 0;\"><b>حقوقك:</b> الوصول أو التصحيح أو الحذف أو سحب الموافقة في أي وقت من التطبيق أو عبر البريد.</p><p style=\"margin:0 0 6px 0;\"><b>جهة اتصال GDPR:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>المزودون:</b> خادم آمن في الاتحاد الأوروبي (Hetzner) وإشعارات (Google Firebase) وخرائط (Google Maps وMapTiler وOpenStreetMap). قد يعالج بعضها بيانات خارج الاتحاد الأوروبي بالضمانات المقررة.</p><p style=\"margin:0 0 6px 0;\"><b>حق الشكوى:</b> هيئة حماية البيانات اليونانية (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>الأمان:</b> تُخزَّن البيانات على خادم آمن.</p>" },
+    zh:{ termsTitle:"须知与接受", termsAccept:"我接受条款和隐私政策", termsOnce:"（仅显示一次。）", termsBody:"<p style=\"margin:0 0 10px 0;\">本应用仅作为与持证出租车司机的对接平台。每次行程、安全与交易的全部责任仅由司机承担。</p><p style=\"margin:0 0 4px 0;\"><b>✈ 雅典 → 机场：</b></p><p style=\"margin:0 0 4px 0;\">• <b>取消：最晚提前 1 小时在文件夹中操作:</b> </p><p style=\"margin:0 0 10px 0;\">• <b>付款：计价器 + 机场附加费 + 通行费，直接付给司机:</b> </p><p style=\"margin:0 0 4px 0;\"><b>🛬 机场 → 雅典：</b></p><p style=\"margin:0 0 4px 0;\">• <b>取消：起飞前随时可取消:</b> </p><p style=\"margin:0 0 10px 0;\">• <b>价格：含预约、机场附加费及航班延误最多 30 分钟等待:</b> </p><p style=\"margin:0 0 4px 0;\">• <b>安全：出租车须为黄色，并清晰展示特别执照:</b> </p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 个人数据保护（GDPR）</p><p style=\"margin:0 0 6px 0;\"><b>数据控制者：Ioannis Trantalidis。:</b> </p><p style=\"margin:0 0 6px 0;\"><b>哪些数据：姓名、电话、上车点（位置/图钉）及预订详情。:</b> </p><p style=\"margin:0 0 6px 0;\"><b>目的与法律依据：仅用于完成预订并连接司机——基于服务履行与您的同意。:</b> </p><p style=\"margin:0 0 6px 0;\"><b>共享：数据仅提供给承接行程的司机。不出售、不用于广告分享。:</b> </p><p style=\"margin:0 0 6px 0;\"><b>保留：仅保留预订所需时间。可随时在应用内删除；记录也会自动清理（约 30 天内）。:</b> </p><p style=\"margin:0 0 6px 0;\"><b>您的权利：可随时在应用内或通过电子邮件请求访问、更正、删除或撤回同意。:</b> </p><p style=\"margin:0 0 6px 0;\"><b>GDPR 联系：mail:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>服务商：欧盟安全服务器（Hetzner）、通知（Google Firebase）与地图（Google Maps、MapTiler、OpenStreetMap）。部分可能在欧盟外处理数据，并具备相应法律保障。:</b> </p><p style=\"margin:0 0 6px 0;\"><b>投诉权：希腊数据保护局（www.dpa.gr）。:</b> </p><p style=\"margin:0 0 0 0;\"><b>安全：数据存储在安全服务器上。:</b> </p>" },
+    uk:{ termsTitle:"Інформація та прийняття", termsAccept:"Приймаю умови та політику конфіденційності", termsOnce:"(З’явиться лише один раз.)", termsBody:"<p style=\"margin:0 0 10px 0;\">Додаток працює виключно як платформа зв’язку з сертифікованими водіями таксі. Повну відповідальність за кожну поїздку, безпеку та оплату несе виключно водій.</p><p style=\"margin:0 0 4px 0;\"><b>✈ Афіни → Аеропорт:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Скасування:</b> не пізніше ніж за 1 годину з Папки</p><p style=\"margin:0 0 10px 0;\">• <b>Оплата:</b> таксометр + аеропортові збори + дорожні збори, безпосередньо водію</p><p style=\"margin:0 0 4px 0;\"><b>🛬 Аеропорт → Афіни:</b></p><p style=\"margin:0 0 4px 0;\">• <b>Скасування:</b> будь-коли до рейсу</p><p style=\"margin:0 0 10px 0;\">• <b>Ціна:</b> включає зустріч, аеропортові збори та очікування до 30 хвилин при затримці рейсу</p><p style=\"margin:0 0 4px 0;\">• <b>Безпека:</b> таксі має бути жовтим зі спеціальною ліцензією на видноті</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 Захист персональних даних (GDPR)</p><p style=\"margin:0 0 6px 0;\"><b>Оператор даних:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>Які дані:</b> ім’я, телефон, точка подачі (місце/пін) і деталі бронювання.</p><p style=\"margin:0 0 6px 0;\"><b>Мета та правова підстава:</b> лише для виконання бронювання та зв’язку з водієм — виконання послуги та ваша згода.</p><p style=\"margin:0 0 6px 0;\"><b>Передача:</b> дані передаються ЛИШЕ водію поїздки. Не продаються і не передаються для реклами.</p><p style=\"margin:0 0 6px 0;\"><b>Зберігання:</b> лише стільки, скільки потрібно. Можна видалити будь-коли в додатку; записи також очищаються автоматично (до ~30 днів після).</p><p style=\"margin:0 0 6px 0;\"><b>Ваші права:</b> доступ, виправлення, видалення або відкликання згоди будь-коли в додатку чи електронною поштою.</p><p style=\"margin:0 0 6px 0;\"><b>Контакт GDPR:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>Постачальники:</b> захищений сервер в ЄС (Hetzner), сповіщення (Google Firebase) і карти (Google Maps, MapTiler, OpenStreetMap). Деякі можуть обробляти дані поза ЄС із передбаченими гарантіями.</p><p style=\"margin:0 0 6px 0;\"><b>Право на скаргу:</b> Грецький орган захисту даних (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>Безпека:</b> дані зберігаються на захищеному сервері.</p>" },
+    he:{ termsTitle:"מידע ואישור", termsAccept:"אני מאשר/ת את התנאים ומדיניות הפרטיות", termsOnce:"(יוצג פעם אחת בלבד.)", termsBody:"<p style=\"margin:0 0 10px 0;\">האפליקציה פועלת אך ורק כפלטפורמת חיבור לנהגי מונית מוסמכים. האחריות המלאה לכל נסיעה, בטיחות ותשלום מוטלת בלעדית על הנהג.</p><p style=\"margin:0 0 4px 0;\"><b>✈ אתונה → נמל התעופה:</b></p><p style=\"margin:0 0 4px 0;\">• <b>ביטול:</b> עד שעה לפני מהתיקייה</p><p style=\"margin:0 0 10px 0;\">• <b>תשלום:</b> מונה + תוספות נמל תעופה + אגרות, ישירות לנהג</p><p style=\"margin:0 0 4px 0;\"><b>🛬 נמל התעופה → אתונה:</b></p><p style=\"margin:0 0 4px 0;\">• <b>ביטול:</b> בכל עת לפני הטיסה</p><p style=\"margin:0 0 10px 0;\">• <b>מחיר:</b> כולל פגישה, תוספות נמל תעופה והמתנה עד 30 דקות לעיכוב טיסה</p><p style=\"margin:0 0 4px 0;\">• <b>בטיחות:</b> המונית חייבת להיות צהובה עם רישיון מיוחד גלוי</p><div style=\"height:1px; background:rgba(255,255,255,0.18); margin:12px 0;\"></div><p style=\"margin:0 0 8px 0; font-weight:700;\">🔒 הגנת מידע אישי (GDPR)</p><p style=\"margin:0 0 6px 0;\"><b>אחראי על העיבוד:</b> Ioannis Trantalidis.</p><p style=\"margin:0 0 6px 0;\"><b>אילו נתונים:</b> שם, טלפון, נקודת איסוף (מיקום/סיכה) ופרטי ההזמנה.</p><p style=\"margin:0 0 6px 0;\"><b>מטרה ובסיס משפטי:</b> רק לביצוע ההזמנה וחיבורכם לנהג — ביצוע השירות והסכמתכם.</p><p style=\"margin:0 0 6px 0;\"><b>שיתוף:</b> הנתונים ניתנים רק לנהג הנסיעה. לא נמכרים ולא משותפים לפרסום.</p><p style=\"margin:0 0 6px 0;\"><b>שמירה:</b> רק כל עוד נדרש. ניתן למחוק בכל עת מהאפליקציה; הרשומות גם מנוקות אוטומטית (עד כ־30 יום לאחר מכן).</p><p style=\"margin:0 0 6px 0;\"><b>הזכויות שלכם:</b> גישה, תיקון, מחיקה או משיכת הסכמה בכל עת מהאפליקציה או במייל.</p><p style=\"margin:0 0 6px 0;\"><b>יצירת קשר GDPR:</b> <a href=\"#\" onclick=\"return window.__openGdprEmail();\" style=\"color:#8cf;\">taxiandfly.privacy@gmail.com</a></p><p style=\"margin:0 0 6px 0;\"><b>ספקים:</b> שרת מאובטח באיחוד האירופי (Hetzner), התראות (Google Firebase) ומפות (Google Maps, MapTiler, OpenStreetMap). חלקם עשויים לעבד נתונים גם מחוץ לאיחוד עם הערבויות הנדרשות.</p><p style=\"margin:0 0 6px 0;\"><b>זכות לתלונה:</b> רשות הגנת המידע היוונית (www.dpa.gr).</p><p style=\"margin:0 0 0 0;\"><b>אבטחה:</b> הנתונים נשמרים בשרת מאובטח.</p>" }
   };
   Object.keys(TERMS).forEach(function(c){
     if(!I[c]) I[c]={};
     Object.keys(TERMS[c]).forEach(function(k){ I[c][k]=TERMS[c][k]; });
+  });
+
+  /* ===== «Μαζί σε μία παρέα» (δοκιμαστικό, 2026-10-24) =====
+     Κουμπί στην οθόνη τιμής + σελίδα ⓘ. Τα {…} τα συμπληρώνει το client.html από τις ρυθμίσεις του server (Admin):
+     {minP} {maxP} {cutoff} {later} {window} {gapMin} {gapMax} {km} {ready} {wait} {kmDay} {kmNight} {night} {ex2} {ex3}
+     {waitHour} {intMin} {bags} {dims} {bagSvg} · {lo} {hi} (ανά άτομο) · {n} (βαλίτσες). */
+  function _maziInfo(list){
+    return list.map(function(s){ return '<h3>'+s[0]+'</h3>'+s[1]; }).join('');
+  }
+  var MAZI = {
+    el:{ maziName:"Μαζί σε μία παρέα", maziBtnTitle:"ΜΑΖΙ ΣΕ ΜΙΑ ΠΑΡΕΑ", maziSubtitle:"Μία παρέα • Μία κράτηση • Μία μίσθωση",
+      maziPerPerson:"περίπου {lo}€ – {hi}€ το άτομο", maziInfoLink:"Τι είναι η κοινή μίσθωση;",
+      maziTestMsg:"Δοκιμαστική έκδοση: εδώ θα ξεκινά η αναζήτηση συνεπιβατών.",
+      maziAccept:"Διάβασα και αποδέχομαι τους όρους της κοινής μίσθωσης",
+      maziDec:",", maziCm:"εκ.", maziBagLen:"μήκος", maziBagWid:"πλάτος", maziDimsTbd:"θα ανακοινωθεί σύντομα",
+      maziBagsOne:"1 φυσιολογική (κανονική) βαλίτσα", maziBagsMany:"{n} φυσιολογικές (κανονικές) βαλίτσες",
+      maziInfoHtml:_maziInfo([
+        ["1. Τι είναι", "<p>Πηγαίνετε στο αεροδρόμιο σε παρέα {minP} έως {maxP} επιβατών συνολικά, μαζί με εσάς, που φεύγουν την ίδια ώρα από κοντινά σημεία. Ένα ταξί, ένα ταξίμετρο, μία απόδειξη. Το κόστος μοιράζεται ίσα.</p><p>Οι στάσεις για τις παραλαβές είναι μέρος της ίδιας διαδρομής. Η μίσθωση είναι μία, από την πρώτη παραλαβή μέχρι το αεροδρόμιο.</p>"],
+        ["2. Πότε μπορώ", "<p>Μόνο από Αθήνα προς αεροδρόμιο, για 1 άτομο, τουλάχιστον {cutoff} ώρες πριν. Καλύτερα {cutoff}–{later} ώρες πριν ή ακόμα νωρίτερα. Αν η αναχώρηση είναι σε λιγότερο από {cutoff} ώρες, μπορείτε να κλείσετε μόνο κανονικό ταξί.</p>"],
+        ["3. Πώς βρίσκεται η παρέα", "<p>Ψάχνουμε επιβάτες που θέλουν να ξεκινήσουν για το αεροδρόμιο έως {window} λεπτά νωρίτερα ή αργότερα από εσάς, και που μένουν κοντά σας ({gapMin}–{gapMax} λεπτά οδήγηση). Η κοινή ώρα αναχώρησης είναι η πιο νωρίς από τις ώρες της παρέας, ώστε κανείς να μη φύγει αργότερα από όσο ζήτησε. Την ακριβή ώρα τη βλέπετε πριν πατήσετε ΣΥΜΦΩΝΩ. Η αναζήτηση συνεχίζεται και με την εφαρμογή κλειστή.</p>"],
+        ["4. Η ώρα που δηλώνετε", "<p>Είναι η ώρα που όλοι έχουν μπει στο ταξί και ξεκινούν για το αεροδρόμιο. Οι παραλαβές γίνονται νωρίτερα. Η εφαρμογή σάς δείχνει ακριβώς πότε να είστε έξω και πότε έρχεται το ταξί.</p>"],
+        ["5. Συμφωνία", "<p>Όταν βρεθεί παρέα, ο καθένας βλέπει τη δική του ώρα να είναι έξω, πόσο περιμένει ο οδηγός και πόσα πληρώνει, και πατάει <b>ΣΥΜΦΩΝΩ</b> ή <b>ΟΧΙ</b>.</p><p>Αν κάποιος πατήσει ΟΧΙ, βγαίνει από την παρέα. Ψάχνουμε αν υπάρχει άλλος επιβάτης να πάρει τη θέση του, και ενημερώνουμε τους υπόλοιπους για τα νέα άτομα και τη νέα τιμή. Σας ξαναρωτάμε πριν συνεχίσουμε. Τίποτα δεν κλείνει χωρίς το ΣΥΜΦΩΝΩ σας.</p>"],
+        ["6. Ο υπεύθυνος", "<p>Όποιος από την παρέα θέλει πατάει <b>ΑΝΑΛΑΜΒΑΝΩ</b> και γίνεται ο υπεύθυνος της μίσθωσης. Αν το πατήσουν δύο, ισχύει ο πρώτος. Αν δεν αναλάβει κανείς, δεν γίνεται κοινή μίσθωση και μπορείτε να κλείσετε κανονικό ταξί.</p>"],
+        ["7. Πληρωμή", "<p>Ο καθένας ξέρει από πριν πόσα πληρώνει. Στη διαδρομή μπορείτε:</p><ul><li>να δώσετε το ποσό σας στον υπεύθυνο, ή</li><li>να πληρώσετε με κάρτα στον οδηγό το δικό σας ποσό, ή</li><li>να πληρώσει ένας όλο το ταξί και να τα βρείτε μεταξύ σας.</li></ul><p>Το σύνολο είναι αυτό που δείχνει το ταξίμετρο. Ο οδηγός βγάζει μία απόδειξη για όλη τη μίσθωση. Η εφαρμογή δεν κρατάει και δεν μεταφέρει χρήματα.</p>"],
+        ["8. Πώς βγαίνει το ποσό", "<p>Η κανονική τιμή από την τελευταία παραλαβή προς το αεροδρόμιο, συν {ex2} € όταν είστε 2 ή {ex3} € όταν είστε 3, για τις στάσεις των παραλαβών. Το σύνολο μοιράζεται ίσα. Είναι εκτίμηση: το τελικό ποσό το δείχνει το ταξίμετρο και μοιράζεται ίσα σε όσους είναι μέσα στο ταξί.</p>"],
+        ["9. Να είστε έτοιμοι", "<p>Να είστε έξω {ready} λεπτά πριν έρθει το ταξί. Ο οδηγός περιμένει έως {wait} λεπτά και μετά συνεχίζει στην επόμενη παραλαβή.</p>"],
+        ["10. Αν δεν εμφανιστώ", "<p>Η διαδρομή συνεχίζει χωρίς εσάς και θα σας ζητήσουμε να εξηγήσετε τον λόγο. Το ποσό μοιράζεται σε όσους είναι μέσα στο ταξί. Αν λείπετε συχνά, μπορεί να περιοριστεί η χρήση της κοινής μίσθωσης.</p>"],
+        ["11. Αποσκευές", "<p>Κάθε επιβάτης έχει {bags}, όχι υπερμεγέθη. Ο χώρος είναι κοινός για όλους. Μέγιστο μέγεθος: {dims}.</p>{bagSvg}"],
+        ["12. Αν δεν βρεθεί παρέα", "<p>{cutoff} ώρες πριν την αναχώρηση σταματάμε την αναζήτηση και σας στέλνουμε ειδοποίηση: «Δεν βρέθηκε κοινή μίσθωση», με κουμπί <b>[ΚΛΕΙΣΕ ΤΑΞΙ]</b>. Η κανονική κράτηση ανοίγει συμπληρωμένη και την επιβεβαιώνετε εσείς. Δεν κλείνουμε ποτέ ταξί χωρίς εσάς.</p>"],
+        ["13. Ακύρωση", "<p>Μπορείτε να σταματήσετε την αναζήτηση οποτεδήποτε πριν πατήσετε ΣΥΜΦΩΝΩ.</p><p>Αν κάποιος ακυρώσει μετά το ΣΥΜΦΩΝΩ:</p><ul><li>Αν λείπουν πάνω από {cutoff} ώρες μέχρι την αναχώρηση, ψάχνουμε άλλον επιβάτη να πάρει τη θέση του.</li><li>Αν λείπουν λιγότερες από {cutoff} ώρες, δεν ψάχνουμε άλλον. Ενημερώνουμε τους υπόλοιπους ότι ακύρωσε ένας συνεπιβάτης, πόσα άτομα έμειναν και τη νέα τιμή.</li></ul><p>Αν δεν θέλετε τη νέα τιμή, μπορείτε να ακυρώσετε κι εσείς και να κλείσετε κανονικό ταξί. Αν μείνει μόνο ένας, δεν γίνεται κοινή μίσθωση.</p>"],
+        ["14. Σύνδεση Google / Apple", "<p>Για την κοινή μίσθωση συνδέεστε μία φορά με Google (Android) ή Apple (iPhone), ώστε κάθε επιβάτης να είναι πραγματικός λογαριασμός. Δεν βλέπουμε τον κωδικό σας. Η κανονική κράτηση δεν θέλει σύνδεση.</p>"],
+        ["15. Προσωπικά δεδομένα", "<p>Από τους συνεπιβάτες σας βλέπετε μόνο το ονοματεπώνυμό τους, τίποτα άλλο. Ούτε εκείνοι βλέπουν κάτι άλλο για εσάς. Ο οδηγός βλέπει όνομα και σημείο παραλαβής. Τα στοιχεία χρησιμοποιούνται μόνο για τη διαδρομή.</p>"]
+      ]) },
+    en:{ maziName:"Together in one group", maziBtnTitle:"TOGETHER IN ONE GROUP", maziSubtitle:"One group • One booking • One hire",
+      maziPerPerson:"about {lo}€ – {hi}€ per person", maziInfoLink:"What is a shared hire?",
+      maziTestMsg:"Test version: the search for fellow passengers will start here.",
+      maziAccept:"I have read and accept the terms of the shared hire",
+      maziDec:".", maziCm:"cm", maziBagLen:"length", maziBagWid:"width", maziDimsTbd:"to be announced soon",
+      maziBagsOne:"1 normal-size suitcase", maziBagsMany:"{n} normal-size suitcases",
+      maziInfoHtml:_maziInfo([
+        ["1. What it is", "<p>You travel to the airport in a group of {minP} to {maxP} passengers in total, including you, leaving at the same time from nearby points. One taxi, one taximeter, one receipt. The cost is shared equally.</p><p>The pickup stops are part of the same trip. It is one single hire, from the first pickup to the airport.</p>"],
+        ["2. When I can use it", "<p>Only from Athens to the airport, for 1 person, at least {cutoff} hours before. Better {cutoff}–{later} hours before, or even earlier. If departure is less than {cutoff} hours away, you can only book a regular taxi.</p>"],
+        ["3. How the group is found", "<p>We look for passengers who want to leave for the airport up to {window} minutes earlier or later than you and who are near you ({gapMin}–{gapMax} minutes' drive). The shared departure time is the earliest time in the group, so nobody leaves later than they asked. You see the exact time before you press AGREE. The search continues even when the app is closed.</p>"],
+        ["4. The time you enter", "<p>It is the time when everyone is in the taxi and leaving for the airport. The pickups happen earlier. The app shows you exactly when to be outside and when the taxi arrives.</p>"],
+        ["5. Agreement", "<p>When a group is found, everyone sees their own time to be outside, how long the driver waits and how much they pay, and presses <b>AGREE</b> or <b>NO</b>.</p><p>If someone presses NO, they leave the group. We look for another passenger to take their place and tell the others the new number of people and the new price. We ask you again before continuing. Nothing is booked without your AGREE.</p>"],
+        ["6. The person in charge", "<p>Anyone in the group who wishes presses <b>I TAKE IT</b> and becomes the person in charge of the hire. If two people press it, the first one counts. If nobody takes it, there is no shared hire and you can book a regular taxi.</p>"],
+        ["7. Payment", "<p>Everyone knows in advance how much they pay. During the trip you can:</p><ul><li>give your amount to the person in charge, or</li><li>pay your own amount to the driver by card, or</li><li>have one person pay for the whole taxi and settle up among yourselves.</li></ul><p>The total is what the taximeter shows. The driver issues one receipt for the whole hire. The app does not hold or transfer any money.</p>"],
+        ["8. How the amount is calculated", "<p>The regular price from the last pickup to the airport, plus €{ex2} when you are 2 or €{ex3} when you are 3, for the pickup stops. The total is shared equally. It is an estimate: the final amount is shown by the taximeter and is shared equally among those in the taxi.</p>"],
+        ["9. Be ready", "<p>Be outside {ready} minutes before the taxi arrives. The driver waits up to {wait} minutes and then continues to the next pickup.</p>"],
+        ["10. If I don't show up", "<p>The trip continues without you and we will ask you to explain why. The amount is shared among those in the taxi. If you miss pickups often, your use of the shared hire may be restricted.</p>"],
+        ["11. Luggage", "<p>Each passenger has {bags}, not oversized. The space is shared by everyone. Maximum size: {dims}.</p>{bagSvg}"],
+        ["12. If no group is found", "<p>{cutoff} hours before departure we stop the search and send you a notification: “No shared hire found”, with a <b>[BOOK TAXI]</b> button. The regular booking opens already filled in and you confirm it yourself. We never book a taxi without you.</p>"],
+        ["13. Cancellation", "<p>You can stop the search at any time before you press AGREE.</p><p>If someone cancels after AGREE:</p><ul><li>If more than {cutoff} hours remain before departure, we look for another passenger to take their place.</li><li>If less than {cutoff} hours remain, we do not look for anyone else. We tell the others that a fellow passenger cancelled, how many people are left and the new price.</li></ul><p>If you don't want the new price, you can cancel too and book a regular taxi. If only one person is left, there is no shared hire.</p>"],
+        ["14. Sign-in with Google / Apple", "<p>For the shared hire you sign in once with Google (Android) or Apple (iPhone), so that every passenger is a real account. We never see your password. Regular bookings need no sign-in.</p>"],
+        ["15. Personal data", "<p>From your fellow passengers you see only their full name, nothing else. They see nothing else about you either. The driver sees your name and pickup point. The data is used only for the trip.</p>"]
+      ]) },
+    de:{ maziName:"Gemeinsam in einer Gruppe", maziBtnTitle:"GEMEINSAM IN EINER GRUPPE", maziSubtitle:"Eine Gruppe • Eine Buchung • Eine Fahrt",
+      maziPerPerson:"ca. {lo}€ – {hi}€ pro Person", maziInfoLink:"Was ist eine gemeinsame Fahrt?",
+      maziTestMsg:"Testversion: Hier startet später die Suche nach Mitfahrern.",
+      maziAccept:"Ich habe die Bedingungen der gemeinsamen Fahrt gelesen und akzeptiere sie",
+      maziDec:",", maziCm:"cm", maziBagLen:"Länge", maziBagWid:"Breite", maziDimsTbd:"wird bald bekannt gegeben",
+      maziBagsOne:"1 normalen Koffer", maziBagsMany:"{n} normale Koffer",
+      maziInfoHtml:_maziInfo([
+        ["1. Was ist das?", "<p>Du fährst zum Flughafen in einer Gruppe von insgesamt {minP} bis {maxP} Fahrgästen, dich eingeschlossen, die zur gleichen Zeit von nahe gelegenen Orten losfahren. Ein Taxi, ein Taxameter, eine Quittung. Die Kosten werden gleichmäßig geteilt.</p><p>Die Stopps zum Abholen gehören zur selben Fahrt. Es ist eine einzige Fahrt, von der ersten Abholung bis zum Flughafen.</p>"],
+        ["2. Wann kann ich das nutzen?", "<p>Nur von Athen zum Flughafen, für 1 Person, mindestens {cutoff} Stunden vorher. Besser {cutoff}–{later} Stunden vorher oder noch früher. Wenn die Abfahrt in weniger als {cutoff} Stunden ist, kannst du nur ein normales Taxi buchen.</p>"],
+        ["3. So wird die Gruppe gefunden", "<p>Wir suchen Fahrgäste, die bis zu {window} Minuten früher oder später als du zum Flughafen losfahren wollen und in deiner Nähe sind ({gapMin}–{gapMax} Minuten Fahrt). Die gemeinsame Abfahrtszeit ist die früheste Zeit der Gruppe, damit niemand später losfährt als gewünscht. Die genaue Zeit siehst du, bevor du EINVERSTANDEN drückst. Die Suche läuft auch weiter, wenn die App geschlossen ist.</p>"],
+        ["4. Die Zeit, die du angibst", "<p>Das ist die Zeit, zu der alle im Taxi sitzen und zum Flughafen losfahren. Die Abholungen sind früher. Die App zeigt dir genau, wann du draußen sein sollst und wann das Taxi kommt.</p>"],
+        ["5. Zustimmung", "<p>Wenn eine Gruppe gefunden ist, sieht jeder seine eigene Zeit zum Draußensein, wie lange der Fahrer wartet und wie viel er zahlt, und drückt <b>EINVERSTANDEN</b> oder <b>NEIN</b>.</p><p>Drückt jemand NEIN, verlässt er die Gruppe. Wir suchen einen anderen Fahrgast für seinen Platz und informieren die anderen über die neue Personenzahl und den neuen Preis. Wir fragen dich erneut, bevor es weitergeht. Ohne dein EINVERSTANDEN wird nichts gebucht.</p>"],
+        ["6. Die verantwortliche Person", "<p>Wer aus der Gruppe möchte, drückt <b>ICH ÜBERNEHME</b> und ist dann für die Fahrt verantwortlich. Drücken es zwei, gilt der Erste. Übernimmt es niemand, gibt es keine gemeinsame Fahrt und du kannst ein normales Taxi buchen.</p>"],
+        ["7. Bezahlung", "<p>Jeder weiß im Voraus, wie viel er zahlt. Während der Fahrt kannst du:</p><ul><li>deinen Betrag der verantwortlichen Person geben, oder</li><li>deinen eigenen Betrag beim Fahrer mit Karte zahlen, oder</li><li>einer zahlt das ganze Taxi und ihr regelt es untereinander.</li></ul><p>Der Gesamtbetrag ist das, was das Taxameter anzeigt. Der Fahrer stellt eine Quittung für die ganze Fahrt aus. Die App verwahrt und überweist kein Geld.</p>"],
+        ["8. So wird der Betrag berechnet", "<p>Der normale Preis von der letzten Abholung zum Flughafen, plus {ex2} € bei 2 oder {ex3} € bei 3 Fahrgästen, für die Stopps zum Abholen. Der Gesamtbetrag wird gleichmäßig geteilt. Es ist eine Schätzung: Den Endbetrag zeigt das Taxameter, und er wird gleichmäßig auf alle im Taxi verteilt.</p>"],
+        ["9. Sei bereit", "<p>Sei {ready} Minuten bevor das Taxi kommt draußen. Der Fahrer wartet bis zu {wait} Minuten und fährt dann zur nächsten Abholung weiter.</p>"],
+        ["10. Wenn ich nicht komme", "<p>Die Fahrt geht ohne dich weiter, und wir bitten dich, den Grund zu erklären. Der Betrag wird auf alle im Taxi verteilt. Wenn du öfter fehlst, kann die Nutzung der gemeinsamen Fahrt eingeschränkt werden.</p>"],
+        ["11. Gepäck", "<p>Jeder Fahrgast darf {bags} mitnehmen, keine übergroßen Koffer. Der Platz wird von allen geteilt. Maximale Größe: {dims}.</p>{bagSvg}"],
+        ["12. Wenn keine Gruppe gefunden wird", "<p>{cutoff} Stunden vor der Abfahrt beenden wir die Suche und schicken dir eine Benachrichtigung: „Keine gemeinsame Fahrt gefunden“, mit der Schaltfläche <b>[TAXI BUCHEN]</b>. Die normale Buchung öffnet sich schon ausgefüllt, und du bestätigst sie selbst. Wir buchen nie ein Taxi ohne dich.</p>"],
+        ["13. Stornierung", "<p>Du kannst die Suche jederzeit beenden, bevor du EINVERSTANDEN drückst.</p><p>Wenn jemand nach dem EINVERSTANDEN storniert:</p><ul><li>Bleiben bis zur Abfahrt mehr als {cutoff} Stunden, suchen wir einen anderen Fahrgast für seinen Platz.</li><li>Bleiben weniger als {cutoff} Stunden, suchen wir niemanden mehr. Wir sagen den anderen, dass ein Mitfahrer storniert hat, wie viele Personen übrig sind und wie hoch der neue Preis ist.</li></ul><p>Wenn du den neuen Preis nicht möchtest, kannst du auch stornieren und ein normales Taxi buchen. Bleibt nur eine Person übrig, gibt es keine gemeinsame Fahrt.</p>"],
+        ["14. Anmeldung mit Google / Apple", "<p>Für die gemeinsame Fahrt meldest du dich einmal mit Google (Android) oder Apple (iPhone) an, damit jeder Fahrgast ein echtes Konto ist. Wir sehen dein Passwort nie. Normale Buchungen brauchen keine Anmeldung.</p>"],
+        ["15. Persönliche Daten", "<p>Von deinen Mitfahrern siehst du nur den vollständigen Namen, sonst nichts. Auch sie sehen nichts anderes über dich. Der Fahrer sieht Name und Abholort. Die Daten werden nur für die Fahrt verwendet.</p>"]
+      ]) },
+    fr:{ maziName:"Ensemble en un seul groupe", maziBtnTitle:"ENSEMBLE EN UN SEUL GROUPE", maziSubtitle:"Un groupe • Une réservation • Une course",
+      maziPerPerson:"environ {lo}€ – {hi}€ par personne", maziInfoLink:"Qu'est-ce qu'une course partagée ?",
+      maziTestMsg:"Version de test : c'est ici que commencera la recherche de co-passagers.",
+      maziAccept:"J'ai lu et j'accepte les conditions de la course partagée",
+      maziDec:",", maziCm:"cm", maziBagLen:"longueur", maziBagWid:"largeur", maziDimsTbd:"communiquée prochainement",
+      maziBagsOne:"1 valise de taille normale", maziBagsMany:"{n} valises de taille normale",
+      maziInfoHtml:_maziInfo([
+        ["1. Qu'est-ce que c'est ?", "<p>Vous allez à l'aéroport dans un groupe de {minP} à {maxP} passagers au total, vous compris, qui partent à la même heure depuis des points proches. Un taxi, un taximètre, un reçu. Le coût est partagé à parts égales.</p><p>Les arrêts pour les prises en charge font partie du même trajet. C'est une seule course, de la première prise en charge jusqu'à l'aéroport.</p>"],
+        ["2. Quand puis-je l'utiliser ?", "<p>Uniquement d'Athènes vers l'aéroport, pour 1 personne, au moins {cutoff} heures avant. De préférence {cutoff}–{later} heures avant, ou même plus tôt. Si le départ a lieu dans moins de {cutoff} heures, vous ne pouvez réserver qu'un taxi normal.</p>"],
+        ["3. Comment le groupe est trouvé", "<p>Nous cherchons des passagers qui veulent partir pour l'aéroport jusqu'à {window} minutes plus tôt ou plus tard que vous, et qui sont près de chez vous ({gapMin}–{gapMax} minutes de route). L'heure de départ commune est la plus tôt du groupe, pour que personne ne parte plus tard que prévu. Vous voyez l'heure exacte avant d'appuyer sur D'ACCORD. La recherche continue même lorsque l'application est fermée.</p>"],
+        ["4. L'heure que vous indiquez", "<p>C'est l'heure à laquelle tout le monde est dans le taxi et part pour l'aéroport. Les prises en charge ont lieu avant. L'application vous indique exactement quand être dehors et quand le taxi arrive.</p>"],
+        ["5. Accord", "<p>Quand un groupe est trouvé, chacun voit sa propre heure pour être dehors, combien de temps le chauffeur attend et combien il paie, puis appuie sur <b>D'ACCORD</b> ou <b>NON</b>.</p><p>Si quelqu'un appuie sur NON, il quitte le groupe. Nous cherchons un autre passager pour prendre sa place et informons les autres du nouveau nombre de personnes et du nouveau prix. Nous vous redemandons avant de continuer. Rien n'est réservé sans votre D'ACCORD.</p>"],
+        ["6. Le responsable", "<p>Celui du groupe qui le souhaite appuie sur <b>JE M'EN CHARGE</b> et devient le responsable de la course. Si deux personnes appuient, c'est la première qui compte. Si personne ne s'en charge, il n'y a pas de course partagée et vous pouvez réserver un taxi normal.</p>"],
+        ["7. Paiement", "<p>Chacun sait à l'avance combien il paie. Pendant le trajet, vous pouvez :</p><ul><li>donner votre part au responsable, ou</li><li>payer votre propre part au chauffeur par carte, ou</li><li>laisser une personne payer tout le taxi et vous arranger entre vous.</li></ul><p>Le total est ce qu'indique le taximètre. Le chauffeur émet un seul reçu pour toute la course. L'application ne garde ni ne transfère d'argent.</p>"],
+        ["8. Comment le montant est calculé", "<p>Le prix normal depuis la dernière prise en charge jusqu'à l'aéroport, plus {ex2} € si vous êtes 2 ou {ex3} € si vous êtes 3, pour les arrêts de prise en charge. Le total est partagé à parts égales. C'est une estimation : le montant final est indiqué par le taximètre et partagé à parts égales entre ceux qui sont dans le taxi.</p>"],
+        ["9. Soyez prêt", "<p>Soyez dehors {ready} minutes avant l'arrivée du taxi. Le chauffeur attend jusqu'à {wait} minutes, puis continue vers la prise en charge suivante.</p>"],
+        ["10. Si je ne me présente pas", "<p>Le trajet continue sans vous et nous vous demanderons d'en expliquer la raison. Le montant est partagé entre ceux qui sont dans le taxi. Si vous êtes souvent absent, l'utilisation de la course partagée peut être limitée.</p>"],
+        ["11. Bagages", "<p>Chaque passager a droit à {bags}, sans bagage surdimensionné. L'espace est partagé par tous. Taille maximale : {dims}.</p>{bagSvg}"],
+        ["12. Si aucun groupe n'est trouvé", "<p>{cutoff} heures avant le départ, nous arrêtons la recherche et vous envoyons une notification : « Aucune course partagée trouvée », avec un bouton <b>[RÉSERVER UN TAXI]</b>. La réservation normale s'ouvre déjà remplie et c'est vous qui la confirmez. Nous ne réservons jamais un taxi sans vous.</p>"],
+        ["13. Annulation", "<p>Vous pouvez arrêter la recherche à tout moment avant d'appuyer sur D'ACCORD.</p><p>Si quelqu'un annule après le D'ACCORD :</p><ul><li>S'il reste plus de {cutoff} heures avant le départ, nous cherchons un autre passager pour prendre sa place.</li><li>S'il reste moins de {cutoff} heures, nous ne cherchons personne d'autre. Nous informons les autres qu'un passager a annulé, du nombre de personnes restantes et du nouveau prix.</li></ul><p>Si vous ne voulez pas le nouveau prix, vous pouvez annuler vous aussi et réserver un taxi normal. S'il ne reste qu'une personne, il n'y a pas de course partagée.</p>"],
+        ["14. Connexion Google / Apple", "<p>Pour la course partagée, vous vous connectez une seule fois avec Google (Android) ou Apple (iPhone), afin que chaque passager soit un vrai compte. Nous ne voyons jamais votre mot de passe. Les réservations normales ne nécessitent pas de connexion.</p>"],
+        ["15. Données personnelles", "<p>De vos co-passagers, vous ne voyez que leur nom complet, rien d'autre. Eux non plus ne voient rien d'autre sur vous. Le chauffeur voit le nom et le point de prise en charge. Les données servent uniquement au trajet.</p>"]
+      ]) },
+    it:{ maziName:"Insieme in un solo gruppo", maziBtnTitle:"INSIEME IN UN SOLO GRUPPO", maziSubtitle:"Un gruppo • Una prenotazione • Una corsa",
+      maziPerPerson:"circa {lo}€ – {hi}€ a persona", maziInfoLink:"Che cos'è una corsa condivisa?",
+      maziTestMsg:"Versione di prova: qui inizierà la ricerca dei compagni di viaggio.",
+      maziAccept:"Ho letto e accetto le condizioni della corsa condivisa",
+      maziDec:",", maziCm:"cm", maziBagLen:"lunghezza", maziBagWid:"larghezza", maziDimsTbd:"verranno comunicate a breve",
+      maziBagsOne:"1 valigia di dimensioni normali", maziBagsMany:"{n} valigie di dimensioni normali",
+      maziInfoHtml:_maziInfo([
+        ["1. Che cos'è", "<p>Vai in aeroporto in un gruppo da {minP} a {maxP} passeggeri in totale, te compreso, che partono alla stessa ora da punti vicini. Un taxi, un tassametro, una ricevuta. Il costo si divide in parti uguali.</p><p>Le fermate per far salire i passeggeri fanno parte dello stesso tragitto. La corsa è una sola, dalla prima salita fino all'aeroporto.</p>"],
+        ["2. Quando posso usarla", "<p>Solo da Atene all'aeroporto, per 1 persona, almeno {cutoff} ore prima. Meglio {cutoff}–{later} ore prima o anche prima. Se la partenza è tra meno di {cutoff} ore, puoi prenotare solo un taxi normale.</p>"],
+        ["3. Come si trova il gruppo", "<p>Cerchiamo passeggeri che vogliono partire per l'aeroporto fino a {window} minuti prima o dopo di te e che si trovano vicino a te ({gapMin}–{gapMax} minuti di auto). L'orario di partenza comune è il più presto del gruppo, così nessuno parte più tardi di quanto ha chiesto. Vedi l'orario esatto prima di premere D'ACCORDO. La ricerca continua anche con l'app chiusa.</p>"],
+        ["4. L'orario che indichi", "<p>È l'orario in cui tutti sono nel taxi e partono per l'aeroporto. Le salite avvengono prima. L'app ti mostra esattamente quando essere fuori e quando arriva il taxi.</p>"],
+        ["5. Accordo", "<p>Quando viene trovato un gruppo, ognuno vede il proprio orario per essere fuori, quanto aspetta l'autista e quanto paga, e preme <b>D'ACCORDO</b> o <b>NO</b>.</p><p>Se qualcuno preme NO, esce dal gruppo. Cerchiamo un altro passeggero che prenda il suo posto e informiamo gli altri del nuovo numero di persone e del nuovo prezzo. Ti chiediamo di nuovo prima di continuare. Niente viene prenotato senza il tuo D'ACCORDO.</p>"],
+        ["6. Il responsabile", "<p>Chi del gruppo vuole preme <b>ME NE OCCUPO IO</b> e diventa il responsabile della corsa. Se lo premono in due, vale il primo. Se nessuno se ne occupa, la corsa condivisa non si fa e puoi prenotare un taxi normale.</p>"],
+        ["7. Pagamento", "<p>Ognuno sa in anticipo quanto paga. Durante il tragitto puoi:</p><ul><li>dare la tua quota al responsabile, oppure</li><li>pagare la tua quota all'autista con carta, oppure</li><li>far pagare a uno tutto il taxi e regolarvi tra di voi.</li></ul><p>Il totale è quello indicato dal tassametro. L'autista emette una sola ricevuta per tutta la corsa. L'app non trattiene né trasferisce denaro.</p>"],
+        ["8. Come si calcola l'importo", "<p>Il prezzo normale dall'ultima salita all'aeroporto, più {ex2} € se siete in 2 o {ex3} € se siete in 3, per le fermate di salita. Il totale si divide in parti uguali. È una stima: l'importo finale lo indica il tassametro e si divide in parti uguali tra chi è nel taxi.</p>"],
+        ["9. Sii pronto", "<p>Sii fuori {ready} minuti prima che arrivi il taxi. L'autista aspetta fino a {wait} minuti e poi prosegue verso la salita successiva.</p>"],
+        ["10. Se non mi presento", "<p>Il tragitto continua senza di te e ti chiederemo di spiegarne il motivo. L'importo si divide tra chi è nel taxi. Se manchi spesso, l'uso della corsa condivisa può essere limitato.</p>"],
+        ["11. Bagagli", "<p>Ogni passeggero può portare {bags}, niente bagagli fuori misura. Lo spazio è condiviso da tutti. Dimensioni massime: {dims}.</p>{bagSvg}"],
+        ["12. Se non si trova un gruppo", "<p>{cutoff} ore prima della partenza interrompiamo la ricerca e ti inviamo una notifica: «Nessuna corsa condivisa trovata», con il pulsante <b>[PRENOTA TAXI]</b>. La prenotazione normale si apre già compilata e la confermi tu. Non prenotiamo mai un taxi senza di te.</p>"],
+        ["13. Cancellazione", "<p>Puoi interrompere la ricerca in qualsiasi momento prima di premere D'ACCORDO.</p><p>Se qualcuno cancella dopo il D'ACCORDO:</p><ul><li>Se mancano più di {cutoff} ore alla partenza, cerchiamo un altro passeggero che prenda il suo posto.</li><li>Se mancano meno di {cutoff} ore, non cerchiamo nessun altro. Informiamo gli altri che un compagno di viaggio ha cancellato, quante persone sono rimaste e il nuovo prezzo.</li></ul><p>Se non vuoi il nuovo prezzo, puoi cancellare anche tu e prenotare un taxi normale. Se resta una sola persona, la corsa condivisa non si fa.</p>"],
+        ["14. Accesso con Google / Apple", "<p>Per la corsa condivisa accedi una sola volta con Google (Android) o Apple (iPhone), così ogni passeggero è un account reale. Non vediamo mai la tua password. Le prenotazioni normali non richiedono l'accesso.</p>"],
+        ["15. Dati personali", "<p>Dei tuoi compagni di viaggio vedi solo nome e cognome, nient'altro. Neanche loro vedono altro su di te. L'autista vede il nome e il punto di salita. I dati vengono usati solo per il tragitto.</p>"]
+      ]) },
+    es:{ maziName:"Juntos en un solo grupo", maziBtnTitle:"JUNTOS EN UN SOLO GRUPO", maziSubtitle:"Un grupo • Una reserva • Un viaje",
+      maziPerPerson:"aprox. {lo}€ – {hi}€ por persona", maziInfoLink:"¿Qué es un viaje compartido?",
+      maziTestMsg:"Versión de prueba: aquí empezará la búsqueda de compañeros de viaje.",
+      maziAccept:"He leído y acepto las condiciones del viaje compartido",
+      maziDec:",", maziCm:"cm", maziBagLen:"largo", maziBagWid:"ancho", maziDimsTbd:"se anunciará pronto",
+      maziBagsOne:"1 maleta de tamaño normal", maziBagsMany:"{n} maletas de tamaño normal",
+      maziInfoHtml:_maziInfo([
+        ["1. ¿Qué es?", "<p>Vas al aeropuerto en un grupo de {minP} a {maxP} pasajeros en total, tú incluido, que salen a la misma hora desde puntos cercanos. Un taxi, un taxímetro, un recibo. El coste se reparte a partes iguales.</p><p>Las paradas para recoger pasajeros forman parte del mismo trayecto. Es un único viaje, desde la primera recogida hasta el aeropuerto.</p>"],
+        ["2. ¿Cuándo puedo usarlo?", "<p>Solo de Atenas al aeropuerto, para 1 persona, al menos {cutoff} horas antes. Mejor {cutoff}–{later} horas antes o incluso antes. Si la salida es dentro de menos de {cutoff} horas, solo puedes reservar un taxi normal.</p>"],
+        ["3. Cómo se encuentra el grupo", "<p>Buscamos pasajeros que quieran salir hacia el aeropuerto hasta {window} minutos antes o después que tú y que estén cerca de ti ({gapMin}–{gapMax} minutos en coche). La hora de salida común es la más temprana del grupo, para que nadie salga más tarde de lo que pidió. Ves la hora exacta antes de pulsar DE ACUERDO. La búsqueda continúa aunque la app esté cerrada.</p>"],
+        ["4. La hora que indicas", "<p>Es la hora en la que todos están en el taxi y salen hacia el aeropuerto. Las recogidas se hacen antes. La app te muestra exactamente cuándo estar fuera y cuándo llega el taxi.</p>"],
+        ["5. Acuerdo", "<p>Cuando se encuentra un grupo, cada uno ve su propia hora para estar fuera, cuánto espera el conductor y cuánto paga, y pulsa <b>DE ACUERDO</b> o <b>NO</b>.</p><p>Si alguien pulsa NO, sale del grupo. Buscamos otro pasajero que ocupe su lugar e informamos a los demás del nuevo número de personas y del nuevo precio. Te volvemos a preguntar antes de continuar. No se reserva nada sin tu DE ACUERDO.</p>"],
+        ["6. El responsable", "<p>Quien del grupo quiera pulsa <b>ME ENCARGO YO</b> y pasa a ser el responsable del viaje. Si lo pulsan dos, cuenta el primero. Si nadie se encarga, no hay viaje compartido y puedes reservar un taxi normal.</p>"],
+        ["7. Pago", "<p>Cada uno sabe de antemano cuánto paga. Durante el trayecto puedes:</p><ul><li>dar tu parte al responsable, o</li><li>pagar tu parte al conductor con tarjeta, o</li><li>que uno pague todo el taxi y arreglarlo entre vosotros.</li></ul><p>El total es lo que marca el taxímetro. El conductor emite un solo recibo por todo el viaje. La app no guarda ni transfiere dinero.</p>"],
+        ["8. Cómo se calcula el importe", "<p>El precio normal desde la última recogida hasta el aeropuerto, más {ex2} € si sois 2 o {ex3} € si sois 3, por las paradas de recogida. El total se reparte a partes iguales. Es una estimación: el importe final lo marca el taxímetro y se reparte a partes iguales entre quienes van en el taxi.</p>"],
+        ["9. Prepárate", "<p>Estate fuera {ready} minutos antes de que llegue el taxi. El conductor espera hasta {wait} minutos y luego sigue hacia la siguiente recogida.</p>"],
+        ["10. Si no me presento", "<p>El viaje sigue sin ti y te pediremos que expliques el motivo. El importe se reparte entre quienes van en el taxi. Si faltas a menudo, el uso del viaje compartido puede limitarse.</p>"],
+        ["11. Equipaje", "<p>Cada pasajero puede llevar {bags}, sin equipaje de tamaño excesivo. El espacio es compartido por todos. Tamaño máximo: {dims}.</p>{bagSvg}"],
+        ["12. Si no se encuentra grupo", "<p>{cutoff} horas antes de la salida paramos la búsqueda y te enviamos una notificación: «No se encontró viaje compartido», con el botón <b>[RESERVAR TAXI]</b>. La reserva normal se abre ya rellenada y la confirmas tú. Nunca reservamos un taxi sin ti.</p>"],
+        ["13. Cancelación", "<p>Puedes detener la búsqueda en cualquier momento antes de pulsar DE ACUERDO.</p><p>Si alguien cancela después del DE ACUERDO:</p><ul><li>Si faltan más de {cutoff} horas para la salida, buscamos otro pasajero que ocupe su lugar.</li><li>Si faltan menos de {cutoff} horas, no buscamos a nadie más. Avisamos a los demás de que un compañero canceló, cuántas personas quedan y el nuevo precio.</li></ul><p>Si no quieres el nuevo precio, puedes cancelar tú también y reservar un taxi normal. Si solo queda una persona, no hay viaje compartido.</p>"],
+        ["14. Acceso con Google / Apple", "<p>Para el viaje compartido inicias sesión una sola vez con Google (Android) o Apple (iPhone), para que cada pasajero sea una cuenta real. Nunca vemos tu contraseña. Las reservas normales no necesitan inicio de sesión.</p>"],
+        ["15. Datos personales", "<p>De tus compañeros de viaje solo ves su nombre y apellidos, nada más. Ellos tampoco ven nada más de ti. El conductor ve el nombre y el punto de recogida. Los datos se usan solo para el viaje.</p>"]
+      ]) },
+    ru:{ maziName:"Вместе одной компанией", maziBtnTitle:"ВМЕСТЕ ОДНОЙ КОМПАНИЕЙ", maziSubtitle:"Одна компания • Одно бронирование • Одна поездка",
+      maziPerPerson:"примерно {lo}€ – {hi}€ с человека", maziInfoLink:"Что такое совместная поездка?",
+      maziTestMsg:"Тестовая версия: здесь будет начинаться поиск попутчиков.",
+      maziAccept:"Я прочитал(а) и принимаю условия совместной поездки",
+      maziDec:",", maziCm:"см", maziBagLen:"длина", maziBagWid:"ширина", maziDimsTbd:"будет объявлен в ближайшее время",
+      maziBagsOne:"1 чемодан обычного размера", maziBagsMany:"{n} чемодана обычного размера",
+      maziInfoHtml:_maziInfo([
+        ["1. Что это такое", "<p>Вы едете в аэропорт в компании из {minP}–{maxP} пассажиров, включая вас, которые выезжают в одно и то же время из соседних мест. Одно такси, один таксометр, один чек. Стоимость делится поровну.</p><p>Остановки, чтобы забрать пассажиров, — часть той же поездки. Это одна поездка: от первой посадки до аэропорта.</p>"],
+        ["2. Когда можно воспользоваться", "<p>Только из Афин в аэропорт, для 1 человека, не позднее чем за {cutoff} часов. Лучше за {cutoff}–{later} часов или ещё раньше. Если до выезда меньше {cutoff} часов, можно заказать только обычное такси.</p>"],
+        ["3. Как подбирается компания", "<p>Мы ищем пассажиров, которые хотят выехать в аэропорт не более чем на {window} минут раньше или позже вас и находятся рядом ({gapMin}–{gapMax} минут езды). Общее время выезда — самое раннее в группе, чтобы никто не выехал позже, чем просил. Точное время вы увидите до того, как нажмёте СОГЛАСЕН. Поиск продолжается, даже когда приложение закрыто.</p>"],
+        ["4. Время, которое вы указываете", "<p>Это время, когда все уже в такси и выезжают в аэропорт. Посадка происходит раньше. Приложение точно покажет, когда выйти на улицу и когда приедет такси.</p>"],
+        ["5. Согласие", "<p>Когда компания найдена, каждый видит своё время выхода, сколько ждёт водитель и сколько платит, и нажимает <b>СОГЛАСЕН</b> или <b>НЕТ</b>.</p><p>Если кто-то нажимает НЕТ, он выходит из группы. Мы ищем другого пассажира на его место и сообщаем остальным новое число людей и новую цену. Перед продолжением мы спросим вас снова. Без вашего СОГЛАСЕН ничего не бронируется.</p>"],
+        ["6. Ответственный", "<p>Любой из группы, кто хочет, нажимает <b>БЕРУ НА СЕБЯ</b> и становится ответственным за поездку. Если нажали двое, считается первый. Если никто не берёт на себя, совместной поездки не будет, и вы можете заказать обычное такси.</p>"],
+        ["7. Оплата", "<p>Каждый заранее знает, сколько платит. Во время поездки можно:</p><ul><li>отдать свою сумму ответственному, или</li><li>оплатить свою сумму водителю картой, или</li><li>один платит за всё такси, а вы рассчитываетесь между собой.</li></ul><p>Итог — это то, что показывает таксометр. Водитель выдаёт один чек за всю поездку. Приложение не хранит и не переводит деньги.</p>"],
+        ["8. Как считается сумма", "<p>Обычная цена от последней посадки до аэропорта, плюс {ex2} €, если вас 2, или {ex3} €, если вас 3, — за остановки для посадки. Итог делится поровну. Это оценка: окончательную сумму показывает таксометр, и она делится поровну между теми, кто в такси.</p>"],
+        ["9. Будьте готовы", "<p>Будьте на улице за {ready} минут до приезда такси. Водитель ждёт до {wait} минут, а затем едет к следующей посадке.</p>"],
+        ["10. Если я не приду", "<p>Поездка продолжится без вас, и мы попросим вас объяснить причину. Сумма делится между теми, кто в такси. Если вы часто не приходите, использование совместной поездки может быть ограничено.</p>"],
+        ["11. Багаж", "<p>Каждый пассажир может взять {bags}, без крупногабаритного багажа. Место общее для всех. Максимальный размер: {dims}.</p>{bagSvg}"],
+        ["12. Если компания не найдена", "<p>За {cutoff} часов до выезда мы прекращаем поиск и отправляем вам уведомление: «Совместная поездка не найдена», с кнопкой <b>[ЗАКАЗАТЬ ТАКСИ]</b>. Обычное бронирование откроется уже заполненным, и вы подтвердите его сами. Мы никогда не заказываем такси без вас.</p>"],
+        ["13. Отмена", "<p>Вы можете остановить поиск в любой момент до нажатия СОГЛАСЕН.</p><p>Если кто-то отменяет после СОГЛАСЕН:</p><ul><li>Если до выезда больше {cutoff} часов, мы ищем другого пассажира на его место.</li><li>Если меньше {cutoff} часов, мы никого больше не ищем. Мы сообщаем остальным, что попутчик отменил поездку, сколько человек осталось и какая новая цена.</li></ul><p>Если вас не устраивает новая цена, вы тоже можете отменить и заказать обычное такси. Если остаётся только один человек, совместной поездки не будет.</p>"],
+        ["14. Вход через Google / Apple", "<p>Для совместной поездки вы один раз входите через Google (Android) или Apple (iPhone), чтобы каждый пассажир был реальным аккаунтом. Мы никогда не видим ваш пароль. Для обычного бронирования вход не нужен.</p>"],
+        ["15. Персональные данные", "<p>О попутчиках вы видите только имя и фамилию, больше ничего. Они тоже не видят о вас ничего другого. Водитель видит имя и место посадки. Данные используются только для поездки.</p>"]
+      ]) },
+    pl:{ maziName:"Razem w jednej grupie", maziBtnTitle:"RAZEM W JEDNEJ GRUPIE", maziSubtitle:"Jedna grupa • Jedna rezerwacja • Jeden kurs",
+      maziPerPerson:"ok. {lo}€ – {hi}€ za osobę", maziInfoLink:"Czym jest wspólny kurs?",
+      maziTestMsg:"Wersja testowa: tutaj rozpocznie się wyszukiwanie współpasażerów.",
+      maziAccept:"Przeczytałem/am i akceptuję warunki wspólnego kursu",
+      maziDec:",", maziCm:"cm", maziBagLen:"długość", maziBagWid:"szerokość", maziDimsTbd:"zostanie podany wkrótce",
+      maziBagsOne:"1 walizkę normalnego rozmiaru", maziBagsMany:"{n} walizki normalnego rozmiaru",
+      maziInfoHtml:_maziInfo([
+        ["1. Co to jest", "<p>Jedziesz na lotnisko w grupie od {minP} do {maxP} pasażerów łącznie, razem z tobą, którzy wyjeżdżają o tej samej porze z pobliskich miejsc. Jedna taksówka, jeden taksometr, jeden paragon. Koszt dzieli się po równo.</p><p>Przystanki, by zabrać pasażerów, są częścią tego samego kursu. To jeden kurs, od pierwszego odbioru do lotniska.</p>"],
+        ["2. Kiedy mogę z tego skorzystać", "<p>Tylko z Aten na lotnisko, dla 1 osoby, co najmniej {cutoff} godzin wcześniej. Najlepiej {cutoff}–{later} godzin wcześniej albo jeszcze wcześniej. Jeśli wyjazd jest za mniej niż {cutoff} godzin, możesz zamówić tylko zwykłą taksówkę.</p>"],
+        ["3. Jak znajdujemy grupę", "<p>Szukamy pasażerów, którzy chcą wyruszyć na lotnisko do {window} minut wcześniej lub później niż ty i są blisko ciebie ({gapMin}–{gapMax} minut jazdy). Wspólna godzina wyjazdu to najwcześniejsza godzina w grupie, żeby nikt nie wyjechał później, niż chciał. Dokładną godzinę widzisz, zanim naciśniesz ZGADZAM SIĘ. Wyszukiwanie trwa także przy zamkniętej aplikacji.</p>"],
+        ["4. Godzina, którą podajesz", "<p>To godzina, o której wszyscy są już w taksówce i ruszają na lotnisko. Odbiory są wcześniej. Aplikacja pokazuje dokładnie, kiedy masz być na zewnątrz i kiedy przyjedzie taksówka.</p>"],
+        ["5. Zgoda", "<p>Gdy grupa zostanie znaleziona, każdy widzi swoją godzinę wyjścia, jak długo czeka kierowca i ile płaci, i naciska <b>ZGADZAM SIĘ</b> albo <b>NIE</b>.</p><p>Jeśli ktoś naciśnie NIE, wychodzi z grupy. Szukamy innego pasażera na jego miejsce i informujemy pozostałych o nowej liczbie osób i nowej cenie. Pytamy cię ponownie, zanim pójdziemy dalej. Nic nie zostanie zarezerwowane bez twojego ZGADZAM SIĘ.</p>"],
+        ["6. Osoba odpowiedzialna", "<p>Kto z grupy chce, naciska <b>BIORĘ TO NA SIEBIE</b> i staje się osobą odpowiedzialną za kurs. Jeśli naciśnie dwóch, liczy się pierwszy. Jeśli nikt się nie zgłosi, wspólnego kursu nie będzie i możesz zamówić zwykłą taksówkę.</p>"],
+        ["7. Płatność", "<p>Każdy z góry wie, ile płaci. W trakcie kursu możesz:</p><ul><li>dać swoją kwotę osobie odpowiedzialnej, albo</li><li>zapłacić kierowcy kartą swoją kwotę, albo</li><li>jedna osoba płaci za całą taksówkę, a wy rozliczacie się między sobą.</li></ul><p>Suma to kwota z taksometru. Kierowca wystawia jeden paragon za cały kurs. Aplikacja nie przechowuje ani nie przekazuje pieniędzy.</p>"],
+        ["8. Jak liczymy kwotę", "<p>Zwykła cena od ostatniego odbioru do lotniska, plus {ex2} €, gdy jest was 2, lub {ex3} €, gdy jest was 3, za przystanki odbioru. Suma dzieli się po równo. To szacunek: ostateczną kwotę pokazuje taksometr i dzieli się ją po równo między osoby w taksówce.</p>"],
+        ["9. Bądź gotowy", "<p>Bądź na zewnątrz {ready} minut przed przyjazdem taksówki. Kierowca czeka do {wait} minut, a potem jedzie do następnego odbioru.</p>"],
+        ["10. Jeśli się nie pojawię", "<p>Kurs jedzie dalej bez ciebie, a my poprosimy cię o wyjaśnienie powodu. Kwota dzieli się między osoby w taksówce. Jeśli często się nie pojawiasz, korzystanie ze wspólnego kursu może zostać ograniczone.</p>"],
+        ["11. Bagaż", "<p>Każdy pasażer może zabrać {bags}, bez bagażu ponadwymiarowego. Miejsce jest wspólne dla wszystkich. Maksymalny rozmiar: {dims}.</p>{bagSvg}"],
+        ["12. Jeśli grupa się nie znajdzie", "<p>{cutoff} godzin przed wyjazdem kończymy wyszukiwanie i wysyłamy ci powiadomienie: „Nie znaleziono wspólnego kursu”, z przyciskiem <b>[ZAMÓW TAKSÓWKĘ]</b>. Zwykła rezerwacja otworzy się już wypełniona, a ty sam ją potwierdzasz. Nigdy nie zamawiamy taksówki bez ciebie.</p>"],
+        ["13. Anulowanie", "<p>Możesz przerwać wyszukiwanie w każdej chwili, zanim naciśniesz ZGADZAM SIĘ.</p><p>Jeśli ktoś anuluje po ZGADZAM SIĘ:</p><ul><li>Jeśli do wyjazdu zostało ponad {cutoff} godzin, szukamy innego pasażera na jego miejsce.</li><li>Jeśli zostało mniej niż {cutoff} godzin, nie szukamy nikogo więcej. Informujemy pozostałych, że współpasażer zrezygnował, ile osób zostało i jaka jest nowa cena.</li></ul><p>Jeśli nie chcesz nowej ceny, też możesz anulować i zamówić zwykłą taksówkę. Jeśli zostaje tylko jedna osoba, wspólnego kursu nie ma.</p>"],
+        ["14. Logowanie przez Google / Apple", "<p>Do wspólnego kursu logujesz się raz przez Google (Android) lub Apple (iPhone), żeby każdy pasażer był prawdziwym kontem. Nigdy nie widzimy twojego hasła. Zwykła rezerwacja nie wymaga logowania.</p>"],
+        ["15. Dane osobowe", "<p>O współpasażerach widzisz tylko imię i nazwisko, nic więcej. Oni też nie widzą o tobie nic innego. Kierowca widzi imię i miejsce odbioru. Dane służą tylko do tego kursu.</p>"]
+      ]) },
+    ro:{ maziName:"Împreună într-un singur grup", maziBtnTitle:"ÎMPREUNĂ ÎNTR-UN SINGUR GRUP", maziSubtitle:"Un grup • O rezervare • O cursă",
+      maziPerPerson:"aprox. {lo}€ – {hi}€ de persoană", maziInfoLink:"Ce este o cursă comună?",
+      maziTestMsg:"Versiune de test: aici va începe căutarea colegilor de drum.",
+      maziAccept:"Am citit și accept condițiile cursei comune",
+      maziDec:",", maziCm:"cm", maziBagLen:"lungime", maziBagWid:"lățime", maziDimsTbd:"va fi anunțată în curând",
+      maziBagsOne:"1 valiză de mărime normală", maziBagsMany:"{n} valize de mărime normală",
+      maziInfoHtml:_maziInfo([
+        ["1. Ce este", "<p>Mergi la aeroport într-un grup de {minP}–{maxP} pasageri în total, inclusiv tu, care pleacă la aceeași oră din puncte apropiate. Un taxi, un taximetru, un bon. Costul se împarte în mod egal.</p><p>Opririle pentru preluare fac parte din aceeași cursă. Este o singură cursă, de la prima preluare până la aeroport.</p>"],
+        ["2. Când o pot folosi", "<p>Doar din Atena spre aeroport, pentru 1 persoană, cu cel puțin {cutoff} ore înainte. Mai bine cu {cutoff}–{later} ore înainte sau chiar mai devreme. Dacă plecarea este în mai puțin de {cutoff} ore, poți rezerva doar un taxi normal.</p>"],
+        ["3. Cum se găsește grupul", "<p>Căutăm pasageri care vor să plece spre aeroport cu până la {window} minute mai devreme sau mai târziu decât tine și care sunt aproape de tine ({gapMin}–{gapMax} minute de condus). Ora comună de plecare este cea mai devreme din grup, ca nimeni să nu plece mai târziu decât a cerut. Ora exactă o vezi înainte să apeși DE ACORD. Căutarea continuă și cu aplicația închisă.</p>"],
+        ["4. Ora pe care o indici", "<p>Este ora la care toți sunt în taxi și pleacă spre aeroport. Preluările au loc mai devreme. Aplicația îți arată exact când să fii afară și când vine taxiul.</p>"],
+        ["5. Acord", "<p>Când se găsește un grup, fiecare vede ora lui de a fi afară, cât așteaptă șoferul și cât plătește, și apasă <b>DE ACORD</b> sau <b>NU</b>.</p><p>Dacă cineva apasă NU, iese din grup. Căutăm alt pasager care să-i ia locul și îi anunțăm pe ceilalți despre noul număr de persoane și noul preț. Te întrebăm din nou înainte să continuăm. Nimic nu se rezervă fără acordul tău.</p>"],
+        ["6. Responsabilul", "<p>Oricine din grup dorește apasă <b>MĂ OCUP EU</b> și devine responsabilul cursei. Dacă apasă doi, contează primul. Dacă nu se ocupă nimeni, nu are loc cursa comună și poți rezerva un taxi normal.</p>"],
+        ["7. Plata", "<p>Fiecare știe dinainte cât plătește. În timpul cursei poți:</p><ul><li>să dai suma ta responsabilului, sau</li><li>să plătești șoferului suma ta cu cardul, sau</li><li>unul plătește tot taxiul și vă înțelegeți între voi.</li></ul><p>Totalul este cel arătat de taximetru. Șoferul emite un singur bon pentru toată cursa. Aplicația nu păstrează și nu transferă bani.</p>"],
+        ["8. Cum se calculează suma", "<p>Prețul normal de la ultima preluare până la aeroport, plus {ex2} € când sunteți 2 sau {ex3} € când sunteți 3, pentru opririle de preluare. Totalul se împarte în mod egal. Este o estimare: suma finală o arată taximetrul și se împarte în mod egal între cei din taxi.</p>"],
+        ["9. Fii pregătit", "<p>Fii afară cu {ready} minute înainte să vină taxiul. Șoferul așteaptă până la {wait} minute, apoi merge la următoarea preluare.</p>"],
+        ["10. Dacă nu vin", "<p>Cursa continuă fără tine și îți vom cere să explici motivul. Suma se împarte între cei din taxi. Dacă lipsești des, folosirea cursei comune poate fi limitată.</p>"],
+        ["11. Bagaje", "<p>Fiecare pasager poate avea {bags}, fără bagaje supradimensionate. Spațiul este comun pentru toți. Dimensiunea maximă: {dims}.</p>{bagSvg}"],
+        ["12. Dacă nu se găsește un grup", "<p>Cu {cutoff} ore înainte de plecare oprim căutarea și îți trimitem o notificare: „Nu s-a găsit o cursă comună”, cu butonul <b>[REZERVĂ TAXI]</b>. Rezervarea normală se deschide deja completată și o confirmi tu. Nu rezervăm niciodată un taxi fără tine.</p>"],
+        ["13. Anulare", "<p>Poți opri căutarea oricând înainte să apeși DE ACORD.</p><p>Dacă cineva anulează după DE ACORD:</p><ul><li>Dacă mai sunt peste {cutoff} ore până la plecare, căutăm alt pasager care să-i ia locul.</li><li>Dacă mai sunt sub {cutoff} ore, nu mai căutăm pe nimeni. Îi anunțăm pe ceilalți că un coleg de drum a anulat, câte persoane au rămas și noul preț.</li></ul><p>Dacă nu vrei noul preț, poți anula și tu și rezerva un taxi normal. Dacă rămâne o singură persoană, nu are loc cursa comună.</p>"],
+        ["14. Conectare cu Google / Apple", "<p>Pentru cursa comună te conectezi o singură dată cu Google (Android) sau Apple (iPhone), ca fiecare pasager să fie un cont real. Nu vedem niciodată parola ta. Rezervările normale nu necesită conectare.</p>"],
+        ["15. Date personale", "<p>Despre colegii de drum vezi doar numele și prenumele, nimic altceva. Nici ei nu văd altceva despre tine. Șoferul vede numele și locul de preluare. Datele se folosesc doar pentru cursă.</p>"]
+      ]) },
+    nl:{ maziName:"Samen in één groep", maziBtnTitle:"SAMEN IN ÉÉN GROEP", maziSubtitle:"Eén groep • Eén boeking • Eén rit",
+      maziPerPerson:"ca. {lo}€ – {hi}€ per persoon", maziInfoLink:"Wat is een gedeelde rit?",
+      maziTestMsg:"Testversie: hier begint straks het zoeken naar medereizigers.",
+      maziAccept:"Ik heb de voorwaarden van de gedeelde rit gelezen en ga ermee akkoord",
+      maziDec:",", maziCm:"cm", maziBagLen:"lengte", maziBagWid:"breedte", maziDimsTbd:"wordt binnenkort bekendgemaakt",
+      maziBagsOne:"1 koffer van normale grootte", maziBagsMany:"{n} koffers van normale grootte",
+      maziInfoHtml:_maziInfo([
+        ["1. Wat is het", "<p>U gaat naar de luchthaven in een groep van in totaal {minP} tot {maxP} passagiers, uzelf inbegrepen, die op hetzelfde tijdstip vanaf nabijgelegen plekken vertrekken. Eén taxi, één taximeter, één bon. De kosten worden gelijk verdeeld.</p><p>De stops om passagiers op te halen horen bij dezelfde rit. Het is één rit, van de eerste ophaling tot de luchthaven.</p>"],
+        ["2. Wanneer kan ik het gebruiken", "<p>Alleen van Athene naar de luchthaven, voor 1 persoon, minstens {cutoff} uur van tevoren. Liefst {cutoff}–{later} uur van tevoren of nog eerder. Als het vertrek over minder dan {cutoff} uur is, kunt u alleen een gewone taxi boeken.</p>"],
+        ["3. Hoe de groep wordt gevonden", "<p>We zoeken passagiers die tot {window} minuten eerder of later dan u naar de luchthaven willen vertrekken en bij u in de buurt zijn ({gapMin}–{gapMax} minuten rijden). De gezamenlijke vertrektijd is de vroegste tijd van de groep, zodat niemand later vertrekt dan gevraagd. U ziet de exacte tijd voordat u op AKKOORD drukt. Het zoeken gaat ook door als de app gesloten is.</p>"],
+        ["4. De tijd die u opgeeft", "<p>Dat is de tijd waarop iedereen in de taxi zit en naar de luchthaven vertrekt. De ophalingen zijn eerder. De app laat u precies zien wanneer u buiten moet staan en wanneer de taxi komt.</p>"],
+        ["5. Akkoord", "<p>Als er een groep is gevonden, ziet iedereen zijn eigen tijd om buiten te staan, hoe lang de chauffeur wacht en hoeveel hij betaalt, en drukt op <b>AKKOORD</b> of <b>NEE</b>.</p><p>Als iemand op NEE drukt, verlaat hij de groep. We zoeken een andere passagier voor zijn plek en laten de anderen het nieuwe aantal personen en de nieuwe prijs weten. We vragen het u opnieuw voordat we verdergaan. Zonder uw AKKOORD wordt niets geboekt.</p>"],
+        ["6. De verantwoordelijke", "<p>Wie uit de groep wil, drukt op <b>IK NEEM HET OP ME</b> en wordt verantwoordelijk voor de rit. Drukken er twee, dan telt de eerste. Neemt niemand het op zich, dan is er geen gedeelde rit en kunt u een gewone taxi boeken.</p>"],
+        ["7. Betaling", "<p>Iedereen weet vooraf hoeveel hij betaalt. Tijdens de rit kunt u:</p><ul><li>uw bedrag aan de verantwoordelijke geven, of</li><li>uw eigen bedrag met de kaart aan de chauffeur betalen, of</li><li>één persoon de hele taxi laten betalen en het onderling regelen.</li></ul><p>Het totaal is wat de taximeter aangeeft. De chauffeur geeft één bon voor de hele rit. De app bewaart of verstuurt geen geld.</p>"],
+        ["8. Hoe het bedrag wordt berekend", "<p>De gewone prijs van de laatste ophaling naar de luchthaven, plus {ex2} € als u met 2 bent of {ex3} € als u met 3 bent, voor de ophaalstops. Het totaal wordt gelijk verdeeld. Het is een schatting: het eindbedrag geeft de taximeter aan en wordt gelijk verdeeld over wie in de taxi zit.</p>"],
+        ["9. Wees klaar", "<p>Sta {ready} minuten voordat de taxi komt buiten. De chauffeur wacht tot {wait} minuten en rijdt dan door naar de volgende ophaling.</p>"],
+        ["10. Als ik niet kom", "<p>De rit gaat zonder u verder en we vragen u de reden uit te leggen. Het bedrag wordt verdeeld over wie in de taxi zit. Als u vaak niet komt, kan het gebruik van de gedeelde rit worden beperkt.</p>"],
+        ["11. Bagage", "<p>Elke passagier mag {bags} meenemen, geen extra grote bagage. De ruimte wordt door iedereen gedeeld. Maximale grootte: {dims}.</p>{bagSvg}"],
+        ["12. Als er geen groep wordt gevonden", "<p>{cutoff} uur voor vertrek stoppen we met zoeken en sturen we u een melding: „Geen gedeelde rit gevonden”, met de knop <b>[TAXI BOEKEN]</b>. De gewone boeking opent al ingevuld en u bevestigt die zelf. We boeken nooit een taxi zonder u.</p>"],
+        ["13. Annuleren", "<p>U kunt het zoeken op elk moment stoppen voordat u op AKKOORD drukt.</p><p>Als iemand annuleert na het AKKOORD:</p><ul><li>Als er nog meer dan {cutoff} uur tot vertrek is, zoeken we een andere passagier voor zijn plek.</li><li>Als het minder dan {cutoff} uur is, zoeken we niemand meer. We laten de anderen weten dat een medereiziger heeft geannuleerd, hoeveel personen er over zijn en wat de nieuwe prijs is.</li></ul><p>Wilt u de nieuwe prijs niet, dan kunt u ook annuleren en een gewone taxi boeken. Blijft er maar één persoon over, dan is er geen gedeelde rit.</p>"],
+        ["14. Inloggen met Google / Apple", "<p>Voor de gedeelde rit logt u één keer in met Google (Android) of Apple (iPhone), zodat elke passagier een echt account is. We zien uw wachtwoord nooit. Gewone boekingen hebben geen inlog nodig.</p>"],
+        ["15. Persoonsgegevens", "<p>Van uw medereizigers ziet u alleen hun volledige naam, verder niets. Zij zien ook niets anders over u. De chauffeur ziet naam en ophaalplek. De gegevens worden alleen voor de rit gebruikt.</p>"]
+      ]) },
+    tr:{ maziName:"Tek grupta birlikte", maziBtnTitle:"TEK GRUPTA BİRLİKTE", maziSubtitle:"Tek grup • Tek rezervasyon • Tek yolculuk",
+      maziPerPerson:"kişi başı yaklaşık {lo}€ – {hi}€", maziInfoLink:"Ortak yolculuk nedir?",
+      maziTestMsg:"Test sürümü: yol arkadaşı araması burada başlayacak.",
+      maziAccept:"Ortak yolculuk koşullarını okudum ve kabul ediyorum",
+      maziDec:",", maziCm:"cm", maziBagLen:"uzunluk", maziBagWid:"genişlik", maziDimsTbd:"yakında duyurulacak",
+      maziBagsOne:"1 normal boy valiz", maziBagsMany:"{n} normal boy valiz",
+      maziInfoHtml:_maziInfo([
+        ["1. Nedir", "<p>Havalimanına, siz dahil toplam {minP}–{maxP} yolcudan oluşan ve aynı saatte yakın noktalardan yola çıkan bir grupla gidersiniz. Tek taksi, tek taksimetre, tek fiş. Ücret eşit olarak paylaşılır.</p><p>Yolcu almak için yapılan duraklar aynı yolculuğun parçasıdır. İlk alıştan havalimanına kadar tek bir yolculuktur.</p>"],
+        ["2. Ne zaman kullanabilirim", "<p>Yalnızca Atina'dan havalimanına, 1 kişi için, en az {cutoff} saat önceden. Tercihen {cutoff}–{later} saat önceden veya daha erken. Kalkışa {cutoff} saatten az kaldıysa yalnızca normal taksi ayırtabilirsiniz.</p>"],
+        ["3. Grup nasıl bulunur", "<p>Havalimanına sizden en fazla {window} dakika önce veya sonra yola çıkmak isteyen ve size yakın olan ({gapMin}–{gapMax} dakikalık sürüş) yolcuları ararız. Ortak kalkış saati grubun en erken saatidir; böylece kimse istediğinden daha geç yola çıkmaz. Kesin saati KABUL EDİYORUM'a basmadan önce görürsünüz. Arama, uygulama kapalıyken de devam eder.</p>"],
+        ["4. Belirttiğiniz saat", "<p>Herkesin taksiye bindiği ve havalimanına yola çıktığı saattir. Alışlar daha önce yapılır. Uygulama size ne zaman dışarıda olmanız gerektiğini ve taksinin ne zaman geleceğini tam olarak gösterir.</p>"],
+        ["5. Onay", "<p>Grup bulunduğunda herkes kendi dışarıda olma saatini, sürücünün ne kadar bekleyeceğini ve ne kadar ödeyeceğini görür ve <b>KABUL EDİYORUM</b> ya da <b>HAYIR</b>'a basar.</p><p>Biri HAYIR'a basarsa gruptan çıkar. Yerine geçecek başka bir yolcu ararız ve diğerlerine yeni kişi sayısını ve yeni fiyatı bildiririz. Devam etmeden önce size tekrar sorarız. Sizin onayınız olmadan hiçbir şey ayırtılmaz.</p>"],
+        ["6. Sorumlu kişi", "<p>Gruptan isteyen kişi <b>BEN ÜSTLENİYORUM</b>'a basar ve yolculuğun sorumlusu olur. İki kişi basarsa ilk basan geçerlidir. Kimse üstlenmezse ortak yolculuk olmaz ve normal taksi ayırtabilirsiniz.</p>"],
+        ["7. Ödeme", "<p>Herkes ne kadar ödeyeceğini önceden bilir. Yolculuk sırasında:</p><ul><li>kendi payınızı sorumluya verebilir,</li><li>kendi payınızı sürücüye kartla ödeyebilir ya da</li><li>biri tüm taksiyi öder, siz de kendi aranızda hesaplaşırsınız.</li></ul><p>Toplam, taksimetrenin gösterdiği tutardır. Sürücü tüm yolculuk için tek fiş keser. Uygulama para tutmaz ve aktarmaz.</p>"],
+        ["8. Tutar nasıl hesaplanır", "<p>Son alıştan havalimanına normal fiyat, artı alış durakları için 2 kişiyseniz {ex2} €, 3 kişiyseniz {ex3} €. Toplam eşit paylaşılır. Bu bir tahmindir: nihai tutarı taksimetre gösterir ve taksidekiler arasında eşit paylaşılır.</p>"],
+        ["9. Hazır olun", "<p>Taksi gelmeden {ready} dakika önce dışarıda olun. Sürücü en fazla {wait} dakika bekler, sonra bir sonraki alışa devam eder.</p>"],
+        ["10. Gelmezsem", "<p>Yolculuk sizsiz devam eder ve nedenini açıklamanızı isteriz. Tutar taksidekiler arasında paylaşılır. Sık sık gelmezseniz ortak yolculuk kullanımınız kısıtlanabilir.</p>"],
+        ["11. Bagaj", "<p>Her yolcu {bags} taşıyabilir; büyük boy bagaj kabul edilmez. Alan herkes tarafından paylaşılır. Azami boyut: {dims}.</p>{bagSvg}"],
+        ["12. Grup bulunamazsa", "<p>Kalkıştan {cutoff} saat önce aramayı durdurur ve size bir bildirim göndeririz: “Ortak yolculuk bulunamadı”, <b>[TAKSİ AYIRT]</b> düğmesiyle. Normal rezervasyon önceden doldurulmuş olarak açılır ve onu siz onaylarsınız. Siz olmadan asla taksi ayırtmayız.</p>"],
+        ["13. İptal", "<p>KABUL EDİYORUM'a basmadan önce aramayı istediğiniz zaman durdurabilirsiniz.</p><p>Biri onay verdikten sonra iptal ederse:</p><ul><li>Kalkışa {cutoff} saatten fazla varsa, yerine geçecek başka bir yolcu ararız.</li><li>{cutoff} saatten az kaldıysa başka kimseyi aramayız. Diğerlerine bir yol arkadaşının iptal ettiğini, kaç kişi kaldığını ve yeni fiyatı bildiririz.</li></ul><p>Yeni fiyatı istemezseniz siz de iptal edip normal taksi ayırtabilirsiniz. Tek kişi kalırsa ortak yolculuk olmaz.</p>"],
+        ["14. Google / Apple ile giriş", "<p>Ortak yolculuk için Google (Android) veya Apple (iPhone) ile bir kez giriş yaparsınız; böylece her yolcu gerçek bir hesaptır. Şifrenizi asla görmeyiz. Normal rezervasyonlar giriş gerektirmez.</p>"],
+        ["15. Kişisel veriler", "<p>Yol arkadaşlarınızdan yalnızca ad ve soyadlarını görürsünüz, başka hiçbir şey değil. Onlar da sizinle ilgili başka bir şey görmez. Sürücü adı ve alış noktasını görür. Veriler yalnızca yolculuk için kullanılır.</p>"]
+      ]) },
+    ar:{ maziName:"معًا في مجموعة واحدة", maziBtnTitle:"معًا في مجموعة واحدة", maziSubtitle:"مجموعة واحدة • حجز واحد • رحلة واحدة",
+      maziPerPerson:"حوالي {lo}€ – {hi}€ للشخص", maziInfoLink:"ما هي الرحلة المشتركة؟",
+      maziTestMsg:"نسخة تجريبية: من هنا سيبدأ البحث عن رفاق الرحلة.",
+      maziAccept:"قرأت شروط الرحلة المشتركة وأوافق عليها",
+      maziDec:".", maziCm:"سم", maziBagLen:"الطول", maziBagWid:"العرض", maziDimsTbd:"سيُعلن قريبًا",
+      maziBagsOne:"حقيبة واحدة بحجم عادي", maziBagsMany:"{n} حقائب بحجم عادي",
+      maziInfoHtml:_maziInfo([
+        ["1. ما هي؟", "<p>تذهب إلى المطار ضمن مجموعة من {minP} إلى {maxP} ركاب في المجموع، بمن فيهم أنت، ينطلقون في الوقت نفسه من أماكن قريبة. سيارة أجرة واحدة، عدّاد واحد، إيصال واحد. تُقسَّم التكلفة بالتساوي.</p><p>التوقفات لاصطحاب الركاب جزء من الرحلة نفسها. إنها رحلة واحدة، من أول نقطة اصطحاب حتى المطار.</p>"],
+        ["2. متى يمكنني استخدامها؟", "<p>فقط من أثينا إلى المطار، لشخص واحد، قبل {cutoff} ساعة على الأقل. والأفضل قبل {cutoff}–{later} ساعة أو قبل ذلك. إذا كان موعد الانطلاق بعد أقل من {cutoff} ساعة، يمكنك حجز تاكسي عادي فقط.</p>"],
+        ["3. كيف نجد المجموعة", "<p>نبحث عن ركاب يريدون الانطلاق إلى المطار قبلك أو بعدك بما لا يزيد عن {window} دقيقة، ويكونون قريبين منك ({gapMin}–{gapMax} دقائق بالسيارة). وقت الانطلاق المشترك هو الأبكر في المجموعة، حتى لا يتأخر أحد عن الوقت الذي طلبه. ترى الوقت الدقيق قبل أن تضغط «أوافق». يستمر البحث حتى عندما يكون التطبيق مغلقًا.</p>"],
+        ["4. الوقت الذي تحدده", "<p>هو الوقت الذي يكون فيه الجميع داخل التاكسي وينطلقون إلى المطار. يتم الاصطحاب قبل ذلك. يُظهر لك التطبيق بدقة متى يجب أن تكون في الخارج ومتى يصل التاكسي.</p>"],
+        ["5. الموافقة", "<p>عند العثور على مجموعة، يرى كل شخص وقته الخاص للخروج، وكم ينتظر السائق، وكم سيدفع، ثم يضغط <b>أوافق</b> أو <b>لا</b>.</p><p>إذا ضغط أحدهم «لا»، يخرج من المجموعة. نبحث عن راكب آخر ليأخذ مكانه، ونُبلغ الآخرين بالعدد الجديد والسعر الجديد. نسألك مرة أخرى قبل المتابعة. لا يُحجز شيء دون موافقتك.</p>"],
+        ["6. المسؤول", "<p>من يرغب من المجموعة يضغط <b>أتولّى ذلك</b> ويصبح المسؤول عن الرحلة. إذا ضغط شخصان، يُعتمد الأول. إذا لم يتولَّ أحد، لا تتم الرحلة المشتركة ويمكنك حجز تاكسي عادي.</p>"],
+        ["7. الدفع", "<p>يعرف كل شخص مسبقًا كم سيدفع. خلال الرحلة يمكنك:</p><ul><li>أن تعطي مبلغك للمسؤول، أو</li><li>أن تدفع مبلغك للسائق بالبطاقة، أو</li><li>أن يدفع شخص واحد ثمن التاكسي كله وتتحاسبوا فيما بينكم.</li></ul><p>المجموع هو ما يُظهره العدّاد. يُصدر السائق إيصالًا واحدًا للرحلة كلها. التطبيق لا يحتفظ بالمال ولا يحوّله.</p>"],
+        ["8. كيف يُحسب المبلغ", "<p>السعر العادي من آخر نقطة اصطحاب إلى المطار، مضافًا إليه {ex2} € إذا كنتم 2 أو {ex3} € إذا كنتم 3، مقابل توقفات الاصطحاب. يُقسَّم المجموع بالتساوي. هذا تقدير: المبلغ النهائي يُظهره العدّاد ويُقسَّم بالتساوي على من هم في التاكسي.</p>"],
+        ["9. كن جاهزًا", "<p>كن في الخارج قبل وصول التاكسي بـ {ready} دقائق. ينتظر السائق حتى {wait} دقيقة ثم يتابع إلى نقطة الاصطحاب التالية.</p>"],
+        ["10. إذا لم أحضر", "<p>تستمر الرحلة بدونك وسنطلب منك توضيح السبب. يُقسَّم المبلغ على من هم في التاكسي. إذا تغيّبت كثيرًا، قد يُقيَّد استخدامك للرحلة المشتركة.</p>"],
+        ["11. الأمتعة", "<p>لكل راكب {bags}، دون أمتعة كبيرة الحجم. المساحة مشتركة للجميع. الحجم الأقصى: {dims}.</p>{bagSvg}"],
+        ["12. إذا لم نجد مجموعة", "<p>قبل الانطلاق بـ {cutoff} ساعة نوقف البحث ونرسل لك إشعارًا: «لم يتم العثور على رحلة مشتركة»، مع زر <b>[احجز تاكسي]</b>. يُفتح الحجز العادي مُعبّأ مسبقًا وتؤكده أنت. لا نحجز تاكسي أبدًا من دونك.</p>"],
+        ["13. الإلغاء", "<p>يمكنك إيقاف البحث في أي وقت قبل أن تضغط «أوافق».</p><p>إذا ألغى أحدهم بعد الموافقة:</p><ul><li>إذا بقي أكثر من {cutoff} ساعة على الانطلاق، نبحث عن راكب آخر ليأخذ مكانه.</li><li>إذا بقي أقل من {cutoff} ساعة، لا نبحث عن أحد آخر. نُبلغ الآخرين بأن أحد رفاق الرحلة ألغى، وكم شخصًا بقي، والسعر الجديد.</li></ul><p>إذا لم يناسبك السعر الجديد، يمكنك الإلغاء أيضًا وحجز تاكسي عادي. إذا بقي شخص واحد فقط، لا تتم الرحلة المشتركة.</p>"],
+        ["14. تسجيل الدخول عبر Google / Apple", "<p>للرحلة المشتركة تسجّل الدخول مرة واحدة عبر Google (أندرويد) أو Apple (آيفون)، حتى يكون كل راكب حسابًا حقيقيًا. لا نرى كلمة مرورك أبدًا. الحجز العادي لا يحتاج إلى تسجيل دخول.</p>"],
+        ["15. البيانات الشخصية", "<p>من رفاق رحلتك ترى الاسم الكامل فقط، لا شيء آخر. وهم أيضًا لا يرون عنك شيئًا آخر. يرى السائق الاسم ونقطة الاصطحاب. تُستخدم البيانات للرحلة فقط.</p>"]
+      ]) },
+    zh:{ maziName:"同组出行", maziBtnTitle:"同组出行", maziSubtitle:"一个小组 • 一次预订 • 一次行程",
+      maziPerPerson:"每人约 {lo}€ – {hi}€", maziInfoLink:"什么是同乘？",
+      maziTestMsg:"测试版：将在这里开始寻找同行乘客。",
+      maziAccept:"我已阅读并接受同乘条款",
+      maziDec:".", maziCm:"厘米", maziBagLen:"长", maziBagWid:"宽", maziDimsTbd:"即将公布",
+      maziBagsOne:"1 个普通尺寸行李箱", maziBagsMany:"{n} 个普通尺寸行李箱",
+      maziInfoHtml:_maziInfo([
+        ["1. 这是什么", "<p>您与其他乘客一起去机场，整组共 {minP} 至 {maxP} 位乘客（含您本人），大家在同一时间从相近的地点出发。一辆出租车、一个计价器、一张收据。费用平均分摊。</p><p>接人途中的停靠属于同一行程。从第一位乘客上车到抵达机场，是一次完整的行程。</p>"],
+        ["2. 什么时候可以使用", "<p>仅限从雅典前往机场，1 人，至少提前 {cutoff} 小时。最好提前 {cutoff}–{later} 小时或更早。如果距出发不足 {cutoff} 小时，只能预订普通出租车。</p>"],
+        ["3. 如何组成小组", "<p>我们寻找希望比您早或晚不超过 {window} 分钟出发去机场、并且离您很近（车程 {gapMin}–{gapMax} 分钟）的乘客。共同出发时间取小组中最早的时间，这样没有人会比自己要求的时间更晚出发。按下“同意”之前，您会看到确切时间。即使关闭应用，搜索也会继续。</p>"],
+        ["4. 您填写的时间", "<p>这是所有人都已上车、出发前往机场的时间。接人会提前进行。应用会准确告诉您何时到门外等候、出租车何时到达。</p>"],
+        ["5. 同意", "<p>找到小组后，每个人都会看到自己需要到门外的时间、司机等候多久以及需要支付多少，然后按 <b>同意</b> 或 <b>不同意</b>。</p><p>如果有人按“不同意”，他就会离开小组。我们会寻找其他乘客补上空位，并把新的人数和新的价格告知其他人。继续之前我们会再次征求您的同意。没有您的同意，不会预订任何行程。</p>"],
+        ["6. 负责人", "<p>小组中愿意的人按 <b>我来负责</b>，即成为本次行程的负责人。如有两人按下，以先按者为准。如果无人负责，就不进行同乘，您可以预订普通出租车。</p>"],
+        ["7. 付款", "<p>每个人都事先知道自己要付多少。行程中您可以：</p><ul><li>把您的金额交给负责人，或</li><li>用银行卡向司机支付您自己的金额，或</li><li>由一人支付整趟车费，你们之间再自行结算。</li></ul><p>总额以计价器显示为准。司机为整趟行程开具一张收据。应用不保管、也不转账任何款项。</p>"],
+        ["8. 金额如何计算", "<p>从最后一位乘客上车点到机场的普通价格，另加上车停靠费：2 人时 {ex2} €，3 人时 {ex3} €。总额平均分摊。这只是估算：最终金额以计价器为准，并由车上的乘客平均分摊。</p>"],
+        ["9. 请做好准备", "<p>请在出租车到达前 {ready} 分钟到门外等候。司机最多等候 {wait} 分钟，之后前往下一个上车点。</p>"],
+        ["10. 如果我没有出现", "<p>行程会在没有您的情况下继续，我们会请您说明原因。费用由车上的乘客分摊。如果您经常缺席，您使用同乘的权限可能会受到限制。</p>"],
+        ["11. 行李", "<p>每位乘客可携带{bags}，不可携带超大行李。空间由大家共用。最大尺寸：{dims}。</p>{bagSvg}"],
+        ["12. 如果没有找到小组", "<p>出发前 {cutoff} 小时，我们会停止搜索，并向您发送通知：“未找到同乘”，附带 <b>[预订出租车]</b> 按钮。普通预订会自动填好，由您自己确认。未经您确认，我们绝不会预订出租车。</p>"],
+        ["13. 取消", "<p>在按下“同意”之前，您可以随时停止搜索。</p><p>如果有人在同意之后取消：</p><ul><li>如果距出发还有超过 {cutoff} 小时，我们会寻找其他乘客补上空位。</li><li>如果不足 {cutoff} 小时，我们不再寻找其他人。我们会通知其他人有一位同行乘客已取消、还剩几人以及新的价格。</li></ul><p>如果您不接受新价格，也可以取消并预订普通出租车。如果只剩一人，就不进行同乘。</p>"],
+        ["14. 使用 Google / Apple 登录", "<p>使用同乘时，您只需用 Google（安卓）或 Apple（iPhone）登录一次，以确保每位乘客都是真实账户。我们永远看不到您的密码。普通预订无需登录。</p>"],
+        ["15. 个人数据", "<p>对于同行乘客，您只能看到他们的姓名，看不到其他信息。他们也看不到您的其他信息。司机可以看到姓名和上车地点。数据仅用于本次行程。</p>"]
+      ]) },
+    uk:{ maziName:"Разом однією компанією", maziBtnTitle:"РАЗОМ ОДНІЄЮ КОМПАНІЄЮ", maziSubtitle:"Одна компанія • Одне бронювання • Одна поїздка",
+      maziPerPerson:"приблизно {lo}€ – {hi}€ з людини", maziInfoLink:"Що таке спільна поїздка?",
+      maziTestMsg:"Тестова версія: тут розпочинатиметься пошук попутників.",
+      maziAccept:"Я прочитав(ла) і приймаю умови спільної поїздки",
+      maziDec:",", maziCm:"см", maziBagLen:"довжина", maziBagWid:"ширина", maziDimsTbd:"буде оголошено найближчим часом",
+      maziBagsOne:"1 валізу звичайного розміру", maziBagsMany:"{n} валізи звичайного розміру",
+      maziInfoHtml:_maziInfo([
+        ["1. Що це таке", "<p>Ви їдете до аеропорту в компанії з {minP}–{maxP} пасажирів загалом, включно з вами, які виїжджають в один і той самий час із сусідніх місць. Одне таксі, один таксометр, один чек. Вартість ділиться порівну.</p><p>Зупинки, щоб забрати пасажирів, — частина тієї самої поїздки. Це одна поїздка: від першої посадки до аеропорту.</p>"],
+        ["2. Коли можна скористатися", "<p>Лише з Афін до аеропорту, для 1 людини, щонайменше за {cutoff} годин. Краще за {cutoff}–{later} годин або ще раніше. Якщо до виїзду менше {cutoff} годин, можна замовити лише звичайне таксі.</p>"],
+        ["3. Як підбирається компанія", "<p>Ми шукаємо пасажирів, які хочуть виїхати до аеропорту не більш ніж на {window} хвилин раніше або пізніше за вас і перебувають поруч ({gapMin}–{gapMax} хвилин їзди). Спільний час виїзду — найраніший у групі, щоб ніхто не виїхав пізніше, ніж просив. Точний час ви побачите до того, як натиснете ЗГОДЕН. Пошук триває, навіть коли застосунок закритий.</p>"],
+        ["4. Час, який ви вказуєте", "<p>Це час, коли всі вже в таксі й виїжджають до аеропорту. Посадка відбувається раніше. Застосунок точно покаже, коли вийти на вулицю і коли приїде таксі.</p>"],
+        ["5. Згода", "<p>Коли компанію знайдено, кожен бачить свій час виходу, скільки чекає водій і скільки платить, і натискає <b>ЗГОДЕН</b> або <b>НІ</b>.</p><p>Якщо хтось натискає НІ, він виходить із групи. Ми шукаємо іншого пасажира на його місце й повідомляємо решті нову кількість людей і нову ціну. Перш ніж продовжити, ми запитаємо вас знову. Без вашого ЗГОДЕН нічого не бронюється.</p>"],
+        ["6. Відповідальний", "<p>Будь-хто з групи, хто бажає, натискає <b>БЕРУ НА СЕБЕ</b> і стає відповідальним за поїздку. Якщо натиснули двоє, зараховується перший. Якщо ніхто не бере на себе, спільної поїздки не буде, і ви можете замовити звичайне таксі.</p>"],
+        ["7. Оплата", "<p>Кожен заздалегідь знає, скільки платить. Під час поїздки можна:</p><ul><li>віддати свою суму відповідальному, або</li><li>оплатити свою суму водієві карткою, або</li><li>один платить за все таксі, а ви розраховуєтеся між собою.</li></ul><p>Підсумок — це те, що показує таксометр. Водій видає один чек за всю поїздку. Застосунок не зберігає і не переказує гроші.</p>"],
+        ["8. Як рахується сума", "<p>Звичайна ціна від останньої посадки до аеропорту, плюс {ex2} €, якщо вас 2, або {ex3} €, якщо вас 3, — за зупинки для посадки. Підсумок ділиться порівну. Це оцінка: остаточну суму показує таксометр, і вона ділиться порівну між тими, хто в таксі.</p>"],
+        ["9. Будьте готові", "<p>Будьте на вулиці за {ready} хвилин до приїзду таксі. Водій чекає до {wait} хвилин, а потім їде до наступної посадки.</p>"],
+        ["10. Якщо я не прийду", "<p>Поїздка продовжиться без вас, і ми попросимо вас пояснити причину. Сума ділиться між тими, хто в таксі. Якщо ви часто не приходите, користування спільною поїздкою може бути обмежене.</p>"],
+        ["11. Багаж", "<p>Кожен пасажир може взяти {bags}, без надто великого багажу. Місце спільне для всіх. Максимальний розмір: {dims}.</p>{bagSvg}"],
+        ["12. Якщо компанію не знайдено", "<p>За {cutoff} годин до виїзду ми припиняємо пошук і надсилаємо вам сповіщення: «Спільну поїздку не знайдено», з кнопкою <b>[ЗАМОВИТИ ТАКСІ]</b>. Звичайне бронювання відкриється вже заповненим, і ви підтвердите його самі. Ми ніколи не замовляємо таксі без вас.</p>"],
+        ["13. Скасування", "<p>Ви можете зупинити пошук будь-коли до натискання ЗГОДЕН.</p><p>Якщо хтось скасовує після ЗГОДЕН:</p><ul><li>Якщо до виїзду більше {cutoff} годин, ми шукаємо іншого пасажира на його місце.</li><li>Якщо менше {cutoff} годин, ми більше нікого не шукаємо. Ми повідомляємо решті, що попутник скасував поїздку, скільки людей залишилося і яка нова ціна.</li></ul><p>Якщо вас не влаштовує нова ціна, ви теж можете скасувати й замовити звичайне таксі. Якщо залишається лише одна людина, спільної поїздки не буде.</p>"],
+        ["14. Вхід через Google / Apple", "<p>Для спільної поїздки ви один раз входите через Google (Android) або Apple (iPhone), щоб кожен пасажир був справжнім обліковим записом. Ми ніколи не бачимо ваш пароль. Для звичайного бронювання вхід не потрібен.</p>"],
+        ["15. Персональні дані", "<p>Про попутників ви бачите лише ім'я та прізвище, більше нічого. Вони теж не бачать про вас нічого іншого. Водій бачить ім'я та місце посадки. Дані використовуються лише для поїздки.</p>"]
+      ]) },
+    he:{ maziName:"יחד בקבוצה אחת", maziBtnTitle:"יחד בקבוצה אחת", maziSubtitle:"קבוצה אחת • הזמנה אחת • נסיעה אחת",
+      maziPerPerson:"בערך {lo}€ – {hi}€ לאדם", maziInfoLink:"מהי נסיעה משותפת?",
+      maziTestMsg:"גרסת ניסיון: כאן יתחיל החיפוש אחר שותפים לנסיעה.",
+      maziAccept:"קראתי ואני מאשר/ת את תנאי הנסיעה המשותפת",
+      maziDec:".", maziCm:"ס״מ", maziBagLen:"אורך", maziBagWid:"רוחב", maziDimsTbd:"יפורסם בקרוב",
+      maziBagsOne:"מזוודה אחת בגודל רגיל", maziBagsMany:"{n} מזוודות בגודל רגיל",
+      maziInfoHtml:_maziInfo([
+        ["1. מה זה", "<p>אתם נוסעים לשדה התעופה בקבוצה של {minP} עד {maxP} נוסעים בסך הכול, כולל אתכם, שיוצאים באותה שעה מנקודות קרובות. מונית אחת, מונה אחד, קבלה אחת. העלות מתחלקת שווה בשווה.</p><p>העצירות לאיסוף הנוסעים הן חלק מאותה נסיעה. זו נסיעה אחת, מהאיסוף הראשון ועד שדה התעופה.</p>"],
+        ["2. מתי אפשר להשתמש", "<p>רק מאתונה לשדה התעופה, לאדם אחד, לפחות {cutoff} שעות מראש. עדיף {cutoff}–{later} שעות מראש או אפילו מוקדם יותר. אם היציאה בעוד פחות מ-{cutoff} שעות, אפשר להזמין רק מונית רגילה.</p>"],
+        ["3. איך נמצאת הקבוצה", "<p>אנחנו מחפשים נוסעים שרוצים לצאת לשדה התעופה עד {window} דקות לפניכם או אחריכם, ושנמצאים קרוב אליכם ({gapMin}–{gapMax} דקות נסיעה). שעת היציאה המשותפת היא המוקדמת ביותר בקבוצה, כדי שאף אחד לא ייצא מאוחר ממה שביקש. את השעה המדויקת תראו לפני שתלחצו על מסכים/ה. החיפוש ממשיך גם כשהאפליקציה סגורה.</p>"],
+        ["4. השעה שאתם מזינים", "<p>זו השעה שבה כולם כבר במונית ויוצאים לשדה התעופה. האיסופים נעשים מוקדם יותר. האפליקציה מראה לכם בדיוק מתי להיות בחוץ ומתי המונית מגיעה.</p>"],
+        ["5. הסכמה", "<p>כשנמצאת קבוצה, כל אחד רואה את השעה שלו להיות בחוץ, כמה זמן הנהג מחכה וכמה הוא משלם, ולוחץ <b>מסכים/ה</b> או <b>לא</b>.</p><p>אם מישהו לוחץ לא, הוא יוצא מהקבוצה. אנחנו מחפשים נוסע אחר שיתפוס את מקומו ומעדכנים את האחרים במספר האנשים החדש ובמחיר החדש. נשאל אתכם שוב לפני שנמשיך. שום דבר לא מוזמן בלי ההסכמה שלכם.</p>"],
+        ["6. האחראי", "<p>מי מהקבוצה שרוצה לוחץ <b>אני לוקח/ת אחריות</b> והופך לאחראי על הנסיעה. אם שניים לוחצים, הראשון קובע. אם אף אחד לא לוקח אחריות, אין נסיעה משותפת ואפשר להזמין מונית רגילה.</p>"],
+        ["7. תשלום", "<p>כל אחד יודע מראש כמה הוא משלם. במהלך הנסיעה אפשר:</p><ul><li>לתת את הסכום שלכם לאחראי, או</li><li>לשלם לנהג בכרטיס את הסכום שלכם, או</li><li>שאחד ישלם על כל המונית ותסתדרו ביניכם.</li></ul><p>הסכום הכולל הוא מה שמראה המונה. הנהג מוציא קבלה אחת לכל הנסיעה. האפליקציה לא מחזיקה ולא מעבירה כסף.</p>"],
+        ["8. איך מחושב הסכום", "<p>המחיר הרגיל מהאיסוף האחרון לשדה התעופה, ועוד {ex2} € כשאתם 2 או {ex3} € כשאתם 3, עבור עצירות האיסוף. הסכום הכולל מתחלק שווה בשווה. זו הערכה: את הסכום הסופי מראה המונה, והוא מתחלק שווה בשווה בין מי שנמצא במונית.</p>"],
+        ["9. היו מוכנים", "<p>היו בחוץ {ready} דקות לפני שהמונית מגיעה. הנהג מחכה עד {wait} דקות ואז ממשיך לאיסוף הבא.</p>"],
+        ["10. אם לא הגעתי", "<p>הנסיעה ממשיכה בלעדיכם ונבקש מכם להסביר את הסיבה. הסכום מתחלק בין מי שנמצא במונית. אם אתם נעדרים לעיתים קרובות, השימוש בנסיעה המשותפת עלול להיות מוגבל.</p>"],
+        ["11. מזוודות", "<p>לכל נוסע {bags}, ללא מטען גדול במיוחד. המקום משותף לכולם. גודל מרבי: {dims}.</p>{bagSvg}"],
+        ["12. אם לא נמצאה קבוצה", "<p>{cutoff} שעות לפני היציאה אנחנו מפסיקים את החיפוש ושולחים לכם התראה: ״לא נמצאה נסיעה משותפת״, עם הכפתור <b>[הזמנת מונית]</b>. ההזמנה הרגילה נפתחת כשהיא כבר מלאה, ואתם מאשרים אותה בעצמכם. לעולם לא נזמין מונית בלעדיכם.</p>"],
+        ["13. ביטול", "<p>אפשר לעצור את החיפוש בכל רגע לפני שלוחצים על מסכים/ה.</p><p>אם מישהו מבטל אחרי ההסכמה:</p><ul><li>אם נשארו יותר מ-{cutoff} שעות עד היציאה, נחפש נוסע אחר שיתפוס את מקומו.</li><li>אם נשארו פחות מ-{cutoff} שעות, לא נחפש אף אחד נוסף. נעדכן את האחרים שאחד הנוסעים ביטל, כמה אנשים נשארו ומה המחיר החדש.</li></ul><p>אם המחיר החדש לא מתאים לכם, אפשר לבטל גם כן ולהזמין מונית רגילה. אם נשאר רק אדם אחד, אין נסיעה משותפת.</p>"],
+        ["14. כניסה עם Google / Apple", "<p>לנסיעה משותפת נכנסים פעם אחת עם Google (Android) או Apple (iPhone), כדי שכל נוסע יהיה חשבון אמיתי. אנחנו אף פעם לא רואים את הסיסמה שלכם. הזמנה רגילה לא דורשת כניסה.</p>"],
+        ["15. מידע אישי", "<p>על שותפיכם לנסיעה תראו רק את השם המלא שלהם, לא יותר. גם הם לא רואים עליכם שום דבר אחר. הנהג רואה שם ונקודת איסוף. המידע משמש רק לנסיעה.</p>"]
+      ]) }
+  };
+  Object.keys(MAZI).forEach(function(c){
+    if(!I[c]) I[c]={};
+    Object.keys(MAZI[c]).forEach(function(k){ I[c][k]=MAZI[c][k]; });
+  });
+
+  /* «Μαζί σε μία παρέα» — οθόνη «Ψάχνουμε συνεπιβάτες» (βήμα 5). {until} = ημερομηνία/ώρα, {cutoff} = ώρες. */
+  var MAZI_SEARCH = {
+    el:{ maziSearchTitle:"🔎 Ψάχνουμε συνεπιβάτες", maziSearchDepart:"Αναχώρηση για αεροδρόμιο", maziSearchPickup:"Παραλαβή",
+      maziSearchNote:"Θα σας ειδοποιήσουμε μόλις βρεθεί παρέα. Μπορείτε να κλείσετε την εφαρμογή — η αναζήτηση συνεχίζεται.",
+      maziSearchUntil:"Αν δεν βρεθεί παρέα ως τις {until}, θα σας ειδοποιήσουμε για να κλείσετε κανονικό ταξί.",
+      maziStopBtn:"Σταμάτα την αναζήτηση", maziStopAsk:"Να σταματήσει η αναζήτηση συνεπιβατών;", maziStopped:"Η αναζήτηση σταμάτησε.",
+      maziFillAll:"Για την κοινή μίσθωση συμπληρώστε όνομα, επώνυμο και τηλέφωνο.",
+      maziAcceptFirst:"Για να συνεχίσετε, τσεκάρετε «Διάβασα και αποδέχομαι» στο τέλος της σελίδας.",
+      maziErr:"Κάτι δεν πήγε καλά. Δοκιμάστε ξανά.",
+      maziTooLate:"Η κοινή μίσθωση γίνεται μόνο για αναχώρηση σε περισσότερες από {cutoff} ώρες.", maziClose:"Κλείσιμο" },
+    en:{ maziSearchTitle:"🔎 Looking for fellow passengers", maziSearchDepart:"Departure for the airport", maziSearchPickup:"Pickup",
+      maziSearchNote:"We will notify you as soon as a group is found. You can close the app — the search continues.",
+      maziSearchUntil:"If no group is found by {until}, we will notify you so you can book a regular taxi.",
+      maziStopBtn:"Stop the search", maziStopAsk:"Stop searching for fellow passengers?", maziStopped:"The search has stopped.",
+      maziFillAll:"For the shared hire, please fill in first name, last name and phone.",
+      maziAcceptFirst:"To continue, tick “I have read and accept” at the bottom of the page.",
+      maziErr:"Something went wrong. Please try again.",
+      maziTooLate:"The shared hire is only available for departures more than {cutoff} hours away.", maziClose:"Close" },
+    de:{ maziSearchTitle:"🔎 Wir suchen Mitfahrer", maziSearchDepart:"Abfahrt zum Flughafen", maziSearchPickup:"Abholung",
+      maziSearchNote:"Wir benachrichtigen dich, sobald eine Gruppe gefunden ist. Du kannst die App schließen — die Suche läuft weiter.",
+      maziSearchUntil:"Wenn bis {until} keine Gruppe gefunden ist, benachrichtigen wir dich, damit du ein normales Taxi buchen kannst.",
+      maziStopBtn:"Suche beenden", maziStopAsk:"Suche nach Mitfahrern beenden?", maziStopped:"Die Suche wurde beendet.",
+      maziFillAll:"Für die gemeinsame Fahrt gib bitte Vorname, Nachname und Telefon ein.",
+      maziAcceptFirst:"Um fortzufahren, bestätige unten auf der Seite, dass du die Bedingungen gelesen hast und akzeptierst.",
+      maziErr:"Etwas ist schiefgelaufen. Bitte versuche es noch einmal.",
+      maziTooLate:"Die gemeinsame Fahrt gibt es nur für Abfahrten in mehr als {cutoff} Stunden.", maziClose:"Schließen" },
+    fr:{ maziSearchTitle:"🔎 Nous cherchons des co-passagers", maziSearchDepart:"Départ pour l'aéroport", maziSearchPickup:"Prise en charge",
+      maziSearchNote:"Nous vous préviendrons dès qu'un groupe sera trouvé. Vous pouvez fermer l'application — la recherche continue.",
+      maziSearchUntil:"Si aucun groupe n'est trouvé avant le {until}, nous vous préviendrons pour que vous puissiez réserver un taxi normal.",
+      maziStopBtn:"Arrêter la recherche", maziStopAsk:"Arrêter la recherche de co-passagers ?", maziStopped:"La recherche est arrêtée.",
+      maziFillAll:"Pour la course partagée, indiquez votre prénom, votre nom et votre téléphone.",
+      maziAcceptFirst:"Pour continuer, cochez « J'ai lu et j'accepte » en bas de la page.",
+      maziErr:"Un problème est survenu. Veuillez réessayer.",
+      maziTooLate:"La course partagée n'est possible que pour un départ dans plus de {cutoff} heures.", maziClose:"Fermer" },
+    it:{ maziSearchTitle:"🔎 Cerchiamo compagni di viaggio", maziSearchDepart:"Partenza per l'aeroporto", maziSearchPickup:"Punto di salita",
+      maziSearchNote:"Ti avviseremo appena troviamo un gruppo. Puoi chiudere l'app: la ricerca continua.",
+      maziSearchUntil:"Se entro il {until} non si trova un gruppo, ti avviseremo così potrai prenotare un taxi normale.",
+      maziStopBtn:"Interrompi la ricerca", maziStopAsk:"Interrompere la ricerca di compagni di viaggio?", maziStopped:"La ricerca è stata interrotta.",
+      maziFillAll:"Per la corsa condivisa inserisci nome, cognome e telefono.",
+      maziAcceptFirst:"Per continuare, spunta «Ho letto e accetto» in fondo alla pagina.",
+      maziErr:"Qualcosa è andato storto. Riprova.",
+      maziTooLate:"La corsa condivisa è disponibile solo per partenze tra più di {cutoff} ore.", maziClose:"Chiudi" },
+    es:{ maziSearchTitle:"🔎 Buscamos compañeros de viaje", maziSearchDepart:"Salida hacia el aeropuerto", maziSearchPickup:"Recogida",
+      maziSearchNote:"Te avisaremos en cuanto encontremos un grupo. Puedes cerrar la app: la búsqueda continúa.",
+      maziSearchUntil:"Si no se encuentra grupo antes del {until}, te avisaremos para que reserves un taxi normal.",
+      maziStopBtn:"Detener la búsqueda", maziStopAsk:"¿Detener la búsqueda de compañeros de viaje?", maziStopped:"La búsqueda se ha detenido.",
+      maziFillAll:"Para el viaje compartido, rellena nombre, apellidos y teléfono.",
+      maziAcceptFirst:"Para continuar, marca «He leído y acepto» al final de la página.",
+      maziErr:"Algo ha fallado. Inténtalo de nuevo.",
+      maziTooLate:"El viaje compartido solo está disponible para salidas dentro de más de {cutoff} horas.", maziClose:"Cerrar" },
+    ru:{ maziSearchTitle:"🔎 Ищем попутчиков", maziSearchDepart:"Выезд в аэропорт", maziSearchPickup:"Посадка",
+      maziSearchNote:"Мы сообщим вам, как только найдётся компания. Приложение можно закрыть — поиск продолжится.",
+      maziSearchUntil:"Если до {until} компания не найдётся, мы сообщим вам, чтобы вы могли заказать обычное такси.",
+      maziStopBtn:"Остановить поиск", maziStopAsk:"Остановить поиск попутчиков?", maziStopped:"Поиск остановлен.",
+      maziFillAll:"Для совместной поездки укажите имя, фамилию и телефон.",
+      maziAcceptFirst:"Чтобы продолжить, отметьте «Я прочитал(а) и принимаю» внизу страницы.",
+      maziErr:"Что-то пошло не так. Попробуйте ещё раз.",
+      maziTooLate:"Совместная поездка доступна только при выезде более чем через {cutoff} часов.", maziClose:"Закрыть" },
+    pl:{ maziSearchTitle:"🔎 Szukamy współpasażerów", maziSearchDepart:"Wyjazd na lotnisko", maziSearchPickup:"Odbiór",
+      maziSearchNote:"Powiadomimy cię, gdy tylko znajdzie się grupa. Możesz zamknąć aplikację — wyszukiwanie trwa dalej.",
+      maziSearchUntil:"Jeśli do {until} nie znajdzie się grupa, powiadomimy cię, żebyś mógł zamówić zwykłą taksówkę.",
+      maziStopBtn:"Zatrzymaj wyszukiwanie", maziStopAsk:"Zatrzymać wyszukiwanie współpasażerów?", maziStopped:"Wyszukiwanie zostało zatrzymane.",
+      maziFillAll:"Do wspólnego kursu wpisz imię, nazwisko i telefon.",
+      maziAcceptFirst:"Aby kontynuować, zaznacz „Przeczytałem/am i akceptuję” na dole strony.",
+      maziErr:"Coś poszło nie tak. Spróbuj ponownie.",
+      maziTooLate:"Wspólny kurs jest dostępny tylko przy wyjeździe za ponad {cutoff} godzin.", maziClose:"Zamknij" },
+    ro:{ maziSearchTitle:"🔎 Căutăm colegi de drum", maziSearchDepart:"Plecare spre aeroport", maziSearchPickup:"Preluare",
+      maziSearchNote:"Te anunțăm imediat ce găsim un grup. Poți închide aplicația — căutarea continuă.",
+      maziSearchUntil:"Dacă până la {until} nu se găsește un grup, te anunțăm ca să poți rezerva un taxi normal.",
+      maziStopBtn:"Oprește căutarea", maziStopAsk:"Oprești căutarea colegilor de drum?", maziStopped:"Căutarea s-a oprit.",
+      maziFillAll:"Pentru cursa comună completează prenumele, numele și telefonul.",
+      maziAcceptFirst:"Ca să continui, bifează „Am citit și accept” în josul paginii.",
+      maziErr:"Ceva nu a mers bine. Încearcă din nou.",
+      maziTooLate:"Cursa comună este disponibilă doar pentru plecări peste mai mult de {cutoff} ore.", maziClose:"Închide" },
+    nl:{ maziSearchTitle:"🔎 We zoeken medereizigers", maziSearchDepart:"Vertrek naar de luchthaven", maziSearchPickup:"Ophalen",
+      maziSearchNote:"We laten het u weten zodra er een groep is gevonden. U kunt de app sluiten — het zoeken gaat door.",
+      maziSearchUntil:"Als er vóór {until} geen groep is gevonden, laten we het u weten zodat u een gewone taxi kunt boeken.",
+      maziStopBtn:"Zoeken stoppen", maziStopAsk:"Het zoeken naar medereizigers stoppen?", maziStopped:"Het zoeken is gestopt.",
+      maziFillAll:"Vul voor de gedeelde rit uw voornaam, achternaam en telefoon in.",
+      maziAcceptFirst:"Vink om verder te gaan onderaan de pagina het akkoord met de voorwaarden aan.",
+      maziErr:"Er ging iets mis. Probeer het opnieuw.",
+      maziTooLate:"De gedeelde rit is alleen mogelijk bij vertrek over meer dan {cutoff} uur.", maziClose:"Sluiten" },
+    tr:{ maziSearchTitle:"🔎 Yol arkadaşı arıyoruz", maziSearchDepart:"Havalimanına hareket", maziSearchPickup:"Alış noktası",
+      maziSearchNote:"Bir grup bulunur bulunmaz size haber vereceğiz. Uygulamayı kapatabilirsiniz — arama devam eder.",
+      maziSearchUntil:"{until} tarihine kadar grup bulunamazsa, normal taksi ayırtabilmeniz için size haber vereceğiz.",
+      maziStopBtn:"Aramayı durdur", maziStopAsk:"Yol arkadaşı araması durdurulsun mu?", maziStopped:"Arama durduruldu.",
+      maziFillAll:"Ortak yolculuk için ad, soyad ve telefon girin.",
+      maziAcceptFirst:"Devam etmek için sayfanın altındaki “Okudum ve kabul ediyorum” kutusunu işaretleyin.",
+      maziErr:"Bir sorun oluştu. Lütfen tekrar deneyin.",
+      maziTooLate:"Ortak yolculuk yalnızca {cutoff} saatten daha sonraki kalkışlar için geçerlidir.", maziClose:"Kapat" },
+    ar:{ maziSearchTitle:"🔎 نبحث عن رفاق رحلة", maziSearchDepart:"الانطلاق إلى المطار", maziSearchPickup:"نقطة الاصطحاب",
+      maziSearchNote:"سنُعلمك فور العثور على مجموعة. يمكنك إغلاق التطبيق — يستمر البحث.",
+      maziSearchUntil:"إذا لم نجد مجموعة حتى {until}، سنُعلمك لتتمكن من حجز تاكسي عادي.",
+      maziStopBtn:"أوقف البحث", maziStopAsk:"هل تريد إيقاف البحث عن رفاق الرحلة؟", maziStopped:"تم إيقاف البحث.",
+      maziFillAll:"للرحلة المشتركة، أدخل الاسم واسم العائلة ورقم الهاتف.",
+      maziAcceptFirst:"للمتابعة، ضع علامة الموافقة على الشروط في أسفل الصفحة.",
+      maziErr:"حدث خطأ ما. حاول مرة أخرى.",
+      maziTooLate:"الرحلة المشتركة متاحة فقط للانطلاق بعد أكثر من {cutoff} ساعة.", maziClose:"إغلاق" },
+    zh:{ maziSearchTitle:"🔎 正在寻找同行乘客", maziSearchDepart:"前往机场的出发时间", maziSearchPickup:"上车地点",
+      maziSearchNote:"一旦找到小组，我们会立即通知您。您可以关闭应用——搜索会继续。",
+      maziSearchUntil:"如果到 {until} 仍未找到小组，我们会通知您，以便您预订普通出租车。",
+      maziStopBtn:"停止搜索", maziStopAsk:"要停止寻找同行乘客吗？", maziStopped:"搜索已停止。",
+      maziFillAll:"使用同乘请填写名字、姓氏和电话。",
+      maziAcceptFirst:"如需继续，请在页面底部勾选“我已阅读并接受”。",
+      maziErr:"出了点问题，请重试。",
+      maziTooLate:"同乘仅适用于 {cutoff} 小时以后出发的行程。", maziClose:"关闭" },
+    uk:{ maziSearchTitle:"🔎 Шукаємо попутників", maziSearchDepart:"Виїзд до аеропорту", maziSearchPickup:"Посадка",
+      maziSearchNote:"Ми повідомимо вас, щойно знайдеться компанія. Застосунок можна закрити — пошук триває.",
+      maziSearchUntil:"Якщо до {until} компанію не знайдено, ми повідомимо вас, щоб ви могли замовити звичайне таксі.",
+      maziStopBtn:"Зупинити пошук", maziStopAsk:"Зупинити пошук попутників?", maziStopped:"Пошук зупинено.",
+      maziFillAll:"Для спільної поїздки вкажіть ім'я, прізвище та телефон.",
+      maziAcceptFirst:"Щоб продовжити, позначте «Я прочитав(ла) і приймаю» внизу сторінки.",
+      maziErr:"Щось пішло не так. Спробуйте ще раз.",
+      maziTooLate:"Спільна поїздка доступна лише для виїзду більш ніж через {cutoff} годин.", maziClose:"Закрити" },
+    he:{ maziSearchTitle:"🔎 מחפשים שותפים לנסיעה", maziSearchDepart:"יציאה לשדה התעופה", maziSearchPickup:"איסוף",
+      maziSearchNote:"נודיע לכם ברגע שתימצא קבוצה. אפשר לסגור את האפליקציה — החיפוש ממשיך.",
+      maziSearchUntil:"אם לא תימצא קבוצה עד {until}, נודיע לכם כדי שתוכלו להזמין מונית רגילה.",
+      maziStopBtn:"עצירת החיפוש", maziStopAsk:"לעצור את החיפוש אחר שותפים לנסיעה?", maziStopped:"החיפוש נעצר.",
+      maziFillAll:"לנסיעה משותפת מלאו שם פרטי, שם משפחה וטלפון.",
+      maziAcceptFirst:"כדי להמשיך, סמנו ״קראתי ואני מאשר/ת״ בתחתית הדף.",
+      maziErr:"משהו השתבש. נסו שוב.",
+      maziTooLate:"נסיעה משותפת זמינה רק ליציאה בעוד יותר מ-{cutoff} שעות.", maziClose:"סגירה" }
+  };
+  Object.keys(MAZI_SEARCH).forEach(function(c){
+    if(!I[c]) I[c]={};
+    Object.keys(MAZI_SEARCH[c]).forEach(function(k){ I[c][k]=MAZI_SEARCH[c][k]; });
+  });
+
+  /* «Μαζί σε μία παρέα» — «Βρέθηκε κοινή μίσθωση» (βήμα 6): ο πελάτης βλέπει τις δικές του ώρες και το ποσό του. */
+  var MAZI_FOUND = {
+    el:{ maziFound:"✅ Βρέθηκε κοινή μίσθωση", maziPassengers:"Επιβάτες", maziWith:"Μαζί με", maziBeOut:"Να είστε έξω",
+      maziTaxiAt:"Το ταξί φτάνει", maziDriverWaits:"Αναμονή οδηγού", maziMinutesN:"{n} λεπτά", maziEstimate:"Εκτιμώμενο ποσό" },
+    en:{ maziFound:"✅ Shared hire found", maziPassengers:"Passengers", maziWith:"Together with", maziBeOut:"Be outside at",
+      maziTaxiAt:"Taxi arrives", maziDriverWaits:"Driver waits", maziMinutesN:"{n} minutes", maziEstimate:"Estimated amount" },
+    de:{ maziFound:"✅ Gemeinsame Fahrt gefunden", maziPassengers:"Fahrgäste", maziWith:"Zusammen mit", maziBeOut:"Sei draußen um",
+      maziTaxiAt:"Das Taxi kommt um", maziDriverWaits:"Wartezeit des Fahrers", maziMinutesN:"{n} Minuten", maziEstimate:"Geschätzter Betrag" },
+    fr:{ maziFound:"✅ Course partagée trouvée", maziPassengers:"Passagers", maziWith:"Avec", maziBeOut:"Soyez dehors à",
+      maziTaxiAt:"Le taxi arrive à", maziDriverWaits:"Attente du chauffeur", maziMinutesN:"{n} minutes", maziEstimate:"Montant estimé" },
+    it:{ maziFound:"✅ Corsa condivisa trovata", maziPassengers:"Passeggeri", maziWith:"Insieme a", maziBeOut:"Sii fuori alle",
+      maziTaxiAt:"Il taxi arriva alle", maziDriverWaits:"Attesa dell'autista", maziMinutesN:"{n} minuti", maziEstimate:"Importo stimato" },
+    es:{ maziFound:"✅ Viaje compartido encontrado", maziPassengers:"Pasajeros", maziWith:"Junto con", maziBeOut:"Estate fuera a las",
+      maziTaxiAt:"El taxi llega a las", maziDriverWaits:"Espera del conductor", maziMinutesN:"{n} minutos", maziEstimate:"Importe estimado" },
+    ru:{ maziFound:"✅ Совместная поездка найдена", maziPassengers:"Пассажиры", maziWith:"Вместе с", maziBeOut:"Будьте на улице в",
+      maziTaxiAt:"Такси приедет в", maziDriverWaits:"Ожидание водителя", maziMinutesN:"{n} мин", maziEstimate:"Ориентировочная сумма" },
+    pl:{ maziFound:"✅ Znaleziono wspólny kurs", maziPassengers:"Pasażerowie", maziWith:"Razem z", maziBeOut:"Bądź na zewnątrz o",
+      maziTaxiAt:"Taksówka przyjedzie o", maziDriverWaits:"Czekanie kierowcy", maziMinutesN:"{n} min", maziEstimate:"Szacowana kwota" },
+    ro:{ maziFound:"✅ Cursă comună găsită", maziPassengers:"Pasageri", maziWith:"Împreună cu", maziBeOut:"Fii afară la",
+      maziTaxiAt:"Taxiul sosește la", maziDriverWaits:"Așteptarea șoferului", maziMinutesN:"{n} minute", maziEstimate:"Sumă estimată" },
+    nl:{ maziFound:"✅ Gedeelde rit gevonden", maziPassengers:"Passagiers", maziWith:"Samen met", maziBeOut:"Sta buiten om",
+      maziTaxiAt:"De taxi komt om", maziDriverWaits:"Wachttijd chauffeur", maziMinutesN:"{n} minuten", maziEstimate:"Geschat bedrag" },
+    tr:{ maziFound:"✅ Ortak yolculuk bulundu", maziPassengers:"Yolcular", maziWith:"Birlikte", maziBeOut:"Dışarıda olma saati",
+      maziTaxiAt:"Taksinin geliş saati", maziDriverWaits:"Sürücü bekleme süresi", maziMinutesN:"{n} dakika", maziEstimate:"Tahmini tutar" },
+    ar:{ maziFound:"✅ تم العثور على رحلة مشتركة", maziPassengers:"الركاب", maziWith:"مع", maziBeOut:"كن في الخارج الساعة",
+      maziTaxiAt:"يصل التاكسي الساعة", maziDriverWaits:"انتظار السائق", maziMinutesN:"{n} دقائق", maziEstimate:"المبلغ التقديري" },
+    zh:{ maziFound:"✅ 已找到同乘", maziPassengers:"乘客", maziWith:"同行者", maziBeOut:"请到门外等候",
+      maziTaxiAt:"出租车到达", maziDriverWaits:"司机等候", maziMinutesN:"{n} 分钟", maziEstimate:"预估金额" },
+    uk:{ maziFound:"✅ Спільну поїздку знайдено", maziPassengers:"Пасажири", maziWith:"Разом з", maziBeOut:"Будьте на вулиці о",
+      maziTaxiAt:"Таксі приїде о", maziDriverWaits:"Очікування водія", maziMinutesN:"{n} хв", maziEstimate:"Орієнтовна сума" },
+    he:{ maziFound:"✅ נמצאה נסיעה משותפת", maziPassengers:"נוסעים", maziWith:"יחד עם", maziBeOut:"היו בחוץ בשעה",
+      maziTaxiAt:"המונית מגיעה בשעה", maziDriverWaits:"המתנת הנהג", maziMinutesN:"{n} דקות", maziEstimate:"סכום משוער" }
+  };
+  Object.keys(MAZI_FOUND).forEach(function(c){
+    if(!I[c]) I[c]={};
+    Object.keys(MAZI_FOUND[c]).forEach(function(k){ I[c][k]=MAZI_FOUND[c][k]; });
+  });
+
+  /* «Μαζί» — ακύρωση όταν έχει βρεθεί παρέα (το κουμπί είναι το υπάρχον bookCancelBtn «❌ Ακύρωση»). */
+  var MAZI_CANCEL = {
+    el:{ maziCancelAsk:"Να ακυρωθεί η κοινή μίσθωση;" },
+    en:{ maziCancelAsk:"Cancel the shared hire?" },
+    de:{ maziCancelAsk:"Gemeinsame Fahrt stornieren?" },
+    fr:{ maziCancelAsk:"Annuler la course partagée ?" },
+    it:{ maziCancelAsk:"Annullare la corsa condivisa?" },
+    es:{ maziCancelAsk:"¿Cancelar el viaje compartido?" },
+    ru:{ maziCancelAsk:"Отменить совместную поездку?" },
+    pl:{ maziCancelAsk:"Anulować wspólny kurs?" },
+    ro:{ maziCancelAsk:"Anulezi cursa comună?" },
+    nl:{ maziCancelAsk:"De gedeelde rit annuleren?" },
+    tr:{ maziCancelAsk:"Ortak yolculuk iptal edilsin mi?" },
+    ar:{ maziCancelAsk:"هل تريد إلغاء الرحلة المشتركة؟" },
+    zh:{ maziCancelAsk:"要取消同乘吗？" },
+    uk:{ maziCancelAsk:"Скасувати спільну поїздку?" },
+    he:{ maziCancelAsk:"לבטל את הנסיעה המשותפת?" }
+  };
+  Object.keys(MAZI_CANCEL).forEach(function(c){
+    if(!I[c]) I[c]={};
+    Object.keys(MAZI_CANCEL[c]).forEach(function(k){ I[c][k]=MAZI_CANCEL[c][k]; });
+  });
+
+  /* «Μαζί» — «✅ ΣΥΜΦΩΝΩ» στην πρόταση παρέας και τι γράφει μετά. */
+  var MAZI_AGREE = {
+    el:{ maziAgreeBtn:"✅ ΣΥΜΦΩΝΩ", maziYouAgreed:"Συμφωνήσατε — περιμένουμε τους υπόλοιπους." },
+    en:{ maziAgreeBtn:"✅ I AGREE", maziYouAgreed:"You agreed — waiting for the others." },
+    de:{ maziAgreeBtn:"✅ EINVERSTANDEN", maziYouAgreed:"Du hast zugestimmt — wir warten auf die anderen." },
+    fr:{ maziAgreeBtn:"✅ J'ACCEPTE", maziYouAgreed:"Vous avez accepté — nous attendons les autres." },
+    it:{ maziAgreeBtn:"✅ ACCETTO", maziYouAgreed:"Hai accettato — aspettiamo gli altri." },
+    es:{ maziAgreeBtn:"✅ ACEPTO", maziYouAgreed:"Has aceptado — esperamos a los demás." },
+    ru:{ maziAgreeBtn:"✅ ПОДТВЕРЖДАЮ", maziYouAgreed:"Вы подтвердили — ждём остальных." },
+    pl:{ maziAgreeBtn:"✅ ZGADZAM SIĘ", maziYouAgreed:"Potwierdzone — czekamy na pozostałych." },
+    ro:{ maziAgreeBtn:"✅ SUNT DE ACORD", maziYouAgreed:"Ai acceptat — îi așteptăm pe ceilalți." },
+    nl:{ maziAgreeBtn:"✅ AKKOORD", maziYouAgreed:"U hebt ingestemd — we wachten op de anderen." },
+    tr:{ maziAgreeBtn:"✅ KABUL EDİYORUM", maziYouAgreed:"Onayladınız — diğerlerini bekliyoruz." },
+    ar:{ maziAgreeBtn:"✅ أوافق", maziYouAgreed:"لقد وافقت — ننتظر الآخرين." },
+    zh:{ maziAgreeBtn:"✅ 同意", maziYouAgreed:"您已同意——正在等待其他人。" },
+    uk:{ maziAgreeBtn:"✅ ПІДТВЕРДЖУЮ", maziYouAgreed:"Ви підтвердили — чекаємо на інших." },
+    he:{ maziAgreeBtn:"✅ אישור", maziYouAgreed:"אישרתם — מחכים לשאר." }
+  };
+  Object.keys(MAZI_AGREE).forEach(function(c){
+    if(!I[c]) I[c]={};
+    Object.keys(MAZI_AGREE[c]).forEach(function(k){ I[c][k]=MAZI_AGREE[c][k]; });
+  });
+
+  /* «Μαζί» — ποιοι συμφώνησαν / ποιους περιμένουμε (μόνο ονόματα) + παράκληση σε όποιον δεν απάντησε. */
+  var MAZI_MEMBERS = {
+    el:{ maziAgreedLbl:"Συμφώνησαν", maziYou:"Εσείς", maziWaitingAnswer:"περιμένουμε απάντηση",
+      maziPleaseAnswer:"Παρακαλώ απαντήστε για να συμπληρωθεί η κοινή μίσθωση." },
+    en:{ maziAgreedLbl:"Agreed", maziYou:"You", maziWaitingAnswer:"waiting for an answer",
+      maziPleaseAnswer:"Please answer so the shared hire can be completed." },
+    de:{ maziAgreedLbl:"Zugestimmt", maziYou:"Du", maziWaitingAnswer:"wir warten auf Antwort",
+      maziPleaseAnswer:"Bitte antworte, damit die gemeinsame Fahrt zustande kommt." },
+    fr:{ maziAgreedLbl:"Ont accepté", maziYou:"Vous", maziWaitingAnswer:"en attente de réponse",
+      maziPleaseAnswer:"Merci de répondre pour que la course partagée soit complète." },
+    it:{ maziAgreedLbl:"Hanno accettato", maziYou:"Tu", maziWaitingAnswer:"in attesa di risposta",
+      maziPleaseAnswer:"Rispondi, per favore, così la corsa condivisa può essere completata." },
+    es:{ maziAgreedLbl:"Han aceptado", maziYou:"Tú", maziWaitingAnswer:"esperando respuesta",
+      maziPleaseAnswer:"Por favor, responde para que el viaje compartido se complete." },
+    ru:{ maziAgreedLbl:"Подтвердили", maziYou:"Вы", maziWaitingAnswer:"ждём ответа",
+      maziPleaseAnswer:"Пожалуйста, ответьте, чтобы совместная поездка состоялась." },
+    pl:{ maziAgreedLbl:"Potwierdzili", maziYou:"Ty", maziWaitingAnswer:"czekamy na odpowiedź",
+      maziPleaseAnswer:"Odpowiedz, proszę, aby wspólny kurs mógł dojść do skutku." },
+    ro:{ maziAgreedLbl:"Au acceptat", maziYou:"Tu", maziWaitingAnswer:"așteptăm răspunsul",
+      maziPleaseAnswer:"Te rugăm să răspunzi, ca să se completeze cursa comună." },
+    nl:{ maziAgreedLbl:"Akkoord", maziYou:"U", maziWaitingAnswer:"wacht op antwoord",
+      maziPleaseAnswer:"Geef alstublieft antwoord, zodat de gedeelde rit compleet wordt." },
+    tr:{ maziAgreedLbl:"Onaylayan", maziYou:"Siz", maziWaitingAnswer:"yanıt bekleniyor",
+      maziPleaseAnswer:"Ortak yolculuğun tamamlanması için lütfen yanıt verin." },
+    ar:{ maziAgreedLbl:"وافق", maziYou:"أنت", maziWaitingAnswer:"بانتظار الرد",
+      maziPleaseAnswer:"يرجى الرد لكي تكتمل الرحلة المشتركة." },
+    zh:{ maziAgreedLbl:"已同意", maziYou:"您", maziWaitingAnswer:"等待回复",
+      maziPleaseAnswer:"请回复，以便完成同乘。" },
+    uk:{ maziAgreedLbl:"Підтвердили", maziYou:"Ви", maziWaitingAnswer:"чекаємо на відповідь",
+      maziPleaseAnswer:"Будь ласка, дайте відповідь, щоб спільна поїздка відбулася." },
+    he:{ maziAgreedLbl:"אישרו", maziYou:"אתם", maziWaitingAnswer:"ממתינים לתשובה",
+      maziPleaseAnswer:"נא להשיב כדי שהנסיעה המשותפת תושלם." }
+  };
+  Object.keys(MAZI_MEMBERS).forEach(function(c){
+    if(!I[c]) I[c]={};
+    Object.keys(MAZI_MEMBERS[c]).forEach(function(k){ I[c][k]=MAZI_MEMBERS[c][k]; });
+  });
+
+  /* «Μαζί» — ενημέρωση όταν ακύρωσε κάποιος της παρέας (χωρίς όνομα). */
+  var MAZI_NOTICE = {
+    el:{ maziNoticeLeft:"⚠️ Ένας συνεπιβάτης ακύρωσε. Αυτή τη στιγμή δεν υπάρχει άλλος συνεπιβάτης.",
+      maziNoticeRegrouped:"⚠️ Ένας συνεπιβάτης ακύρωσε. Άλλαξαν τα στοιχεία — αν δεν σας κάνουν, μπορείτε να ακυρώσετε." },
+    en:{ maziNoticeLeft:"⚠️ A fellow passenger cancelled. There is no other fellow passenger at the moment.",
+      maziNoticeRegrouped:"⚠️ A fellow passenger cancelled. The details have changed — if they don't suit you, you can cancel." },
+    de:{ maziNoticeLeft:"⚠️ Ein Mitfahrer hat storniert. Im Moment gibt es keinen anderen Mitfahrer.",
+      maziNoticeRegrouped:"⚠️ Ein Mitfahrer hat storniert. Die Angaben haben sich geändert — wenn sie dir nicht passen, kannst du stornieren." },
+    fr:{ maziNoticeLeft:"⚠️ Un co-passager a annulé. Il n'y a pas d'autre co-passager pour le moment.",
+      maziNoticeRegrouped:"⚠️ Un co-passager a annulé. Les informations ont changé — si elles ne vous conviennent pas, vous pouvez annuler." },
+    it:{ maziNoticeLeft:"⚠️ Un compagno di viaggio ha annullato. Al momento non c'è nessun altro compagno di viaggio.",
+      maziNoticeRegrouped:"⚠️ Un compagno di viaggio ha annullato. I dettagli sono cambiati — se non ti vanno bene, puoi annullare." },
+    es:{ maziNoticeLeft:"⚠️ Un compañero de viaje ha cancelado. En este momento no hay otro compañero de viaje.",
+      maziNoticeRegrouped:"⚠️ Un compañero de viaje ha cancelado. Los datos han cambiado — si no te convienen, puedes cancelar." },
+    ru:{ maziNoticeLeft:"⚠️ Один из попутчиков отменил поездку. Сейчас других попутчиков нет.",
+      maziNoticeRegrouped:"⚠️ Один из попутчиков отменил поездку. Данные изменились — если они вам не подходят, вы можете отменить." },
+    pl:{ maziNoticeLeft:"⚠️ Jeden ze współpasażerów anulował. W tej chwili nie ma innego współpasażera.",
+      maziNoticeRegrouped:"⚠️ Jeden ze współpasażerów anulował. Szczegóły się zmieniły — jeśli ci nie odpowiadają, możesz anulować." },
+    ro:{ maziNoticeLeft:"⚠️ Un coleg de drum a anulat. Momentan nu există alt coleg de drum.",
+      maziNoticeRegrouped:"⚠️ Un coleg de drum a anulat. Detaliile s-au schimbat — dacă nu îți convin, poți anula." },
+    nl:{ maziNoticeLeft:"⚠️ Een medereiziger heeft geannuleerd. Er is op dit moment geen andere medereiziger.",
+      maziNoticeRegrouped:"⚠️ Een medereiziger heeft geannuleerd. De gegevens zijn gewijzigd — als ze u niet passen, kunt u annuleren." },
+    tr:{ maziNoticeLeft:"⚠️ Bir yol arkadaşı iptal etti. Şu anda başka yol arkadaşı yok.",
+      maziNoticeRegrouped:"⚠️ Bir yol arkadaşı iptal etti. Bilgiler değişti — size uymuyorsa iptal edebilirsiniz." },
+    ar:{ maziNoticeLeft:"⚠️ ألغى أحد رفاق الرحلة. لا يوجد رفيق رحلة آخر في الوقت الحالي.",
+      maziNoticeRegrouped:"⚠️ ألغى أحد رفاق الرحلة. تغيّرت التفاصيل — إذا لم تناسبك يمكنك الإلغاء." },
+    zh:{ maziNoticeLeft:"⚠️ 一位同行乘客已取消。目前没有其他同行乘客。",
+      maziNoticeRegrouped:"⚠️ 一位同行乘客已取消。信息已更新——如不合适，您可以取消。" },
+    uk:{ maziNoticeLeft:"⚠️ Один із попутників скасував поїздку. Зараз інших попутників немає.",
+      maziNoticeRegrouped:"⚠️ Один із попутників скасував поїздку. Дані змінилися — якщо вони вам не підходять, ви можете скасувати." },
+    he:{ maziNoticeLeft:"⚠️ אחד השותפים לנסיעה ביטל. כרגע אין שותף אחר לנסיעה.",
+      maziNoticeRegrouped:"⚠️ אחד השותפים לנסיעה ביטל. הפרטים השתנו — אם הם לא מתאימים לכם, אפשר לבטל." }
+  };
+  Object.keys(MAZI_NOTICE).forEach(function(c){
+    if(!I[c]) I[c]={};
+    Object.keys(MAZI_NOTICE[c]).forEach(function(k){ I[c][k]=MAZI_NOTICE[c][k]; });
+  });
+
+  /* «Μαζί» — παραλαβή με στάσεις: ο οδηγός παραλαμβάνει άλλον / κάποιος δεν ήρθε (νέο ποσό για όσους μπήκαν). */
+  var MAZI_RIDE = {
+    el:{ maziPickOther:"🚗 Ο οδηγός παραλαμβάνει άλλον επιβάτη — μετά έρχεται σε εσάς ή είστε ήδη μέσα.", maziAbsentNotice:"⚠️ Δεν ήρθε: {names}. Νέο ποσό: {amount}" },
+    en:{ maziPickOther:"🚗 The driver is picking up another passenger — then comes to you, or you are already on board.", maziAbsentNotice:"⚠️ Did not show up: {names}. New amount: {amount}" },
+    de:{ maziPickOther:"🚗 Der Fahrer holt einen anderen Fahrgast ab — danach kommt er zu dir, oder du bist schon an Bord.", maziAbsentNotice:"⚠️ Nicht erschienen: {names}. Neuer Betrag: {amount}" },
+    fr:{ maziPickOther:"🚗 Le chauffeur récupère un autre passager — ensuite il vient vers vous, ou vous êtes déjà à bord.", maziAbsentNotice:"⚠️ Ne s'est pas présenté : {names}. Nouveau montant : {amount}" },
+    it:{ maziPickOther:"🚗 L'autista sta prendendo un altro passeggero — poi viene da te, oppure sei già a bordo.", maziAbsentNotice:"⚠️ Non si è presentato: {names}. Nuovo importo: {amount}" },
+    es:{ maziPickOther:"🚗 El conductor está recogiendo a otro pasajero — luego va a por ti, o ya estás a bordo.", maziAbsentNotice:"⚠️ No se presentó: {names}. Nuevo importe: {amount}" },
+    ru:{ maziPickOther:"🚗 Водитель забирает другого пассажира — затем приедет к вам, или вы уже в машине.", maziAbsentNotice:"⚠️ Не пришёл: {names}. Новая сумма: {amount}" },
+    pl:{ maziPickOther:"🚗 Kierowca odbiera innego pasażera — potem przyjedzie po ciebie albo już jesteś w aucie.", maziAbsentNotice:"⚠️ Nie przyszedł: {names}. Nowa kwota: {amount}" },
+    ro:{ maziPickOther:"🚗 Șoferul preia alt pasager — apoi vine la tine sau ești deja în mașină.", maziAbsentNotice:"⚠️ Nu a venit: {names}. Suma nouă: {amount}" },
+    nl:{ maziPickOther:"🚗 De chauffeur haalt een andere passagier op — daarna komt hij naar u, of u zit al in de auto.", maziAbsentNotice:"⚠️ Niet gekomen: {names}. Nieuw bedrag: {amount}" },
+    tr:{ maziPickOther:"🚗 Sürücü başka bir yolcuyu alıyor — sonra size gelecek ya da zaten araçtasınız.", maziAbsentNotice:"⚠️ Gelmedi: {names}. Yeni tutar: {amount}" },
+    ar:{ maziPickOther:"🚗 السائق يقلّ راكبًا آخر — ثم يأتي إليك، أو أنت بالفعل في السيارة.", maziAbsentNotice:"⚠️ لم يحضر: {names}. المبلغ الجديد: {amount}" },
+    zh:{ maziPickOther:"🚗 司机正在接另一位乘客——之后来接您，或您已在车上。", maziAbsentNotice:"⚠️ 未到：{names}。新金额：{amount}" },
+    uk:{ maziPickOther:"🚗 Водій забирає іншого пасажира — потім приїде до вас, або ви вже в машині.", maziAbsentNotice:"⚠️ Не прийшов: {names}. Нова сума: {amount}" },
+    he:{ maziPickOther:"🚗 הנהג אוסף נוסע אחר — אחר כך יגיע אליכם, או שאתם כבר ברכב.", maziAbsentNotice:"⚠️ לא הגיע/ה: {names}. סכום חדש: {amount}" }
+  };
+  Object.keys(MAZI_RIDE).forEach(function(c){
+    if(!I[c]) I[c]={};
+    Object.keys(MAZI_RIDE[c]).forEach(function(k){ I[c][k]=MAZI_RIDE[c][k]; });
+  });
+
+  /* «Μαζί» — ώρα από το Maps του οδηγού (25/10): ενδεικτικές ώρες ως να ξεκινήσει, μετά «φτάνει περίπου στις …». */
+  var MAZI_ETA = {
+    el:{ maziBoarded:"✅ Επιβιβαστήκατε", maziDownAt:"⏰ Ο οδηγός φτάνει περίπου στις {t} — να είστε κάτω.", maziDownEarlier:"({n}′ νωρίτερα από ό,τι σας είπαμε, λόγω κίνησης)", maziDownHint:"ℹ️ Οι ώρες είναι ενδεικτικές. Όταν ξεκινήσει ο οδηγός, θα σας στείλουμε την ακριβή ώρα." },
+    en:{ maziBoarded:"✅ You are on board", maziDownAt:"⏰ The driver arrives around {t} — please be outside.", maziDownEarlier:"({n} min earlier than we told you, due to traffic)", maziDownHint:"ℹ️ Times are approximate. When the driver sets off, we will send you the exact time." },
+    de:{ maziBoarded:"✅ Du bist eingestiegen", maziDownAt:"⏰ Der Fahrer kommt gegen {t} — bitte sei draußen.", maziDownEarlier:"({n} Min. früher als angegeben, wegen des Verkehrs)", maziDownHint:"ℹ️ Die Zeiten sind ungefähr. Wenn der Fahrer losfährt, schicken wir dir die genaue Zeit." },
+    fr:{ maziBoarded:"✅ Vous êtes à bord", maziDownAt:"⏰ Le chauffeur arrive vers {t} — soyez dehors, s'il vous plaît.", maziDownEarlier:"({n} min plus tôt que prévu, à cause de la circulation)", maziDownHint:"ℹ️ Les horaires sont approximatifs. Quand le chauffeur partira, nous vous enverrons l'heure exacte." },
+    it:{ maziBoarded:"✅ Sei a bordo", maziDownAt:"⏰ L'autista arriva verso le {t} — fatti trovare fuori.", maziDownEarlier:"({n} min prima di quanto ti avevamo detto, per il traffico)", maziDownHint:"ℹ️ Gli orari sono indicativi. Quando l'autista parte, ti mandiamo l'orario esatto." },
+    es:{ maziBoarded:"✅ Ya estás a bordo", maziDownAt:"⏰ El conductor llega hacia las {t} — espera fuera, por favor.", maziDownEarlier:"({n} min antes de lo que te dijimos, por el tráfico)", maziDownHint:"ℹ️ Los horarios son aproximados. Cuando el conductor salga, te enviaremos la hora exacta." },
+    ru:{ maziBoarded:"✅ Вы в машине", maziDownAt:"⏰ Водитель прибудет около {t} — пожалуйста, будьте на улице.", maziDownEarlier:"(на {n} мин раньше, чем мы говорили, из-за пробок)", maziDownHint:"ℹ️ Время указано приблизительно. Когда водитель выедет, мы пришлём точное время." },
+    pl:{ maziBoarded:"✅ Jesteś na pokładzie", maziDownAt:"⏰ Kierowca będzie około {t} — czekaj na zewnątrz.", maziDownEarlier:"({n} min wcześniej, niż mówiliśmy, z powodu korków)", maziDownHint:"ℹ️ Godziny są orientacyjne. Gdy kierowca wyruszy, wyślemy ci dokładną godzinę." },
+    ro:{ maziBoarded:"✅ Ești la bord", maziDownAt:"⏰ Șoferul ajunge în jur de {t} — te rugăm să fii afară.", maziDownEarlier:"(cu {n} min mai devreme decât ți-am spus, din cauza traficului)", maziDownHint:"ℹ️ Orele sunt orientative. Când pleacă șoferul, îți trimitem ora exactă." },
+    nl:{ maziBoarded:"✅ U bent ingestapt", maziDownAt:"⏰ De chauffeur komt rond {t} — graag buiten wachten.", maziDownEarlier:"({n} min eerder dan we zeiden, door het verkeer)", maziDownHint:"ℹ️ De tijden zijn bij benadering. Als de chauffeur vertrekt, sturen we u de exacte tijd." },
+    tr:{ maziBoarded:"✅ Araca bindiniz", maziDownAt:"⏰ Şoför yaklaşık {t} gibi orada — lütfen dışarıda olun.", maziDownEarlier:"(trafik nedeniyle söylediğimizden {n} dk erken)", maziDownHint:"ℹ️ Saatler yaklaşıktır. Şoför yola çıktığında size kesin saati göndereceğiz." },
+    ar:{ maziBoarded:"✅ لقد صعدت إلى السيارة", maziDownAt:"⏰ يصل السائق حوالي {t} — يرجى أن تكون في الخارج.", maziDownEarlier:"(أبكر بـ {n} دقيقة مما أخبرناك، بسبب الازدحام)", maziDownHint:"ℹ️ الأوقات تقريبية. عندما ينطلق السائق، سنرسل لك الوقت الدقيق." },
+    zh:{ maziBoarded:"✅ 您已上车", maziDownAt:"⏰ 司机约 {t} 到达——请到楼下等候。", maziDownEarlier:"（因交通状况，比之前告知的早 {n} 分钟）", maziDownHint:"ℹ️ 时间仅供参考。司机出发后，我们会把准确时间发给您。" },
+    uk:{ maziBoarded:"✅ Ви в машині", maziDownAt:"⏰ Водій прибуде близько {t} — будь ласка, будьте надворі.", maziDownEarlier:"(на {n} хв раніше, ніж ми казали, через затори)", maziDownHint:"ℹ️ Час указано приблизно. Коли водій виїде, ми надішлемо точний час." },
+    he:{ maziBoarded:"✅ עליתם למונית", maziDownAt:"⏰ הנהג מגיע בסביבות {t} — נא להמתין בחוץ.", maziDownEarlier:"({n} דק׳ מוקדם יותר ממה שאמרנו, בגלל עומסי תנועה)", maziDownHint:"ℹ️ השעות משוערות. כשהנהג ייצא לדרך, נשלח לכם את השעה המדויקת." }
+  };
+  // Ακύρωσε τη θέση του ένας συνεπιβάτης μετά την κράτηση (η διαδρομή συνεχίζει, νέο ποσό).
+  var MAZI_SEAT = {
+    el:"⚠️ Ακύρωσε: {names}. Νέο ποσό: {amount}", en:"⚠️ Cancelled: {names}. New amount: {amount}",
+    de:"⚠️ Storniert: {names}. Neuer Betrag: {amount}", fr:"⚠️ A annulé : {names}. Nouveau montant : {amount}",
+    it:"⚠️ Ha annullato: {names}. Nuovo importo: {amount}", es:"⚠️ Ha cancelado: {names}. Nuevo importe: {amount}",
+    ru:"⚠️ Отменил(а): {names}. Новая сумма: {amount}", pl:"⚠️ Zrezygnował(a): {names}. Nowa kwota: {amount}",
+    ro:"⚠️ A anulat: {names}. Suma nouă: {amount}", nl:"⚠️ Geannuleerd: {names}. Nieuw bedrag: {amount}",
+    tr:"⚠️ İptal etti: {names}. Yeni tutar: {amount}", ar:"⚠️ ألغى: {names}. المبلغ الجديد: {amount}",
+    zh:"⚠️ 已取消：{names}。新金额：{amount}", uk:"⚠️ Скасував(ла): {names}. Нова сума: {amount}",
+    he:"⚠️ ביטל/ה: {names}. סכום חדש: {amount}"
+  };
+  Object.keys(MAZI_SEAT).forEach(function(c){ if(MAZI_ETA[c]) MAZI_ETA[c].maziCancelledNotice = MAZI_SEAT[c]; });
+  // Έμεινε ένας ΜΕΤΑ την κράτηση: έχει ήδη οδηγό. Πριν τις 12 μπορεί να μπει άλλος. Μετά τις 12 όχι — πληρώνει ολόκληρο.
+  var MAZI_ALONE = {
+    el:"👤 Είστε μόνος/η. Ποσό: {amount} (χωρίς τις εσωτερικές). Μπορεί ακόμα να μπει νέος συνεπιβάτης, ως 12 ώρες πριν την αναχώρηση. Ο οδηγός σας έρχεται κανονικά.",
+    en:"👤 You are alone. Amount: {amount} (without the in-between stops). A new co-passenger can still join, up to 12 hours before departure. Your driver is coming as planned.",
+    de:"👤 Du bist allein. Betrag: {amount} (ohne die Zwischenstopps). Bis 12 Stunden vor der Abfahrt kann noch ein neuer Mitfahrer dazukommen. Dein Fahrer kommt wie geplant.",
+    fr:"👤 Vous êtes seul(e). Montant : {amount} (sans les arrêts intermédiaires). Un nouveau passager peut encore se joindre, jusqu'à 12 heures avant le départ. Votre chauffeur vient comme prévu.",
+    it:"👤 Sei solo/a. Importo: {amount} (senza le tappe intermedie). Un nuovo passeggero può ancora unirsi, fino a 12 ore prima della partenza. Il tuo autista arriva come previsto.",
+    es:"👤 Estás solo/a. Importe: {amount} (sin las paradas intermedias). Todavía puede unirse un nuevo pasajero, hasta 12 horas antes de la salida. Tu conductor llega según lo previsto.",
+    ru:"👤 Вы один/одна. Сумма: {amount} (без промежуточных остановок). Новый попутчик ещё может присоединиться — до 12 часов до отправления. Ваш водитель приедет, как запланировано.",
+    pl:"👤 Jesteś sam/sama. Kwota: {amount} (bez przystanków pośrednich). Nowy współpasażer może jeszcze dołączyć, do 12 godzin przed odjazdem. Twój kierowca przyjedzie zgodnie z planem.",
+    ro:"👤 Sunteți singur(ă). Suma: {amount} (fără opririle intermediare). Se mai poate alătura un pasager nou, până cu 12 ore înainte de plecare. Șoferul dvs. vine conform planului.",
+    nl:"👤 U bent alleen. Bedrag: {amount} (zonder de tussenstops). Er kan nog een nieuwe medepassagier bijkomen, tot 12 uur voor vertrek. Uw chauffeur komt zoals gepland.",
+    tr:"👤 Yalnızsınız. Tutar: {amount} (ara duraklar hariç). Kalkıştan 12 saat öncesine kadar yeni bir yolcu hâlâ katılabilir. Sürücünüz planlandığı gibi geliyor.",
+    ar:"👤 أنت وحدك. المبلغ: {amount} (بدون التوقفات الداخلية). لا يزال بإمكان راكب جديد الانضمام، حتى 12 ساعة قبل المغادرة. سائقك قادم كما هو مخطط.",
+    zh:"👤 只剩您一人。金额：{amount}（不含中途停靠）。在出发前 12 小时之前，仍可能有新的同行乘客加入。您的司机会按计划前来。",
+    uk:"👤 Ви самі. Сума: {amount} (без проміжних зупинок). Новий попутник ще може приєднатися — до 12 годин до відправлення. Ваш водій приїде, як заплановано.",
+    he:"👤 אתם לבד. סכום: {amount} (בלי העצירות שבדרך). נוסע חדש עדיין יכול להצטרף, עד 12 שעות לפני היציאה. הנהג שלכם מגיע כמתוכנן."
+  };
+  Object.keys(MAZI_ALONE).forEach(function(c){ if(MAZI_ETA[c]) MAZI_ETA[c].maziAloneNow = MAZI_ALONE[c]; });
+  var MAZI_ALONE_LATE = {
+    el:"👤 Είστε μόνος/η. Δεν μπαίνει άλλος συνεπιβάτης. Ποσό: {amount} (ολόκληρο). Ο οδηγός σας έρχεται κανονικά.",
+    en:"👤 You are alone. No other co-passenger can join. Amount: {amount} (full fare). Your driver is coming as planned.",
+    de:"👤 Du bist allein. Es steigt kein weiterer Mitfahrer zu. Betrag: {amount} (vollständig). Dein Fahrer kommt wie geplant.",
+    fr:"👤 Vous êtes seul(e). Aucun autre passager ne peut se joindre. Montant : {amount} (intégral). Votre chauffeur vient comme prévu.",
+    it:"👤 Sei solo/a. Nessun altro passeggero può unirsi. Importo: {amount} (intero). Il tuo autista arriva come previsto.",
+    es:"👤 Estás solo/a. No puede unirse ningún otro pasajero. Importe: {amount} (completo). Tu conductor llega según lo previsto.",
+    ru:"👤 Вы один/одна. Других попутчиков не будет. Сумма: {amount} (полностью). Ваш водитель приедет, как запланировано.",
+    pl:"👤 Jesteś sam/sama. Żaden inny współpasażer nie dołączy. Kwota: {amount} (całość). Twój kierowca przyjedzie zgodnie z planem.",
+    ro:"👤 Sunteți singur(ă). Nu se mai alătură niciun alt pasager. Suma: {amount} (integral). Șoferul dvs. vine conform planului.",
+    nl:"👤 U bent alleen. Er komt geen andere medepassagier bij. Bedrag: {amount} (volledig). Uw chauffeur komt zoals gepland.",
+    tr:"👤 Yalnızsınız. Başka yolcu katılamaz. Tutar: {amount} (tamamı). Sürücünüz planlandığı gibi geliyor.",
+    ar:"👤 أنت وحدك. لن ينضم أي راكب آخر. المبلغ: {amount} (كامل). سائقك قادم كما هو مخطط.",
+    zh:"👤 只剩您一人。不会再有其他同行乘客加入。金额：{amount}（全额）。您的司机会按计划前来。",
+    uk:"👤 Ви самі. Інших попутників не буде. Сума: {amount} (повністю). Ваш водій приїде, як заплановано.",
+    he:"👤 אתם לבד. לא יצטרף נוסע נוסף. סכום: {amount} (מלא). הנהג שלכם מגיע כמתוכנן."
+  };
+  Object.keys(MAZI_ALONE_LATE).forEach(function(c){ if(MAZI_ETA[c]) MAZI_ETA[c].maziAloneLate = MAZI_ALONE_LATE[c]; });
+  // Ταυτόχρονες αποφάσεις (29/10): μετράει όποιος πρόλαβε. [μισθωτής: ο άλλος ακύρωσε πρώτος, συνεπιβάτης: η κράτηση στέλνεται]
+  var MAZI_RACE = {
+    el:["⚠️ Ο συνεπιβάτης ακύρωσε πριν σταλεί η κράτηση. Δεν έγινε κράτηση. Συνεχίζουμε να ψάχνουμε.", "⏳ Η κράτηση στέλνεται τώρα. Μπορείτε να ακυρώσετε τη θέση σας σε λίγο."],
+    en:["⚠️ The fellow passenger cancelled before the booking was sent. No booking was made. We keep searching.", "⏳ The booking is being sent right now. You can cancel your seat in a moment."],
+    de:["⚠️ Der Mitfahrer hat storniert, bevor die Buchung gesendet wurde. Es wurde nicht gebucht. Wir suchen weiter.", "⏳ Die Buchung wird gerade gesendet. Du kannst deinen Platz gleich stornieren."],
+    fr:["⚠️ Le passager a annulé avant l'envoi de la réservation. Aucune réservation n'a été faite. Nous continuons à chercher.", "⏳ La réservation est en cours d'envoi. Vous pourrez annuler votre place dans un instant."],
+    it:["⚠️ Il compagno di viaggio ha annullato prima dell'invio della prenotazione. Nessuna prenotazione. Continuiamo a cercare.", "⏳ La prenotazione si sta inviando ora. Potrai annullare il tuo posto tra poco."],
+    es:["⚠️ El acompañante canceló antes de enviar la reserva. No se hizo la reserva. Seguimos buscando.", "⏳ La reserva se está enviando ahora. Podrás cancelar tu plaza en un momento."],
+    ru:["⚠️ Попутчик отменил до отправки заказа. Заказ не создан. Продолжаем искать.", "⏳ Заказ сейчас отправляется. Вы сможете отменить своё место через минуту."],
+    pl:["⚠️ Współpasażer zrezygnował przed wysłaniem rezerwacji. Rezerwacji nie złożono. Szukamy dalej.", "⏳ Rezerwacja jest właśnie wysyłana. Za chwilę możesz anulować swoje miejsce."],
+    ro:["⚠️ Colegul de drum a anulat înainte de trimiterea rezervării. Nu s-a făcut rezervarea. Căutăm în continuare.", "⏳ Rezervarea se trimite acum. Vă puteți anula locul în câteva momente."],
+    nl:["⚠️ De medereiziger annuleerde voordat de boeking werd verstuurd. Er is niet geboekt. We zoeken verder.", "⏳ De boeking wordt nu verstuurd. U kunt uw plaats zo meteen annuleren."],
+    tr:["⚠️ Yol arkadaşı rezervasyon gönderilmeden iptal etti. Rezervasyon yapılmadı. Aramaya devam ediyoruz.", "⏳ Rezervasyon şu anda gönderiliyor. Yerinizi birazdan iptal edebilirsiniz."],
+    ar:["⚠️ ألغى الراكب المرافق قبل إرسال الحجز. لم يتم الحجز. نواصل البحث.", "⏳ يتم إرسال الحجز الآن. يمكنك إلغاء مقعدك بعد قليل."],
+    zh:["⚠️ 同行乘客在预订发送前已取消。未完成预订。我们继续寻找。", "⏳ 预订正在发送中。稍后您可以取消您的座位。"],
+    uk:["⚠️ Попутник скасував до надсилання бронювання. Бронювання не створено. Шукаємо далі.", "⏳ Бронювання зараз надсилається. Ви зможете скасувати своє місце за хвилину."],
+    he:["⚠️ הנוסע השני ביטל לפני שההזמנה נשלחה. לא בוצעה הזמנה. ממשיכים לחפש.", "⏳ ההזמנה נשלחת עכשיו. תוכלו לבטל את המקום שלכם בעוד רגע."]
+  };
+  Object.keys(MAZI_RACE).forEach(function(c){
+    if(!MAZI_ETA[c]) return;
+    MAZI_ETA[c].maziMemberLeftBeforeBook = MAZI_RACE[c][0];
+    MAZI_ETA[c].maziBookingSending = MAZI_RACE[c][1];
+  });
+  // Η έκπτωση όταν έμεινε ένας (κανονική τιμή −20%).
+  var MAZI_DISC = {
+    el:"έκπτωση λόγω ακύρωσης επιβατών", en:"discount due to passenger cancellations",
+    de:"Rabatt wegen Stornierung von Mitfahrern", fr:"réduction suite à l'annulation de passagers",
+    it:"sconto per la cancellazione di passeggeri", es:"descuento por cancelación de pasajeros",
+    ru:"скидка из-за отмены пассажиров", pl:"zniżka z powodu rezygnacji pasażerów",
+    ro:"reducere din cauza anulării pasagerilor", nl:"korting wegens annulering van passagiers",
+    tr:"yolcu iptalleri nedeniyle indirim", ar:"خصم بسبب إلغاء الركاب",
+    zh:"因乘客取消而享受的折扣", uk:"знижка через скасування пасажирів", he:"הנחה בגלל ביטול נוסעים"
+  };
+  Object.keys(MAZI_DISC).forEach(function(c){ if(MAZI_ETA[c]) MAZI_ETA[c].maziDiscountNote = MAZI_DISC[c]; });
+  Object.keys(MAZI_ETA).forEach(function(c){
+    if(!I[c]) I[c]={};
+    Object.keys(MAZI_ETA[c]).forEach(function(k){ I[c][k]=MAZI_ETA[c][k]; });
+  });
+
+  /* «Μαζί» — ενημέρωση όταν μπήκε νέος στην παρέα (νέα σειρά/ώρες/ποσό· το ΣΥΜΦΩΝΩ μένει). */
+  var MAZI_JOINED = {
+    el:{ maziNoticeJoined:"👋 Μπήκε νέος συνεπιβάτης. Άλλαξαν τα στοιχεία — αν δεν σας κάνουν, μπορείτε να ακυρώσετε." },
+    en:{ maziNoticeJoined:"👋 A new fellow passenger joined. The details have changed — if they don't suit you, you can cancel." },
+    de:{ maziNoticeJoined:"👋 Ein neuer Mitfahrer ist dazugekommen. Die Angaben haben sich geändert — wenn sie dir nicht passen, kannst du stornieren." },
+    fr:{ maziNoticeJoined:"👋 Un nouveau co-passager s'est joint à vous. Les informations ont changé — si elles ne vous conviennent pas, vous pouvez annuler." },
+    it:{ maziNoticeJoined:"👋 Si è aggiunto un nuovo compagno di viaggio. I dettagli sono cambiati — se non ti vanno bene, puoi annullare." },
+    es:{ maziNoticeJoined:"👋 Se ha unido un nuevo compañero de viaje. Los datos han cambiado — si no te convienen, puedes cancelar." },
+    ru:{ maziNoticeJoined:"👋 Присоединился новый попутчик. Данные изменились — если они вам не подходят, вы можете отменить." },
+    pl:{ maziNoticeJoined:"👋 Dołączył nowy współpasażer. Szczegóły się zmieniły — jeśli ci nie odpowiadają, możesz anulować." },
+    ro:{ maziNoticeJoined:"👋 S-a alăturat un nou coleg de drum. Detaliile s-au schimbat — dacă nu îți convin, poți anula." },
+    nl:{ maziNoticeJoined:"👋 Er is een nieuwe medereiziger bijgekomen. De gegevens zijn gewijzigd — als ze u niet passen, kunt u annuleren." },
+    tr:{ maziNoticeJoined:"👋 Yeni bir yol arkadaşı katıldı. Bilgiler değişti — size uymuyorsa iptal edebilirsiniz." },
+    ar:{ maziNoticeJoined:"👋 انضم رفيق رحلة جديد. تغيّرت التفاصيل — إذا لم تناسبك يمكنك الإلغاء." },
+    zh:{ maziNoticeJoined:"👋 有新的同行乘客加入。信息已更新——如不合适，您可以取消。" },
+    uk:{ maziNoticeJoined:"👋 Приєднався новий попутник. Дані змінилися — якщо вони вам не підходять, ви можете скасувати." },
+    he:{ maziNoticeJoined:"👋 הצטרף שותף חדש לנסיעה. הפרטים השתנו — אם הם לא מתאימים לכם, אפשר לבטל." }
+  };
+  Object.keys(MAZI_JOINED).forEach(function(c){
+    if(!I[c]) I[c]={};
+    Object.keys(MAZI_JOINED[c]).forEach(function(k){ I[c][k]=MAZI_JOINED[c][k]; });
+  });
+
+  /* «Μαζί» — «🙋 ΑΝΑΛΑΜΒΑΝΩ»: υπεύθυνος (απόδειξη + πληρώνει ό,τι μένει από το ταξίμετρο). {until} = 12 ώρες πριν, {name} = όνομα. */
+  var MAZI_TAKE = {
+    el:{ maziTakeBtn:"🙋 ΑΝΑΛΑΜΒΑΝΩ",
+      maziTakeInfo:"✅ Συμφώνησαν όλοι. Χρειάζεται ένας υπεύθυνος: παίρνει την απόδειξη και πληρώνει στον οδηγό ό,τι μένει από το ταξίμετρο. Οι άλλοι του δίνουν το μερίδιό τους ή πληρώνουν το ποσό τους με κάρτα στον οδηγό. Αν δεν αναλάβει κανείς ως τις {until}, δεν γίνεται κράτηση.",
+      maziYouResponsible:"🙋 Εσείς είστε ο υπεύθυνος: παίρνετε την απόδειξη και πληρώνετε στον οδηγό ό,τι μένει από το ταξίμετρο.",
+      maziResponsibleIs:"🙋 Υπεύθυνος: {name}. Δώστε του το μερίδιό σας ή πληρώστε το ποσό σας με κάρτα στον οδηγό.",
+      maziTakeAsk:"Αναλαμβάνετε να είστε ο υπεύθυνος; Θα πάρετε την απόδειξη και θα πληρώσετε στον οδηγό ό,τι μένει από το ταξίμετρο.",
+      maziTakenByOther:"Τον ρόλο του υπεύθυνου τον ανέλαβε ήδη άλλος." },
+    en:{ maziTakeBtn:"🙋 I'LL TAKE CHARGE",
+      maziTakeInfo:"✅ Everyone agreed. One person needs to take charge: they get the receipt and pay the driver whatever is left on the meter. The others give them their share or pay their own amount to the driver by card. If nobody takes charge by {until}, there is no booking.",
+      maziYouResponsible:"🙋 You are in charge: you get the receipt and pay the driver whatever is left on the meter.",
+      maziResponsibleIs:"🙋 In charge: {name}. Give them your share or pay your amount to the driver by card.",
+      maziTakeAsk:"Do you want to take charge? You will get the receipt and pay the driver whatever is left on the meter.",
+      maziTakenByOther:"Someone else has already taken charge." },
+    de:{ maziTakeBtn:"🙋 ICH ÜBERNEHME",
+      maziTakeInfo:"✅ Alle haben zugestimmt. Eine Person muss die Verantwortung übernehmen: Sie bekommt die Quittung und zahlt dem Fahrer, was vom Taxameter übrig bleibt. Die anderen geben ihr ihren Anteil oder zahlen ihren Betrag mit Karte beim Fahrer. Wenn bis {until} niemand übernimmt, gibt es keine Buchung.",
+      maziYouResponsible:"🙋 Du bist verantwortlich: Du bekommst die Quittung und zahlst dem Fahrer, was vom Taxameter übrig bleibt.",
+      maziResponsibleIs:"🙋 Verantwortlich: {name}. Gib dieser Person deinen Anteil oder zahle deinen Betrag mit Karte beim Fahrer.",
+      maziTakeAsk:"Möchtest du die Verantwortung übernehmen? Du bekommst die Quittung und zahlst dem Fahrer, was vom Taxameter übrig bleibt.",
+      maziTakenByOther:"Jemand anderes hat die Verantwortung bereits übernommen." },
+    fr:{ maziTakeBtn:"🙋 JE M'EN CHARGE",
+      maziTakeInfo:"✅ Tout le monde a accepté. Une personne doit se porter responsable : elle reçoit le reçu et paie au chauffeur ce qui reste au compteur. Les autres lui donnent leur part ou paient leur montant par carte au chauffeur. Si personne ne s'en charge avant le {until}, il n'y a pas de réservation.",
+      maziYouResponsible:"🙋 Vous êtes responsable : vous recevez le reçu et payez au chauffeur ce qui reste au compteur.",
+      maziResponsibleIs:"🙋 Responsable : {name}. Donnez-lui votre part ou payez votre montant par carte au chauffeur.",
+      maziTakeAsk:"Voulez-vous être responsable ? Vous recevrez le reçu et paierez au chauffeur ce qui reste au compteur.",
+      maziTakenByOther:"Quelqu'un d'autre s'en est déjà chargé." },
+    it:{ maziTakeBtn:"🙋 ME NE OCCUPO IO",
+      maziTakeInfo:"✅ Tutti hanno accettato. Serve un responsabile: riceve la ricevuta e paga all'autista quanto resta sul tassametro. Gli altri gli danno la loro quota o pagano il proprio importo con carta all'autista. Se nessuno se ne occupa entro il {until}, non c'è prenotazione.",
+      maziYouResponsible:"🙋 Sei il responsabile: ricevi la ricevuta e paghi all'autista quanto resta sul tassametro.",
+      maziResponsibleIs:"🙋 Responsabile: {name}. Dagli la tua quota o paga il tuo importo con carta all'autista.",
+      maziTakeAsk:"Vuoi essere il responsabile? Riceverai la ricevuta e pagherai all'autista quanto resta sul tassametro.",
+      maziTakenByOther:"Se n'è già occupato qualcun altro." },
+    es:{ maziTakeBtn:"🙋 ME ENCARGO YO",
+      maziTakeInfo:"✅ Todos han aceptado. Hace falta un responsable: recibe el recibo y paga al conductor lo que quede en el taxímetro. Los demás le dan su parte o pagan su importe con tarjeta al conductor. Si nadie se encarga antes del {until}, no hay reserva.",
+      maziYouResponsible:"🙋 Eres el responsable: recibes el recibo y pagas al conductor lo que quede en el taxímetro.",
+      maziResponsibleIs:"🙋 Responsable: {name}. Dale tu parte o paga tu importe con tarjeta al conductor.",
+      maziTakeAsk:"¿Quieres ser el responsable? Recibirás el recibo y pagarás al conductor lo que quede en el taxímetro.",
+      maziTakenByOther:"Otra persona ya se ha encargado." },
+    ru:{ maziTakeBtn:"🙋 БЕРУ НА СЕБЯ",
+      maziTakeInfo:"✅ Все подтвердили. Нужен ответственный: он получает чек и платит водителю то, что остаётся по счётчику. Остальные отдают ему свою долю или оплачивают свою сумму картой водителю. Если до {until} никто не возьмёт это на себя, бронирования не будет.",
+      maziYouResponsible:"🙋 Вы ответственный: вы получаете чек и платите водителю то, что остаётся по счётчику.",
+      maziResponsibleIs:"🙋 Ответственный: {name}. Отдайте ему свою долю или оплатите свою сумму картой водителю.",
+      maziTakeAsk:"Взять ответственность на себя? Вы получите чек и заплатите водителю то, что останется по счётчику.",
+      maziTakenByOther:"Кто-то другой уже взял это на себя." },
+    pl:{ maziTakeBtn:"🙋 BIORĘ TO NA SIEBIE",
+      maziTakeInfo:"✅ Wszyscy potwierdzili. Potrzebna jest osoba odpowiedzialna: dostaje paragon i płaci kierowcy to, co zostaje na taksometrze. Pozostali oddają jej swoją część lub płacą swoją kwotę kartą u kierowcy. Jeśli do {until} nikt się tego nie podejmie, rezerwacji nie będzie.",
+      maziYouResponsible:"🙋 Jesteś osobą odpowiedzialną: dostajesz paragon i płacisz kierowcy to, co zostaje na taksometrze.",
+      maziResponsibleIs:"🙋 Osoba odpowiedzialna: {name}. Oddaj jej swoją część lub zapłać swoją kwotę kartą u kierowcy.",
+      maziTakeAsk:"Czy chcesz być osobą odpowiedzialną? Dostaniesz paragon i zapłacisz kierowcy to, co zostanie na taksometrze.",
+      maziTakenByOther:"Ktoś inny już się tego podjął." },
+    ro:{ maziTakeBtn:"🙋 MĂ OCUP EU",
+      maziTakeInfo:"✅ Toți au acceptat. E nevoie de un responsabil: primește bonul și îi plătește șoferului ce rămâne pe aparatul de taxare. Ceilalți îi dau partea lor sau își plătesc suma cu cardul la șofer. Dacă nimeni nu se ocupă până la {until}, nu se face rezervarea.",
+      maziYouResponsible:"🙋 Tu ești responsabilul: primești bonul și îi plătești șoferului ce rămâne pe aparatul de taxare.",
+      maziResponsibleIs:"🙋 Responsabil: {name}. Dă-i partea ta sau plătește-ți suma cu cardul la șofer.",
+      maziTakeAsk:"Vrei să fii responsabilul? Vei primi bonul și îi vei plăti șoferului ce rămâne pe aparatul de taxare.",
+      maziTakenByOther:"Altcineva s-a ocupat deja." },
+    nl:{ maziTakeBtn:"🙋 IK NEEM HET OP ME",
+      maziTakeInfo:"✅ Iedereen is akkoord. Er moet één persoon verantwoordelijk zijn: die krijgt de bon en betaalt de chauffeur wat er op de meter overblijft. De anderen geven die persoon hun deel of betalen hun bedrag met de kaart aan de chauffeur. Als niemand dit vóór {until} op zich neemt, komt er geen boeking.",
+      maziYouResponsible:"🙋 U bent verantwoordelijk: u krijgt de bon en betaalt de chauffeur wat er op de meter overblijft.",
+      maziResponsibleIs:"🙋 Verantwoordelijk: {name}. Geef deze persoon uw deel of betaal uw bedrag met de kaart aan de chauffeur.",
+      maziTakeAsk:"Wilt u de verantwoordelijke zijn? U krijgt de bon en betaalt de chauffeur wat er op de meter overblijft.",
+      maziTakenByOther:"Iemand anders heeft het al op zich genomen." },
+    tr:{ maziTakeBtn:"🙋 SORUMLULUĞU ALIYORUM",
+      maziTakeInfo:"✅ Herkes onayladı. Bir sorumlu gerekiyor: fişi alır ve taksimetrede kalan tutarı sürücüye öder. Diğerleri payını ona verir ya da kendi tutarını sürücüye kartla öder. {until} tarihine kadar kimse sorumluluğu almazsa rezervasyon yapılmaz.",
+      maziYouResponsible:"🙋 Sorumlu sizsiniz: fişi siz alırsınız ve taksimetrede kalan tutarı sürücüye ödersiniz.",
+      maziResponsibleIs:"🙋 Sorumlu: {name}. Payınızı ona verin ya da kendi tutarınızı sürücüye kartla ödeyin.",
+      maziTakeAsk:"Sorumlu olmak istiyor musunuz? Fişi siz alacak ve taksimetrede kalan tutarı sürücüye ödeyeceksiniz.",
+      maziTakenByOther:"Sorumluluğu başka biri zaten aldı." },
+    ar:{ maziTakeBtn:"🙋 أتولّى المسؤولية",
+      maziTakeInfo:"✅ وافق الجميع. يلزم شخص مسؤول: يأخذ الإيصال ويدفع للسائق ما يتبقى على العدّاد. يعطيه الآخرون حصتهم أو يدفعون مبلغهم بالبطاقة للسائق. إذا لم يتولَّ أحد المسؤولية حتى {until}، فلن يتم الحجز.",
+      maziYouResponsible:"🙋 أنت المسؤول: تأخذ الإيصال وتدفع للسائق ما يتبقى على العدّاد.",
+      maziResponsibleIs:"🙋 المسؤول: {name}. أعطه حصتك أو ادفع مبلغك بالبطاقة للسائق.",
+      maziTakeAsk:"هل تريد تولّي المسؤولية؟ ستأخذ الإيصال وتدفع للسائق ما يتبقى على العدّاد.",
+      maziTakenByOther:"تولّى شخص آخر المسؤولية بالفعل." },
+    zh:{ maziTakeBtn:"🙋 我来负责",
+      maziTakeInfo:"✅ 所有人都已同意。需要一位负责人：负责人拿收据，并向司机支付计价器上剩余的金额。其他人把自己的份额交给负责人，或用银行卡向司机支付自己的金额。如果到 {until} 仍无人负责，则不会预订。",
+      maziYouResponsible:"🙋 您是负责人：您拿收据，并向司机支付计价器上剩余的金额。",
+      maziResponsibleIs:"🙋 负责人：{name}。请把您的份额交给负责人，或用银行卡向司机支付您的金额。",
+      maziTakeAsk:"您要担任负责人吗？您将拿收据，并向司机支付计价器上剩余的金额。",
+      maziTakenByOther:"已有其他人担任负责人。" },
+    uk:{ maziTakeBtn:"🙋 БЕРУ НА СЕБЕ",
+      maziTakeInfo:"✅ Усі підтвердили. Потрібен відповідальний: він отримує чек і платить водієві те, що лишається за лічильником. Інші віддають йому свою частку або сплачують свою суму карткою водієві. Якщо до {until} ніхто не візьме це на себе, бронювання не буде.",
+      maziYouResponsible:"🙋 Ви відповідальний: ви отримуєте чек і платите водієві те, що лишається за лічильником.",
+      maziResponsibleIs:"🙋 Відповідальний: {name}. Віддайте йому свою частку або сплатіть свою суму карткою водієві.",
+      maziTakeAsk:"Взяти відповідальність на себе? Ви отримаєте чек і заплатите водієві те, що залишиться за лічильником.",
+      maziTakenByOther:"Хтось інший уже взяв це на себе." },
+    he:{ maziTakeBtn:"🙋 אני אחראי/ת",
+      maziTakeInfo:"✅ כולם אישרו. צריך אחראי אחד: הוא מקבל את הקבלה ומשלם לנהג את מה שנשאר במונה. האחרים נותנים לו את חלקם או משלמים את הסכום שלהם בכרטיס לנהג. אם אף אחד לא ייקח אחריות עד {until}, לא תתבצע הזמנה.",
+      maziYouResponsible:"🙋 אתם האחראים: אתם מקבלים את הקבלה ומשלמים לנהג את מה שנשאר במונה.",
+      maziResponsibleIs:"🙋 אחראי: {name}. תנו לו את חלקכם או שלמו את הסכום שלכם בכרטיס לנהג.",
+      maziTakeAsk:"לקחת אחריות? תקבלו את הקבלה ותשלמו לנהג את מה שנשאר במונה.",
+      maziTakenByOther:"מישהו אחר כבר לקח אחריות." }
+  };
+  Object.keys(MAZI_TAKE).forEach(function(c){
+    if(!I[c]) I[c]={};
+    Object.keys(MAZI_TAKE[c]).forEach(function(k){ I[c][k]=MAZI_TAKE[c][k]; });
+  });
+
+  /* «Μαζί» — μετά το «Κάνε κράτηση» του υπευθύνου (το κουμπί είναι το υπάρχον priceConfirm). */
+  var MAZI_BOOKED = {
+    el:{ maziBooked:"🚕 Η κράτηση στάλθηκε — ψάχνουμε οδηγό." },
+    en:{ maziBooked:"🚕 The booking has been sent — we are looking for a driver." },
+    de:{ maziBooked:"🚕 Die Buchung wurde gesendet — wir suchen einen Fahrer." },
+    fr:{ maziBooked:"🚕 La réservation a été envoyée — nous cherchons un chauffeur." },
+    it:{ maziBooked:"🚕 La prenotazione è stata inviata — stiamo cercando un autista." },
+    es:{ maziBooked:"🚕 La reserva se ha enviado — estamos buscando un conductor." },
+    ru:{ maziBooked:"🚕 Заказ отправлен — ищем водителя." },
+    pl:{ maziBooked:"🚕 Rezerwacja została wysłana — szukamy kierowcy." },
+    ro:{ maziBooked:"🚕 Rezervarea a fost trimisă — căutăm un șofer." },
+    nl:{ maziBooked:"🚕 De boeking is verzonden — we zoeken een chauffeur." },
+    tr:{ maziBooked:"🚕 Rezervasyon gönderildi — sürücü arıyoruz." },
+    ar:{ maziBooked:"🚕 تم إرسال الحجز — نبحث عن سائق." },
+    zh:{ maziBooked:"🚕 预订已发送——正在寻找司机。" },
+    uk:{ maziBooked:"🚕 Бронювання надіслано — шукаємо водія." },
+    he:{ maziBooked:"🚕 ההזמנה נשלחה — מחפשים נהג." }
+  };
+  Object.keys(MAZI_BOOKED).forEach(function(c){
+    if(!I[c]) I[c]={};
+    Object.keys(MAZI_BOOKED[c]).forEach(function(k){ I[c][k]=MAZI_BOOKED[c][k]; });
+  });
+
+  /* «Μαζί» — ΝΟΜΙΜΗ ΜΟΡΦΗ (26/10): ΜΙΣΘΩΤΗΣ = ο 1ος που παραλαμβάνεται (αυτόματα), οι συνεπιβάτες ΕΞΟΥΣΙΟΔΟΤΟΥΝ,
+     κοινό chat με τα μηνύματα της εφαρμογής, πληρωμή στο POS, ΜΙΑ απόδειξη στο όνομα του μισθωτή. Αντικαθιστά το ⓘ και
+     τα κείμενα «υπεύθυνος / κοινή μίσθωση». {name} = μισθωτής, {prev} = μισθωτής που ακύρωσε, {others} = συνεπιβάτες,
+     {route} = στάσεις, {n} = αριθμός στάσης. */
+  var MAZI_LEGAL = {
+    el:{ maziInfoLink:"Πώς λειτουργεί;", maziAccept:"Διάβασα και αποδέχομαι τους όρους «Μαζί σε μία παρέα»",
+      maziYouResponsible:"🙋 Εσείς είστε ο μισθωτής: ο οδηγός περνάει πρώτα από εσάς. Η κράτηση και η απόδειξη είναι στο όνομά σας.",
+      maziResponsibleIs:"🙋 Μισθωτής: {name} — ο οδηγός περνάει πρώτα από εκεί. Η κράτηση και η απόδειξη είναι στο όνομα του μισθωτή.",
+      maziAuthorizeBtn:"✅ ΕΞΟΥΣΙΟΔΟΤΩ",
+      maziAuthorizeText:"«Εξουσιοδοτώ τον μισθωτή {name} να μισθώσει το ταξί για λογαριασμό μου και να ορίσει τη διαδρομή με στάσεις.»",
+      maziLesseeGoneMe:"⚠️ Ο μισθωτής {prev} ακύρωσε. Για να συνεχιστεί η μίσθωση, γίνεστε εσείς ο μισθωτής: πατήστε ΣΥΜΦΩΝΩ.",
+      maziLesseeGoneOther:"⚠️ Ο μισθωτής {prev} ακύρωσε. Νέος μισθωτής: {name}. Πατήστε ΕΞΟΥΣΙΟΔΟΤΩ για να συνεχιστεί η μίσθωση.",
+      maziFound:"✅ Βρέθηκε παρέα", maziCancelAsk:"Να ακυρωθεί η συμμετοχή σας;",
+      maziPleaseAnswer:"Παρακαλώ απαντήστε για να κλείσει η παρέα.",
+      maziFillAll:"Συμπληρώστε όνομα, επώνυμο και τηλέφωνο.",
+      maziTooLate:"Το «Μαζί σε μία παρέα» γίνεται μόνο για αναχώρηση σε περισσότερες από {cutoff} ώρες.",
+      maziGcBtn:"👥 Chat παρέας", maziGcTitle:"Chat παρέας", maziGcApp:"Taxi and Fly",
+      maziGcCreated:"Η ομάδα για τη μεταφορά προς το Αεροδρόμιο δημιουργήθηκε! Καλώς ορίσατε στο κοινό chat συντονισμού. Μισθωτής: {name} (παραλαμβάνεται πρώτος).",
+      maziGcCreatedPrev:"Ο μισθωτής {prev} ακύρωσε.",
+      maziGcAuthorized:"Ψηφιακή εξουσιοδότηση από: {others}. Μισθωτής: {name}. Η κράτηση του ταξί έγινε στο όνομα του μισθωτή.",
+      maziGcRoute:"Το πλάνο διαδρομής κλείδωσε: {route} ➔ Αεροδρόμιο Αθηνών. Η μίσθωση είναι μία και ενιαία.",
+      maziGcStopLessee:"Επιβίβαση μισθωτή ({name})", maziGcStopN:"Στάση {n} ({name})",
+      maziGcPayment:"Οδηγίες πληρωμής: η πληρωμή γίνεται απευθείας στον οδηγό, στο τέλος της διαδρομής. Το συνολικό ποσό του ταξίμετρου εξοφλείται με μετρητά ή μοιρασμένο (split) στις κάρτες σας στο POS του ταξί. Ο οδηγός εκδίδει ΜΙΑ ενιαία απόδειξη για όλη τη διαδρομή, στο όνομα του μισθωτή ({name}).",
+      maziInfoHtml:_maziInfo([
+        ["1. Τι είναι", "<p>Πηγαίνετε στο αεροδρόμιο με ένα ταξί, {minP} έως {maxP} επιβάτες συνολικά μαζί με εσάς, που φεύγετε την ίδια ώρα από κοντινά σημεία. Ένας μισθωτής, μία κράτηση, ένα ταξίμετρο, μία απόδειξη.</p><p>Οι παραλαβές των συνεπιβατών είναι στάσεις της ίδιας διαδρομής. Η μίσθωση είναι μία και ενιαία, από την πρώτη παραλαβή μέχρι το αεροδρόμιο.</p>"],
+        ["2. Πότε μπορώ", "<p>Μόνο από Αθήνα προς αεροδρόμιο, για 1 άτομο, τουλάχιστον {cutoff} ώρες πριν. Καλύτερα {cutoff}–{later} ώρες πριν ή ακόμα νωρίτερα. Αν η αναχώρηση είναι σε λιγότερο από {cutoff} ώρες, μπορείτε να κλείσετε μόνο κανονικό ταξί.</p>"],
+        ["3. Πώς βρίσκεται η παρέα", "<p>Ψάχνουμε επιβάτες που θέλουν να ξεκινήσουν για το αεροδρόμιο έως {window} λεπτά νωρίτερα ή αργότερα από εσάς, και που μένουν κοντά σας (σε απόσταση έως {km} χιλιόμετρα). Η κοινή ώρα αναχώρησης είναι η πιο νωρίς από τις ώρες της παρέας, ώστε κανείς να μη φύγει αργότερα από όσο ζήτησε. Την ακριβή ώρα τη βλέπετε πριν απαντήσετε. Η αναζήτηση συνεχίζεται και με την εφαρμογή κλειστή.</p>"],
+        ["4. Η ώρα που δηλώνετε", "<p>Είναι η ώρα που όλοι έχουν μπει στο ταξί και ξεκινούν για το αεροδρόμιο. Οι παραλαβές γίνονται νωρίτερα. Η εφαρμογή σάς δείχνει ακριβώς πότε να είστε έξω και πότε έρχεται το ταξί.</p>"],
+        ["5. Συμφωνία και εξουσιοδότηση", "<p>Όταν βρεθεί παρέα, ο καθένας βλέπει τη δική του ώρα να είναι έξω, πόσο περιμένει ο οδηγός, πόσα πληρώνει και ποιος είναι ο μισθωτής.</p><ul><li>Ο μισθωτής πατάει <b>ΣΥΜΦΩΝΩ</b>.</li><li>Οι συνεπιβάτες πατάνε <b>ΕΞΟΥΣΙΟΔΟΤΩ</b>: «Εξουσιοδοτώ τον μισθωτή να μισθώσει το ταξί για λογαριασμό μου και να ορίσει τη διαδρομή με στάσεις.»</li></ul><p>Η εξουσιοδότηση είναι υποχρεωτική και καταγράφεται με ημερομηνία και ώρα. Αν αλλάξει ο μισθωτής, σας τη ζητάμε ξανά. Αν κάποιος πατήσει Ακύρωση, βγαίνει από την παρέα και ενημερώνουμε τους υπόλοιπους. Τίποτα δεν κλείνει χωρίς τη δική σας απάντηση.</p>"],
+        ["6. Ο μισθωτής", "<p>Μισθωτής γίνεται αυτόματα όποιος παραλαμβάνεται <b>πρώτος</b>. Ο οδηγός πηγαίνει πρώτα σε αυτόν. Μόλις επιβιβαστεί ο μισθωτής ανάβει το ταξίμετρο, και η διαδρομή συνεχίζει με στάσεις στους συνεπιβάτες, με τη σειρά που έχει κλειδώσει, μέχρι το αεροδρόμιο.</p><p>Η κράτηση είναι ΜΙΑ, στο όνομα του μισθωτή, με όλες τις παραλαβές ως στάσεις. Αν ακυρώσει ο μισθωτής, μισθωτής γίνεται ο επόμενος στη σειρά.</p><p>Μόλις κλείσει η παρέα, ανοίγει το κοινό chat συντονισμού. Εκεί η εφαρμογή γράφει την εξουσιοδότηση, το πλάνο της διαδρομής και τις οδηγίες πληρωμής, και μπορείτε να γράψετε κι εσείς.</p>"],
+        ["7. Πληρωμή", "<p>Πληρώνετε απευθείας στον οδηγό, στο τέλος της διαδρομής, το συνολικό ποσό του ταξίμετρου: με μετρητά ή μοιρασμένο στις κάρτες σας στο POS του ταξί (μία πληρωμή για τον καθένα).</p><p>Ο οδηγός βγάζει <b>ΜΙΑ</b> απόδειξη για όλη τη διαδρομή, στο όνομα του μισθωτή. Ένα ταξίμετρο, μία είσπραξη, μία απόδειξη. Πώς θα μοιραστεί ο λογαριασμός είναι επιλογή της παρέας. Η εφαρμογή δεν κρατάει και δεν μεταφέρει χρήματα.</p>"],
+        ["8. Πώς βγαίνει το ποσό", "<p>Η εφαρμογή σάς δείχνει από πριν μια <b>εκτίμηση</b>: η κανονική τιμή από την τελευταία παραλαβή προς το αεροδρόμιο, συν {ex2} € όταν είστε 2 ή {ex3} € όταν είστε 3, για τις στάσεις των παραλαβών, διά των ατόμων. Το τελικό ποσό είναι αυτό που δείχνει το ταξίμετρο.</p>"],
+        ["9. Να είστε έτοιμοι", "<p>Να είστε έξω {ready} λεπτά πριν έρθει το ταξί. Ο οδηγός περιμένει έως {wait} λεπτά και μετά συνεχίζει στην επόμενη παραλαβή.</p>"],
+        ["10. Αν δεν εμφανιστώ", "<p>Η διαδρομή συνεχίζει χωρίς εσάς και θα σας ζητήσουμε να εξηγήσετε τον λόγο. Αν δεν εμφανιστεί ο μισθωτής, μισθωτής γίνεται ο επόμενος στη σειρά. Το ποσό το πληρώνουν όσοι είναι μέσα στο ταξί. Αν λείπετε συχνά, μπορεί να περιοριστεί η χρήση του «Μαζί σε μία παρέα».</p>"],
+        ["11. Αποσκευές", "<p>Κάθε επιβάτης έχει {bags}, όχι υπερμεγέθη. Ο χώρος είναι κοινός για όλους. Μέγιστο μέγεθος: {dims}.</p>{bagSvg}"],
+        ["12. Αν δεν βρεθεί παρέα", "<p>{cutoff} ώρες πριν την αναχώρηση σταματάμε την αναζήτηση και σας στέλνουμε ειδοποίηση: «Δεν βρέθηκε παρέα», με κουμπί <b>[ΚΛΕΙΣΕ ΤΑΞΙ]</b>. Η κανονική κράτηση ανοίγει συμπληρωμένη και την επιβεβαιώνετε εσείς. Δεν κλείνουμε ποτέ ταξί χωρίς εσάς.</p>"],
+        ["13. Ακύρωση", "<p>Μπορείτε να σταματήσετε την αναζήτηση οποτεδήποτε πριν απαντήσετε.</p><p>Αν κάποιος ακυρώσει μετά την απάντησή του:</p><ul><li>Αν λείπουν πάνω από {cutoff} ώρες μέχρι την αναχώρηση, ψάχνουμε άλλον επιβάτη να πάρει τη θέση του.</li><li>Αν λείπουν λιγότερες από {cutoff} ώρες, δεν ψάχνουμε άλλον. Ενημερώνουμε τους υπόλοιπους ότι ακύρωσε ένας συνεπιβάτης, πόσα άτομα έμειναν και τη νέα τιμή.</li></ul><p>Αν ακυρώσει ο μισθωτής, μισθωτής γίνεται ο επόμενος στη σειρά και σας ενημερώνουμε. Αν δεν θέλετε τη νέα τιμή, μπορείτε να ακυρώσετε κι εσείς και να κλείσετε κανονικό ταξί. Αν μείνει μόνο ένας, η διαδρομή συνεχίζει μόνο για αυτόν.</p>"],
+        ["14. Σύνδεση Google / Apple", "<p>Για το «Μαζί σε μία παρέα» συνδέεστε μία φορά με Google (Android) ή Apple (iPhone), ώστε κάθε επιβάτης να είναι πραγματικός λογαριασμός. Δεν βλέπουμε τον κωδικό σας. Η κανονική κράτηση δεν θέλει σύνδεση.</p>"],
+        ["15. Προσωπικά δεδομένα", "<p>Από τους συνεπιβάτες σας βλέπετε μόνο το ονοματεπώνυμό τους και ό,τι γράφουν στο κοινό chat. Ούτε εκείνοι βλέπουν κάτι άλλο για εσάς. Ο οδηγός βλέπει όνομα, τηλέφωνο και σημείο παραλαβής του καθενός. Οι εξουσιοδοτήσεις και το κοινό chat φυλάσσονται ως απόδειξη της μίσθωσης. Τα στοιχεία χρησιμοποιούνται μόνο για τη διαδρομή.</p>"]
+      ]) },
+    en:{ maziInfoLink:"How does it work?", maziAccept:"I have read and accept the “Together in one group” terms",
+      maziYouResponsible:"🙋 You are the hirer: the driver picks you up first. The booking and the receipt are in your name.",
+      maziResponsibleIs:"🙋 Hirer: {name} — the driver picks them up first. The booking and the receipt are in the hirer's name.",
+      maziAuthorizeBtn:"✅ I AUTHORISE",
+      maziAuthorizeText:"“I authorise the hirer {name} to hire the taxi on my behalf and to set the route with stops.”",
+      maziLesseeGoneMe:"⚠️ The hirer {prev} cancelled. For the hire to continue, you become the hirer: press I AGREE.",
+      maziLesseeGoneOther:"⚠️ The hirer {prev} cancelled. New hirer: {name}. Press I AUTHORISE for the hire to continue.",
+      maziFound:"✅ Group found", maziCancelAsk:"Cancel your participation?",
+      maziPleaseAnswer:"Please answer so the group can be completed.",
+      maziFillAll:"Please fill in first name, last name and phone.",
+      maziTooLate:"“Together in one group” is only available for departures more than {cutoff} hours away.",
+      maziGcBtn:"👥 Group chat", maziGcTitle:"Group chat", maziGcApp:"Taxi and Fly",
+      maziGcCreated:"The group for the transfer to the Airport has been created! Welcome to the shared coordination chat. Hirer: {name} (picked up first).",
+      maziGcCreatedPrev:"The hirer {prev} cancelled.",
+      maziGcAuthorized:"Digital authorisation from: {others}. Hirer: {name}. The taxi booking was made in the hirer's name.",
+      maziGcRoute:"The route plan is locked: {route} ➔ Athens Airport. It is one single hire.",
+      maziGcStopLessee:"Hirer boards ({name})", maziGcStopN:"Stop {n} ({name})",
+      maziGcPayment:"Payment instructions: you pay the driver directly at the end of the trip. The total on the taximeter can be paid in cash or split across your cards on the taxi's POS. The driver issues ONE single receipt for the whole trip, in the hirer's name ({name}).",
+      maziInfoHtml:_maziInfo([
+        ["1. What it is", "<p>You go to the airport in one taxi, {minP} to {maxP} passengers in total including you, leaving at the same time from nearby points. One hirer, one booking, one taximeter, one receipt.</p><p>The pickups of your fellow passengers are stops on the same trip. It is one single hire, from the first pickup to the airport.</p>"],
+        ["2. When I can use it", "<p>Only from Athens to the airport, for 1 person, at least {cutoff} hours before. Better {cutoff}–{later} hours before, or even earlier. If departure is less than {cutoff} hours away, you can only book a regular taxi.</p>"],
+        ["3. How the group is found", "<p>We look for passengers who want to leave for the airport up to {window} minutes earlier or later than you and who are near you (within {km} km). The shared departure time is the earliest time in the group, so nobody leaves later than they asked. You see the exact time before you answer. The search continues even when the app is closed.</p>"],
+        ["4. The time you enter", "<p>It is the time when everyone is in the taxi and leaving for the airport. The pickups happen earlier. The app shows you exactly when to be outside and when the taxi arrives.</p>"],
+        ["5. Agreement and authorisation", "<p>When a group is found, everyone sees their own time to be outside, how long the driver waits, how much they pay and who the hirer is.</p><ul><li>The hirer presses <b>I AGREE</b>.</li><li>The fellow passengers press <b>I AUTHORISE</b>: “I authorise the hirer to hire the taxi on my behalf and to set the route with stops.”</li></ul><p>The authorisation is required and is recorded with date and time. If the hirer changes, we ask you again. If someone presses Cancel, they leave the group and we inform the others. Nothing is booked without your answer.</p>"],
+        ["6. The hirer", "<p>The hirer is automatically whoever is picked up <b>first</b>. The driver goes to them first. Once the hirer is on board the taximeter starts, and the trip continues with stops for the fellow passengers, in the locked order, to the airport.</p><p>There is ONE booking, in the hirer's name, with all pickups as stops. If the hirer cancels, the next in order becomes the hirer.</p><p>As soon as the group is complete, the shared coordination chat opens. There the app writes the authorisation, the route plan and the payment instructions, and you can write too.</p>"],
+        ["7. Payment", "<p>You pay the driver directly, at the end of the trip, the total on the taximeter: in cash or split across your cards on the taxi's POS (one payment each).</p><p>The driver issues <b>ONE</b> receipt for the whole trip, in the hirer's name. One taximeter, one payment, one receipt. How the bill is split is the group's choice. The app does not hold or transfer any money.</p>"],
+        ["8. How the amount is calculated", "<p>The app shows you an <b>estimate</b> in advance: the regular price from the last pickup to the airport, plus €{ex2} when you are 2 or €{ex3} when you are 3, for the pickup stops, divided by the number of people. The final amount is what the taximeter shows.</p>"],
+        ["9. Be ready", "<p>Be outside {ready} minutes before the taxi arrives. The driver waits up to {wait} minutes and then continues to the next pickup.</p>"],
+        ["10. If I don't show up", "<p>The trip continues without you and we will ask you to explain why. If the hirer does not show up, the next in order becomes the hirer. The amount is paid by those in the taxi. If you miss pickups often, your use of “Together in one group” may be restricted.</p>"],
+        ["11. Luggage", "<p>Each passenger has {bags}, not oversized. The space is shared by everyone. Maximum size: {dims}.</p>{bagSvg}"],
+        ["12. If no group is found", "<p>{cutoff} hours before departure we stop searching and send you a notification: “No group found”, with a <b>[BOOK TAXI]</b> button. The regular booking opens pre-filled and you confirm it yourself. We never book a taxi without you.</p>"],
+        ["13. Cancellation", "<p>You can stop the search at any time before you answer.</p><p>If someone cancels after answering:</p><ul><li>If there are more than {cutoff} hours to departure, we look for another passenger to take their place.</li><li>If there are fewer than {cutoff} hours, we do not look for anyone else. We tell the others that a fellow passenger cancelled, how many people are left and the new price.</li></ul><p>If the hirer cancels, the next in order becomes the hirer and we inform you. If you don't want the new price, you can cancel too and book a regular taxi. If only one person is left, the trip goes ahead for that person only.</p>"],
+        ["14. Google / Apple sign-in", "<p>For “Together in one group” you sign in once with Google (Android) or Apple (iPhone), so that every passenger is a real account. We never see your password. A regular booking does not need sign-in.</p>"],
+        ["15. Personal data", "<p>From your fellow passengers you only see their full name and what they write in the shared chat. They see nothing else about you either. The driver sees each person's name, phone and pickup point. The authorisations and the shared chat are kept as proof of the hire. The data is used only for the trip.</p>"]
+      ]) },
+    de:{ maziInfoLink:"Wie funktioniert es?", maziAccept:"Ich habe die Bedingungen von „Gemeinsam in einer Gruppe“ gelesen und akzeptiere sie",
+      maziYouResponsible:"🙋 Du bist der Mieter: Der Fahrer holt dich zuerst ab. Buchung und Quittung laufen auf deinen Namen.",
+      maziResponsibleIs:"🙋 Mieter: {name} — der Fahrer holt diese Person zuerst ab. Buchung und Quittung laufen auf den Namen des Mieters.",
+      maziAuthorizeBtn:"✅ ICH BEVOLLMÄCHTIGE",
+      maziAuthorizeText:"„Ich bevollmächtige den Mieter {name}, das Taxi in meinem Namen zu mieten und die Route mit Zwischenstopps festzulegen.“",
+      maziLesseeGoneMe:"⚠️ Der Mieter {prev} hat storniert. Damit die Fahrt stattfindet, wirst du der Mieter: Drücke EINVERSTANDEN.",
+      maziLesseeGoneOther:"⚠️ Der Mieter {prev} hat storniert. Neuer Mieter: {name}. Drücke ICH BEVOLLMÄCHTIGE, damit die Fahrt stattfindet.",
+      maziFound:"✅ Gruppe gefunden", maziCancelAsk:"Deine Teilnahme stornieren?",
+      maziPleaseAnswer:"Bitte antworte, damit die Gruppe vollständig wird.",
+      maziFillAll:"Bitte Vorname, Nachname und Telefon ausfüllen.",
+      maziTooLate:"„Gemeinsam in einer Gruppe“ gibt es nur für Abfahrten in mehr als {cutoff} Stunden.",
+      maziGcBtn:"👥 Gruppenchat", maziGcTitle:"Gruppenchat", maziGcApp:"Taxi and Fly",
+      maziGcCreated:"Die Gruppe für die Fahrt zum Flughafen wurde erstellt! Willkommen im gemeinsamen Koordinations-Chat. Mieter: {name} (wird zuerst abgeholt).",
+      maziGcCreatedPrev:"Der Mieter {prev} hat storniert.",
+      maziGcAuthorized:"Digitale Vollmacht von: {others}. Mieter: {name}. Die Taxibuchung erfolgte auf den Namen des Mieters.",
+      maziGcRoute:"Der Routenplan steht fest: {route} ➔ Flughafen Athen. Es ist eine einzige Fahrt.",
+      maziGcStopLessee:"Einstieg Mieter ({name})", maziGcStopN:"Stopp {n} ({name})",
+      maziGcPayment:"Zahlungshinweise: Bezahlt wird direkt beim Fahrer am Ende der Fahrt. Der Gesamtbetrag des Taxameters kann bar oder aufgeteilt (Split) auf eure Karten am POS-Terminal des Taxis bezahlt werden. Der Fahrer stellt EINE Quittung für die ganze Fahrt auf den Namen des Mieters ({name}) aus.",
+      maziInfoHtml:_maziInfo([
+        ["1. Was es ist", "<p>Du fährst mit einem Taxi zum Flughafen, {minP} bis {maxP} Fahrgäste insgesamt einschließlich dir, die zur gleichen Zeit von nahe gelegenen Orten losfahren. Ein Mieter, eine Buchung, ein Taxameter, eine Quittung.</p><p>Die Abholungen der Mitfahrer sind Zwischenstopps derselben Fahrt. Es ist eine einzige Fahrt, von der ersten Abholung bis zum Flughafen.</p>"],
+        ["2. Wann ich es nutzen kann", "<p>Nur von Athen zum Flughafen, für 1 Person, mindestens {cutoff} Stunden vorher. Besser {cutoff}–{later} Stunden vorher oder noch früher. Ist die Abfahrt in weniger als {cutoff} Stunden, kannst du nur ein normales Taxi buchen.</p>"],
+        ["3. Wie die Gruppe gefunden wird", "<p>Wir suchen Fahrgäste, die bis zu {window} Minuten früher oder später als du zum Flughafen losfahren wollen und in deiner Nähe wohnen (höchstens {km} km entfernt). Die gemeinsame Abfahrtszeit ist die früheste Zeit der Gruppe, damit niemand später losfährt als gewünscht. Die genaue Zeit siehst du, bevor du antwortest. Die Suche läuft auch bei geschlossener App weiter.</p>"],
+        ["4. Die Zeit, die du angibst", "<p>Es ist die Zeit, zu der alle im Taxi sitzen und zum Flughafen losfahren. Die Abholungen finden früher statt. Die App zeigt dir genau, wann du draußen sein sollst und wann das Taxi kommt.</p>"],
+        ["5. Zustimmung und Vollmacht", "<p>Wenn eine Gruppe gefunden ist, sieht jeder seine eigene Zeit, wann er draußen sein soll, wie lange der Fahrer wartet, wie viel er zahlt und wer der Mieter ist.</p><ul><li>Der Mieter drückt <b>EINVERSTANDEN</b>.</li><li>Die Mitfahrer drücken <b>ICH BEVOLLMÄCHTIGE</b>: „Ich bevollmächtige den Mieter, das Taxi in meinem Namen zu mieten und die Route mit Zwischenstopps festzulegen.“</li></ul><p>Die Vollmacht ist Pflicht und wird mit Datum und Uhrzeit gespeichert. Ändert sich der Mieter, fragen wir dich erneut. Drückt jemand Stornieren, verlässt er die Gruppe und wir informieren die anderen. Ohne deine Antwort wird nichts gebucht.</p>"],
+        ["6. Der Mieter", "<p>Mieter ist automatisch, wer <b>zuerst</b> abgeholt wird. Der Fahrer fährt zuerst zu dieser Person. Sobald der Mieter eingestiegen ist, läuft das Taxameter, und die Fahrt geht mit Zwischenstopps bei den Mitfahrern in der festgelegten Reihenfolge weiter bis zum Flughafen.</p><p>Es gibt EINE Buchung, auf den Namen des Mieters, mit allen Abholungen als Zwischenstopps. Storniert der Mieter, wird der Nächste in der Reihenfolge zum Mieter.</p><p>Sobald die Gruppe vollständig ist, öffnet sich der gemeinsame Koordinations-Chat. Dort schreibt die App die Vollmacht, den Routenplan und die Zahlungshinweise, und auch du kannst schreiben.</p>"],
+        ["7. Bezahlung", "<p>Ihr bezahlt direkt beim Fahrer, am Ende der Fahrt, den Gesamtbetrag des Taxameters: bar oder aufgeteilt auf eure Karten am POS-Terminal des Taxis (eine Zahlung pro Person).</p><p>Der Fahrer stellt <b>EINE</b> Quittung für die ganze Fahrt auf den Namen des Mieters aus. Ein Taxameter, eine Zahlung, eine Quittung. Wie die Rechnung aufgeteilt wird, entscheidet die Gruppe. Die App hält oder überweist kein Geld.</p>"],
+        ["8. Wie der Betrag berechnet wird", "<p>Die App zeigt dir vorab eine <b>Schätzung</b>: der normale Preis von der letzten Abholung zum Flughafen, plus {ex2} €, wenn ihr 2 seid, oder {ex3} €, wenn ihr 3 seid, für die Abholstopps, geteilt durch die Anzahl der Personen. Der endgültige Betrag ist der, den das Taxameter anzeigt.</p>"],
+        ["9. Sei bereit", "<p>Sei {ready} Minuten vor Ankunft des Taxis draußen. Der Fahrer wartet bis zu {wait} Minuten und fährt dann zur nächsten Abholung weiter.</p>"],
+        ["10. Wenn ich nicht erscheine", "<p>Die Fahrt geht ohne dich weiter und wir bitten dich, den Grund zu erklären. Erscheint der Mieter nicht, wird der Nächste in der Reihenfolge zum Mieter. Den Betrag zahlen die, die im Taxi sitzen. Wenn du öfter fehlst, kann die Nutzung von „Gemeinsam in einer Gruppe“ eingeschränkt werden.</p>"],
+        ["11. Gepäck", "<p>Jeder Fahrgast hat {bags}, nicht übergroß. Der Platz wird von allen geteilt. Maximale Größe: {dims}.</p>{bagSvg}"],
+        ["12. Wenn keine Gruppe gefunden wird", "<p>{cutoff} Stunden vor der Abfahrt beenden wir die Suche und schicken dir eine Benachrichtigung: „Keine Gruppe gefunden“, mit einer Schaltfläche <b>[TAXI BUCHEN]</b>. Die normale Buchung öffnet sich ausgefüllt und du bestätigst sie selbst. Wir buchen nie ein Taxi ohne dich.</p>"],
+        ["13. Stornierung", "<p>Du kannst die Suche jederzeit beenden, bevor du antwortest.</p><p>Wenn jemand nach seiner Antwort storniert:</p><ul><li>Sind es mehr als {cutoff} Stunden bis zur Abfahrt, suchen wir einen anderen Fahrgast für seinen Platz.</li><li>Sind es weniger als {cutoff} Stunden, suchen wir niemanden mehr. Wir informieren die anderen, dass ein Mitfahrer storniert hat, wie viele Personen übrig sind und den neuen Preis.</li></ul><p>Storniert der Mieter, wird der Nächste in der Reihenfolge zum Mieter und wir informieren dich. Wenn du den neuen Preis nicht möchtest, kannst du auch stornieren und ein normales Taxi buchen. Bleibt nur eine Person übrig, findet die Fahrt nur für sie statt.</p>"],
+        ["14. Anmeldung mit Google / Apple", "<p>Für „Gemeinsam in einer Gruppe“ meldest du dich einmal mit Google (Android) oder Apple (iPhone) an, damit jeder Fahrgast ein echtes Konto ist. Wir sehen dein Passwort nicht. Eine normale Buchung braucht keine Anmeldung.</p>"],
+        ["15. Persönliche Daten", "<p>Von deinen Mitfahrern siehst du nur ihren vollständigen Namen und was sie im gemeinsamen Chat schreiben. Auch sie sehen nichts anderes über dich. Der Fahrer sieht Name, Telefon und Abholort jeder Person. Die Vollmachten und der gemeinsame Chat werden als Nachweis der Fahrt aufbewahrt. Die Daten werden nur für die Fahrt verwendet.</p>"]
+      ]) },
+    fr:{ maziInfoLink:"Comment ça marche ?", maziAccept:"J'ai lu et j'accepte les conditions « Ensemble en un seul groupe »",
+      maziYouResponsible:"🙋 Vous êtes le locataire : le chauffeur passe d'abord vous prendre. La réservation et le reçu sont à votre nom.",
+      maziResponsibleIs:"🙋 Locataire : {name} — le chauffeur passe d'abord le prendre. La réservation et le reçu sont au nom du locataire.",
+      maziAuthorizeBtn:"✅ J'AUTORISE",
+      maziAuthorizeText:"« J'autorise le locataire {name} à louer le taxi pour mon compte et à fixer l'itinéraire avec des arrêts. »",
+      maziLesseeGoneMe:"⚠️ Le locataire {prev} a annulé. Pour que la course continue, vous devenez le locataire : appuyez sur J'ACCEPTE.",
+      maziLesseeGoneOther:"⚠️ Le locataire {prev} a annulé. Nouveau locataire : {name}. Appuyez sur J'AUTORISE pour que la course continue.",
+      maziFound:"✅ Groupe trouvé", maziCancelAsk:"Annuler votre participation ?",
+      maziPleaseAnswer:"Veuillez répondre pour que le groupe soit complet.",
+      maziFillAll:"Veuillez indiquer prénom, nom et téléphone.",
+      maziTooLate:"« Ensemble en un seul groupe » n'est possible que pour un départ dans plus de {cutoff} heures.",
+      maziGcBtn:"👥 Chat du groupe", maziGcTitle:"Chat du groupe", maziGcApp:"Taxi and Fly",
+      maziGcCreated:"Le groupe pour le transfert vers l'Aéroport a été créé ! Bienvenue dans le chat de coordination commun. Locataire : {name} (pris en premier).",
+      maziGcCreatedPrev:"Le locataire {prev} a annulé.",
+      maziGcAuthorized:"Autorisation numérique de : {others}. Locataire : {name}. La réservation du taxi a été faite au nom du locataire.",
+      maziGcRoute:"Le plan d'itinéraire est verrouillé : {route} ➔ Aéroport d'Athènes. C'est une seule et même course.",
+      maziGcStopLessee:"Montée du locataire ({name})", maziGcStopN:"Arrêt {n} ({name})",
+      maziGcPayment:"Instructions de paiement : le paiement se fait directement au chauffeur à la fin du trajet. Le montant total du compteur peut être réglé en espèces ou partagé (split) sur vos cartes au terminal POS du taxi. Le chauffeur émet UN seul reçu pour tout le trajet, au nom du locataire ({name}).",
+      maziInfoHtml:_maziInfo([
+        ["1. Ce que c'est", "<p>Vous allez à l'aéroport dans un seul taxi, {minP} à {maxP} passagers au total, vous compris, qui partez à la même heure de points proches. Un locataire, une réservation, un compteur, un reçu.</p><p>Les prises en charge de vos co-passagers sont des arrêts du même trajet. C'est une seule et même course, de la première prise en charge jusqu'à l'aéroport.</p>"],
+        ["2. Quand je peux l'utiliser", "<p>Uniquement d'Athènes vers l'aéroport, pour 1 personne, au moins {cutoff} heures avant. Mieux vaut {cutoff}–{later} heures avant, ou même plus tôt. Si le départ est dans moins de {cutoff} heures, vous pouvez seulement réserver un taxi normal.</p>"],
+        ["3. Comment le groupe est trouvé", "<p>Nous cherchons des passagers qui veulent partir pour l'aéroport jusqu'à {window} minutes plus tôt ou plus tard que vous et qui habitent près de vous (à {km} km maximum). L'heure de départ commune est la plus tôt du groupe, pour que personne ne parte plus tard que prévu. Vous voyez l'heure exacte avant de répondre. La recherche continue même quand l'application est fermée.</p>"],
+        ["4. L'heure que vous indiquez", "<p>C'est l'heure à laquelle tout le monde est dans le taxi et part pour l'aéroport. Les prises en charge ont lieu avant. L'application vous indique exactement quand être dehors et quand le taxi arrive.</p>"],
+        ["5. Accord et autorisation", "<p>Quand un groupe est trouvé, chacun voit son heure pour être dehors, combien de temps le chauffeur attend, combien il paie et qui est le locataire.</p><ul><li>Le locataire appuie sur <b>J'ACCEPTE</b>.</li><li>Les co-passagers appuient sur <b>J'AUTORISE</b> : « J'autorise le locataire à louer le taxi pour mon compte et à fixer l'itinéraire avec des arrêts. »</li></ul><p>L'autorisation est obligatoire et enregistrée avec la date et l'heure. Si le locataire change, nous vous la redemandons. Si quelqu'un appuie sur Annuler, il quitte le groupe et nous informons les autres. Rien n'est réservé sans votre réponse.</p>"],
+        ["6. Le locataire", "<p>Le locataire est automatiquement la personne prise en charge en <b>premier</b>. Le chauffeur va d'abord chez elle. Dès que le locataire est à bord, le compteur démarre, et le trajet continue avec des arrêts pour les co-passagers, dans l'ordre verrouillé, jusqu'à l'aéroport.</p><p>Il y a UNE réservation, au nom du locataire, avec toutes les prises en charge comme arrêts. Si le locataire annule, le suivant dans l'ordre devient le locataire.</p><p>Dès que le groupe est complet, le chat de coordination commun s'ouvre. L'application y écrit l'autorisation, le plan d'itinéraire et les instructions de paiement, et vous pouvez aussi y écrire.</p>"],
+        ["7. Paiement", "<p>Vous payez directement le chauffeur, à la fin du trajet, le montant total du compteur : en espèces ou partagé sur vos cartes au terminal POS du taxi (un paiement par personne).</p><p>Le chauffeur émet <b>UN</b> reçu pour tout le trajet, au nom du locataire. Un compteur, un encaissement, un reçu. La façon de partager l'addition est le choix du groupe. L'application ne garde ni ne transfère d'argent.</p>"],
+        ["8. Comment le montant est calculé", "<p>L'application vous montre à l'avance une <b>estimation</b> : le prix normal depuis la dernière prise en charge jusqu'à l'aéroport, plus {ex2} € quand vous êtes 2 ou {ex3} € quand vous êtes 3, pour les arrêts de prise en charge, divisé par le nombre de personnes. Le montant final est celui qu'affiche le compteur.</p>"],
+        ["9. Soyez prêts", "<p>Soyez dehors {ready} minutes avant l'arrivée du taxi. Le chauffeur attend jusqu'à {wait} minutes puis continue vers la prise en charge suivante.</p>"],
+        ["10. Si je ne me présente pas", "<p>Le trajet continue sans vous et nous vous demanderons d'en expliquer la raison. Si le locataire ne se présente pas, le suivant dans l'ordre devient le locataire. Le montant est payé par ceux qui sont dans le taxi. Si vous êtes souvent absent, l'utilisation d'« Ensemble en un seul groupe » peut être limitée.</p>"],
+        ["11. Bagages", "<p>Chaque passager a {bags}, pas de bagage hors format. L'espace est partagé par tous. Taille maximale : {dims}.</p>{bagSvg}"],
+        ["12. Si aucun groupe n'est trouvé", "<p>{cutoff} heures avant le départ, nous arrêtons la recherche et vous envoyons une notification : « Aucun groupe trouvé », avec un bouton <b>[RÉSERVER UN TAXI]</b>. La réservation normale s'ouvre pré-remplie et vous la confirmez vous-même. Nous ne réservons jamais de taxi sans vous.</p>"],
+        ["13. Annulation", "<p>Vous pouvez arrêter la recherche à tout moment avant de répondre.</p><p>Si quelqu'un annule après avoir répondu :</p><ul><li>S'il reste plus de {cutoff} heures avant le départ, nous cherchons un autre passager pour prendre sa place.</li><li>S'il reste moins de {cutoff} heures, nous ne cherchons personne d'autre. Nous informons les autres qu'un co-passager a annulé, du nombre de personnes restantes et du nouveau prix.</li></ul><p>Si le locataire annule, le suivant dans l'ordre devient le locataire et nous vous informons. Si le nouveau prix ne vous convient pas, vous pouvez annuler aussi et réserver un taxi normal. S'il ne reste qu'une personne, le trajet a lieu pour elle seule.</p>"],
+        ["14. Connexion Google / Apple", "<p>Pour « Ensemble en un seul groupe », vous vous connectez une fois avec Google (Android) ou Apple (iPhone), afin que chaque passager soit un vrai compte. Nous ne voyons jamais votre mot de passe. Une réservation normale ne demande pas de connexion.</p>"],
+        ["15. Données personnelles", "<p>De vos co-passagers, vous ne voyez que leur nom complet et ce qu'ils écrivent dans le chat commun. Eux non plus ne voient rien d'autre sur vous. Le chauffeur voit le nom, le téléphone et le point de prise en charge de chacun. Les autorisations et le chat commun sont conservés comme preuve de la course. Les données ne servent qu'au trajet.</p>"]
+      ]) },
+    it:{ maziInfoLink:"Come funziona?", maziAccept:"Ho letto e accetto le condizioni di «Insieme in un solo gruppo»",
+      maziYouResponsible:"🙋 Sei tu il locatario: l'autista passa prima da te. La prenotazione e la ricevuta sono a tuo nome.",
+      maziResponsibleIs:"🙋 Locatario: {name} — l'autista passa prima da lì. La prenotazione e la ricevuta sono a nome del locatario.",
+      maziAuthorizeBtn:"✅ AUTORIZZO",
+      maziAuthorizeText:"«Autorizzo il locatario {name} a noleggiare il taxi per mio conto e a stabilire il percorso con fermate.»",
+      maziLesseeGoneMe:"⚠️ Il locatario {prev} ha annullato. Perché la corsa continui, diventi tu il locatario: premi ACCETTO.",
+      maziLesseeGoneOther:"⚠️ Il locatario {prev} ha annullato. Nuovo locatario: {name}. Premi AUTORIZZO perché la corsa continui.",
+      maziFound:"✅ Gruppo trovato", maziCancelAsk:"Annullare la tua partecipazione?",
+      maziPleaseAnswer:"Rispondi, per favore, così il gruppo si completa.",
+      maziFillAll:"Compila nome, cognome e telefono.",
+      maziTooLate:"«Insieme in un solo gruppo» è possibile solo per partenze tra più di {cutoff} ore.",
+      maziGcBtn:"👥 Chat del gruppo", maziGcTitle:"Chat del gruppo", maziGcApp:"Taxi and Fly",
+      maziGcCreated:"Il gruppo per il trasferimento all'Aeroporto è stato creato! Benvenuti nella chat di coordinamento comune. Locatario: {name} (preso per primo).",
+      maziGcCreatedPrev:"Il locatario {prev} ha annullato.",
+      maziGcAuthorized:"Autorizzazione digitale da: {others}. Locatario: {name}. La prenotazione del taxi è stata fatta a nome del locatario.",
+      maziGcRoute:"Il piano del percorso è bloccato: {route} ➔ Aeroporto di Atene. È un'unica corsa.",
+      maziGcStopLessee:"Salita del locatario ({name})", maziGcStopN:"Fermata {n} ({name})",
+      maziGcPayment:"Istruzioni di pagamento: si paga direttamente all'autista alla fine del percorso. L'importo totale del tassametro si può pagare in contanti o diviso (split) sulle vostre carte al POS del taxi. L'autista emette UNA sola ricevuta per tutto il percorso, a nome del locatario ({name}).",
+      maziInfoHtml:_maziInfo([
+        ["1. Che cos'è", "<p>Vai all'aeroporto con un solo taxi, da {minP} a {maxP} passeggeri in tutto compreso te, che partite alla stessa ora da punti vicini. Un locatario, una prenotazione, un tassametro, una ricevuta.</p><p>Le prese a bordo dei compagni di viaggio sono fermate dello stesso percorso. È un'unica corsa, dalla prima presa a bordo fino all'aeroporto.</p>"],
+        ["2. Quando posso usarlo", "<p>Solo da Atene all'aeroporto, per 1 persona, almeno {cutoff} ore prima. Meglio {cutoff}–{later} ore prima o anche prima. Se la partenza è tra meno di {cutoff} ore, puoi prenotare solo un taxi normale.</p>"],
+        ["3. Come si trova il gruppo", "<p>Cerchiamo passeggeri che vogliono partire per l'aeroporto fino a {window} minuti prima o dopo di te e che abitano vicino a te (entro {km} km). L'orario di partenza comune è il più presto del gruppo, così nessuno parte più tardi di quanto ha chiesto. Vedi l'orario esatto prima di rispondere. La ricerca continua anche con l'app chiusa.</p>"],
+        ["4. L'orario che indichi", "<p>È l'orario in cui tutti sono nel taxi e partono per l'aeroporto. Le prese a bordo avvengono prima. L'app ti mostra esattamente quando essere fuori e quando arriva il taxi.</p>"],
+        ["5. Accordo e autorizzazione", "<p>Quando si trova un gruppo, ognuno vede il proprio orario per essere fuori, quanto aspetta l'autista, quanto paga e chi è il locatario.</p><ul><li>Il locatario preme <b>ACCETTO</b>.</li><li>I compagni di viaggio premono <b>AUTORIZZO</b>: «Autorizzo il locatario a noleggiare il taxi per mio conto e a stabilire il percorso con fermate.»</li></ul><p>L'autorizzazione è obbligatoria e viene registrata con data e ora. Se cambia il locatario, te la chiediamo di nuovo. Se qualcuno preme Annulla, esce dal gruppo e informiamo gli altri. Niente viene prenotato senza la tua risposta.</p>"],
+        ["6. Il locatario", "<p>Il locatario è automaticamente chi viene preso a bordo per <b>primo</b>. L'autista va prima da lui. Appena il locatario sale, parte il tassametro, e il percorso continua con fermate per i compagni di viaggio, nell'ordine bloccato, fino all'aeroporto.</p><p>La prenotazione è UNA, a nome del locatario, con tutte le prese a bordo come fermate. Se il locatario annulla, diventa locatario il successivo nell'ordine.</p><p>Appena il gruppo è completo, si apre la chat di coordinamento comune. Lì l'app scrive l'autorizzazione, il piano del percorso e le istruzioni di pagamento, e puoi scrivere anche tu.</p>"],
+        ["7. Pagamento", "<p>Pagate direttamente all'autista, alla fine del percorso, l'importo totale del tassametro: in contanti o diviso sulle vostre carte al POS del taxi (un pagamento a testa).</p><p>L'autista emette <b>UNA</b> ricevuta per tutto il percorso, a nome del locatario. Un tassametro, un incasso, una ricevuta. Come dividere il conto lo sceglie il gruppo. L'app non trattiene né trasferisce denaro.</p>"],
+        ["8. Come si calcola l'importo", "<p>L'app ti mostra in anticipo una <b>stima</b>: il prezzo normale dall'ultima presa a bordo all'aeroporto, più {ex2} € quando siete in 2 o {ex3} € quando siete in 3, per le fermate di presa a bordo, diviso per il numero di persone. L'importo finale è quello che mostra il tassametro.</p>"],
+        ["9. Sii pronto", "<p>Fatti trovare fuori {ready} minuti prima che arrivi il taxi. L'autista aspetta fino a {wait} minuti e poi prosegue verso la presa a bordo successiva.</p>"],
+        ["10. Se non mi presento", "<p>Il percorso continua senza di te e ti chiederemo di spiegarne il motivo. Se il locatario non si presenta, diventa locatario il successivo nell'ordine. L'importo lo pagano quelli che sono nel taxi. Se manchi spesso, l'uso di «Insieme in un solo gruppo» può essere limitato.</p>"],
+        ["11. Bagagli", "<p>Ogni passeggero ha {bags}, non fuori misura. Lo spazio è condiviso da tutti. Dimensione massima: {dims}.</p>{bagSvg}"],
+        ["12. Se non si trova un gruppo", "<p>{cutoff} ore prima della partenza interrompiamo la ricerca e ti inviamo una notifica: «Nessun gruppo trovato», con un pulsante <b>[PRENOTA TAXI]</b>. La prenotazione normale si apre già compilata e la confermi tu. Non prenotiamo mai un taxi senza di te.</p>"],
+        ["13. Annullamento", "<p>Puoi interrompere la ricerca in qualsiasi momento prima di rispondere.</p><p>Se qualcuno annulla dopo aver risposto:</p><ul><li>Se mancano più di {cutoff} ore alla partenza, cerchiamo un altro passeggero per prendere il suo posto.</li><li>Se mancano meno di {cutoff} ore, non cerchiamo nessun altro. Informiamo gli altri che un compagno di viaggio ha annullato, quante persone sono rimaste e il nuovo prezzo.</li></ul><p>Se il locatario annulla, diventa locatario il successivo nell'ordine e ti informiamo. Se il nuovo prezzo non ti va, puoi annullare anche tu e prenotare un taxi normale. Se resta una sola persona, la corsa si fa solo per lei.</p>"],
+        ["14. Accesso con Google / Apple", "<p>Per «Insieme in un solo gruppo» accedi una volta con Google (Android) o Apple (iPhone), così ogni passeggero è un account reale. Non vediamo mai la tua password. La prenotazione normale non richiede l'accesso.</p>"],
+        ["15. Dati personali", "<p>Dei tuoi compagni di viaggio vedi solo nome e cognome e quello che scrivono nella chat comune. Neanche loro vedono altro di te. L'autista vede nome, telefono e punto di presa a bordo di ognuno. Le autorizzazioni e la chat comune sono conservate come prova della corsa. I dati servono solo per il percorso.</p>"]
+      ]) },
+    es:{ maziInfoLink:"¿Cómo funciona?", maziAccept:"He leído y acepto las condiciones de «Juntos en un solo grupo»",
+      maziYouResponsible:"🙋 Eres el arrendatario: el conductor pasa primero por ti. La reserva y el recibo están a tu nombre.",
+      maziResponsibleIs:"🙋 Arrendatario: {name} — el conductor pasa primero por ahí. La reserva y el recibo están a nombre del arrendatario.",
+      maziAuthorizeBtn:"✅ AUTORIZO",
+      maziAuthorizeText:"«Autorizo al arrendatario {name} a contratar el taxi en mi nombre y a fijar la ruta con paradas.»",
+      maziLesseeGoneMe:"⚠️ El arrendatario {prev} ha cancelado. Para que el viaje continúe, pasas a ser el arrendatario: pulsa ACEPTO.",
+      maziLesseeGoneOther:"⚠️ El arrendatario {prev} ha cancelado. Nuevo arrendatario: {name}. Pulsa AUTORIZO para que el viaje continúe.",
+      maziFound:"✅ Grupo encontrado", maziCancelAsk:"¿Cancelar tu participación?",
+      maziPleaseAnswer:"Responde, por favor, para completar el grupo.",
+      maziFillAll:"Rellena nombre, apellido y teléfono.",
+      maziTooLate:"«Juntos en un solo grupo» solo es posible para salidas dentro de más de {cutoff} horas.",
+      maziGcBtn:"👥 Chat del grupo", maziGcTitle:"Chat del grupo", maziGcApp:"Taxi and Fly",
+      maziGcCreated:"¡Se ha creado el grupo para el traslado al Aeropuerto! Bienvenidos al chat de coordinación común. Arrendatario: {name} (se recoge primero).",
+      maziGcCreatedPrev:"El arrendatario {prev} ha cancelado.",
+      maziGcAuthorized:"Autorización digital de: {others}. Arrendatario: {name}. La reserva del taxi se hizo a nombre del arrendatario.",
+      maziGcRoute:"El plan de ruta está cerrado: {route} ➔ Aeropuerto de Atenas. Es un único viaje.",
+      maziGcStopLessee:"Sube el arrendatario ({name})", maziGcStopN:"Parada {n} ({name})",
+      maziGcPayment:"Instrucciones de pago: el pago se hace directamente al conductor al final del viaje. El importe total del taxímetro se puede pagar en efectivo o dividido (split) entre vuestras tarjetas en el TPV del taxi. El conductor emite UN único recibo por todo el viaje, a nombre del arrendatario ({name}).",
+      maziInfoHtml:_maziInfo([
+        ["1. Qué es", "<p>Vas al aeropuerto en un solo taxi, de {minP} a {maxP} pasajeros en total contándote a ti, que salís a la misma hora desde puntos cercanos. Un arrendatario, una reserva, un taxímetro, un recibo.</p><p>Las recogidas de tus compañeros de viaje son paradas del mismo trayecto. Es un único viaje, desde la primera recogida hasta el aeropuerto.</p>"],
+        ["2. Cuándo puedo usarlo", "<p>Solo de Atenas al aeropuerto, para 1 persona, al menos {cutoff} horas antes. Mejor {cutoff}–{later} horas antes o incluso antes. Si la salida es dentro de menos de {cutoff} horas, solo puedes reservar un taxi normal.</p>"],
+        ["3. Cómo se encuentra el grupo", "<p>Buscamos pasajeros que quieran salir hacia el aeropuerto hasta {window} minutos antes o después que tú y que vivan cerca de ti (a un máximo de {km} km). La hora de salida común es la más temprana del grupo, para que nadie salga más tarde de lo que pidió. Ves la hora exacta antes de responder. La búsqueda continúa aunque la app esté cerrada.</p>"],
+        ["4. La hora que indicas", "<p>Es la hora en la que todos están en el taxi y salen hacia el aeropuerto. Las recogidas son antes. La app te muestra exactamente cuándo estar fuera y cuándo llega el taxi.</p>"],
+        ["5. Acuerdo y autorización", "<p>Cuando se encuentra un grupo, cada uno ve su hora para estar fuera, cuánto espera el conductor, cuánto paga y quién es el arrendatario.</p><ul><li>El arrendatario pulsa <b>ACEPTO</b>.</li><li>Los compañeros de viaje pulsan <b>AUTORIZO</b>: «Autorizo al arrendatario a contratar el taxi en mi nombre y a fijar la ruta con paradas.»</li></ul><p>La autorización es obligatoria y queda registrada con fecha y hora. Si cambia el arrendatario, te la volvemos a pedir. Si alguien pulsa Cancelar, sale del grupo e informamos a los demás. No se reserva nada sin tu respuesta.</p>"],
+        ["6. El arrendatario", "<p>El arrendatario es automáticamente quien se recoge <b>primero</b>. El conductor va primero a por él. En cuanto sube el arrendatario se pone en marcha el taxímetro, y el viaje sigue con paradas para los compañeros, en el orden cerrado, hasta el aeropuerto.</p><p>Hay UNA reserva, a nombre del arrendatario, con todas las recogidas como paradas. Si el arrendatario cancela, pasa a serlo el siguiente en el orden.</p><p>En cuanto el grupo está completo, se abre el chat de coordinación común. Allí la app escribe la autorización, el plan de ruta y las instrucciones de pago, y también puedes escribir tú.</p>"],
+        ["7. Pago", "<p>Pagáis directamente al conductor, al final del viaje, el importe total del taxímetro: en efectivo o dividido entre vuestras tarjetas en el TPV del taxi (un pago cada uno).</p><p>El conductor emite <b>UN</b> recibo por todo el viaje, a nombre del arrendatario. Un taxímetro, un cobro, un recibo. Cómo se reparte la cuenta lo decide el grupo. La app no retiene ni transfiere dinero.</p>"],
+        ["8. Cómo se calcula el importe", "<p>La app te muestra de antemano una <b>estimación</b>: el precio normal desde la última recogida al aeropuerto, más {ex2} € si sois 2 o {ex3} € si sois 3, por las paradas de recogida, dividido entre el número de personas. El importe final es el que marca el taxímetro.</p>"],
+        ["9. Estad listos", "<p>Estad fuera {ready} minutos antes de que llegue el taxi. El conductor espera hasta {wait} minutos y luego sigue hacia la siguiente recogida.</p>"],
+        ["10. Si no me presento", "<p>El viaje continúa sin ti y te pediremos que expliques el motivo. Si el arrendatario no se presenta, pasa a serlo el siguiente en el orden. El importe lo pagan quienes van en el taxi. Si faltas a menudo, puede limitarse tu uso de «Juntos en un solo grupo».</p>"],
+        ["11. Equipaje", "<p>Cada pasajero lleva {bags}, no de gran tamaño. El espacio es compartido por todos. Tamaño máximo: {dims}.</p>{bagSvg}"],
+        ["12. Si no se encuentra grupo", "<p>{cutoff} horas antes de la salida dejamos de buscar y te enviamos una notificación: «No se ha encontrado grupo», con un botón <b>[RESERVAR TAXI]</b>. La reserva normal se abre rellenada y la confirmas tú. Nunca reservamos un taxi sin ti.</p>"],
+        ["13. Cancelación", "<p>Puedes detener la búsqueda en cualquier momento antes de responder.</p><p>Si alguien cancela después de responder:</p><ul><li>Si faltan más de {cutoff} horas para la salida, buscamos otro pasajero que ocupe su lugar.</li><li>Si faltan menos de {cutoff} horas, no buscamos a nadie más. Informamos a los demás de que un compañero ha cancelado, cuántas personas quedan y el nuevo precio.</li></ul><p>Si el arrendatario cancela, pasa a serlo el siguiente en el orden y te informamos. Si no quieres el nuevo precio, puedes cancelar tú también y reservar un taxi normal. Si solo queda una persona, el viaje sigue solo para ella.</p>"],
+        ["14. Inicio de sesión con Google / Apple", "<p>Para «Juntos en un solo grupo» inicias sesión una vez con Google (Android) o Apple (iPhone), para que cada pasajero sea una cuenta real. Nunca vemos tu contraseña. La reserva normal no necesita inicio de sesión.</p>"],
+        ["15. Datos personales", "<p>De tus compañeros de viaje solo ves su nombre completo y lo que escriben en el chat común. Ellos tampoco ven nada más de ti. El conductor ve el nombre, el teléfono y el punto de recogida de cada uno. Las autorizaciones y el chat común se guardan como prueba del viaje. Los datos solo se usan para el trayecto.</p>"]
+      ]) },
+    ru:{ maziInfoLink:"Как это работает?", maziAccept:"Я прочитал(а) и принимаю условия «Вместе одной компанией»",
+      maziYouResponsible:"🙋 Вы арендатор: водитель сначала заезжает за вами. Заказ и чек оформляются на ваше имя.",
+      maziResponsibleIs:"🙋 Арендатор: {name} — водитель сначала заезжает туда. Заказ и чек оформляются на имя арендатора.",
+      maziAuthorizeBtn:"✅ УПОЛНОМОЧИВАЮ",
+      maziAuthorizeText:"«Я уполномочиваю арендатора {name} арендовать такси от моего имени и определить маршрут с остановками.»",
+      maziLesseeGoneMe:"⚠️ Арендатор {prev} отменил поездку. Чтобы поездка состоялась, арендатором становитесь вы: нажмите ПОДТВЕРЖДАЮ.",
+      maziLesseeGoneOther:"⚠️ Арендатор {prev} отменил поездку. Новый арендатор: {name}. Нажмите УПОЛНОМОЧИВАЮ, чтобы поездка состоялась.",
+      maziFound:"✅ Группа найдена", maziCancelAsk:"Отменить ваше участие?",
+      maziPleaseAnswer:"Пожалуйста, ответьте, чтобы группа была собрана.",
+      maziFillAll:"Заполните имя, фамилию и телефон.",
+      maziTooLate:"«Вместе одной компанией» доступно только для выезда более чем через {cutoff} ч.",
+      maziGcBtn:"👥 Чат группы", maziGcTitle:"Чат группы", maziGcApp:"Taxi and Fly",
+      maziGcCreated:"Группа для поездки в Аэропорт создана! Добро пожаловать в общий чат координации. Арендатор: {name} (его забирают первым).",
+      maziGcCreatedPrev:"Арендатор {prev} отменил поездку.",
+      maziGcAuthorized:"Цифровое поручение от: {others}. Арендатор: {name}. Заказ такси оформлен на имя арендатора.",
+      maziGcRoute:"План маршрута утверждён: {route} ➔ Аэропорт Афин. Это одна единая поездка.",
+      maziGcStopLessee:"Посадка арендатора ({name})", maziGcStopN:"Остановка {n} ({name})",
+      maziGcPayment:"Оплата: платите водителю напрямую в конце поездки. Общую сумму по счётчику можно оплатить наличными или разделить (split) между вашими картами на POS-терминале такси. Водитель выдаёт ОДИН чек за всю поездку на имя арендатора ({name}).",
+      maziInfoHtml:_maziInfo([
+        ["1. Что это", "<p>Вы едете в аэропорт на одном такси, всего от {minP} до {maxP} пассажиров вместе с вами, которые выезжают в одно время из близких мест. Один арендатор, один заказ, один счётчик, один чек.</p><p>Посадка попутчиков — это остановки той же поездки. Это одна единая поездка, от первой посадки до аэропорта.</p>"],
+        ["2. Когда можно воспользоваться", "<p>Только из Афин в аэропорт, для 1 человека, не менее чем за {cutoff} ч. Лучше за {cutoff}–{later} ч или ещё раньше. Если выезд менее чем через {cutoff} ч, можно заказать только обычное такси.</p>"],
+        ["3. Как подбирается группа", "<p>Мы ищем пассажиров, которые хотят выехать в аэропорт на {window} минут раньше или позже вас и живут рядом с вами (не дальше {km} км). Общее время выезда — самое раннее в группе, чтобы никто не выехал позже, чем просил. Точное время вы видите до того, как ответите. Поиск продолжается и при закрытом приложении.</p>"],
+        ["4. Время, которое вы указываете", "<p>Это время, когда все уже в такси и выезжают в аэропорт. Посадки происходят раньше. Приложение точно показывает, когда выйти на улицу и когда приедет такси.</p>"],
+        ["5. Согласие и поручение", "<p>Когда группа найдена, каждый видит своё время выхода на улицу, сколько ждёт водитель, сколько он платит и кто арендатор.</p><ul><li>Арендатор нажимает <b>ПОДТВЕРЖДАЮ</b>.</li><li>Попутчики нажимают <b>УПОЛНОМОЧИВАЮ</b>: «Я уполномочиваю арендатора арендовать такси от моего имени и определить маршрут с остановками.»</li></ul><p>Поручение обязательно и сохраняется с датой и временем. Если арендатор меняется, мы спрашиваем вас снова. Если кто-то нажимает «Отмена», он выходит из группы, и мы сообщаем остальным. Ничего не заказывается без вашего ответа.</p>"],
+        ["6. Арендатор", "<p>Арендатором автоматически становится тот, кого забирают <b>первым</b>. Водитель сначала едет к нему. Как только арендатор сел, включается счётчик, и поездка продолжается с остановками для попутчиков, в утверждённом порядке, до аэропорта.</p><p>Заказ ОДИН, на имя арендатора, все посадки — остановки. Если арендатор отменяет поездку, арендатором становится следующий по порядку.</p><p>Как только группа собрана, открывается общий чат координации. Там приложение пишет поручение, план маршрута и правила оплаты, и вы тоже можете писать.</p>"],
+        ["7. Оплата", "<p>Вы платите водителю напрямую, в конце поездки, общую сумму по счётчику: наличными или разделив её между вашими картами на POS-терминале такси (по одному платежу на человека).</p><p>Водитель выдаёт <b>ОДИН</b> чек за всю поездку на имя арендатора. Один счётчик, одна оплата, один чек. Как разделить счёт — решает группа. Приложение не хранит и не переводит деньги.</p>"],
+        ["8. Как рассчитывается сумма", "<p>Приложение заранее показывает <b>оценку</b>: обычная цена от последней посадки до аэропорта плюс {ex2} €, если вас 2, или {ex3} €, если вас 3, за остановки, делённая на число людей. Окончательная сумма — та, что показывает счётчик.</p>"],
+        ["9. Будьте готовы", "<p>Будьте на улице за {ready} минут до приезда такси. Водитель ждёт до {wait} минут, а затем едет к следующей посадке.</p>"],
+        ["10. Если я не приду", "<p>Поездка продолжится без вас, и мы попросим объяснить причину. Если не придёт арендатор, арендатором становится следующий по порядку. Сумму оплачивают те, кто в такси. Если вы часто не приходите, использование «Вместе одной компанией» может быть ограничено.</p>"],
+        ["11. Багаж", "<p>У каждого пассажира {bags}, не крупногабаритный. Место общее для всех. Максимальный размер: {dims}.</p>{bagSvg}"],
+        ["12. Если группа не найдена", "<p>За {cutoff} ч до выезда мы прекращаем поиск и отправляем вам уведомление: «Группа не найдена» с кнопкой <b>[ЗАКАЗАТЬ ТАКСИ]</b>. Обычный заказ открывается заполненным, и вы сами его подтверждаете. Мы никогда не заказываем такси без вас.</p>"],
+        ["13. Отмена", "<p>Вы можете остановить поиск в любой момент, пока не ответили.</p><p>Если кто-то отменяет после ответа:</p><ul><li>Если до выезда больше {cutoff} ч, мы ищем другого пассажира на его место.</li><li>Если меньше {cutoff} ч, мы никого больше не ищем. Мы сообщаем остальным, что попутчик отменил поездку, сколько человек осталось и новую цену.</li></ul><p>Если арендатор отменяет, арендатором становится следующий по порядку, и мы вам сообщаем. Если новая цена вам не подходит, вы тоже можете отменить и заказать обычное такси. Если остаётся один человек, поездка состоится только для него.</p>"],
+        ["14. Вход через Google / Apple", "<p>Для «Вместе одной компанией» вы один раз входите через Google (Android) или Apple (iPhone), чтобы каждый пассажир был реальным аккаунтом. Мы не видим ваш пароль. Для обычного заказа вход не нужен.</p>"],
+        ["15. Личные данные", "<p>О попутчиках вы видите только их имя и фамилию и то, что они пишут в общем чате. Они тоже не видят о вас ничего другого. Водитель видит имя, телефон и место посадки каждого. Поручения и общий чат хранятся как подтверждение поездки. Данные используются только для поездки.</p>"]
+      ]) },
+    pl:{ maziInfoLink:"Jak to działa?", maziAccept:"Przeczytałem/am i akceptuję warunki „Razem w jednej grupie”",
+      maziYouResponsible:"🙋 Jesteś najemcą: kierowca odbiera cię jako pierwszego. Rezerwacja i paragon są na twoje nazwisko.",
+      maziResponsibleIs:"🙋 Najemca: {name} — kierowca odbiera tę osobę jako pierwszą. Rezerwacja i paragon są na nazwisko najemcy.",
+      maziAuthorizeBtn:"✅ UPOWAŻNIAM",
+      maziAuthorizeText:"„Upoważniam najemcę {name} do wynajęcia taksówki w moim imieniu i ustalenia trasy z przystankami.”",
+      maziLesseeGoneMe:"⚠️ Najemca {prev} zrezygnował. Aby kurs się odbył, najemcą zostajesz ty: naciśnij ZGADZAM SIĘ.",
+      maziLesseeGoneOther:"⚠️ Najemca {prev} zrezygnował. Nowy najemca: {name}. Naciśnij UPOWAŻNIAM, aby kurs się odbył.",
+      maziFound:"✅ Znaleziono grupę", maziCancelAsk:"Anulować twój udział?",
+      maziPleaseAnswer:"Odpowiedz, proszę, aby grupa się skompletowała.",
+      maziFillAll:"Uzupełnij imię, nazwisko i telefon.",
+      maziTooLate:"„Razem w jednej grupie” jest możliwe tylko dla wyjazdu za więcej niż {cutoff} godz.",
+      maziGcBtn:"👥 Czat grupy", maziGcTitle:"Czat grupy", maziGcApp:"Taxi and Fly",
+      maziGcCreated:"Grupa na przejazd na Lotnisko została utworzona! Witamy na wspólnym czacie koordynacyjnym. Najemca: {name} (odbierany jako pierwszy).",
+      maziGcCreatedPrev:"Najemca {prev} zrezygnował.",
+      maziGcAuthorized:"Cyfrowe upoważnienie od: {others}. Najemca: {name}. Rezerwacja taksówki została zrobiona na nazwisko najemcy.",
+      maziGcRoute:"Plan trasy jest zatwierdzony: {route} ➔ Lotnisko w Atenach. To jeden, wspólny kurs.",
+      maziGcStopLessee:"Wsiada najemca ({name})", maziGcStopN:"Przystanek {n} ({name})",
+      maziGcPayment:"Płatność: płacicie bezpośrednio kierowcy na końcu kursu. Całą kwotę z taksometru można zapłacić gotówką lub podzielić (split) na wasze karty w terminalu POS taksówki. Kierowca wystawia JEDEN paragon za cały kurs na nazwisko najemcy ({name}).",
+      maziInfoHtml:_maziInfo([
+        ["1. Co to jest", "<p>Jedziesz na lotnisko jedną taksówką, łącznie od {minP} do {maxP} pasażerów razem z tobą, którzy wyjeżdżają o tej samej porze z pobliskich miejsc. Jeden najemca, jedna rezerwacja, jeden taksometr, jeden paragon.</p><p>Odbiory współpasażerów to przystanki tego samego kursu. To jeden, wspólny kurs — od pierwszego odbioru do lotniska.</p>"],
+        ["2. Kiedy mogę skorzystać", "<p>Tylko z Aten na lotnisko, dla 1 osoby, co najmniej {cutoff} godz. wcześniej. Lepiej {cutoff}–{later} godz. wcześniej albo jeszcze wcześniej. Jeśli wyjazd jest za mniej niż {cutoff} godz., możesz zamówić tylko zwykłą taksówkę.</p>"],
+        ["3. Jak znajdujemy grupę", "<p>Szukamy pasażerów, którzy chcą wyjechać na lotnisko do {window} minut wcześniej lub później niż ty i mieszkają blisko ciebie (w odległości do {km} km). Wspólna godzina wyjazdu to najwcześniejsza godzina w grupie, żeby nikt nie wyjechał później, niż chciał. Dokładną godzinę widzisz, zanim odpowiesz. Wyszukiwanie trwa także przy zamkniętej aplikacji.</p>"],
+        ["4. Godzina, którą podajesz", "<p>To godzina, o której wszyscy są już w taksówce i wyjeżdżają na lotnisko. Odbiory są wcześniej. Aplikacja pokazuje dokładnie, kiedy być na zewnątrz i kiedy przyjedzie taksówka.</p>"],
+        ["5. Zgoda i upoważnienie", "<p>Gdy grupa zostanie znaleziona, każdy widzi swoją godzinę wyjścia, jak długo czeka kierowca, ile płaci i kto jest najemcą.</p><ul><li>Najemca naciska <b>ZGADZAM SIĘ</b>.</li><li>Współpasażerowie naciskają <b>UPOWAŻNIAM</b>: „Upoważniam najemcę do wynajęcia taksówki w moim imieniu i ustalenia trasy z przystankami.”</li></ul><p>Upoważnienie jest obowiązkowe i zapisywane z datą i godziną. Jeśli najemca się zmieni, prosimy o nie ponownie. Jeśli ktoś naciśnie Anuluj, wychodzi z grupy, a my informujemy pozostałych. Nic nie zostanie zarezerwowane bez twojej odpowiedzi.</p>"],
+        ["6. Najemca", "<p>Najemcą zostaje automatycznie osoba odbierana <b>jako pierwsza</b>. Kierowca jedzie najpierw do niej. Gdy najemca wsiądzie, włącza się taksometr, a kurs jest kontynuowany z przystankami dla współpasażerów, w zatwierdzonej kolejności, aż do lotniska.</p><p>Rezerwacja jest JEDNA, na nazwisko najemcy, ze wszystkimi odbiorami jako przystankami. Jeśli najemca zrezygnuje, najemcą zostaje następny w kolejności.</p><p>Gdy grupa jest kompletna, otwiera się wspólny czat koordynacyjny. Aplikacja zapisuje tam upoważnienie, plan trasy i zasady płatności, a ty też możesz pisać.</p>"],
+        ["7. Płatność", "<p>Płacicie bezpośrednio kierowcy, na końcu kursu, całą kwotę z taksometru: gotówką lub dzieląc ją na wasze karty w terminalu POS taksówki (jedna płatność na osobę).</p><p>Kierowca wystawia <b>JEDEN</b> paragon za cały kurs, na nazwisko najemcy. Jeden taksometr, jedna płatność, jeden paragon. Jak podzielić rachunek, decyduje grupa. Aplikacja nie przechowuje ani nie przesyła pieniędzy.</p>"],
+        ["8. Jak liczona jest kwota", "<p>Aplikacja pokazuje z góry <b>szacunek</b>: zwykła cena od ostatniego odbioru do lotniska plus {ex2} €, gdy jest was 2, lub {ex3} €, gdy jest was 3, za przystanki, podzielona przez liczbę osób. Ostateczna kwota to ta, którą pokazuje taksometr.</p>"],
+        ["9. Bądź gotowy", "<p>Bądź na zewnątrz {ready} minut przed przyjazdem taksówki. Kierowca czeka do {wait} minut, a potem jedzie do następnego odbioru.</p>"],
+        ["10. Jeśli się nie pojawię", "<p>Kurs jedzie dalej bez ciebie, a my poprosimy o wyjaśnienie powodu. Jeśli nie pojawi się najemca, najemcą zostaje następny w kolejności. Kwotę płacą osoby obecne w taksówce. Jeśli często się nie pojawiasz, korzystanie z „Razem w jednej grupie” może zostać ograniczone.</p>"],
+        ["11. Bagaż", "<p>Każdy pasażer ma {bags}, nie ponadwymiarowy. Miejsce jest wspólne dla wszystkich. Maksymalny rozmiar: {dims}.</p>{bagSvg}"],
+        ["12. Jeśli nie znajdziemy grupy", "<p>{cutoff} godz. przed wyjazdem kończymy wyszukiwanie i wysyłamy powiadomienie: „Nie znaleziono grupy”, z przyciskiem <b>[ZAMÓW TAKSÓWKĘ]</b>. Zwykła rezerwacja otwiera się wypełniona i to ty ją potwierdzasz. Nigdy nie zamawiamy taksówki bez ciebie.</p>"],
+        ["13. Anulowanie", "<p>Możesz zatrzymać wyszukiwanie w każdej chwili, zanim odpowiesz.</p><p>Jeśli ktoś zrezygnuje po odpowiedzi:</p><ul><li>Jeśli do wyjazdu zostało ponad {cutoff} godz., szukamy innego pasażera na jego miejsce.</li><li>Jeśli zostało mniej niż {cutoff} godz., nie szukamy nikogo więcej. Informujemy pozostałych, że współpasażer zrezygnował, ile osób zostało i jaka jest nowa cena.</li></ul><p>Jeśli zrezygnuje najemca, najemcą zostaje następny w kolejności, a my cię informujemy. Jeśli nowa cena ci nie odpowiada, też możesz zrezygnować i zamówić zwykłą taksówkę. Jeśli zostanie jedna osoba, kurs odbędzie się tylko dla niej.</p>"],
+        ["14. Logowanie przez Google / Apple", "<p>Do „Razem w jednej grupie” logujesz się raz przez Google (Android) lub Apple (iPhone), aby każdy pasażer był prawdziwym kontem. Nie widzimy twojego hasła. Zwykła rezerwacja nie wymaga logowania.</p>"],
+        ["15. Dane osobowe", "<p>O współpasażerach widzisz tylko imię i nazwisko oraz to, co piszą na wspólnym czacie. Oni też nie widzą o tobie nic więcej. Kierowca widzi imię, telefon i miejsce odbioru każdej osoby. Upoważnienia i wspólny czat są przechowywane jako dowód kursu. Dane służą wyłącznie do przejazdu.</p>"]
+      ]) },
+    ro:{ maziInfoLink:"Cum funcționează?", maziAccept:"Am citit și accept condițiile „Împreună într-un singur grup”",
+      maziYouResponsible:"🙋 Tu ești locatarul: șoferul trece mai întâi pe la tine. Rezervarea și bonul sunt pe numele tău.",
+      maziResponsibleIs:"🙋 Locatar: {name} — șoferul trece mai întâi pe acolo. Rezervarea și bonul sunt pe numele locatarului.",
+      maziAuthorizeBtn:"✅ ÎMPUTERNICESC",
+      maziAuthorizeText:"„Îl împuternicesc pe locatarul {name} să închirieze taxiul în numele meu și să stabilească traseul cu opriri.”",
+      maziLesseeGoneMe:"⚠️ Locatarul {prev} a anulat. Ca să continue cursa, tu devii locatarul: apasă SUNT DE ACORD.",
+      maziLesseeGoneOther:"⚠️ Locatarul {prev} a anulat. Locatar nou: {name}. Apasă ÎMPUTERNICESC ca să continue cursa.",
+      maziFound:"✅ Grup găsit", maziCancelAsk:"Anulezi participarea ta?",
+      maziPleaseAnswer:"Te rugăm să răspunzi, ca grupul să fie complet.",
+      maziFillAll:"Completează prenumele, numele și telefonul.",
+      maziTooLate:"„Împreună într-un singur grup” este posibilă doar pentru plecări peste mai mult de {cutoff} ore.",
+      maziGcBtn:"👥 Chatul grupului", maziGcTitle:"Chatul grupului", maziGcApp:"Taxi and Fly",
+      maziGcCreated:"Grupul pentru transferul la Aeroport a fost creat! Bun venit în chatul comun de coordonare. Locatar: {name} (preluat primul).",
+      maziGcCreatedPrev:"Locatarul {prev} a anulat.",
+      maziGcAuthorized:"Împuternicire digitală de la: {others}. Locatar: {name}. Rezervarea taxiului s-a făcut pe numele locatarului.",
+      maziGcRoute:"Planul traseului este stabilit: {route} ➔ Aeroportul Atena. Este o singură cursă.",
+      maziGcStopLessee:"Urcă locatarul ({name})", maziGcStopN:"Oprirea {n} ({name})",
+      maziGcPayment:"Plata: plătiți direct șoferului la sfârșitul cursei. Suma totală de pe aparatul de taxare se poate plăti cash sau împărțită (split) pe cardurile voastre la POS-ul taxiului. Șoferul emite UN singur bon pentru toată cursa, pe numele locatarului ({name}).",
+      maziInfoHtml:_maziInfo([
+        ["1. Ce este", "<p>Mergi la aeroport cu un singur taxi, în total {minP}–{maxP} pasageri cu tot cu tine, care plecați la aceeași oră din puncte apropiate. Un locatar, o rezervare, un aparat de taxare, un bon.</p><p>Preluările colegilor de drum sunt opriri ale aceleiași curse. Este o singură cursă, de la prima preluare până la aeroport.</p>"],
+        ["2. Când pot folosi", "<p>Doar de la Atena la aeroport, pentru 1 persoană, cu cel puțin {cutoff} ore înainte. Mai bine cu {cutoff}–{later} ore înainte sau chiar mai devreme. Dacă plecarea e în mai puțin de {cutoff} ore, poți rezerva doar un taxi normal.</p>"],
+        ["3. Cum se găsește grupul", "<p>Căutăm pasageri care vor să plece spre aeroport cu până la {window} minute mai devreme sau mai târziu decât tine și care locuiesc aproape de tine (la cel mult {km} km). Ora comună de plecare este cea mai devreme din grup, ca nimeni să nu plece mai târziu decât a cerut. Ora exactă o vezi înainte să răspunzi. Căutarea continuă și cu aplicația închisă.</p>"],
+        ["4. Ora pe care o indici", "<p>Este ora la care toți sunt în taxi și pleacă spre aeroport. Preluările au loc mai devreme. Aplicația îți arată exact când să fii afară și când vine taxiul.</p>"],
+        ["5. Acord și împuternicire", "<p>Când se găsește un grup, fiecare vede ora lui de a fi afară, cât așteaptă șoferul, cât plătește și cine este locatarul.</p><ul><li>Locatarul apasă <b>SUNT DE ACORD</b>.</li><li>Colegii de drum apasă <b>ÎMPUTERNICESC</b>: „Îl împuternicesc pe locatar să închirieze taxiul în numele meu și să stabilească traseul cu opriri.”</li></ul><p>Împuternicirea este obligatorie și se înregistrează cu dată și oră. Dacă se schimbă locatarul, ți-o cerem din nou. Dacă cineva apasă Anulează, iese din grup și îi anunțăm pe ceilalți. Nimic nu se rezervă fără răspunsul tău.</p>"],
+        ["6. Locatarul", "<p>Locatar devine automat cel care este preluat <b>primul</b>. Șoferul merge mai întâi la el. Imediat ce urcă locatarul, pornește aparatul de taxare, iar cursa continuă cu opriri pentru colegii de drum, în ordinea stabilită, până la aeroport.</p><p>Rezervarea este UNA, pe numele locatarului, cu toate preluările ca opriri. Dacă locatarul anulează, locatar devine următorul în ordine.</p><p>Imediat ce grupul e complet, se deschide chatul comun de coordonare. Acolo aplicația scrie împuternicirea, planul traseului și instrucțiunile de plată, și poți scrie și tu.</p>"],
+        ["7. Plata", "<p>Plătiți direct șoferului, la sfârșitul cursei, suma totală de pe aparatul de taxare: cash sau împărțită pe cardurile voastre la POS-ul taxiului (câte o plată de fiecare).</p><p>Șoferul emite <b>UN</b> bon pentru toată cursa, pe numele locatarului. Un aparat de taxare, o încasare, un bon. Cum se împarte nota decide grupul. Aplicația nu păstrează și nu transferă bani.</p>"],
+        ["8. Cum se calculează suma", "<p>Aplicația îți arată dinainte o <b>estimare</b>: prețul normal de la ultima preluare la aeroport, plus {ex2} € când sunteți 2 sau {ex3} € când sunteți 3, pentru opririle de preluare, împărțit la numărul de persoane. Suma finală este cea de pe aparatul de taxare.</p>"],
+        ["9. Fii pregătit", "<p>Fii afară cu {ready} minute înainte să vină taxiul. Șoferul așteaptă până la {wait} minute și apoi continuă spre următoarea preluare.</p>"],
+        ["10. Dacă nu mă prezint", "<p>Cursa continuă fără tine și îți vom cere să explici motivul. Dacă nu se prezintă locatarul, locatar devine următorul în ordine. Suma o plătesc cei din taxi. Dacă lipsești des, folosirea „Împreună într-un singur grup” poate fi limitată.</p>"],
+        ["11. Bagaje", "<p>Fiecare pasager are {bags}, nu supradimensionat. Spațiul este comun pentru toți. Dimensiune maximă: {dims}.</p>{bagSvg}"],
+        ["12. Dacă nu se găsește grup", "<p>Cu {cutoff} ore înainte de plecare oprim căutarea și îți trimitem o notificare: „Nu s-a găsit grup”, cu butonul <b>[REZERVĂ TAXI]</b>. Rezervarea normală se deschide completată și o confirmi tu. Nu rezervăm niciodată un taxi fără tine.</p>"],
+        ["13. Anulare", "<p>Poți opri căutarea oricând înainte să răspunzi.</p><p>Dacă cineva anulează după ce a răspuns:</p><ul><li>Dacă mai sunt peste {cutoff} ore până la plecare, căutăm alt pasager care să-i ia locul.</li><li>Dacă mai sunt mai puțin de {cutoff} ore, nu mai căutăm pe nimeni. Îi anunțăm pe ceilalți că un coleg de drum a anulat, câte persoane au rămas și noul preț.</li></ul><p>Dacă anulează locatarul, locatar devine următorul în ordine și te anunțăm. Dacă nu vrei noul preț, poți anula și tu și rezerva un taxi normal. Dacă rămâne o singură persoană, cursa are loc doar pentru ea.</p>"],
+        ["14. Conectare cu Google / Apple", "<p>Pentru „Împreună într-un singur grup” te conectezi o dată cu Google (Android) sau Apple (iPhone), ca fiecare pasager să fie un cont real. Nu vedem niciodată parola ta. Rezervarea normală nu necesită conectare.</p>"],
+        ["15. Date personale", "<p>Despre colegii de drum vezi doar numele complet și ce scriu în chatul comun. Nici ei nu văd altceva despre tine. Șoferul vede numele, telefonul și punctul de preluare al fiecăruia. Împuternicirile și chatul comun se păstrează ca dovadă a cursei. Datele sunt folosite doar pentru cursă.</p>"]
+      ]) },
+    nl:{ maziInfoLink:"Hoe werkt het?", maziAccept:"Ik heb de voorwaarden van ‘Samen in één groep’ gelezen en ga ermee akkoord",
+      maziYouResponsible:"🙋 U bent de huurder: de chauffeur haalt u als eerste op. De boeking en de bon staan op uw naam.",
+      maziResponsibleIs:"🙋 Huurder: {name} — de chauffeur haalt deze persoon als eerste op. De boeking en de bon staan op naam van de huurder.",
+      maziAuthorizeBtn:"✅ IK MACHTIG",
+      maziAuthorizeText:"‘Ik machtig de huurder {name} om de taxi namens mij te huren en de route met tussenstops te bepalen.’",
+      maziLesseeGoneMe:"⚠️ De huurder {prev} heeft geannuleerd. Om de rit te laten doorgaan, wordt u de huurder: druk op AKKOORD.",
+      maziLesseeGoneOther:"⚠️ De huurder {prev} heeft geannuleerd. Nieuwe huurder: {name}. Druk op IK MACHTIG om de rit te laten doorgaan.",
+      maziFound:"✅ Groep gevonden", maziCancelAsk:"Uw deelname annuleren?",
+      maziPleaseAnswer:"Antwoord alstublieft, zodat de groep compleet wordt.",
+      maziFillAll:"Vul voornaam, achternaam en telefoon in.",
+      maziTooLate:"‘Samen in één groep’ kan alleen bij vertrek over meer dan {cutoff} uur.",
+      maziGcBtn:"👥 Groepschat", maziGcTitle:"Groepschat", maziGcApp:"Taxi and Fly",
+      maziGcCreated:"De groep voor de rit naar het Vliegveld is aangemaakt! Welkom in de gezamenlijke coördinatiechat. Huurder: {name} (wordt als eerste opgehaald).",
+      maziGcCreatedPrev:"De huurder {prev} heeft geannuleerd.",
+      maziGcAuthorized:"Digitale machtiging van: {others}. Huurder: {name}. De taxiboeking is gemaakt op naam van de huurder.",
+      maziGcRoute:"Het routeplan staat vast: {route} ➔ Luchthaven Athene. Het is één enkele rit.",
+      maziGcStopLessee:"Huurder stapt in ({name})", maziGcStopN:"Stop {n} ({name})",
+      maziGcPayment:"Betaling: u betaalt de chauffeur rechtstreeks aan het einde van de rit. Het totaalbedrag op de meter kan contant of verdeeld (split) over uw kaarten op de pinautomaat (POS) van de taxi worden betaald. De chauffeur geeft ÉÉN bon voor de hele rit, op naam van de huurder ({name}).",
+      maziInfoHtml:_maziInfo([
+        ["1. Wat het is", "<p>U gaat met één taxi naar het vliegveld, in totaal {minP} tot {maxP} passagiers inclusief u, die op hetzelfde moment vanaf punten dicht bij elkaar vertrekken. Eén huurder, één boeking, één taximeter, één bon.</p><p>De ophaalpunten van uw medepassagiers zijn tussenstops van dezelfde rit. Het is één enkele rit, van het eerste ophaalpunt tot het vliegveld.</p>"],
+        ["2. Wanneer kan ik het gebruiken", "<p>Alleen van Athene naar het vliegveld, voor 1 persoon, minstens {cutoff} uur van tevoren. Beter {cutoff}–{later} uur van tevoren of nog eerder. Is het vertrek over minder dan {cutoff} uur, dan kunt u alleen een gewone taxi boeken.</p>"],
+        ["3. Hoe de groep wordt gevonden", "<p>We zoeken passagiers die tot {window} minuten eerder of later dan u naar het vliegveld willen vertrekken en dicht bij u wonen (binnen {km} km). De gezamenlijke vertrektijd is de vroegste tijd van de groep, zodat niemand later vertrekt dan gevraagd. De exacte tijd ziet u voordat u antwoordt. Het zoeken gaat door, ook als de app gesloten is.</p>"],
+        ["4. De tijd die u opgeeft", "<p>Dat is de tijd waarop iedereen in de taxi zit en naar het vliegveld vertrekt. Het ophalen gebeurt eerder. De app laat u precies zien wanneer u buiten moet staan en wanneer de taxi komt.</p>"],
+        ["5. Akkoord en machtiging", "<p>Als er een groep is gevonden, ziet iedereen zijn eigen tijd om buiten te staan, hoe lang de chauffeur wacht, hoeveel hij betaalt en wie de huurder is.</p><ul><li>De huurder drukt op <b>AKKOORD</b>.</li><li>De medepassagiers drukken op <b>IK MACHTIG</b>: ‘Ik machtig de huurder om de taxi namens mij te huren en de route met tussenstops te bepalen.’</li></ul><p>De machtiging is verplicht en wordt vastgelegd met datum en tijd. Verandert de huurder, dan vragen we het u opnieuw. Drukt iemand op Annuleren, dan verlaat die de groep en informeren we de anderen. Er wordt niets geboekt zonder uw antwoord.</p>"],
+        ["6. De huurder", "<p>Huurder is automatisch degene die als <b>eerste</b> wordt opgehaald. De chauffeur gaat eerst naar die persoon. Zodra de huurder is ingestapt, gaat de taximeter aan en gaat de rit verder met tussenstops voor de medepassagiers, in de vastgestelde volgorde, tot het vliegveld.</p><p>Er is ÉÉN boeking, op naam van de huurder, met alle ophaalpunten als tussenstops. Annuleert de huurder, dan wordt de volgende in de volgorde de huurder.</p><p>Zodra de groep compleet is, opent de gezamenlijke coördinatiechat. Daarin schrijft de app de machtiging, het routeplan en de betaalinstructies, en u kunt ook zelf schrijven.</p>"],
+        ["7. Betaling", "<p>U betaalt de chauffeur rechtstreeks, aan het einde van de rit, het totaalbedrag op de taximeter: contant of verdeeld over uw kaarten op de pinautomaat (POS) van de taxi (één betaling per persoon).</p><p>De chauffeur geeft <b>ÉÉN</b> bon voor de hele rit, op naam van de huurder. Eén taximeter, één betaling, één bon. Hoe de rekening wordt verdeeld, kiest de groep. De app bewaart of verstuurt geen geld.</p>"],
+        ["8. Hoe het bedrag wordt berekend", "<p>De app toont u vooraf een <b>schatting</b>: de gewone prijs van het laatste ophaalpunt naar het vliegveld, plus € {ex2} als u met 2 bent of € {ex3} als u met 3 bent, voor de ophaalstops, gedeeld door het aantal personen. Het eindbedrag is wat de taximeter aangeeft.</p>"],
+        ["9. Wees klaar", "<p>Sta {ready} minuten voordat de taxi komt buiten. De chauffeur wacht tot {wait} minuten en rijdt dan door naar het volgende ophaalpunt.</p>"],
+        ["10. Als ik er niet ben", "<p>De rit gaat zonder u verder en we vragen u de reden uit te leggen. Komt de huurder niet, dan wordt de volgende in de volgorde de huurder. Het bedrag wordt betaald door wie in de taxi zit. Als u vaak niet komt, kan het gebruik van ‘Samen in één groep’ worden beperkt.</p>"],
+        ["11. Bagage", "<p>Elke passagier heeft {bags}, niet extra groot. De ruimte wordt door iedereen gedeeld. Maximale afmeting: {dims}.</p>{bagSvg}"],
+        ["12. Als er geen groep wordt gevonden", "<p>{cutoff} uur voor vertrek stoppen we met zoeken en sturen we u een melding: ‘Geen groep gevonden’, met een knop <b>[TAXI BOEKEN]</b>. De gewone boeking opent ingevuld en u bevestigt die zelf. We boeken nooit een taxi zonder u.</p>"],
+        ["13. Annuleren", "<p>U kunt het zoeken op elk moment stoppen voordat u antwoordt.</p><p>Als iemand annuleert nadat hij heeft geantwoord:</p><ul><li>Als het vertrek nog meer dan {cutoff} uur weg is, zoeken we een andere passagier voor zijn plaats.</li><li>Als het minder dan {cutoff} uur is, zoeken we niemand anders. We laten de anderen weten dat een medepassagier heeft geannuleerd, hoeveel mensen er over zijn en de nieuwe prijs.</li></ul><p>Annuleert de huurder, dan wordt de volgende in de volgorde de huurder en laten we het u weten. Wilt u de nieuwe prijs niet, dan kunt u ook annuleren en een gewone taxi boeken. Blijft er één persoon over, dan gaat de rit alleen voor die persoon door.</p>"],
+        ["14. Inloggen met Google / Apple", "<p>Voor ‘Samen in één groep’ logt u één keer in met Google (Android) of Apple (iPhone), zodat elke passagier een echt account is. We zien uw wachtwoord nooit. Een gewone boeking heeft geen inlog nodig.</p>"],
+        ["15. Persoonsgegevens", "<p>Van uw medepassagiers ziet u alleen hun volledige naam en wat ze in de gezamenlijke chat schrijven. Zij zien ook niets anders van u. De chauffeur ziet de naam, het telefoonnummer en het ophaalpunt van iedereen. De machtigingen en de gezamenlijke chat worden bewaard als bewijs van de rit. De gegevens worden alleen voor de rit gebruikt.</p>"]
+      ]) },
+    tr:{ maziInfoLink:"Nasıl çalışır?", maziAccept:"“Tek grupta birlikte” koşullarını okudum ve kabul ediyorum",
+      maziYouResponsible:"🙋 Kiracı sizsiniz: sürücü önce sizi alır. Rezervasyon ve fiş sizin adınızadır.",
+      maziResponsibleIs:"🙋 Kiracı: {name} — sürücü önce onu alır. Rezervasyon ve fiş kiracının adınadır.",
+      maziAuthorizeBtn:"✅ YETKİ VERİYORUM",
+      maziAuthorizeText:"“Kiracı {name} kişisine, taksiyi benim adıma kiralaması ve güzergâhı duraklarla belirlemesi için yetki veriyorum.”",
+      maziLesseeGoneMe:"⚠️ Kiracı {prev} iptal etti. Yolculuğun devam etmesi için kiracı siz oluyorsunuz: KABUL EDİYORUM'a basın.",
+      maziLesseeGoneOther:"⚠️ Kiracı {prev} iptal etti. Yeni kiracı: {name}. Yolculuğun devam etmesi için YETKİ VERİYORUM'a basın.",
+      maziFound:"✅ Grup bulundu", maziCancelAsk:"Katılımınız iptal edilsin mi?",
+      maziPleaseAnswer:"Grubun tamamlanması için lütfen yanıt verin.",
+      maziFillAll:"Ad, soyad ve telefon girin.",
+      maziTooLate:"“Tek grupta birlikte” yalnızca {cutoff} saatten daha sonraki kalkışlar için geçerlidir.",
+      maziGcBtn:"👥 Grup sohbeti", maziGcTitle:"Grup sohbeti", maziGcApp:"Taxi and Fly",
+      maziGcCreated:"Havalimanı transferi için grup oluşturuldu! Ortak koordinasyon sohbetine hoş geldiniz. Kiracı: {name} (ilk alınan).",
+      maziGcCreatedPrev:"Kiracı {prev} iptal etti.",
+      maziGcAuthorized:"Dijital yetki veren: {others}. Kiracı: {name}. Taksi rezervasyonu kiracının adına yapıldı.",
+      maziGcRoute:"Güzergâh planı kesinleşti: {route} ➔ Atina Havalimanı. Bu tek ve bütün bir yolculuktur.",
+      maziGcStopLessee:"Kiracı biniyor ({name})", maziGcStopN:"Durak {n} ({name})",
+      maziGcPayment:"Ödeme talimatı: ödeme yolculuğun sonunda doğrudan sürücüye yapılır. Taksimetredeki toplam tutar nakit ya da taksinin POS cihazında kartlarınıza bölünerek (split) ödenebilir. Sürücü tüm yolculuk için kiracının adına ({name}) TEK bir fiş keser.",
+      maziInfoHtml:_maziInfo([
+        ["1. Nedir", "<p>Havalimanına tek bir taksiyle gidersiniz: sizinle birlikte toplam {minP}–{maxP} yolcu, aynı saatte yakın noktalardan yola çıkarsınız. Bir kiracı, bir rezervasyon, bir taksimetre, bir fiş.</p><p>Yol arkadaşlarınızın alınması aynı yolculuğun duraklarıdır. Bu, ilk alıştan havalimanına kadar tek ve bütün bir yolculuktur.</p>"],
+        ["2. Ne zaman kullanabilirim", "<p>Yalnızca Atina'dan havalimanına, 1 kişi için, en az {cutoff} saat önceden. Tercihen {cutoff}–{later} saat önceden ya da daha erken. Kalkışa {cutoff} saatten az kaldıysa yalnızca normal taksi ayırtabilirsiniz.</p>"],
+        ["3. Grup nasıl bulunur", "<p>Havalimanına sizden en fazla {window} dakika önce veya sonra çıkmak isteyen ve size yakın oturan (en fazla {km} km mesafede) yolcular ararız. Ortak kalkış saati gruptaki en erken saattir; böylece kimse istediğinden geç çıkmaz. Kesin saati yanıt vermeden önce görürsünüz. Arama, uygulama kapalıyken de sürer.</p>"],
+        ["4. Belirttiğiniz saat", "<p>Herkesin taksiye bindiği ve havalimanına yola çıktığı saattir. Alışlar daha önce yapılır. Uygulama ne zaman dışarıda olmanız gerektiğini ve taksinin ne zaman geleceğini tam olarak gösterir.</p>"],
+        ["5. Onay ve yetki", "<p>Grup bulununca herkes kendi dışarıda olma saatini, sürücünün ne kadar bekleyeceğini, ne kadar ödeyeceğini ve kiracının kim olduğunu görür.</p><ul><li>Kiracı <b>KABUL EDİYORUM</b>'a basar.</li><li>Yol arkadaşları <b>YETKİ VERİYORUM</b>'a basar: “Kiracıya, taksiyi benim adıma kiralaması ve güzergâhı duraklarla belirlemesi için yetki veriyorum.”</li></ul><p>Yetki zorunludur ve tarih ile saatiyle kaydedilir. Kiracı değişirse sizden yeniden isteriz. Biri İptal'e basarsa gruptan çıkar ve diğerlerini bilgilendiririz. Yanıtınız olmadan hiçbir şey ayırtılmaz.</p>"],
+        ["6. Kiracı", "<p>Kiracı otomatik olarak <b>ilk</b> alınan kişidir. Sürücü önce ona gider. Kiracı bindiği anda taksimetre çalışır ve yolculuk, kesinleşen sırayla yol arkadaşları için duraklarla havalimanına kadar devam eder.</p><p>Rezervasyon TEKTİR, kiracının adına, tüm alışlar durak olarak. Kiracı iptal ederse sıradaki kişi kiracı olur.</p><p>Grup tamamlanınca ortak koordinasyon sohbeti açılır. Uygulama orada yetkiyi, güzergâh planını ve ödeme talimatını yazar; siz de yazabilirsiniz.</p>"],
+        ["7. Ödeme", "<p>Yolculuğun sonunda taksimetredeki toplam tutarı doğrudan sürücüye ödersiniz: nakit ya da taksinin POS cihazında kartlarınıza bölerek (kişi başı bir ödeme).</p><p>Sürücü tüm yolculuk için kiracının adına <b>TEK</b> bir fiş keser. Bir taksimetre, bir tahsilat, bir fiş. Hesabın nasıl bölüneceğine grup karar verir. Uygulama para tutmaz ve aktarmaz.</p>"],
+        ["8. Tutar nasıl hesaplanır", "<p>Uygulama önceden bir <b>tahmin</b> gösterir: son alıştan havalimanına normal fiyat, artı 2 kişiyseniz {ex2} € ya da 3 kişiyseniz {ex3} € alış durakları için, kişi sayısına bölünür. Kesin tutar taksimetrenin gösterdiğidir.</p>"],
+        ["9. Hazır olun", "<p>Taksi gelmeden {ready} dakika önce dışarıda olun. Sürücü en fazla {wait} dakika bekler, sonra bir sonraki alışa devam eder.</p>"],
+        ["10. Gelmezsem", "<p>Yolculuk sizsiz devam eder ve nedenini açıklamanızı isteriz. Kiracı gelmezse sıradaki kişi kiracı olur. Tutarı taksidekiler öder. Sık sık gelmezseniz “Tek grupta birlikte” kullanımınız kısıtlanabilir.</p>"],
+        ["11. Bagaj", "<p>Her yolcunun {bags} vardır, büyük boy değil. Alan herkes için ortaktır. En büyük boyut: {dims}.</p>{bagSvg}"],
+        ["12. Grup bulunamazsa", "<p>Kalkıştan {cutoff} saat önce aramayı durdurur ve size bir bildirim göndeririz: “Grup bulunamadı”, <b>[TAKSİ AYIRT]</b> düğmesiyle. Normal rezervasyon dolu olarak açılır ve onu siz onaylarsınız. Sizsiz asla taksi ayırtmayız.</p>"],
+        ["13. İptal", "<p>Yanıt vermeden önce aramayı istediğiniz zaman durdurabilirsiniz.</p><p>Biri yanıt verdikten sonra iptal ederse:</p><ul><li>Kalkışa {cutoff} saatten fazla varsa, yerine geçecek başka bir yolcu ararız.</li><li>{cutoff} saatten az kaldıysa başka kimseyi aramayız. Diğerlerine bir yol arkadaşının iptal ettiğini, kaç kişi kaldığını ve yeni fiyatı bildiririz.</li></ul><p>Kiracı iptal ederse sıradaki kişi kiracı olur ve sizi bilgilendiririz. Yeni fiyatı istemezseniz siz de iptal edip normal taksi ayırtabilirsiniz. Tek kişi kalırsa yolculuk yalnızca onun için yapılır.</p>"],
+        ["14. Google / Apple ile giriş", "<p>“Tek grupta birlikte” için bir kez Google (Android) ya da Apple (iPhone) ile giriş yaparsınız; böylece her yolcu gerçek bir hesaptır. Şifrenizi asla görmeyiz. Normal rezervasyon giriş gerektirmez.</p>"],
+        ["15. Kişisel veriler", "<p>Yol arkadaşlarınızdan yalnızca ad soyadlarını ve ortak sohbette yazdıklarını görürsünüz. Onlar da sizin hakkınızda başka bir şey görmez. Sürücü herkesin adını, telefonunu ve alış noktasını görür. Yetkiler ve ortak sohbet yolculuğun kanıtı olarak saklanır. Veriler yalnızca yolculuk için kullanılır.</p>"]
+      ]) },
+    ar:{ maziInfoLink:"كيف يعمل؟", maziAccept:"قرأت شروط «معًا في مجموعة واحدة» وأوافق عليها",
+      maziYouResponsible:"🙋 أنت المستأجر: يمرّ السائق عليك أولًا. الحجز والإيصال باسمك.",
+      maziResponsibleIs:"🙋 المستأجر: {name} — يمرّ السائق عليه أولًا. الحجز والإيصال باسم المستأجر.",
+      maziAuthorizeBtn:"✅ أفوّض",
+      maziAuthorizeText:"«أفوّض المستأجر {name} باستئجار التاكسي نيابةً عني وتحديد المسار مع التوقفات.»",
+      maziLesseeGoneMe:"⚠️ ألغى المستأجر {prev}. لكي تستمر الرحلة، تصبح أنت المستأجر: اضغط أوافق.",
+      maziLesseeGoneOther:"⚠️ ألغى المستأجر {prev}. المستأجر الجديد: {name}. اضغط أفوّض لكي تستمر الرحلة.",
+      maziFound:"✅ تم العثور على مجموعة", maziCancelAsk:"هل تريد إلغاء مشاركتك؟",
+      maziPleaseAnswer:"يرجى الرد حتى تكتمل المجموعة.",
+      maziFillAll:"يرجى إدخال الاسم والكنية ورقم الهاتف.",
+      maziTooLate:"«معًا في مجموعة واحدة» متاح فقط لموعد انطلاق بعد أكثر من {cutoff} ساعة.",
+      maziGcBtn:"👥 دردشة المجموعة", maziGcTitle:"دردشة المجموعة", maziGcApp:"Taxi and Fly",
+      maziGcCreated:"تم إنشاء المجموعة للتوصيل إلى المطار! مرحبًا بكم في دردشة التنسيق المشتركة. المستأجر: {name} (يُقَلّ أولًا).",
+      maziGcCreatedPrev:"ألغى المستأجر {prev}.",
+      maziGcAuthorized:"تفويض رقمي من: {others}. المستأجر: {name}. تم حجز التاكسي باسم المستأجر.",
+      maziGcRoute:"تم تثبيت خطة المسار: {route} ➔ مطار أثينا. إنها رحلة واحدة موحّدة.",
+      maziGcStopLessee:"صعود المستأجر ({name})", maziGcStopN:"التوقف {n} ({name})",
+      maziGcPayment:"تعليمات الدفع: يتم الدفع مباشرة للسائق في نهاية الرحلة. يمكن دفع المبلغ الإجمالي للعدّاد نقدًا أو مقسّمًا (split) على بطاقاتكم في جهاز الدفع POS في التاكسي. يصدر السائق إيصالًا واحدًا لكامل الرحلة باسم المستأجر ({name}).",
+      maziInfoHtml:_maziInfo([
+        ["1. ما هي", "<p>تذهب إلى المطار في تاكسي واحد، من {minP} إلى {maxP} ركاب بالمجموع بمن فيهم أنت، تنطلقون في الوقت نفسه من نقاط متقاربة. مستأجر واحد، حجز واحد، عدّاد واحد، إيصال واحد.</p><p>إقلال رفاق الرحلة هو توقفات في الرحلة نفسها. إنها رحلة واحدة موحّدة، من أول إقلال حتى المطار.</p>"],
+        ["2. متى يمكنني استخدامها", "<p>فقط من أثينا إلى المطار، لشخص واحد، قبل {cutoff} ساعة على الأقل. والأفضل قبل {cutoff}–{later} ساعة أو أبكر. إذا كان الانطلاق بعد أقل من {cutoff} ساعة، يمكنك حجز تاكسي عادي فقط.</p>"],
+        ["3. كيف نجد المجموعة", "<p>نبحث عن ركاب يريدون الانطلاق إلى المطار قبلك أو بعدك بما يصل إلى {window} دقيقة ويسكنون قربك (على بعد {km} كم كحد أقصى). وقت الانطلاق المشترك هو الأبكر في المجموعة، حتى لا ينطلق أحد متأخرًا عمّا طلب. ترى الوقت الدقيق قبل أن ترد. يستمر البحث حتى والتطبيق مغلق.</p>"],
+        ["4. الوقت الذي تحدده", "<p>هو الوقت الذي يكون فيه الجميع في التاكسي متجهين إلى المطار. يتم الإقلال قبل ذلك. يُظهر لك التطبيق بالضبط متى تكون في الخارج ومتى يصل التاكسي.</p>"],
+        ["5. الموافقة والتفويض", "<p>عند العثور على مجموعة، يرى كل شخص وقته للخروج، وكم ينتظر السائق، وكم يدفع، ومن هو المستأجر.</p><ul><li>يضغط المستأجر <b>أوافق</b>.</li><li>يضغط رفاق الرحلة <b>أفوّض</b>: «أفوّض المستأجر باستئجار التاكسي نيابةً عني وتحديد المسار مع التوقفات.»</li></ul><p>التفويض إلزامي ويُسجَّل بالتاريخ والوقت. إذا تغيّر المستأجر نطلبه منك من جديد. إذا ضغط أحدهم إلغاء، يخرج من المجموعة ونبلغ الآخرين. لا يُحجز شيء دون ردّك.</p>"],
+        ["6. المستأجر", "<p>يصبح المستأجر تلقائيًا من يُقَلّ <b>أولًا</b>. يذهب السائق إليه أولًا. بمجرد صعود المستأجر يبدأ العدّاد، وتستمر الرحلة بتوقفات لرفاق الرحلة، بالترتيب المثبّت، حتى المطار.</p><p>الحجز واحد، باسم المستأجر، وكل نقاط الإقلال توقفات فيه. إذا ألغى المستأجر، يصبح التالي في الترتيب هو المستأجر.</p><p>عند اكتمال المجموعة تُفتح دردشة التنسيق المشتركة. يكتب فيها التطبيق التفويض وخطة المسار وتعليمات الدفع، ويمكنك أن تكتب أنت أيضًا.</p>"],
+        ["7. الدفع", "<p>تدفعون مباشرة للسائق، في نهاية الرحلة، المبلغ الإجمالي للعدّاد: نقدًا أو مقسّمًا على بطاقاتكم في جهاز POS في التاكسي (دفعة لكل شخص).</p><p>يصدر السائق إيصالًا <b>واحدًا</b> لكامل الرحلة باسم المستأجر. عدّاد واحد، تحصيل واحد، إيصال واحد. طريقة تقسيم الحساب يختارها أفراد المجموعة. التطبيق لا يحتفظ بالمال ولا يحوّله.</p>"],
+        ["8. كيف يُحسب المبلغ", "<p>يعرض لك التطبيق مسبقًا <b>تقديرًا</b>: السعر العادي من آخر إقلال إلى المطار، مضافًا إليه {ex2} € إذا كنتم 2 أو {ex3} € إذا كنتم 3 مقابل توقفات الإقلال، مقسومًا على عدد الأشخاص. المبلغ النهائي هو ما يُظهره العدّاد.</p>"],
+        ["9. كونوا مستعدين", "<p>كونوا في الخارج قبل وصول التاكسي بـ {ready} دقائق. ينتظر السائق حتى {wait} دقائق ثم يتابع إلى الإقلال التالي.</p>"],
+        ["10. إذا لم أحضر", "<p>تستمر الرحلة بدونك وسنطلب منك توضيح السبب. إذا لم يحضر المستأجر، يصبح التالي في الترتيب هو المستأجر. يدفع المبلغ من هم في التاكسي. إذا تكرر غيابك، قد يُقيَّد استخدامك لـ «معًا في مجموعة واحدة».</p>"],
+        ["11. الأمتعة", "<p>لكل راكب {bags}، دون أحجام كبيرة. المساحة مشتركة للجميع. الحد الأقصى للحجم: {dims}.</p>{bagSvg}"],
+        ["12. إذا لم نجد مجموعة", "<p>قبل الانطلاق بـ {cutoff} ساعة نوقف البحث ونرسل لك إشعارًا: «لم يتم العثور على مجموعة»، مع زر <b>[احجز تاكسي]</b>. يُفتح الحجز العادي مملوءًا وتؤكده أنت. لا نحجز تاكسي أبدًا بدونك.</p>"],
+        ["13. الإلغاء", "<p>يمكنك إيقاف البحث في أي وقت قبل أن ترد.</p><p>إذا ألغى أحدهم بعد ردّه:</p><ul><li>إذا بقي أكثر من {cutoff} ساعة على الانطلاق، نبحث عن راكب آخر يأخذ مكانه.</li><li>إذا بقي أقل من {cutoff} ساعة، لا نبحث عن أحد آخر. نبلغ الآخرين أن أحد رفاق الرحلة ألغى، وكم شخصًا بقي، والسعر الجديد.</li></ul><p>إذا ألغى المستأجر، يصبح التالي في الترتيب هو المستأجر ونبلغك. إذا لم ترغب بالسعر الجديد، يمكنك أن تلغي أنت أيضًا وتحجز تاكسي عاديًا. إذا بقي شخص واحد، تتم الرحلة له وحده.</p>"],
+        ["14. تسجيل الدخول عبر Google / Apple", "<p>لـ «معًا في مجموعة واحدة» تسجّل الدخول مرة واحدة عبر Google (أندرويد) أو Apple (آيفون)، ليكون كل راكب حسابًا حقيقيًا. لا نرى كلمة مرورك أبدًا. الحجز العادي لا يحتاج إلى تسجيل دخول.</p>"],
+        ["15. البيانات الشخصية", "<p>من رفاق رحلتك ترى فقط أسماءهم الكاملة وما يكتبونه في الدردشة المشتركة. وهم أيضًا لا يرون عنك شيئًا آخر. يرى السائق اسم كل شخص وهاتفه ونقطة إقلاله. تُحفَظ التفويضات والدردشة المشتركة كدليل على الرحلة. تُستخدم البيانات للرحلة فقط.</p>"]
+      ]) },
+    zh:{ maziInfoLink:"如何运作？", maziAccept:"我已阅读并接受「同组出行」条款",
+      maziYouResponsible:"🙋 您是承租人：司机先接您。预订和收据都在您的名下。",
+      maziResponsibleIs:"🙋 承租人：{name} —— 司机先去接他/她。预订和收据都在承租人名下。",
+      maziAuthorizeBtn:"✅ 我授权",
+      maziAuthorizeText:"「我授权承租人 {name} 代我租用出租车，并确定含停靠点的路线。」",
+      maziLesseeGoneMe:"⚠️ 承租人 {prev} 已取消。为使行程继续，您将成为承租人：请按「同意」。",
+      maziLesseeGoneOther:"⚠️ 承租人 {prev} 已取消。新承租人：{name}。请按「我授权」，以便行程继续。",
+      maziFound:"✅ 已找到同行组", maziCancelAsk:"取消您的参与吗？",
+      maziPleaseAnswer:"请回复，以便完成组队。",
+      maziFillAll:"请填写名字、姓氏和电话。",
+      maziTooLate:"「同组出行」仅适用于 {cutoff} 小时以后出发的行程。",
+      maziGcBtn:"👥 小组聊天", maziGcTitle:"小组聊天", maziGcApp:"Taxi and Fly",
+      maziGcCreated:"前往机场的同行组已创建！欢迎来到共同协调聊天。承租人：{name}（第一个上车）。",
+      maziGcCreatedPrev:"承租人 {prev} 已取消。",
+      maziGcAuthorized:"数字授权人：{others}。承租人：{name}。出租车预订以承租人的名义完成。",
+      maziGcRoute:"路线计划已锁定：{route} ➔ 雅典机场。这是一次完整的单一租用。",
+      maziGcStopLessee:"承租人上车（{name}）", maziGcStopN:"第 {n} 站（{name}）",
+      maziGcPayment:"付款说明：在行程结束时直接付款给司机。计价器上的总金额可用现金支付，或在出租车 POS 机上分摊（split）到各自的银行卡。司机为整个行程开具一张收据，抬头为承租人（{name}）。",
+      maziInfoHtml:_maziInfo([
+        ["1. 这是什么", "<p>您与其他乘客乘同一辆出租车去机场，包括您在内共 {minP}–{maxP} 位乘客，同一时间从相近地点出发。一个承租人、一个预订、一个计价器、一张收据。</p><p>接同行乘客是同一行程中的停靠点。从第一个上车点到机场，这是一次完整的单一租用。</p>"],
+        ["2. 何时可以使用", "<p>仅限从雅典前往机场，1 人，至少提前 {cutoff} 小时。最好提前 {cutoff}–{later} 小时或更早。如果出发时间不足 {cutoff} 小时，只能预订普通出租车。</p>"],
+        ["3. 如何找到同行组", "<p>我们寻找比您早或晚至多 {window} 分钟出发去机场、并住在您附近（距离不超过 {km} 公里）的乘客。共同出发时间取组内最早的时间，这样没有人会比自己要求的更晚出发。您在回复之前就能看到准确时间。即使应用关闭，搜索也会继续。</p>"],
+        ["4. 您填写的时间", "<p>是所有人都已上车、出发去机场的时间。接人会在此之前进行。应用会准确告诉您何时到楼下、出租车何时到达。</p>"],
+        ["5. 同意与授权", "<p>找到同行组后，每个人都能看到自己的下楼时间、司机等待多久、自己付多少钱以及谁是承租人。</p><ul><li>承租人按 <b>同意</b>。</li><li>同行乘客按 <b>我授权</b>：「我授权承租人代我租用出租车，并确定含停靠点的路线。」</li></ul><p>授权是必需的，并会记录日期和时间。如果承租人变更，我们会再次请您授权。如果有人按「取消」，他将退出该组，我们会通知其他人。未经您回复，不会预订任何行程。</p>"],
+        ["6. 承租人", "<p>第一个被接的人自动成为承租人。司机先去接他。承租人上车后计价器开始计费，行程按锁定的顺序在同行乘客处停靠，直到机场。</p><p>只有一个预订，在承租人名下，所有上车点都是停靠点。如果承租人取消，顺序中的下一位成为承租人。</p><p>组队完成后，会开启共同协调聊天。应用会在其中写明授权、路线计划和付款说明，您也可以发消息。</p>"],
+        ["7. 付款", "<p>在行程结束时直接向司机支付计价器上的总金额：用现金，或在出租车 POS 机上分摊到各自的银行卡（每人一笔）。</p><p>司机为整个行程开具<b>一张</b>收据，抬头为承租人。一个计价器、一次收款、一张收据。账单如何分摊由小组自行决定。应用不保管也不转移任何资金。</p>"],
+        ["8. 金额如何计算", "<p>应用会预先显示一个<b>估算</b>：从最后一个上车点到机场的普通价格，2 人时加 {ex2} €、3 人时加 {ex3} €（停靠接人费用），再按人数平分。最终金额以计价器为准。</p>"],
+        ["9. 做好准备", "<p>请在出租车到达前 {ready} 分钟到楼下。司机最多等待 {wait} 分钟，然后前往下一个上车点。</p>"],
+        ["10. 如果我没有出现", "<p>行程会在没有您的情况下继续，我们会请您说明原因。如果承租人没有出现，顺序中的下一位成为承租人。金额由车上的人支付。如果您经常缺席，您使用「同组出行」可能会受到限制。</p>"],
+        ["11. 行李", "<p>每位乘客可带 {bags}，不可超大。空间由所有人共用。最大尺寸：{dims}。</p>{bagSvg}"],
+        ["12. 如果没有找到同行组", "<p>出发前 {cutoff} 小时我们会停止搜索，并向您发送通知：「未找到同行组」，附带 <b>[预订出租车]</b> 按钮。普通预订会自动填好，由您自己确认。我们绝不会在您不知情的情况下预订出租车。</p>"],
+        ["13. 取消", "<p>在回复之前，您可以随时停止搜索。</p><p>如果有人在回复后取消：</p><ul><li>如果距出发还有超过 {cutoff} 小时，我们会寻找另一位乘客顶替。</li><li>如果不足 {cutoff} 小时，我们不再寻找。我们会通知其他人有同行乘客取消、剩下几人以及新价格。</li></ul><p>如果承租人取消，顺序中的下一位成为承租人，我们会通知您。如果您不接受新价格，也可以取消并预订普通出租车。如果只剩一人，行程只为他继续。</p>"],
+        ["14. 使用 Google / Apple 登录", "<p>使用「同组出行」需用 Google（安卓）或 Apple（iPhone）登录一次，以确保每位乘客都是真实账户。我们看不到您的密码。普通预订无需登录。</p>"],
+        ["15. 个人数据", "<p>您只能看到同行乘客的姓名以及他们在共同聊天中写的内容。他们也看不到关于您的其他信息。司机能看到每个人的姓名、电话和上车点。授权记录和共同聊天会作为本次租用的证明保存。数据仅用于本次行程。</p>"]
+      ]) },
+    uk:{ maziInfoLink:"Як це працює?", maziAccept:"Я прочитав(ла) і приймаю умови «Разом однією компанією»",
+      maziYouResponsible:"🙋 Ви орендар: водій спершу заїжджає по вас. Бронювання і чек оформлюються на ваше ім'я.",
+      maziResponsibleIs:"🙋 Орендар: {name} — водій спершу заїжджає туди. Бронювання і чек оформлюються на ім'я орендаря.",
+      maziAuthorizeBtn:"✅ УПОВНОВАЖУЮ",
+      maziAuthorizeText:"«Я уповноважую орендаря {name} орендувати таксі від мого імені та визначити маршрут із зупинками.»",
+      maziLesseeGoneMe:"⚠️ Орендар {prev} скасував поїздку. Щоб поїздка відбулася, орендарем стаєте ви: натисніть ПІДТВЕРДЖУЮ.",
+      maziLesseeGoneOther:"⚠️ Орендар {prev} скасував поїздку. Новий орендар: {name}. Натисніть УПОВНОВАЖУЮ, щоб поїздка відбулася.",
+      maziFound:"✅ Групу знайдено", maziCancelAsk:"Скасувати вашу участь?",
+      maziPleaseAnswer:"Будь ласка, дайте відповідь, щоб група була зібрана.",
+      maziFillAll:"Заповніть ім'я, прізвище та телефон.",
+      maziTooLate:"«Разом однією компанією» доступно лише для виїзду більш ніж через {cutoff} год.",
+      maziGcBtn:"👥 Чат групи", maziGcTitle:"Чат групи", maziGcApp:"Taxi and Fly",
+      maziGcCreated:"Групу для поїздки в Аеропорт створено! Ласкаво просимо до спільного чату координації. Орендар: {name} (його забирають першим).",
+      maziGcCreatedPrev:"Орендар {prev} скасував поїздку.",
+      maziGcAuthorized:"Цифрове доручення від: {others}. Орендар: {name}. Бронювання таксі оформлено на ім'я орендаря.",
+      maziGcRoute:"План маршруту затверджено: {route} ➔ Аеропорт Афін. Це одна єдина поїздка.",
+      maziGcStopLessee:"Посадка орендаря ({name})", maziGcStopN:"Зупинка {n} ({name})",
+      maziGcPayment:"Оплата: ви платите водієві напряму в кінці поїздки. Загальну суму за лічильником можна сплатити готівкою або розділити (split) між вашими картками на POS-терміналі таксі. Водій видає ОДИН чек за всю поїздку на ім'я орендаря ({name}).",
+      maziInfoHtml:_maziInfo([
+        ["1. Що це", "<p>Ви їдете в аеропорт одним таксі, загалом від {minP} до {maxP} пасажирів разом із вами, які виїжджають в один час із близьких місць. Один орендар, одне бронювання, один лічильник, один чек.</p><p>Посадка попутників — це зупинки тієї самої поїздки. Це одна єдина поїздка, від першої посадки до аеропорту.</p>"],
+        ["2. Коли можна скористатися", "<p>Лише з Афін до аеропорту, для 1 особи, щонайменше за {cutoff} год. Краще за {cutoff}–{later} год або ще раніше. Якщо виїзд менш ніж через {cutoff} год, можна замовити лише звичайне таксі.</p>"],
+        ["3. Як підбирається група", "<p>Ми шукаємо пасажирів, які хочуть виїхати до аеропорту на {window} хвилин раніше або пізніше за вас і живуть поруч (не далі ніж {km} км). Спільний час виїзду — найраніший у групі, щоб ніхто не виїхав пізніше, ніж просив. Точний час ви бачите до того, як відповісте. Пошук триває й тоді, коли застосунок закритий.</p>"],
+        ["4. Час, який ви вказуєте", "<p>Це час, коли всі вже в таксі й виїжджають до аеропорту. Посадки відбуваються раніше. Застосунок точно показує, коли вийти надвір і коли приїде таксі.</p>"],
+        ["5. Згода і доручення", "<p>Коли групу знайдено, кожен бачить свій час виходу, скільки чекає водій, скільки він платить і хто орендар.</p><ul><li>Орендар натискає <b>ПІДТВЕРДЖУЮ</b>.</li><li>Попутники натискають <b>УПОВНОВАЖУЮ</b>: «Я уповноважую орендаря орендувати таксі від мого імені та визначити маршрут із зупинками.»</li></ul><p>Доручення обов'язкове і зберігається з датою та часом. Якщо орендар зміниться, ми попросимо вас знову. Якщо хтось натисне «Скасувати», він виходить із групи, і ми повідомляємо інших. Без вашої відповіді нічого не бронюється.</p>"],
+        ["6. Орендар", "<p>Орендарем автоматично стає той, кого забирають <b>першим</b>. Водій спершу їде до нього. Щойно орендар сів, вмикається лічильник, і поїздка триває із зупинками для попутників, у затвердженому порядку, до аеропорту.</p><p>Бронювання ОДНЕ, на ім'я орендаря, усі посадки — зупинки. Якщо орендар скасовує, орендарем стає наступний за порядком.</p><p>Щойно група зібрана, відкривається спільний чат координації. Там застосунок пише доручення, план маршруту та правила оплати, і ви теж можете писати.</p>"],
+        ["7. Оплата", "<p>Ви платите водієві напряму, в кінці поїздки, загальну суму за лічильником: готівкою або розділивши її між вашими картками на POS-терміналі таксі (по одному платежу на особу).</p><p>Водій видає <b>ОДИН</b> чек за всю поїздку на ім'я орендаря. Один лічильник, одна оплата, один чек. Як розділити рахунок — вирішує група. Застосунок не зберігає і не переказує гроші.</p>"],
+        ["8. Як розраховується сума", "<p>Застосунок заздалегідь показує <b>оцінку</b>: звичайна ціна від останньої посадки до аеропорту плюс {ex2} €, якщо вас 2, або {ex3} €, якщо вас 3, за зупинки, поділена на кількість людей. Остаточна сума — та, що показує лічильник.</p>"],
+        ["9. Будьте готові", "<p>Будьте надворі за {ready} хвилин до приїзду таксі. Водій чекає до {wait} хвилин, а потім їде до наступної посадки.</p>"],
+        ["10. Якщо я не прийду", "<p>Поїздка продовжиться без вас, і ми попросимо пояснити причину. Якщо не прийде орендар, орендарем стає наступний за порядком. Суму сплачують ті, хто в таксі. Якщо ви часто не приходите, користування «Разом однією компанією» може бути обмежене.</p>"],
+        ["11. Багаж", "<p>Кожен пасажир має {bags}, не великогабаритний. Місце спільне для всіх. Максимальний розмір: {dims}.</p>{bagSvg}"],
+        ["12. Якщо групу не знайдено", "<p>За {cutoff} год до виїзду ми припиняємо пошук і надсилаємо вам сповіщення: «Групу не знайдено» з кнопкою <b>[ЗАМОВИТИ ТАКСІ]</b>. Звичайне бронювання відкривається заповненим, і ви самі його підтверджуєте. Ми ніколи не замовляємо таксі без вас.</p>"],
+        ["13. Скасування", "<p>Ви можете зупинити пошук будь-коли, поки не відповіли.</p><p>Якщо хтось скасовує після відповіді:</p><ul><li>Якщо до виїзду понад {cutoff} год, ми шукаємо іншого пасажира на його місце.</li><li>Якщо менше {cutoff} год, ми більше нікого не шукаємо. Ми повідомляємо інших, що попутник скасував, скільки людей лишилося і нову ціну.</li></ul><p>Якщо скасовує орендар, орендарем стає наступний за порядком, і ми вас повідомляємо. Якщо нова ціна вам не підходить, ви теж можете скасувати й замовити звичайне таксі. Якщо лишається одна людина, поїздка відбудеться лише для неї.</p>"],
+        ["14. Вхід через Google / Apple", "<p>Для «Разом однією компанією» ви один раз входите через Google (Android) або Apple (iPhone), щоб кожен пасажир був справжнім обліковим записом. Ми не бачимо вашого пароля. Для звичайного бронювання вхід не потрібен.</p>"],
+        ["15. Особисті дані", "<p>Про попутників ви бачите лише їхнє ім'я та прізвище і те, що вони пишуть у спільному чаті. Вони теж не бачать про вас нічого іншого. Водій бачить ім'я, телефон і місце посадки кожного. Доручення та спільний чат зберігаються як підтвердження поїздки. Дані використовуються лише для поїздки.</p>"]
+      ]) },
+    he:{ maziInfoLink:"איך זה עובד?", maziAccept:"קראתי ואני מקבל/ת את התנאים של «יחד בקבוצה אחת»",
+      maziYouResponsible:"🙋 אתם השוכר: הנהג אוסף אתכם ראשונים. ההזמנה והקבלה על שמכם.",
+      maziResponsibleIs:"🙋 השוכר: {name} — הנהג אוסף אותו ראשון. ההזמנה והקבלה על שם השוכר.",
+      maziAuthorizeBtn:"✅ אני מייפה כוח",
+      maziAuthorizeText:"«אני מייפה את כוחו של השוכר {name} לשכור את המונית בשמי ולקבוע את המסלול עם עצירות.»",
+      maziLesseeGoneMe:"⚠️ השוכר {prev} ביטל. כדי שהנסיעה תימשך, אתם הופכים לשוכר: לחצו אישור.",
+      maziLesseeGoneOther:"⚠️ השוכר {prev} ביטל. השוכר החדש: {name}. לחצו אני מייפה כוח כדי שהנסיעה תימשך.",
+      maziFound:"✅ נמצאה קבוצה", maziCancelAsk:"לבטל את ההשתתפות שלכם?",
+      maziPleaseAnswer:"נא להשיב כדי שהקבוצה תושלם.",
+      maziFillAll:"נא למלא שם פרטי, שם משפחה וטלפון.",
+      maziTooLate:"«יחד בקבוצה אחת» אפשרי רק ליציאה בעוד יותר מ־{cutoff} שעות.",
+      maziGcBtn:"👥 צ'אט הקבוצה", maziGcTitle:"צ'אט הקבוצה", maziGcApp:"Taxi and Fly",
+      maziGcCreated:"הקבוצה להסעה לשדה התעופה נוצרה! ברוכים הבאים לצ'אט התיאום המשותף. השוכר: {name} (נאסף ראשון).",
+      maziGcCreatedPrev:"השוכר {prev} ביטל.",
+      maziGcAuthorized:"ייפוי כוח דיגיטלי מאת: {others}. השוכר: {name}. הזמנת המונית נעשתה על שם השוכר.",
+      maziGcRoute:"תוכנית המסלול ננעלה: {route} ➔ שדה התעופה של אתונה. זו נסיעה אחת ויחידה.",
+      maziGcStopLessee:"עליית השוכר ({name})", maziGcStopN:"עצירה {n} ({name})",
+      maziGcPayment:"הוראות תשלום: התשלום הוא ישירות לנהג בסוף הנסיעה. את הסכום הכולל במונה אפשר לשלם במזומן או בחלוקה (split) בין הכרטיסים שלכם במסוף ה־POS של המונית. הנהג מוציא קבלה אחת לכל הנסיעה, על שם השוכר ({name}).",
+      maziInfoHtml:_maziInfo([
+        ["1. מה זה", "<p>אתם נוסעים לשדה התעופה במונית אחת, {minP} עד {maxP} נוסעים בסך הכול כולל אתכם, שיוצאים באותה שעה מנקודות קרובות. שוכר אחד, הזמנה אחת, מונה אחד, קבלה אחת.</p><p>איסוף שותפי הנסיעה הוא עצירות באותה נסיעה. זו נסיעה אחת ויחידה, מהאיסוף הראשון ועד שדה התעופה.</p>"],
+        ["2. מתי אפשר", "<p>רק מאתונה לשדה התעופה, לאדם אחד, לפחות {cutoff} שעות מראש. עדיף {cutoff}–{later} שעות מראש או מוקדם יותר. אם היציאה בעוד פחות מ־{cutoff} שעות, אפשר להזמין רק מונית רגילה.</p>"],
+        ["3. איך נמצאת הקבוצה", "<p>אנחנו מחפשים נוסעים שרוצים לצאת לשדה התעופה עד {window} דקות לפניכם או אחריכם וגרים קרוב אליכם (במרחק של עד {km} ק״מ). שעת היציאה המשותפת היא המוקדמת ביותר בקבוצה, כדי שאף אחד לא ייצא מאוחר ממה שביקש. את השעה המדויקת רואים לפני שעונים. החיפוש ממשיך גם כשהאפליקציה סגורה.</p>"],
+        ["4. השעה שאתם מציינים", "<p>זו השעה שבה כולם כבר במונית ויוצאים לשדה התעופה. האיסופים נעשים קודם. האפליקציה מראה לכם בדיוק מתי להיות בחוץ ומתי המונית מגיעה.</p>"],
+        ["5. הסכמה וייפוי כוח", "<p>כשנמצאת קבוצה, כל אחד רואה את השעה שלו להיות בחוץ, כמה זמן הנהג מחכה, כמה הוא משלם ומי השוכר.</p><ul><li>השוכר לוחץ <b>אישור</b>.</li><li>שותפי הנסיעה לוחצים <b>אני מייפה כוח</b>: «אני מייפה את כוחו של השוכר לשכור את המונית בשמי ולקבוע את המסלול עם עצירות.»</li></ul><p>ייפוי הכוח הוא חובה ונרשם עם תאריך ושעה. אם השוכר מתחלף, נבקש אותו מכם שוב. אם מישהו לוחץ ביטול, הוא יוצא מהקבוצה ואנחנו מעדכנים את האחרים. שום דבר לא מוזמן בלי התשובה שלכם.</p>"],
+        ["6. השוכר", "<p>השוכר הוא אוטומטית מי שנאסף <b>ראשון</b>. הנהג מגיע אליו קודם. ברגע שהשוכר עולה, המונה מופעל, והנסיעה ממשיכה עם עצירות לשותפי הנסיעה, לפי הסדר שננעל, עד שדה התעופה.</p><p>יש הזמנה אחת, על שם השוכר, וכל האיסופים הם עצירות בה. אם השוכר מבטל, הבא בתור הופך לשוכר.</p><p>ברגע שהקבוצה מושלמת נפתח צ'אט התיאום המשותף. שם האפליקציה כותבת את ייפוי הכוח, את תוכנית המסלול ואת הוראות התשלום, וגם אתם יכולים לכתוב.</p>"],
+        ["7. תשלום", "<p>משלמים ישירות לנהג, בסוף הנסיעה, את הסכום הכולל במונה: במזומן או בחלוקה בין הכרטיסים שלכם במסוף ה־POS של המונית (תשלום אחד לכל אחד).</p><p>הנהג מוציא קבלה <b>אחת</b> לכל הנסיעה, על שם השוכר. מונה אחד, גבייה אחת, קבלה אחת. איך לחלק את החשבון – זו בחירה של הקבוצה. האפליקציה לא מחזיקה ולא מעבירה כסף.</p>"],
+        ["8. איך מחושב הסכום", "<p>האפליקציה מציגה מראש <b>הערכה</b>: המחיר הרגיל מהאיסוף האחרון לשדה התעופה, ועוד {ex2} € כשאתם 2 או {ex3} € כשאתם 3 עבור עצירות האיסוף, מחולק במספר האנשים. הסכום הסופי הוא מה שמראה המונה.</p>"],
+        ["9. היו מוכנים", "<p>היו בחוץ {ready} דקות לפני שהמונית מגיעה. הנהג מחכה עד {wait} דקות ואז ממשיך לאיסוף הבא.</p>"],
+        ["10. אם לא הגעתי", "<p>הנסיעה ממשיכה בלעדיכם ונבקש מכם להסביר את הסיבה. אם השוכר לא מגיע, הבא בתור הופך לשוכר. את הסכום משלמים מי שנמצאים במונית. אם אתם נעדרים לעיתים קרובות, השימוש ב«יחד בקבוצה אחת» עלול להיות מוגבל.</p>"],
+        ["11. מזוודות", "<p>לכל נוסע יש {bags}, לא בגודל חריג. המקום משותף לכולם. גודל מקסימלי: {dims}.</p>{bagSvg}"],
+        ["12. אם לא נמצאה קבוצה", "<p>{cutoff} שעות לפני היציאה אנחנו מפסיקים לחפש ושולחים לכם התראה: «לא נמצאה קבוצה», עם כפתור <b>[הזמן מונית]</b>. ההזמנה הרגילה נפתחת ממולאת ואתם מאשרים אותה בעצמכם. אנחנו אף פעם לא מזמינים מונית בלעדיכם.</p>"],
+        ["13. ביטול", "<p>אפשר לעצור את החיפוש בכל רגע לפני שעונים.</p><p>אם מישהו מבטל אחרי שענה:</p><ul><li>אם נותרו יותר מ־{cutoff} שעות עד היציאה, נחפש נוסע אחר שייכנס במקומו.</li><li>אם נותרו פחות מ־{cutoff} שעות, לא נחפש אף אחד אחר. נעדכן את האחרים שאחד משותפי הנסיעה ביטל, כמה אנשים נשארו ואת המחיר החדש.</li></ul><p>אם השוכר מבטל, הבא בתור הופך לשוכר ואנחנו מעדכנים אתכם. אם המחיר החדש לא מתאים לכם, אפשר לבטל גם ולהזמין מונית רגילה. אם נשאר אדם אחד, הנסיעה מתקיימת רק עבורו.</p>"],
+        ["14. התחברות עם Google / Apple", "<p>ל«יחד בקבוצה אחת» מתחברים פעם אחת עם Google (אנדרואיד) או Apple (אייפון), כדי שכל נוסע יהיה חשבון אמיתי. אנחנו אף פעם לא רואים את הסיסמה שלכם. הזמנה רגילה לא צריכה התחברות.</p>"],
+        ["15. מידע אישי", "<p>משותפי הנסיעה אתם רואים רק את שמם המלא ואת מה שהם כותבים בצ'אט המשותף. גם הם לא רואים עליכם שום דבר אחר. הנהג רואה את השם, הטלפון ונקודת האיסוף של כל אחד. ייפויי הכוח והצ'אט המשותף נשמרים כהוכחה לנסיעה. המידע משמש רק לנסיעה.</p>"]
+      ]) }
+  };
+  Object.keys(MAZI_LEGAL).forEach(function(c){
+    if(!I[c]) I[c]={};
+    Object.keys(MAZI_LEGAL[c]).forEach(function(k){ I[c][k]=MAZI_LEGAL[c][k]; });
+  });
+
+  /* «Μαζί»: μετά το «✅ ΕΞΟΥΣΙΟΔΟΤΩ» του συνεπιβάτη (αντί για «Συμφωνήσατε…»). */
+  var MAZI_AUTHORIZED = {
+    el:"Εξουσιοδοτήσατε τον μισθωτή — περιμένουμε τους υπόλοιπους.",
+    en:"You authorised the hirer — waiting for the others.",
+    de:"Du hast den Mieter bevollmächtigt — wir warten auf die anderen.",
+    fr:"Vous avez autorisé le locataire — nous attendons les autres.",
+    it:"Hai autorizzato il locatario — aspettiamo gli altri.",
+    es:"Has autorizado al arrendatario — esperamos a los demás.",
+    ru:"Вы уполномочили арендатора — ждём остальных.",
+    pl:"Upoważniłeś najemcę — czekamy na pozostałych.",
+    ro:"L-ai împuternicit pe locatar — îi așteptăm pe ceilalți.",
+    nl:"U heeft de huurder gemachtigd — we wachten op de anderen.",
+    tr:"Kiracıya yetki verdiniz — diğerlerini bekliyoruz.",
+    ar:"لقد فوّضت المستأجر — ننتظر الآخرين.",
+    zh:"您已授权承租人——正在等待其他人。",
+    uk:"Ви уповноважили орендаря — чекаємо на інших.",
+    he:"ייפיתם את כוחו של השוכר — ממתינים לשאר."
+  };
+  Object.keys(MAZI_AUTHORIZED).forEach(function(c){
+    if(!I[c]) I[c]={};
+    I[c].maziYouAuthorized = MAZI_AUTHORIZED[c];
+  });
+
+  /* «Μαζί»: ο μισθωτής δεν ήρθε / ακύρωσε μετά την κράτηση → μισθωτής ο επόμενος (26/10).
+     [chat: δεν ήρθε, chat: ακύρωσε, chat: νέος μισθωτής, κάρτα: εσείς πλέον, κάρτα: μισθωτής πλέον {name}] */
+  var MAZI_LESSEE_NEW = {
+    el:["⚠️ Ο μισθωτής {prev} δεν ήρθε.", "⚠️ Ο μισθωτής {prev} ακύρωσε.", "Νέος μισθωτής: {name}. Η κράτηση και η απόδειξη περνούν στο όνομα του νέου μισθωτή. Η μίσθωση συνεχίζει ενιαία με όσους είναι μέσα.", "🙋 Είστε πλέον ο μισθωτής: η απόδειξη θα εκδοθεί στο όνομά σας.", "🙋 Μισθωτής πλέον: {name} — η απόδειξη θα εκδοθεί στο όνομα του μισθωτή."],
+    en:["⚠️ The hirer {prev} did not show up.", "⚠️ The hirer {prev} cancelled.", "New hirer: {name}. The booking and the receipt pass to the new hirer's name. The hire continues as one, with those on board.", "🙋 You are now the hirer: the receipt will be issued in your name.", "🙋 Hirer now: {name} — the receipt will be issued in the hirer's name."],
+    de:["⚠️ Der Mieter {prev} ist nicht erschienen.", "⚠️ Der Mieter {prev} hat storniert.", "Neuer Mieter: {name}. Buchung und Quittung gehen auf den Namen des neuen Mieters über. Die Fahrt bleibt eine einzige, mit allen, die im Taxi sind.", "🙋 Du bist jetzt der Mieter: Die Quittung wird auf deinen Namen ausgestellt.", "🙋 Mieter jetzt: {name} — die Quittung wird auf den Namen des Mieters ausgestellt."],
+    fr:["⚠️ Le locataire {prev} ne s'est pas présenté.", "⚠️ Le locataire {prev} a annulé.", "Nouveau locataire : {name}. La réservation et le reçu passent au nom du nouveau locataire. La course reste unique, avec les personnes à bord.", "🙋 Vous êtes désormais le locataire : le reçu sera établi à votre nom.", "🙋 Locataire désormais : {name} — le reçu sera établi au nom du locataire."],
+    it:["⚠️ Il locatario {prev} non si è presentato.", "⚠️ Il locatario {prev} ha annullato.", "Nuovo locatario: {name}. La prenotazione e la ricevuta passano a nome del nuovo locatario. La corsa resta unica, con chi è a bordo.", "🙋 Ora sei tu il locatario: la ricevuta sarà intestata a te.", "🙋 Locatario ora: {name} — la ricevuta sarà intestata al locatario."],
+    es:["⚠️ El arrendatario {prev} no se ha presentado.", "⚠️ El arrendatario {prev} ha cancelado.", "Nuevo arrendatario: {name}. La reserva y el recibo pasan a nombre del nuevo arrendatario. El viaje sigue siendo uno solo, con quienes van a bordo.", "🙋 Ahora eres el arrendatario: el recibo se emitirá a tu nombre.", "🙋 Arrendatario ahora: {name} — el recibo se emitirá a nombre del arrendatario."],
+    ru:["⚠️ Арендатор {prev} не пришёл.", "⚠️ Арендатор {prev} отменил поездку.", "Новый арендатор: {name}. Заказ и чек переходят на имя нового арендатора. Поездка остаётся единой, с теми, кто в такси.", "🙋 Теперь вы арендатор: чек будет выписан на ваше имя.", "🙋 Теперь арендатор: {name} — чек будет выписан на имя арендатора."],
+    pl:["⚠️ Najemca {prev} nie przyszedł.", "⚠️ Najemca {prev} zrezygnował.", "Nowy najemca: {name}. Rezerwacja i paragon przechodzą na nazwisko nowego najemcy. Kurs pozostaje jeden, z osobami w taksówce.", "🙋 Jesteś teraz najemcą: paragon zostanie wystawiony na twoje nazwisko.", "🙋 Najemca teraz: {name} — paragon zostanie wystawiony na nazwisko najemcy."],
+    ro:["⚠️ Locatarul {prev} nu s-a prezentat.", "⚠️ Locatarul {prev} a anulat.", "Locatar nou: {name}. Rezervarea și bonul trec pe numele noului locatar. Cursa rămâne una singură, cu cei din taxi.", "🙋 Acum tu ești locatarul: bonul va fi emis pe numele tău.", "🙋 Locatar acum: {name} — bonul va fi emis pe numele locatarului."],
+    nl:["⚠️ De huurder {prev} is niet verschenen.", "⚠️ De huurder {prev} heeft geannuleerd.", "Nieuwe huurder: {name}. De boeking en de bon gaan over op naam van de nieuwe huurder. Het blijft één rit, met wie in de taxi zit.", "🙋 U bent nu de huurder: de bon komt op uw naam.", "🙋 Huurder nu: {name} — de bon komt op naam van de huurder."],
+    tr:["⚠️ Kiracı {prev} gelmedi.", "⚠️ Kiracı {prev} iptal etti.", "Yeni kiracı: {name}. Rezervasyon ve fiş yeni kiracının adına geçer. Yolculuk, taksidekilerle tek bir yolculuk olarak devam eder.", "🙋 Artık kiracı sizsiniz: fiş sizin adınıza kesilecek.", "🙋 Kiracı artık: {name} — fiş kiracının adına kesilecek."],
+    ar:["⚠️ لم يحضر المستأجر {prev}.", "⚠️ ألغى المستأجر {prev}.", "المستأجر الجديد: {name}. ينتقل الحجز والإيصال إلى اسم المستأجر الجديد. تبقى الرحلة واحدة مع من هم في التاكسي.", "🙋 أنت الآن المستأجر: سيصدر الإيصال باسمك.", "🙋 المستأجر الآن: {name} — سيصدر الإيصال باسم المستأجر."],
+    zh:["⚠️ 承租人 {prev} 未到场。", "⚠️ 承租人 {prev} 已取消。", "新承租人：{name}。预订和收据转到新承租人名下。车上的人继续同一次租用。", "🙋 您现在是承租人：收据将以您的名义开具。", "🙋 现承租人：{name}——收据将以承租人的名义开具。"],
+    uk:["⚠️ Орендар {prev} не прийшов.", "⚠️ Орендар {prev} скасував поїздку.", "Новий орендар: {name}. Бронювання і чек переходять на ім'я нового орендаря. Поїздка залишається єдиною, з тими, хто в таксі.", "🙋 Тепер ви орендар: чек буде виписано на ваше ім'я.", "🙋 Тепер орендар: {name} — чек буде виписано на ім'я орендаря."],
+    he:["⚠️ השוכר {prev} לא הגיע.", "⚠️ השוכר {prev} ביטל.", "השוכר החדש: {name}. ההזמנה והקבלה עוברות לשם השוכר החדש. הנסיעה נשארת אחת, עם מי שבמונית.", "🙋 אתם עכשיו השוכר: הקבלה תונפק על שמכם.", "🙋 השוכר עכשיו: {name} — הקבלה תונפק על שם השוכר."]
+  };
+  Object.keys(MAZI_LESSEE_NEW).forEach(function(c){
+    if(!I[c]) I[c]={};
+    var t = MAZI_LESSEE_NEW[c];
+    I[c].maziGcLesseeAbsent = t[0];
+    I[c].maziGcLesseeCancelled = t[1];
+    I[c].maziGcLesseeNew = t[2];
+    I[c].maziYouLesseeNow = t[3];
+    I[c].maziLesseeNowIs = t[4];
+  });
+
+  /* «Μαζί»: ακύρωση θέσης / νέος επιβάτης σε κλεισμένη κράτηση → μήνυμα στο chat παρέας (27/10).
+     [ακύρωσε, νέο ποσό, μόνος, μπήκε νέος] */
+  var MAZI_GC_SEAT = {
+    el:["⚠️ Ακύρωση: {name} ακύρωσε τη θέση του.", "Νέο ποσό ανά άτομο: {amount} €.", "Είστε μόνος/η. Ποσό: {amount} €. Εάν δεν βρεθεί άλλος, συνεχίζετε με αυτόν τον οδηγό.", "👋 Μπήκε νέος συνεπιβάτης: {name}. Παρέα {n} ατόμων · νέο ποσό {amount} € το άτομο.", "Είστε μόνος/η. Δεν μπορεί να μπει άλλος. Ποσό: {amount} € (ολόκληρο). Συνεχίζετε με τον οδηγό σας."],
+    en:["⚠️ Cancellation: {name} cancelled their seat.", "New amount per person: {amount} €.", "You are alone. Amount: {amount} €. If nobody else is found, you continue with this driver.", "👋 New passenger joined: {name}. Group of {n} · new amount {amount} € each.", "You are alone. Nobody else can join. Amount: {amount} € (full fare). You continue with your driver."],
+    de:["⚠️ Storniert: {name}.", "Neuer Betrag pro Person: {amount} €.", "Du bist allein geblieben. Wenn die 12 Stunden vergehen, musst du allein ein Taxi rufen. Betrag: {amount} €.", "👋 Neuer Mitfahrer: {name}. Gruppe von {n} · neuer Betrag {amount} € pro Person.", "Du bist allein geblieben. Du musst allein ein Taxi rufen."],
+    fr:["⚠️ Annulé : {name}.", "Nouveau montant par personne : {amount} €.", "Vous êtes resté(e) seul(e). Si les 12 heures passent, vous devrez appeler un taxi seul(e). Montant : {amount} €.", "👋 Nouveau passager : {name}. Groupe de {n} · nouveau montant {amount} € par personne.", "Vous êtes resté(e) seul(e). Vous devez appeler un taxi seul(e)."],
+    it:["⚠️ Annullato: {name}.", "Nuovo importo a persona: {amount} €.", "Sei rimasto/a solo/a. Se passano le 12 ore, devi chiamare un taxi da solo/a. Importo: {amount} €.", "👋 Nuovo passeggero: {name}. Gruppo di {n} · nuovo importo {amount} € a persona.", "Sei rimasto/a solo/a. Devi chiamare un taxi da solo/a."],
+    es:["⚠️ Canceló: {name}.", "Nuevo importe por persona: {amount} €.", "Te has quedado solo/a. Si pasan las 12 horas, debes llamar un taxi por tu cuenta. Importe: {amount} €.", "👋 Nuevo pasajero: {name}. Grupo de {n} · nuevo importe {amount} € por persona.", "Te has quedado solo/a. Debes llamar un taxi por tu cuenta."],
+    ru:["⚠️ Отменил: {name}.", "Новая сумма на человека: {amount} €.", "Вы остались один/одна. Если пройдут 12 часов, нужно вызвать такси одному/одной. Сумма: {amount} €.", "👋 Новый пассажир: {name}. Группа из {n} · новая сумма {amount} € с человека.", "Вы остались один/одна. Нужно вызвать такси одному/одной."],
+    pl:["⚠️ Anulował: {name}.", "Nowa kwota na osobę: {amount} €.", "Zostałeś/zostałaś sam/sama. Jeśli minie 12 godzin, musisz wezwać taksówkę sam/sama. Kwota: {amount} €.", "👋 Nowy pasażer: {name}. Grupa {n} osób · nowa kwota {amount} € na osobę.", "Zostałeś/zostałaś sam/sama. Musisz wezwać taksówkę sam/sama."],
+    ro:["⚠️ A anulat: {name}.", "Sumă nouă pe persoană: {amount} €.", "Ați rămas singur(ă). Dacă trec cele 12 ore, trebuie să chemați un taxi singur(ă). Sumă: {amount} €.", "👋 Pasager nou: {name}. Grup de {n} · sumă nouă {amount} € pe persoană.", "Ați rămas singur(ă). Trebuie să chemați un taxi singur(ă)."],
+    nl:["⚠️ Geannuleerd: {name}.", "Nieuw bedrag per persoon: {amount} €.", "U bent alleen over. Als de 12 uur verstrijken, moet u zelf een taxi bellen. Bedrag: {amount} €.", "👋 Nieuwe passagier: {name}. Groep van {n} · nieuw bedrag {amount} € per persoon.", "U bent alleen over. U moet zelf een taxi bellen."],
+    tr:["⚠️ İptal etti: {name}.", "Kişi başı yeni tutar: {amount} €.", "Yalnız kaldınız. 12 saat geçerse, tek başınıza taksi çağırmalısınız. Tutar: {amount} €.", "👋 Yeni yolcu: {name}. {n} kişilik grup · kişi başı yeni tutar {amount} €.", "Yalnız kaldınız. Tek başınıza taksi çağırmalısınız."],
+    ar:["⚠️ ألغى: {name}.", "المبلغ الجديد للشخص: {amount} €.", "بقيتم وحدكم. إذا مرت الـ 12 ساعة، يجب أن تستدعوا تاكسي وحدكم. المبلغ: {amount} €.", "👋 راكب جديد: {name}. مجموعة من {n} · المبلغ الجديد {amount} € للشخص.", "بقيتم وحدكم. يجب أن تستدعوا تاكسي وحدكم."],
+    zh:["⚠️ 已取消：{name}。", "每人新金额：{amount} €。", "只剩您一人。如果过了这 12 小时，您需要自己叫出租车。金额：{amount} €。", "👋 新乘客加入：{name}。共 {n} 人 · 每人新金额 {amount} €。", "只剩您一人。您需要自己叫出租车。"],
+    uk:["⚠️ Скасував: {name}.", "Нова сума на особу: {amount} €.", "Ви залишились самі. Якщо мине 12 годин, треба викликати таксі самому/самій. Сума: {amount} €.", "👋 Новий пасажир: {name}. Група з {n} · нова сума {amount} € з особи.", "Ви залишились самі. Треба викликати таксі самому/самій."],
+    he:["⚠️ ביטל: {name}.", "סכום חדש לאדם: {amount} €.", "נשארתם לבד. אם יעברו 12 השעות, תצטרכו להזמין מונית לבד. סכום: {amount} €.", "👋 נוסע חדש: {name}. קבוצה של {n} · סכום חדש {amount} € לאדם.", "נשארתם לבד. תצטרכו להזמין מונית לבד."]
+  };
+  Object.keys(MAZI_GC_SEAT).forEach(function(c){
+    if(!I[c]) I[c]={};
+    var t = MAZI_GC_SEAT[c];
+    I[c].maziGcSeatCancelled = t[0];
+    I[c].maziGcSeatNewShare = t[1];
+    I[c].maziGcSeatAlone = String((MAZI_ALONE[c] || t[2])).replace(/^👤\s*/, "");
+    I[c].maziGcMemberJoined = t[3];
+    I[c].maziGcSeatAloneLate = String((MAZI_ALONE_LATE[c] || t[4])).replace(/^👤\s*/, "");
+  });
+
+  /* «Μαζί»: ο οδηγός ακύρωσε / δεν βρέθηκε οδηγός (27/10· ο μισθωτής έχει την κανονική ερώτηση ΝΑΙ/ΟΧΙ).
+     [συνεπιβάτες: οδηγός ακύρωσε, συνεπιβάτες: δεν βρέθηκε οδηγός — ίδια με την ειδοποίηση του server,
+      μετά το ΟΧΙ του μισθωτή: μισθωτής, συνεπιβάτες] */
+  var MAZI_DRIVER_GONE = {
+    el:["⚠️ Ο οδηγός ακύρωσε. Ο μισθωτής {name} αποφασίζει αν θα ψάξουμε νέο οδηγό.", "🔍 Δεν βρέθηκε διαθέσιμος οδηγός. Ο μισθωτής {name} αποφασίζει αν θα ξαναπροσπαθήσουμε.", "⚠️ Ο οδηγός ακύρωσε. Η παρέα σας μένει — πατήστε «{btn}» για νέο οδηγό.", "⚠️ Ο οδηγός ακύρωσε. Η παρέα σας μένει — ο μισθωτής μπορεί να κάνει νέα κράτηση.", "⚠️ Ο οδηγός ακύρωσε. Δεν προλαβαίνουμε για Μαζί. Θέλετε να προσπαθήσουμε να σας βρούμε οδηγό ο καθένας μόνος του;"],
+    en:["⚠️ The driver cancelled. The hirer {name} decides whether we look for a new driver.", "🔍 No driver available. The hirer {name} decides whether we try again.", "⚠️ The driver cancelled. Your group stays — press «{btn}» for a new driver.", "⚠️ The driver cancelled. Your group stays — the hirer can make a new booking.", "⚠️ The driver cancelled. There isn't time for a shared ride. Shall we try to find a driver for each of you on your own?"],
+    de:["⚠️ Der Fahrer hat storniert. Der Mieter {name} entscheidet, ob wir einen neuen Fahrer suchen.", "🔍 Kein Fahrer verfügbar. Der Mieter {name} entscheidet, ob wir es noch einmal versuchen.", "⚠️ Der Fahrer hat storniert. Eure Gruppe bleibt — drücke «{btn}» für einen neuen Fahrer.", "⚠️ Der Fahrer hat storniert. Eure Gruppe bleibt — der Mieter kann neu buchen.", "⚠️ Der Fahrer hat storniert. Für eine gemeinsame Fahrt reicht die Zeit nicht. Sollen wir für jeden von euch allein einen Fahrer suchen?"],
+    fr:["⚠️ Le chauffeur a annulé. Le locataire {name} décide si nous cherchons un nouveau chauffeur.", "🔍 Aucun chauffeur disponible. Le locataire {name} décide si nous réessayons.", "⚠️ Le chauffeur a annulé. Votre groupe reste — appuyez sur «{btn}» pour un nouveau chauffeur.", "⚠️ Le chauffeur a annulé. Votre groupe reste — le locataire peut refaire une réservation.", "⚠️ Le chauffeur a annulé. Il n'est plus temps pour un trajet partagé. Voulez-vous que nous cherchions un chauffeur pour chacun, seul ?"],
+    it:["⚠️ L'autista ha annullato. Il locatario {name} decide se cercare un nuovo autista.", "🔍 Nessun autista disponibile. Il locatario {name} decide se riprovare.", "⚠️ L'autista ha annullato. Il vostro gruppo resta — premi «{btn}» per un nuovo autista.", "⚠️ L'autista ha annullato. Il vostro gruppo resta — il locatario può fare una nuova prenotazione.", "⚠️ L'autista ha annullato. Non facciamo in tempo per la corsa condivisa. Cerchiamo un autista per ciascuno, da solo?"],
+    es:["⚠️ El conductor ha cancelado. El arrendatario {name} decide si buscamos un nuevo conductor.", "🔍 No hay conductor disponible. El arrendatario {name} decide si lo intentamos de nuevo.", "⚠️ El conductor ha cancelado. Vuestro grupo sigue — pulsa «{btn}» para un nuevo conductor.", "⚠️ El conductor ha cancelado. Vuestro grupo sigue — el arrendatario puede hacer una nueva reserva.", "⚠️ El conductor ha cancelado. No llegamos a tiempo para el viaje compartido. ¿Buscamos un conductor para cada uno, por separado?"],
+    ru:["⚠️ Водитель отменил поездку. Арендатор {name} решает, искать ли нового водителя.", "🔍 Нет свободного водителя. Арендатор {name} решает, попробовать ли ещё раз.", "⚠️ Водитель отменил поездку. Ваша группа остаётся — нажмите «{btn}», чтобы найти нового водителя.", "⚠️ Водитель отменил поездку. Ваша группа остаётся — арендатор может сделать новый заказ.", "⚠️ Водитель отменил поездку. На совместную поездку времени уже нет. Попробовать найти водителя каждому отдельно?"],
+    pl:["⚠️ Kierowca anulował. Najemca {name} decyduje, czy szukamy nowego kierowcy.", "🔍 Brak dostępnego kierowcy. Najemca {name} decyduje, czy spróbujemy ponownie.", "⚠️ Kierowca anulował. Wasza grupa zostaje — naciśnij «{btn}», aby znaleźć nowego kierowcę.", "⚠️ Kierowca anulował. Wasza grupa zostaje — najemca może zrobić nową rezerwację.", "⚠️ Kierowca anulował. Nie zdążymy na wspólną jazdę. Mamy spróbować znaleźć kierowcę dla każdej osoby osobno?"],
+    ro:["⚠️ Șoferul a anulat. Locatarul {name} decide dacă căutăm un șofer nou.", "🔍 Niciun șofer disponibil. Locatarul {name} decide dacă încercăm din nou.", "⚠️ Șoferul a anulat. Grupul vostru rămâne — apasă «{btn}» pentru un șofer nou.", "⚠️ Șoferul a anulat. Grupul vostru rămâne — locatarul poate face o rezervare nouă.", "⚠️ Șoferul a anulat. Nu mai prindem cursa comună. Încercăm să găsim un șofer pentru fiecare, singur?"],
+    nl:["⚠️ De chauffeur heeft geannuleerd. De huurder {name} beslist of we een nieuwe chauffeur zoeken.", "🔍 Geen chauffeur beschikbaar. De huurder {name} beslist of we het opnieuw proberen.", "⚠️ De chauffeur heeft geannuleerd. Uw groep blijft — druk op «{btn}» voor een nieuwe chauffeur.", "⚠️ De chauffeur heeft geannuleerd. Uw groep blijft — de huurder kan opnieuw boeken.", "⚠️ De chauffeur heeft geannuleerd. Voor een gedeelde rit is er geen tijd meer. Zullen we voor ieder apart een chauffeur zoeken?"],
+    tr:["⚠️ Şoför iptal etti. Kiracı {name}, yeni şoför arayıp aramayacağımıza karar veriyor.", "🔍 Müsait şoför bulunamadı. Kiracı {name}, tekrar deneyip denemeyeceğimize karar veriyor.", "⚠️ Şoför iptal etti. Grubunuz duruyor — yeni şoför için «{btn}» tuşuna basın.", "⚠️ Şoför iptal etti. Grubunuz duruyor — kiracı yeni bir rezervasyon yapabilir.", "⚠️ Şoför iptal etti. Birlikte gitmek için vaktimiz kalmadı. Her birinize ayrı şoför bulmayı deneyelim mi?"],
+    ar:["⚠️ ألغى السائق. المستأجر {name} يقرر ما إذا كنا سنبحث عن سائق جديد.", "🔍 لا يوجد سائق متاح. المستأجر {name} يقرر ما إذا كنا سنحاول مرة أخرى.", "⚠️ ألغى السائق. مجموعتكم باقية — اضغط «{btn}» للبحث عن سائق جديد.", "⚠️ ألغى السائق. مجموعتكم باقية — يمكن للمستأجر إجراء حجز جديد.", "⚠️ ألغى السائق. لم يعد هناك وقت للرحلة المشتركة. هل نحاول أن نجد سائقاً لكل واحد بمفرده؟"],
+    zh:["⚠️ 司机已取消。承租人 {name} 将决定是否寻找新司机。", "🔍 暂无可用司机。承租人 {name} 将决定是否重试。", "⚠️ 司机已取消。您的拼车组保留——点击「{btn}」寻找新司机。", "⚠️ 司机已取消。您的拼车组保留——承租人可以重新预订。", "⚠️ 司机已取消。来不及拼车了。要我们为每个人单独找一位司机吗？"],
+    uk:["⚠️ Водій скасував поїздку. Орендар {name} вирішує, чи шукати нового водія.", "🔍 Немає вільного водія. Орендар {name} вирішує, чи спробувати ще раз.", "⚠️ Водій скасував поїздку. Ваша група залишається — натисніть «{btn}», щоб знайти нового водія.", "⚠️ Водій скасував поїздку. Ваша група залишається — орендар може зробити нове бронювання.", "⚠️ Водій скасував поїздку. На спільну поїздку часу вже немає. Спробувати знайти водія кожному окремо?"],
+    he:["⚠️ הנהג ביטל. השוכר {name} מחליט אם לחפש נהג חדש.", "🔍 אין נהג פנוי. השוכר {name} מחליט אם לנסות שוב.", "⚠️ הנהג ביטל. הקבוצה שלכם נשארת — לחצו «{btn}» לנהג חדש.", "⚠️ הנהג ביטל. הקבוצה שלכם נשארת — השוכר יכול להזמין מחדש.", "⚠️ הנהג ביטל. אין כבר זמן לנסיעה משותפת. לחפש נהג לכל אחד בנפרד?"]
+  };
+  Object.keys(MAZI_DRIVER_GONE).forEach(function(c){
+    if(!I[c]) I[c]={};
+    I[c].maziDriverCancelledGuest = MAZI_DRIVER_GONE[c][0];
+    I[c].maziNoDriverGuest = MAZI_DRIVER_GONE[c][1];
+    I[c].maziDriverCancelledKeepLessee = MAZI_DRIVER_GONE[c][2];
+    I[c].maziDriverCancelledKeepGuest = MAZI_DRIVER_GONE[c][3];
+    I[c].maziLateSoloAsk = MAZI_DRIVER_GONE[c][4];
+  });
+
+  /* «Μαζί»: ο μισθωτής ακύρωσε την κράτηση πριν τη δεχτεί οδηγός (27/10) — η παρέα μένει.
+     [συνεπιβάτες, ο ίδιος ο μισθωτής ({btn} = «Κάνε κράτηση»)] */
+  var MAZI_LESSEE_CANCELLED = {
+    el:["⚠️ Ο μισθωτής ακύρωσε την κράτηση. Η παρέα σας μένει — μπορείτε να περιμένετε νέα κράτηση ή να ακυρώσετε τη θέση σας.", "Ακυρώσατε την κράτηση. Η παρέα μένει — πατήστε «{btn}» όταν θέλετε."],
+    en:["⚠️ The hirer cancelled the booking. Your group stays — you can wait for a new booking or cancel your seat.", "You cancelled the booking. The group stays — press «{btn}» whenever you want."],
+    de:["⚠️ Der Mieter hat die Buchung storniert. Eure Gruppe bleibt — ihr könnt auf eine neue Buchung warten oder euren Platz stornieren.", "Du hast die Buchung storniert. Die Gruppe bleibt — drücke «{btn}», wann immer du willst."],
+    fr:["⚠️ Le locataire a annulé la réservation. Votre groupe reste — vous pouvez attendre une nouvelle réservation ou annuler votre place.", "Vous avez annulé la réservation. Le groupe reste — appuyez sur «{btn}» quand vous voulez."],
+    it:["⚠️ Il locatario ha annullato la prenotazione. Il vostro gruppo resta — potete aspettare una nuova prenotazione o annullare il vostro posto.", "Hai annullato la prenotazione. Il gruppo resta — premi «{btn}» quando vuoi."],
+    es:["⚠️ El arrendatario canceló la reserva. Vuestro grupo sigue — podéis esperar una nueva reserva o cancelar vuestra plaza.", "Has cancelado la reserva. El grupo sigue — pulsa «{btn}» cuando quieras."],
+    ru:["⚠️ Арендатор отменил заказ. Ваша группа остаётся — можно подождать новый заказ или отменить своё место.", "Вы отменили заказ. Группа остаётся — нажмите «{btn}», когда захотите."],
+    pl:["⚠️ Najemca anulował rezerwację. Wasza grupa zostaje — możecie poczekać na nową rezerwację albo zrezygnować ze swojego miejsca.", "Anulowałeś rezerwację. Grupa zostaje — naciśnij «{btn}», kiedy zechcesz."],
+    ro:["⚠️ Locatarul a anulat rezervarea. Grupul vostru rămâne — puteți aștepta o nouă rezervare sau vă puteți anula locul.", "Ați anulat rezervarea. Grupul rămâne — apăsați «{btn}» când doriți."],
+    nl:["⚠️ De huurder heeft de boeking geannuleerd. Uw groep blijft — u kunt wachten op een nieuwe boeking of uw plaats annuleren.", "U hebt de boeking geannuleerd. De groep blijft — druk op «{btn}» wanneer u wilt."],
+    tr:["⚠️ Kiracı rezervasyonu iptal etti. Grubunuz duruyor — yeni rezervasyonu bekleyebilir ya da yerinizi iptal edebilirsiniz.", "Rezervasyonu iptal ettiniz. Grup duruyor — istediğinizde «{btn}» tuşuna basın."],
+    ar:["⚠️ ألغى المستأجر الحجز. مجموعتكم باقية — يمكنكم انتظار حجز جديد أو إلغاء مقعدكم.", "لقد ألغيت الحجز. المجموعة باقية — اضغط «{btn}» متى شئت."],
+    zh:["⚠️ 承租人取消了预订。您的拼车组保留——您可以等待新的预订，或取消您的座位。", "您已取消预订。拼车组保留——需要时点击「{btn}」。"],
+    uk:["⚠️ Орендар скасував бронювання. Ваша група залишається — можна дочекатися нового бронювання або скасувати своє місце.", "Ви скасували бронювання. Група залишається — натисніть «{btn}», коли захочете."],
+    he:["⚠️ השוכר ביטל את ההזמנה. הקבוצה שלכם נשארת — אפשר לחכות להזמנה חדשה או לבטל את המקום שלכם.", "ביטלתם את ההזמנה. הקבוצה נשארת — לחצו «{btn}» מתי שתרצו."]
+  };
+  Object.keys(MAZI_LESSEE_CANCELLED).forEach(function(c){
+    if(!I[c]) I[c]={};
+    I[c].maziLesseeCancelledGuest = MAZI_LESSEE_CANCELLED[c][0];
+    I[c].maziLesseeCancelledMe = MAZI_LESSEE_CANCELLED[c][1];
+  });
+
+  /* «Μαζί»: έληξε η αναζήτηση χωρίς παρέα (12 ώρες πριν, 29/10) — μόνο «δεν βρέθηκε» + κανονική κράτηση από τη φόρμα.
+     [τίτλος, οδηγία ({price} = «Δείξε τιμή», {book} = «Κάνε κράτηση»)] */
+  var MAZI_EXPIRED = {
+    el:["😔 Δεν βρέθηκε κοινή μίσθωση", "Κλείστε κανονική κράτηση: πατήστε «{price}» και μετά «{book}»."],
+    en:["😔 No shared hire was found", "Book a regular taxi: press «{price}» and then «{book}»."],
+    de:["😔 Keine gemeinsame Fahrt gefunden", "Buche ein normales Taxi: drücke «{price}» und dann «{book}»."],
+    fr:["😔 Aucune course partagée trouvée", "Réservez un taxi normal : appuyez sur «{price}» puis sur «{book}»."],
+    it:["😔 Nessuna corsa condivisa trovata", "Prenota un taxi normale: premi «{price}» e poi «{book}»."],
+    es:["😔 No se encontró un viaje compartido", "Reserva un taxi normal: pulsa «{price}» y luego «{book}»."],
+    ru:["😔 Совместная поездка не найдена", "Закажите обычное такси: нажмите «{price}», затем «{book}»."],
+    pl:["😔 Nie znaleziono wspólnego kursu", "Zarezerwuj zwykłą taksówkę: naciśnij «{price}», a potem «{book}»."],
+    ro:["😔 Nu s-a găsit o cursă comună", "Rezervați un taxi normal: apăsați «{price}» și apoi «{book}»."],
+    nl:["😔 Geen gedeelde rit gevonden", "Boek een gewone taxi: druk op «{price}» en daarna op «{book}»."],
+    tr:["😔 Ortak yolculuk bulunamadı", "Normal taksi ayırtın: önce «{price}», sonra «{book}» tuşuna basın."],
+    ar:["😔 لم يتم العثور على رحلة مشتركة", "احجز سيارة أجرة عادية: اضغط «{price}» ثم «{book}»."],
+    zh:["😔 未找到同乘", "请预订普通出租车：先点击「{price}」，再点击「{book}」。"],
+    uk:["😔 Спільну поїздку не знайдено", "Замовте звичайне таксі: натисніть «{price}», а потім «{book}»."],
+    he:["😔 לא נמצאה נסיעה משותפת", "הזמינו מונית רגילה: לחצו «{price}» ואז «{book}»."]
+  };
+  Object.keys(MAZI_EXPIRED).forEach(function(c){
+    if(!I[c]) I[c]={};
+    I[c].maziNotFound = MAZI_EXPIRED[c][0];
+    I[c].maziNotFoundBook = MAZI_EXPIRED[c][1];
   });
 
   window.__I18N = I;
