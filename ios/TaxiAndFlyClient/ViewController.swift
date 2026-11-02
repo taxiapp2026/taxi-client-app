@@ -310,6 +310,35 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         return nil
     }
 
+    // window.confirm(...) της σελίδας. Χωρίς αυτό το WKWebView απαντά ΠΑΝΤΑ «όχι» χωρίς να δείξει τίποτα
+    // (γι' αυτό το «❌ Ακύρωση» της παρέας στο «Μαζί» δεν έκανε τίποτα στο iPhone). Ίδια ερώτηση με το Android.
+    func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
+        var host: UIViewController = self
+        while let p = host.presentedViewController, !p.isBeingDismissed { host = p }
+        guard view.window != nil, host.viewIfLoaded?.window != nil else {
+            completionHandler(false)
+            return
+        }
+        let t = confirmButtonTitles()
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: t.no, style: .cancel) { _ in completionHandler(false) })
+        alert.addAction(UIAlertAction(title: t.yes, style: .default) { _ in completionHandler(true) })
+        host.present(alert, animated: true)
+    }
+
+    // «Ναι / Όχι» στη γλώσσα της εφαρμογής (setUiLang), όπως και η ερώτηση.
+    private func confirmButtonTitles() -> (yes: String, no: String) {
+        let c = String(uiLangCode.lowercased().prefix(2))
+        let map: [String: (String, String)] = [
+            "el": ("Ναι", "Όχι"), "en": ("Yes", "No"), "de": ("Ja", "Nein"), "fr": ("Oui", "Non"),
+            "it": ("Sì", "No"), "es": ("Sí", "No"), "ru": ("Да", "Нет"), "pl": ("Tak", "Nie"),
+            "ro": ("Da", "Nu"), "nl": ("Ja", "Nee"), "tr": ("Evet", "Hayır"), "ar": ("نعم", "لا"),
+            "zh": ("是", "否"), "uk": ("Так", "Ні"), "he": ("כן", "לא")
+        ]
+        let p = map[c] ?? map["en"]!
+        return (p.0, p.1)
+    }
+
     private func openURL(_ raw: String) {
         guard let url = URL(string: raw) else { return }
         DispatchQueue.main.async {
