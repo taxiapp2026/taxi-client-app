@@ -65,13 +65,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
 
-    /// Push του server για «Μαζί»: type "mazi_…" ή κράτηση-θέση «<κράτηση>#mN» (π.χ. «Ο οδηγός έφτασε» στον συνεπιβάτη).
+    /// Push του server για «Μαζί»: type "mazi_…", κράτηση-θέση «<κράτηση>#mN» (π.χ. «Ο οδηγός έφτασε» στον συνεπιβάτη)
+    /// ή σημάδι mazi="1" (το «Ο οδηγός είναι κάτω» του μισθωτή, που φεύγει από την κανονική ροή).
     private static func isMaziPush(_ n: UNNotification) -> Bool {
         guard n.request.trigger is UNPushNotificationTrigger else { return false }
-        let info = n.request.content.userInfo
+        return isMaziPayload(n.request.content.userInfo)
+    }
+
+    static func isMaziPayload(_ info: [AnyHashable: Any]) -> Bool {
         let type = (info["type"] as? String) ?? ""
         let bookingId = (info["bookingId"] as? String) ?? ""
-        return type.hasPrefix("mazi_") || bookingId.contains("#m")
+        let mazi = (info["mazi"] as? String) ?? ""
+        return type.hasPrefix("mazi_") || bookingId.contains("#m") || mazi == "1"
     }
 
     // ✅ 14/10 — Πάτημα σε ειδοποίηση chat → ανοίγει κατευθείαν η συνομιλία της κράτησης.

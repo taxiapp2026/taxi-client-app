@@ -1050,6 +1050,11 @@ private enum UNCenter {
     static func removeAll() {
         let c = UNUserNotificationCenter.current()
         c.removeAllPendingNotificationRequests()
-        c.removeAllDeliveredNotifications()
+        // «Μαζί» (2/11): οι ειδοποιήσεις της παρέας ΜΕΝΟΥΝ (π.χ. «Ο οδηγός ξεκίνησε» με την ώρα, «Ο οδηγός είναι κάτω»)·
+        // όλες οι άλλες σβήνουν όπως πριν. Στο Android αυτή η εντολή δεν σβήνει τίποτα.
+        c.getDeliveredNotifications { list in
+            let ids = list.filter { !AppDelegate.isMaziPayload($0.request.content.userInfo) }.map { $0.request.identifier }
+            if !ids.isEmpty { c.removeDeliveredNotifications(withIdentifiers: ids) }
+        }
     }
 }
