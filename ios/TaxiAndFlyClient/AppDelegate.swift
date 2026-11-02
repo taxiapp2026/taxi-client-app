@@ -45,6 +45,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Immediate local notifies still call willPresent even after Home.
         // [] = only Notification Center, no banner. Show the pop unless the user is inside the app.
         if UIApplication.shared.applicationState == .active {
+            // «Μαζί» (2/11): οι ειδοποιήσεις της παρέας (από τον server) φαίνονται και με την εφαρμογή ανοιχτή,
+            // όπως στο Android. Όλες οι άλλες: όπως πριν (μόνο στο Κέντρο ειδοποιήσεων).
+            if Self.isMaziPush(notification) {
+                if #available(iOS 14.0, *) {
+                    completionHandler([.banner, .list, .sound])
+                } else {
+                    completionHandler([.alert, .sound])
+                }
+                return
+            }
             completionHandler([])
             return
         }
@@ -53,6 +63,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         } else {
             completionHandler([.alert, .sound, .badge])
         }
+    }
+
+    /// Push του server για «Μαζί»: type "mazi_…" ή κράτηση-θέση «<κράτηση>#mN» (π.χ. «Ο οδηγός έφτασε» στον συνεπιβάτη).
+    private static func isMaziPush(_ n: UNNotification) -> Bool {
+        guard n.request.trigger is UNPushNotificationTrigger else { return false }
+        let info = n.request.content.userInfo
+        let type = (info["type"] as? String) ?? ""
+        let bookingId = (info["bookingId"] as? String) ?? ""
+        return type.hasPrefix("mazi_") || bookingId.contains("#m")
     }
 
     // ✅ 14/10 — Πάτημα σε ειδοποίηση chat → ανοίγει κατευθείαν η συνομιλία της κράτησης.
