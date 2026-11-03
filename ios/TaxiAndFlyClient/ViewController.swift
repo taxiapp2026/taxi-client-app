@@ -7,9 +7,11 @@ import Speech
 import AVFoundation
 import CryptoKit
 import Security
+import AuthenticationServices
 
-final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandler {
+final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHandler, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     private var webView: WKWebView!
+    private var appleAuth: ASAuthorizationController?
     private var placeCache: [String: [String: Any]] = [:]
     private let geoLock = NSLock()
 
@@ -284,8 +286,56 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
             webView.scrollView.isScrollEnabled = false
         case "unlockPageScroll":
             webView.scrollView.isScrollEnabled = true
+        case "appleSignIn":
+            startAppleSignIn()
         default:
             break
+        }
+    }
+
+    /// 3/11/2026 — «Συνέχεια με Apple». Μόνο identity token στον server. Όνομα/κινητό της φόρμας ΔΕΝ γεμίζουν.
+    private func startAppleSignIn() {
+        let req = ASAuthorizationAppleIDProvider().createRequest()
+        req.requestedScopes = [.email]
+        let c = ASAuthorizationController(authorizationRequests: [req])
+        c.delegate = self
+        c.presentationContextProvider = self
+        appleAuth = c
+        c.performRequests()
+    }
+
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        view.window ?? UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first { $0.isKeyWindow } ?? UIWindow()
+    }
+
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        guard let cred = authorization.credential as? ASAuthorizationAppleIDCredential,
+              let tokenData = cred.identityToken,
+              let token = String(data: tokenData, encoding: .utf8), !token.isEmpty else {
+            sendAppleSignInResult(["ok": false, "error": "no_token"])
+            return
+        }
+        var obj: [String: Any] = ["ok": true, "identityToken": token, "user": cred.user]
+        if let email = cred.email, email.contains("@") { obj["email"] = email }
+        sendAppleSignInResult(obj)
+    }
+
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        let ns = error as NSError
+        let cancelled = ns.code == ASAuthorizationError.canceled.rawValue
+        sendAppleSignInResult(["ok": false, "error": cancelled ? "canceled" : "failed", "message": error.localizedDescription])
+    }
+
+    private func sendAppleSignInResult(_ obj: [String: Any]) {
+        guard JSONSerialization.isValidJSONObject(obj),
+              let data = try? JSONSerialization.data(withJSONObject: obj),
+              let json = String(data: data, encoding: .utf8) else { return }
+        let js = "try{if(typeof window.__onAppleSignIn==='function')window.__onAppleSignIn(\(json));}catch(e){}"
+        DispatchQueue.main.async { [weak self] in
+            self?.webView.evaluateJavaScript(js, completionHandler: nil)
         }
     }
 
@@ -967,7 +1017,8 @@ final class ViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         placeAutocomplete: function(q,id){ call('placeAutocomplete',[q,id]); },
         placeDetails: function(id,req){ call('placeDetails',[id,req]); },
         lockPageScroll: function(){ call('lockPageScroll',[]); },
-        unlockPageScroll: function(){ call('unlockPageScroll',[]); }
+        unlockPageScroll: function(){ call('unlockPageScroll',[]); },
+        appleSignIn: function(){ call('appleSignIn',[]); }
       };
       window.ClientBridge = b;
       window.AndroidBridge = b;

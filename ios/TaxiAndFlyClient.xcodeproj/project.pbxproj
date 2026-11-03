@@ -14,6 +14,7 @@
 		A01A00000000000000000005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A01A00000000000000000015 /* Assets.xcassets */; };
 		A01A00000000000000000006 /* www in Resources */ = {isa = PBXBuildFile; fileRef = A01A00000000000000000016 /* www */; };
 		A01A00000000000000000007 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01A00000000000000000017 /* WebKit.framework */; };
+		A01A00000000000000000009 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01A0000000000000000001C /* AuthenticationServices.framework */; };
 		A01A00000000000000000008 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A01A00000000000000000021 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		A01A00000000000000000015 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A01A00000000000000000016 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		A01A00000000000000000017 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		A01A0000000000000000001C /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		A01A00000000000000000018 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A01A00000000000000000019 /* TaxiAndFlyClient.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TaxiAndFlyClient.entitlements; sourceTree = "<group>"; };
 		A01A0000000000000000001A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -38,6 +40,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A01A00000000000000000007 /* WebKit.framework in Frameworks */,
+				A01A00000000000000000009 /* AuthenticationServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				A01A00000000000000000017 /* WebKit.framework */,
+				A01A0000000000000000001C /* AuthenticationServices.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

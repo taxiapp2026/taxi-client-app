@@ -16969,6 +16969,133 @@ async function routeKm(fromLat, fromLon){
 <!-- ===== END FINAL AUTHORITATIVE CLIENT MONITOR RESTORE ===== -->
 
 <!-- Click/screen monitoring: taxi-monitor-bridge.js (via taxi-rtdb-sdk.js) -->
+
+<!-- ===== 3/11/2026 — ΣΥΝΔΕΣΗ ΠΕΛΑΤΗ ΜΙΑ ΦΟΡΑ (Apple στο iPhone) =====
+     Μόνο ΑΦΟΥ γίνει αποδοχή όρων: /api/auth/client/status?deviceId= → required && !signedIn →
+     «🔒 Μία φορά μόνο» → ClientBridge.appleSignIn() → window.__onAppleSignIn → POST /api/auth/client/apple.
+     ΠΥΛΗ στον server (config/clientAuth). Δεν γεμίζει όνομα/κινητό στη φόρμα. -->
+<style>
+  #clientAuthOv{position:fixed;inset:0;z-index:2147483000;display:none;align-items:center;justify-content:center;
+    background:rgba(0,0,0,.88);padding:20px;box-sizing:border-box}
+  #clientAuthOv .ca-card{width:100%;max-width:380px;background:#111;border:2px solid #FFD700;border-radius:18px;
+    padding:26px 20px 20px;text-align:center;color:#fff;font-family:inherit;box-shadow:0 10px 40px rgba(0,0,0,.6)}
+  #clientAuthOv .ca-title{font-size:22px;font-weight:800;color:#FFD700;margin-bottom:12px}
+  #clientAuthOv .ca-body{font-size:16px;line-height:1.5;opacity:.95;margin-bottom:22px}
+  #clientAuthOv .ca-btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;min-height:52px;
+    border:0;border-radius:12px;background:#000;color:#fff;font-size:17px;font-weight:700;cursor:pointer;
+    box-shadow:inset 0 0 0 1px #fff}
+  #clientAuthOv .ca-btn[disabled]{opacity:.6}
+  #clientAuthOv .ca-msg{min-height:22px;margin-top:14px;font-size:14px;color:#ffd27a}
+</style>
+<script>
+(function(){
+  var TERMS_KEY = "clientTermsAccepted_v1";
+  var DONE_KEY  = "clientAuthDone_v1";
+  var TXT = {
+    el: { title: "🔒 Μία φορά μόνο", body: "Συνδεθείτε με το Apple ID σας, για την ασφάλεια όλων.", btn: "Συνέχεια με Apple",
+          wait: "Σύνδεση…", fail: "Δεν ολοκληρώθηκε. Δοκιμάστε ξανά.", ok: "✅ Έτοιμο" },
+    en: { title: "🔒 Just once", body: "Sign in with your Apple ID, for everyone's safety.", btn: "Continue with Apple",
+          wait: "Signing in…", fail: "It didn't complete. Please try again.", ok: "✅ Done" }
+  };
+  function lang(){
+    try{ var l = (typeof window.__activeLang === "function") ? window.__activeLang() : (window.lang || "el"); return String(l || "el").slice(0, 2); }
+    catch(e){ return "el"; }
+  }
+  function t(k){ var L = TXT[lang()] || TXT.en; return L[k] || TXT.en[k]; }
+  function devId(){
+    try{ var d = (typeof window.__taxiDeviceInfo === "function") ? window.__taxiDeviceInfo() : null; return (d && d.id) ? String(d.id) : ""; }
+    catch(e){ return ""; }
+  }
+  function base(){ return String(window.TAXI_API_URL || "http://167.233.49.140").replace(/\/$/, ""); }
+  function hdr(json){
+    var h = { "Accept": "application/json" };
+    if(json) h["Content-Type"] = "application/json";
+    if(window.TAXI_API_KEY) h["X-API-Key"] = String(window.TAXI_API_KEY).trim();
+    return h;
+  }
+  function termsAccepted(){ try{ return localStorage.getItem(TERMS_KEY) === "1"; }catch(e){ return false; } }
+  function hasBridge(){ try{ return !!(window.ClientBridge && typeof window.ClientBridge.appleSignIn === "function"); }catch(e){ return false; } }
+
+  var ov = null, btn = null, msg = null, busy = false, checking = false, done = false, poll = null;
+  var A_SVG = '<svg width="18" height="22" viewBox="0 0 14 18" aria-hidden="true"><path fill="#fff" d="M10.5 3.1c.7-.8 1.1-1.9 1-3-.9.1-2 .6-2.7 1.4-.6.7-1.2 1.8-1 2.9 1 .1 2-.5 2.7-1.3zM13.4 13.2c-.3.6-.6 1.2-1 1.7-.6.8-1.2 1.6-2.1 1.6-.9 0-1.1-.5-2.1-.5s-1.3.6-2.1.6c-.9 0-1.5-.8-2.1-1.6-1.3-1.8-2.3-5.1-1-7.3.7-1.1 1.8-1.8 3-1.8.9 0 1.8.6 2.1.6.4 0 1.4-.8 2.4-.6.4.1 1.6.2 2.3 1.4-.1 0-1.3.8-1.3 2.3 0 1.8 1.6 2.5 1.6 2.5z"/></svg>';
+
+  function build(){
+    if(ov) return;
+    ov = document.createElement("div");
+    ov.id = "clientAuthOv";
+    ov.innerHTML = '<div class="ca-card"><div class="ca-title"></div><div class="ca-body"></div>' +
+      '<button type="button" class="ca-btn">' + A_SVG + '<span class="ca-btn-txt"></span></button><div class="ca-msg"></div></div>';
+    document.body.appendChild(ov);
+    btn = ov.querySelector(".ca-btn");
+    msg = ov.querySelector(".ca-msg");
+    btn.addEventListener("click", start);
+  }
+  function fill(){
+    ov.querySelector(".ca-title").textContent = t("title");
+    ov.querySelector(".ca-body").textContent = t("body");
+    ov.querySelector(".ca-btn-txt").textContent = t("btn");
+  }
+  function setMsg(s){ if(msg) msg.textContent = s || ""; }
+  function show(){ build(); fill(); setMsg(""); ov.style.display = "flex"; }
+  function hide(){ if(ov) ov.style.display = "none"; }
+  function markDone(email){ done = true; try{ localStorage.setItem(DONE_KEY, email || "1"); }catch(e){} if(poll){ clearInterval(poll); poll = null; } }
+
+  function check(){
+    if(done || checking || busy) return;
+    if(!termsAccepted() || !hasBridge()) return;
+    var id = devId();
+    if(!id) return;
+    checking = true;
+    fetch(base() + "/api/auth/client/status?deviceId=" + encodeURIComponent(id), { headers: hdr(false), cache: "no-store" })
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        if(j && j.signedIn){ markDone(j.email); hide(); return; }
+        if(poll){ clearInterval(poll); poll = null; }
+        if(j && j.required){ show(); return; }
+        hide();
+      })
+      .catch(function(){})
+      .then(function(){ checking = false; });
+  }
+
+  function start(){
+    if(busy) return;
+    busy = true;
+    if(btn) btn.disabled = true;
+    setMsg(t("wait"));
+    try{ window.ClientBridge.appleSignIn(); }
+    catch(e){ busy = false; if(btn) btn.disabled = false; setMsg(t("fail")); }
+  }
+
+  window.__onAppleSignIn = function(r){
+    if(!r || !r.ok || !r.identityToken){
+      busy = false;
+      if(btn) btn.disabled = false;
+      var cancelled = r && /cancel/i.test(String(r.error || "") + " " + String(r.message || ""));
+      setMsg(cancelled ? "" : t("fail"));
+      return;
+    }
+    var body = { identityToken: r.identityToken, deviceId: devId() };
+    if(r.email && String(r.email).indexOf("@") >= 0) body.email = String(r.email);
+    fetch(base() + "/api/auth/client/apple", {
+      method: "POST", headers: hdr(true),
+      body: JSON.stringify(body)
+    })
+      .then(function(x){ return x.json(); })
+      .then(function(j){
+        busy = false;
+        if(btn) btn.disabled = false;
+        if(j && j.ok){ markDone(j.email); setMsg(t("ok")); setTimeout(hide, 900); }
+        else setMsg(t("fail"));
+      })
+      .catch(function(){ busy = false; if(btn) btn.disabled = false; setMsg(t("fail")); });
+  };
+
+  setTimeout(check, 2500);
+  poll = setInterval(function(){ if(termsAccepted()) check(); }, 3000);
+  document.addEventListener("visibilitychange", function(){ if(document.visibilityState === "visible") check(); });
+})();
+</script>
 </body>
 </html>
 
