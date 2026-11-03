@@ -2944,6 +2944,24 @@
           catch(e){ failed.push('terms:' + accId); }
         }
 
+        // 3/11: σύνδεση Apple — σβήνει ο λογαριασμός (email) και ο σύνδεσμος του κινητού.
+        try {
+          var did = '';
+          try {
+            var dinfo = (typeof window.__taxiDeviceInfo === 'function') ? window.__taxiDeviceInfo() : null;
+            did = (dinfo && dinfo.id) ? String(dinfo.id).trim().toLowerCase() : '';
+          } catch(e){}
+          if(/^[0-9a-f]{16}$/.test(did)){
+            try {
+              var link = await apiGet('device_accounts/' + did);
+              var acct = (link && typeof link === 'object' && /^(google|apple)_[A-Za-z0-9._-]+$/.test(String(link.account || ''))) ? String(link.account) : '';
+              if(acct) await apiDelete('client_accounts/' + acct);
+            } catch(e){ failed.push('email:' + did); }
+            try { await apiDelete('device_accounts/' + did); }
+            catch(e){ failed.push('account:' + did); }
+          }
+        } catch(e){}
+
         // Anonymized log για τον διαχειριστή (χωρίς τηλέφωνο/όνομα)
         var _d = new Date();
         var _p = function(n){ return n < 10 ? '0'+n : ''+n; };
@@ -16995,7 +17013,33 @@ async function routeKm(fromLat, fromLon){
     el: { title: "🔒 Μία φορά μόνο", body: "Συνδεθείτε με το Apple ID σας, για την ασφάλεια όλων.", btn: "Συνέχεια με Apple",
           wait: "Σύνδεση…", fail: "Δεν ολοκληρώθηκε. Δοκιμάστε ξανά.", ok: "✅ Έτοιμο" },
     en: { title: "🔒 Just once", body: "Sign in with your Apple ID, for everyone's safety.", btn: "Continue with Apple",
-          wait: "Signing in…", fail: "It didn't complete. Please try again.", ok: "✅ Done" }
+          wait: "Signing in…", fail: "It didn't complete. Please try again.", ok: "✅ Done" },
+    de: { title: "🔒 Nur einmal", body: "Melden Sie sich mit Ihrer Apple-ID an – für die Sicherheit aller.", btn: "Mit Apple fortfahren",
+          wait: "Anmeldung…", fail: "Nicht abgeschlossen. Bitte erneut versuchen.", ok: "✅ Fertig" },
+    fr: { title: "🔒 Une seule fois", body: "Connectez-vous avec votre identifiant Apple, pour la sécurité de tous.", btn: "Continuer avec Apple",
+          wait: "Connexion…", fail: "Non terminé. Veuillez réessayer.", ok: "✅ Terminé" },
+    it: { title: "🔒 Solo una volta", body: "Accedi con il tuo ID Apple, per la sicurezza di tutti.", btn: "Continua con Apple",
+          wait: "Accesso…", fail: "Non completato. Riprova.", ok: "✅ Fatto" },
+    es: { title: "🔒 Solo una vez", body: "Inicia sesión con tu ID de Apple, por la seguridad de todos.", btn: "Continuar con Apple",
+          wait: "Iniciando sesión…", fail: "No se completó. Inténtalo de nuevo.", ok: "✅ Listo" },
+    ru: { title: "🔒 Всего один раз", body: "Войдите с Apple ID — для безопасности всех.", btn: "Продолжить с Apple",
+          wait: "Вход…", fail: "Не удалось. Попробуйте ещё раз.", ok: "✅ Готово" },
+    pl: { title: "🔒 Tylko raz", body: "Zaloguj się za pomocą Apple ID — dla bezpieczeństwa wszystkich.", btn: "Kontynuuj z Apple",
+          wait: "Logowanie…", fail: "Nie udało się. Spróbuj ponownie.", ok: "✅ Gotowe" },
+    ro: { title: "🔒 O singură dată", body: "Conectați-vă cu ID-ul Apple, pentru siguranța tuturor.", btn: "Continuați cu Apple",
+          wait: "Conectare…", fail: "Nu s-a finalizat. Încercați din nou.", ok: "✅ Gata" },
+    nl: { title: "🔒 Maar één keer", body: "Log in met je Apple ID, voor ieders veiligheid.", btn: "Ga door met Apple",
+          wait: "Inloggen…", fail: "Niet gelukt. Probeer het opnieuw.", ok: "✅ Klaar" },
+    tr: { title: "🔒 Yalnızca bir kez", body: "Herkesin güvenliği için Apple Kimliğinizle giriş yapın.", btn: "Apple ile Devam Et",
+          wait: "Giriş yapılıyor…", fail: "Tamamlanamadı. Lütfen tekrar deneyin.", ok: "✅ Tamam" },
+    ar: { title: "🔒 مرة واحدة فقط", body: "سجّل الدخول باستخدام Apple ID من أجل سلامة الجميع.", btn: "المتابعة باستخدام Apple",
+          wait: "جارٍ تسجيل الدخول…", fail: "لم يكتمل. يُرجى المحاولة مرة أخرى.", ok: "✅ تم" },
+    zh: { title: "🔒 仅需一次", body: "为了大家的安全，请使用您的 Apple ID 登录。", btn: "通过 Apple 继续",
+          wait: "正在登录…", fail: "未完成，请重试。", ok: "✅ 完成" },
+    uk: { title: "🔒 Лише один раз", body: "Увійдіть з Apple ID — для безпеки всіх.", btn: "Продовжити з Apple",
+          wait: "Вхід…", fail: "Не вдалося. Спробуйте ще раз.", ok: "✅ Готово" },
+    he: { title: "🔒 פעם אחת בלבד", body: "התחברו עם ה-Apple ID שלכם, למען הבטיחות של כולם.", btn: "המשך עם Apple",
+          wait: "מתחבר…", fail: "לא הושלם. נסו שוב.", ok: "✅ מוכן" }
   };
   function lang(){
     try{ var l = (typeof window.__activeLang === "function") ? window.__activeLang() : (window.lang || "el"); return String(l || "el").slice(0, 2); }
