@@ -14786,16 +14786,30 @@ async function routeKm(fromLat, fromLon){
 
       function monitorOn(){ return !!monitorReq && !isAirportToAthens(); }
 
-      // 4/11: όσο ψάχνει παρέα (ή βρέθηκε παρέα χωρίς κράτηση) το «Δείξε τιμή» της φόρμας είναι ανενεργό, αλλιώς ξαναμπαίνει
-      // κατά λάθος στη διαδικασία. Ξανανοίγει με «Σταμάτα την αναζήτηση»/«Ακύρωση», στο «Δεν βρέθηκε» (εκεί το χρειάζεται)
-      // και μόλις κλειστεί η κράτηση. Στο Αεροδρόμιο→Αθήνα μένει ανοιχτό: εκεί η κάρτα «Μαζί» δεν φαίνεται.
+      // 4/11: σε όλη τη διαδικασία της παρέας το «Δείξε τιμή» της φόρμας είναι ανενεργό, αλλιώς ξαναμπαίνει κατά λάθος σε αυτήν.
+      // Ξανανοίγει μόλις η κράτηση μπει στον Φάκελο (αποδοχή οδηγού), με «Σταμάτα την αναζήτηση»/«Ακύρωση», στο «Δεν βρέθηκε»
+      // παρέα (εκεί το χρειάζεται) και όταν φύγει από την παρέα: αν δεν βρεθεί οδηγός μένει γκρι ώσπου να φύγει, μετά κλείνει
+      // σαν μόνος. Στο Αεροδρόμιο→Αθήνα μένει ανοιχτό: εκεί η κάρτα «Μαζί» δεν φαίνεται.
       // Μόνο σημάδι στο κουμπί + CSS — ο αρχηγός πάει στο «Κάνε κράτηση» από τον δικό του δρόμο (__maziOpenBooking).
+      // lastReq, όχι monitorReq: ο αρχηγός μετά την κράτηση δεν έχει κάρτα στο μόνιτορ, αλλά η διαδικασία συνεχίζεται.
+      var priceLockOn = false;
+      function priceLocked(){
+        var r = lastReq;
+        if(!r || isAirportToAthens()) return false;
+        if(isSearching(r)) return true;
+        var g = foundGroup(r);
+        if(!g) return false;
+        if(!g.bookingId) return true;
+        if(g.bookingState === "accepted" || g.bookingState === "done") return false;
+        if(g.lateDriverCancel && lateSoloAnswer(g.bookingId)) return false;
+        if(typeof window.__maziHasLeftSeat === "function" && window.__maziHasLeftSeat(g.bookingId)) return false;
+        return true;
+      }
       function syncPriceLock(){
         var pb = document.getElementById("btn");
         if(!pb) return;
-        var g = foundGroup(monitorReq);
-        var on = monitorOn() && (isSearching(monitorReq) || !!(g && !g.bookingId));
-        if(on) pb.dataset.maziLock = "1";
+        priceLockOn = priceLocked();
+        if(priceLockOn) pb.dataset.maziLock = "1";
         else delete pb.dataset.maziLock;
       }
       (function(){
@@ -15237,7 +15251,7 @@ async function routeKm(fromLat, fromLon){
         leaderBooked = !!(g0 && g0.bookingId && g0.responsible && g0.responsible.me);
         monitorReq = forMonitor(r);
         syncPriceLock();
-        if(monitorReq || guestBooked) startPoll();
+        if(monitorReq || guestBooked || priceLockOn) startPoll();
         // Η σημαία κρατάει την επανάκληση ενός ατόμου μόνο όταν δεν υπάρχει νέα «Μαζί» να φανεί.
         if(window.__maziSoloSearchOn && !monitorReq) return;
         var box = document.getElementById("clientCentralMonitor");
@@ -15532,6 +15546,7 @@ async function routeKm(fromLat, fromLon){
         Promise.resolve(fn(it)).then(function(ok){
           if(!ok){ btn.disabled = false; say(T("maziErr")); return; }
           try{ dropSharedCard(g); }catch(e){}
+          syncPriceLock();   // έφυγε από την παρέα → το «Δείξε τιμή» ξανανοίγει αμέσως, κλείνει σαν μόνος
           if(typeof window.__maziSeatAitiologia !== "function" || !window.__maziSeatAitiologia(it)){
             say(T("folderCancelDone") || "✅ Το ραντεβού ακυρώθηκε.");
           }
@@ -15590,7 +15605,7 @@ async function routeKm(fromLat, fromLon){
       }
 
       function pollTick(){
-        if(!monitorReq && !guestBooked){ stopPoll(); return; }
+        if(!monitorReq && !guestBooked && !priceLockOn){ stopPoll(); return; }
         var gp = foundGroup(lastReq);
         if(!(gp && !gp.bookingId) && Date.now() - lastPoll < SLOW_MS - 500) return;
         lastPoll = Date.now();
