@@ -3752,6 +3752,16 @@
         .mazi-cm .mazi-fc-line{ opacity:.9; line-height:1.45; margin:0 0 4px 0; }
         .mazi-cm .mazi-fc-foot{ padding-top:12px; }
         .mazi-cm .mazi-fc-until{ color:#fff; font-size:16px; font-weight:700; line-height:1.45; }
+        /* «Μαζί» (4/11): όσο ψάχνει παρέα το «Δείξε τιμή» είναι ανενεργό. Το !important νικά ό,τι ξαναβάφει το κουμπί
+           (γλώσσα, unlockBookingBtn), χωρίς να πειράζουμε τον κώδικα της κανονικής κράτησης. Βλ. syncPriceLock(). */
+        #btn[data-mazi-lock="1"]{
+          background:#4a4a4a !important;
+          background-color:#4a4a4a !important;
+          color:#9a9a9a !important;
+          box-shadow:none !important;
+          animation:none !important;
+          pointer-events:none !important;
+        }
         .mazi-cm .mazi-fc-stop{
           margin-top:12px;
           width:100%;
@@ -14776,11 +14786,33 @@ async function routeKm(fromLat, fromLon){
 
       function monitorOn(){ return !!monitorReq && !isAirportToAthens(); }
 
+      // 4/11: όσο ψάχνει παρέα (ή βρέθηκε παρέα χωρίς κράτηση) το «Δείξε τιμή» της φόρμας είναι ανενεργό, αλλιώς ξαναμπαίνει
+      // κατά λάθος στη διαδικασία. Ξανανοίγει με «Σταμάτα την αναζήτηση»/«Ακύρωση», στο «Δεν βρέθηκε» (εκεί το χρειάζεται)
+      // και μόλις κλειστεί η κράτηση. Στο Αεροδρόμιο→Αθήνα μένει ανοιχτό: εκεί η κάρτα «Μαζί» δεν φαίνεται.
+      // Μόνο σημάδι στο κουμπί + CSS — ο αρχηγός πάει στο «Κάνε κράτηση» από τον δικό του δρόμο (__maziOpenBooking).
+      function syncPriceLock(){
+        var pb = document.getElementById("btn");
+        if(!pb) return;
+        var g = foundGroup(monitorReq);
+        var on = monitorOn() && (isSearching(monitorReq) || !!(g && !g.bookingId));
+        if(on) pb.dataset.maziLock = "1";
+        else delete pb.dataset.maziLock;
+      }
+      (function(){
+        var pb = document.getElementById("btn");
+        if(!pb) return;
+        // Το CSS κόβει το άγγιγμα· αυτό κόβει και ό,τι άλλο στέλνει «κλικ» (π.χ. εργαλεία προσβασιμότητας).
+        pb.addEventListener("click", function(e){
+          if(pb.dataset.maziLock === "1"){ e.preventDefault(); e.stopImmediatePropagation(); }
+        }, true);
+      })();
+
       window.__cmIdleTitle = function(){
         if(monitorOn()) return "👥 " + T("maziBtnTitle");
         return origIdleTitle ? origIdleTitle.apply(this, arguments) : "CLIENT MONITOR";
       };
       window.__cmIdleHtml = function(){
+        syncPriceLock();   // άλλαξε διαδρομή (Αεροδρόμιο→Αθήνα): το μόνιτορ ξαναζωγραφίζεται από εδώ
         if(monitorOn()) return '<div class="mazi-cm"></div>';
         // Ο αρχηγός ξαναγύρισε στην «άδεια» εικόνα (π.χ. πάτησε «Ακύρωση» στην κράτηση) → ρωτάμε τον server: αν η κράτηση
         // ακυρώθηκε, η παρέα ξεκλειδώνει και επιστρέφει η «Μαζί» με «🚕 Κάνε κράτηση».
@@ -15204,6 +15236,7 @@ async function routeKm(fromLat, fromLon){
         var g0 = foundGroup(r);
         leaderBooked = !!(g0 && g0.bookingId && g0.responsible && g0.responsible.me);
         monitorReq = forMonitor(r);
+        syncPriceLock();
         if(monitorReq || guestBooked) startPoll();
         // Η σημαία κρατάει την επανάκληση ενός ατόμου μόνο όταν δεν υπάρχει νέα «Μαζί» να φανεί.
         if(window.__maziSoloSearchOn && !monitorReq) return;
