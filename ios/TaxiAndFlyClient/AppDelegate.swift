@@ -74,13 +74,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     /// 4/11: το iOS ψάχνει τον ήχο του push στο Library/Sounds. Το αρχείο έρχεται μέσα στο www/sounds της εφαρμογής.
     private static func installDownSound() {
         let fm = FileManager.default
-        guard let src = Bundle.main.url(forResource: "taxi_kato_el", withExtension: "caf", subdirectory: "www/sounds"),
-              let lib = fm.urls(for: .libraryDirectory, in: .userDomainMask).first else { return }
+        guard let srcDir = Bundle.main.resourceURL?.appendingPathComponent("www/sounds"),
+              let lib = fm.urls(for: .libraryDirectory, in: .userDomainMask).first,
+              let files = try? fm.contentsOfDirectory(at: srcDir, includingPropertiesForKeys: nil) else { return }
         let dir = lib.appendingPathComponent("Sounds", isDirectory: true)
-        let dst = dir.appendingPathComponent("taxi_kato_el.caf")
         try? fm.createDirectory(at: dir, withIntermediateDirectories: true)
-        try? fm.removeItem(at: dst)
-        try? fm.copyItem(at: src, to: dst)
+        for src in files where src.pathExtension == "caf" {
+            let dst = dir.appendingPathComponent(src.lastPathComponent)
+            try? fm.removeItem(at: dst)
+            try? fm.copyItem(at: src, to: dst)
+        }
     }
 
     /// Push του server για «Μαζί»: type "mazi_…", κράτηση-θέση «<κράτηση>#mN» (π.χ. «Ο οδηγός έφτασε» στον συνεπιβάτη)
