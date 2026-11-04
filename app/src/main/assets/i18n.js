@@ -4921,6 +4921,33 @@
     I[c].maziOneParty = MAZI_ONE_PARTY[c];
   });
 
+  /* «Μαζί» (4/11): κεφάλαιο «Σεβασμός και υγιεινή» στο ⓘ, μετά τις Αποσκευές. Τα επόμενα κεφάλαια παίρνουν έναν αριθμό πάνω.
+     [τίτλος, εισαγωγή, 3 κουκκίδες, κατάληξη] */
+  var MAZI_RESPECT = {
+    el:["Σεβασμός και υγιεινή","Θα μοιραστείτε το ταξί με ανθρώπους που δεν γνωρίζετε. Μια ευχάριστη διαδρομή τη φτιάχνουμε όλοι μαζί:","Φροντίστε την προσωπική σας υγιεινή, ώστε να νιώθουν άνετα όλοι μέσα στο ταξί.","Αν δεν αισθάνεστε καλά, φορέστε μάσκα για να προστατεύσετε τους συνεπιβάτες σας.","Να σέβεστε τους συνεπιβάτες σας και τον οδηγό.","Όποιος δεν σέβεται τους συνεπιβάτες ή τον οδηγό δεν θα μπορεί να μπαίνει σε παρέα."],
+    en:["Respect and hygiene","You will share the taxi with people you don't know. A pleasant trip is something we all make together:","Take care of your personal hygiene, so that everyone feels comfortable in the taxi.","If you don't feel well, please wear a mask to protect your fellow passengers.","Respect your fellow passengers and the driver.","Anyone who does not respect fellow passengers or the driver will not be able to join a group."],
+    de:["Respekt und Hygiene","Sie teilen sich das Taxi mit Menschen, die Sie nicht kennen. Eine angenehme Fahrt gestalten wir alle gemeinsam:","Achten Sie auf Ihre persönliche Hygiene, damit sich alle im Taxi wohlfühlen.","Wenn Sie sich nicht wohlfühlen, tragen Sie bitte eine Maske, um Ihre Mitfahrer zu schützen.","Begegnen Sie Ihren Mitfahrern und dem Fahrer mit Respekt.","Wer Mitfahrer oder den Fahrer nicht respektiert, kann keiner Gruppe mehr beitreten."],
+    fr:["Respect et hygiène","Vous partagerez le taxi avec des personnes que vous ne connaissez pas. Un trajet agréable, cela se construit ensemble :","Veillez à votre hygiène personnelle, pour que chacun se sente à l'aise dans le taxi.","Si vous ne vous sentez pas bien, portez un masque pour protéger vos co-passagers.","Respectez vos co-passagers et le chauffeur.","Toute personne qui ne respecte pas ses co-passagers ou le chauffeur ne pourra plus rejoindre un groupe."],
+    it:["Rispetto e igiene","Condividerai il taxi con persone che non conosci. Un viaggio piacevole si costruisce insieme:","Cura la tua igiene personale, così che tutti si sentano a proprio agio nel taxi.","Se non ti senti bene, indossa una mascherina per proteggere i compagni di viaggio.","Rispetta i compagni di viaggio e l'autista.","Chi non rispetta i compagni di viaggio o l'autista non potrà più entrare in un gruppo."],
+    es:["Respeto e higiene","Compartirá el taxi con personas que no conoce. Un viaje agradable lo hacemos entre todos:","Cuide su higiene personal, para que todos se sientan cómodos en el taxi.","Si no se encuentra bien, póngase una mascarilla para proteger a sus compañeros de viaje.","Respete a sus compañeros de viaje y al conductor.","Quien no respete a sus compañeros de viaje o al conductor no podrá unirse a un grupo."],
+    ru:["Уважение и гигиена","Вы поедете в такси с незнакомыми людьми. Приятную поездку мы создаём вместе:","Следите за личной гигиеной, чтобы всем в такси было комфортно.","Если вы плохо себя чувствуете, наденьте маску, чтобы защитить попутчиков.","Уважайте попутчиков и водителя.","Тот, кто не уважает попутчиков или водителя, не сможет присоединяться к компании."],
+    pl:["Szacunek i higiena","Będziesz dzielić taksówkę z osobami, których nie znasz. Przyjemną podróż tworzymy wspólnie:","Dbaj o higienę osobistą, aby wszyscy czuli się w taksówce komfortowo.","Jeśli źle się czujesz, załóż maseczkę, aby chronić współpasażerów.","Szanuj współpasażerów i kierowcę.","Kto nie szanuje współpasażerów lub kierowcy, nie będzie mógł dołączyć do grupy."],
+    ro:["Respect și igienă","Veți împărți taxiul cu persoane pe care nu le cunoașteți. O călătorie plăcută o facem împreună:","Aveți grijă de igiena personală, ca toată lumea să se simtă confortabil în taxi.","Dacă nu vă simțiți bine, purtați o mască pentru a vă proteja colegii de drum.","Respectați-vă colegii de drum și șoferul.","Cine nu își respectă colegii de drum sau șoferul nu va mai putea intra într-un grup."],
+    nl:["Respect en hygiëne","U deelt de taxi met mensen die u niet kent. Een prettige rit maken we samen:","Zorg voor uw persoonlijke hygiëne, zodat iedereen zich prettig voelt in de taxi.","Voelt u zich niet goed, draag dan een mondkapje om uw medepassagiers te beschermen.","Respecteer uw medepassagiers en de chauffeur.","Wie medepassagiers of de chauffeur niet respecteert, kan niet meer aan een groep deelnemen."],
+    tr:["Saygı ve hijyen","Taksiyi tanımadığınız kişilerle paylaşacaksınız. Keyifli bir yolculuğu hep birlikte yaratırız:","Taksideki herkesin rahat etmesi için kişisel hijyeninize dikkat edin.","Kendinizi iyi hissetmiyorsanız, yol arkadaşlarınızı korumak için maske takın.","Yol arkadaşlarınıza ve sürücüye saygılı olun.","Yol arkadaşlarına veya sürücüye saygı göstermeyenler bir gruba katılamaz."],
+    ar:["الاحترام والنظافة","ستشارك سيارة الأجرة مع أشخاص لا تعرفهم. الرحلة الممتعة نصنعها معًا:","اعتنِ بنظافتك الشخصية ليشعر الجميع بالراحة داخل السيارة.","إذا لم تكن بخير، فارتدِ كمامة لحماية رفاقك في الرحلة.","احترم رفاقك في الرحلة والسائق.","من لا يحترم رفاق الرحلة أو السائق لن يتمكن من الانضمام إلى مجموعة."],
+    zh:["尊重与卫生","您将与不认识的人同乘一辆出租车。愉快的行程需要大家共同创造：","请注意个人卫生，让车内每个人都感到舒适。","如果您身体不适，请佩戴口罩，保护同行乘客。","请尊重同行乘客和司机。","不尊重同行乘客或司机的人，将无法加入同组出行。"],
+    uk:["Повага та гігієна","Ви їхатимете в таксі з незнайомими людьми. Приємну поїздку ми створюємо разом:","Дбайте про особисту гігієну, щоб усім у таксі було комфортно.","Якщо ви погано почуваєтеся, вдягніть маску, щоб захистити попутників.","Поважайте попутників і водія.","Хто не поважає попутників або водія, не зможе приєднуватися до компанії."],
+    he:["כבוד והיגיינה","תחלקו את המונית עם אנשים שאינכם מכירים. נסיעה נעימה יוצרים יחד:","שמרו על היגיינה אישית, כדי שכולם ירגישו בנוח במונית.","אם אינכם מרגישים טוב, עטו מסכה כדי להגן על הנוסעים האחרים.","כבדו את הנוסעים האחרים ואת הנהג.","מי שלא מכבד את הנוסעים האחרים או את הנהג לא יוכל להצטרף לקבוצה."]
+  };
+  Object.keys(MAZI_RESPECT).forEach(function(c){
+    if(!I[c] || !I[c].maziInfoHtml) return;
+    var t = MAZI_RESPECT[c];
+    var sec = "<h3>12. " + t[0] + "</h3><p>" + t[1] + "</p><ul><li>" + t[2] + "</li><li>" + t[3] + "</li><li>" + t[4] + "</li></ul><p>" + t[5] + "</p>";
+    var h = I[c].maziInfoHtml.replace(/<h3>(1[2-9])\./g, function(m, n){ return "<h3>" + (Number(n) + 1) + "."; });
+    I[c].maziInfoHtml = h.replace("<h3>13.", sec + "<h3>13.");
+  });
+
   window.__I18N = I;
   window.__LANGS = {};
   Object.keys(I).forEach(function(c){
