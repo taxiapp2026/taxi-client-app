@@ -4875,6 +4875,29 @@
     I[c].maziNotFoundBook = MAZI_EXPIRED[c][1];
   });
 
+  /* «Μαζί» (4/11): έχει ήδη κράτηση παρέας για την ίδια μέρα και ώρα — δεύτερο ταξί δεν κλείνεται. */
+  var MAZI_SAME_SLOT = {
+    el:"Έχετε ήδη κράτηση παρέας για αυτή την ημέρα και ώρα. Αλλάξτε ώρα ή ημερομηνία.",
+    en:"You already have a group booking for this date and time. Please change the time or date.",
+    de:"Sie haben für dieses Datum und diese Uhrzeit bereits eine Gruppenbuchung. Bitte ändern Sie Uhrzeit oder Datum.",
+    fr:"Vous avez déjà une réservation de groupe pour cette date et cette heure. Veuillez changer l'heure ou la date.",
+    it:"Hai già una prenotazione di gruppo per questa data e ora. Cambia l'ora o la data.",
+    es:"Ya tiene una reserva de grupo para esta fecha y hora. Cambie la hora o la fecha.",
+    ru:"У вас уже есть групповая поездка на эту дату и время. Измените время или дату.",
+    pl:"Masz już rezerwację grupową na ten dzień i godzinę. Zmień godzinę lub datę.",
+    ro:"Aveți deja o rezervare de grup pentru această dată și oră. Schimbați ora sau data.",
+    nl:"U heeft al een groepsboeking voor deze datum en tijd. Wijzig de tijd of datum.",
+    tr:"Bu tarih ve saat için zaten bir grup rezervasyonunuz var. Lütfen saati veya tarihi değiştirin.",
+    ar:"لديك بالفعل حجز جماعي لهذا التاريخ والوقت. يرجى تغيير الوقت أو التاريخ.",
+    zh:"您在此日期和时间已有同组预订。请更改时间或日期。",
+    uk:"У вас уже є групова поїздка на цю дату й час. Змініть час або дату.",
+    he:"כבר יש לך הזמנה קבוצתית לתאריך ולשעה האלה. יש לשנות את השעה או התאריך."
+  };
+  Object.keys(MAZI_SAME_SLOT).forEach(function(c){
+    if(!I[c]) I[c]={};
+    I[c].maziSameSlot = MAZI_SAME_SLOT[c];
+  });
+
   window.__I18N = I;
   window.__LANGS = {};
   Object.keys(I).forEach(function(c){

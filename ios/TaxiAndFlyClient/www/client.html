@@ -14821,6 +14821,38 @@ async function routeKm(fromLat, fromLon){
         }, true);
       })();
 
+      // 4/11: όποιος έχει κράτηση παρέας δεν κλείνει δεύτερο ταξί για την ίδια μέρα και ώρα. Ο έλεγχος της κανονικής κράτησης
+      // δεν το πιάνει: η κράτηση της παρέας έχει το τηλέφωνο του μισθωτή και την ώρα της 1ης παραλαβής. Η ώρα της παρέας
+      // μετακινείται από αυτή που έγραψε ο πελάτης, γι' αυτό «ίδια ώρα» = μέσα στο περιθώριο της παρέας (timeWindowMinutes).
+      // Μόνο εδώ, στο «Κάνε κράτηση»: ο κώδικας της κανονικής κράτησης δεν αλλάζει. Όποιος έφυγε από την παρέα δεν μπλοκάρεται.
+      function sameSlotAsParty(){
+        var g = foundGroup(lastReq);
+        if(!g || !g.bookingId || g.bookingState === "done" || isAirportToAthens()) return false;
+        if(g.lateDriverCancel && lateSoloAnswer(g.bookingId)) return false;
+        if(typeof window.__maziHasLeftSeat === "function" && window.__maziHasLeftSeat(g.bookingId)) return false;
+        var at = function(s){
+          var m = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{1,2})[:.](\d{2})/.exec(String(s || "").trim());
+          return m ? new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]), Number(m[4]), Number(m[5])).getTime() : NaN;
+        };
+        var want = at(val("date") + " " + val("time"));
+        if(!isFinite(want)) return false;
+        var win = Math.max(Number(cfg().window) || 0, 15) * 60000;
+        return [lastReq.departLocal, g.departLocal].some(function(s){
+          var t = at(s);
+          return isFinite(t) && Math.abs(t - want) <= win;
+        });
+      }
+      (function(){
+        var cb = document.getElementById("priceConfirmBtn");
+        if(!cb) return;
+        cb.addEventListener("click", function(e){
+          if(!sameSlotAsParty()) return;
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          say(T("maziSameSlot"));
+        }, true);
+      })();
+
       window.__cmIdleTitle = function(){
         if(monitorOn()) return "👥 " + T("maziBtnTitle");
         return origIdleTitle ? origIdleTitle.apply(this, arguments) : "CLIENT MONITOR";
