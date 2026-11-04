@@ -8476,6 +8476,27 @@ function isHomeVisible(){
       }
     };
 
+    // 4/11: ο οδηγός πάτησε «Έφτασα» ενώ ο πελάτης είναι στον Φάκελο → κλείνει ο Φάκελος και φαίνεται το μόνιτορ στην αρχική.
+    // Καλείται μία φορά ανά άφιξη: αν ο πελάτης ξανανοίξει τον Φάκελο, μένει ανοιχτός.
+    window.__closeFolderForMonitor = function(){
+      try{
+        const box = document.getElementById("folderBox");
+        if(box && box.style.display === "block"){
+          window._airportAthensExpandedFolderKey = "";
+          window._airportAthensFolderHistoryPushed = false;
+          box.style.display = "none";
+          box.classList.remove("athensAirportFullscreen", "airportNowFullscreen");
+          _syncFolderBodyScrollLock();
+        }
+        setTimeout(function(){
+          try{
+            const mb = document.getElementById("clientCentralMonitor");
+            if(mb && mb.scrollIntoView) mb.scrollIntoView({ block: "center", behavior: "smooth" });
+          }catch(_e){}
+        }, 200);
+      }catch(e){}
+    };
+
     /* ===== Language ===== */
     window.setLang = function(l){
       lang = l;
@@ -10443,6 +10464,7 @@ currentBookingStatus = "new";
       if(_driverWaitingAckedIds.has(bookingId)) return;
       _driverWaitingBookingId = bookingId;
       window._cfmCurrentBookingId = bookingId;
+      try{ window.__closeFolderForMonitor(); }catch(e){}
       try { window.__clientMonitorState = { type: 'driverWaiting', bookingId: bookingId }; } catch (e) {}
       // ✅ Block τοπικά αμέσως
       if(bookingId) _driverArrivedBlocked.add(bookingId);
@@ -15360,6 +15382,11 @@ async function routeKm(fromLat, fromLon){
         // Ο οδηγός είναι κάτω στη ΔΙΚΗ του στάση → η ΙΔΙΑ οθόνη με την κανονική (🚕, μήνυμα, «Εντάξει, κατεβαίνω!»), χωρίς
         // τα υπόλοιπα της κάρτας «Μαζί» (26/10: «κοίτα τι βγήκε»).
         if(pk && pk.state === "arrived" && !comingDown[stopKey(g)]){
+          window.__maziDownSeen = window.__maziDownSeen || {};
+          if(!window.__maziDownSeen[stopKey(g)]){
+            window.__maziDownSeen[stopKey(g)] = true;
+            try{ if(typeof window.__closeFolderForMonitor === "function") window.__closeFolderForMonitor(); }catch(e){}
+          }
           var dwIcon = document.createElement("div");
           dwIcon.className = "cm-icon";
           dwIcon.textContent = "🚕";
