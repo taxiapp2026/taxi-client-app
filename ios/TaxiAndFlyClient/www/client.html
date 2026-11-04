@@ -8369,6 +8369,7 @@ listEl.appendChild(div);
             return;
           }
           if(_maziForceSeat){
+            if(seatIt.__maziWaitShown) return;
             alert((typeof window.__t==='function' && window.__t('folderCancelFail')) || (lang==="en" ? "Cancel failed." : "❌ Αποτυχία ακύρωσης."));
             return;
           }
@@ -15039,6 +15040,11 @@ async function routeKm(fromLat, fromLon){
                 try{ if(typeof window.stopListenBooking === "function") window.stopListenBooking(); }catch(e){}
                 return true;
               }
+              // 4/11: η κράτηση γίνεται ακόμα → το ίδιο μήνυμα κάθε φορά που πατάει, ώσπου να τελειώσει.
+              if(j && j.error === "booking_running"){
+                it.__maziWaitShown = true;
+                say(T("maziBookingSending"));
+              }
               return false;
             }, function(){ return false; });
         }
@@ -15615,7 +15621,7 @@ async function routeKm(fromLat, fromLon){
         var fn = window.__maziCancelSeat;
         if(typeof fn !== "function"){ btn.disabled = false; say(T("maziErr")); return; }
         Promise.resolve(fn(it)).then(function(ok){
-          if(!ok){ btn.disabled = false; say(T("maziErr")); return; }
+          if(!ok){ btn.disabled = false; if(!it.__maziWaitShown) say(T("maziErr")); return; }
           try{ dropSharedCard(g); }catch(e){}
           syncPriceLock();   // έφυγε από την παρέα → το «Δείξε τιμή» ξανανοίγει αμέσως, κλείνει σαν μόνος
           if(typeof window.__maziSeatAitiologia !== "function" || !window.__maziSeatAitiologia(it)){
