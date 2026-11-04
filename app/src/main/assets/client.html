@@ -12198,6 +12198,25 @@ currentBookingStatus = "new";
       }
     }
 
+    // «Μαζί» (4/11): υπάρχει ήδη ενεργό ραντεβού Αθήνα→Αεροδρόμιο στον Φάκελο για αυτή τη μέρα και ώρα; Μόνο ανάγνωση: το καλεί
+    // το «Με παρέα». Η κανονική κράτηση δεν το χρησιμοποιεί (εκείνη έχει τον δικό της έλεγχο πιο πάνω).
+    window.__hasLocalSameSlotBooking = function(date, time, winMin){
+      try{
+        const toMin = function(t){
+          const m = /^(\d{1,2})[:.](\d{2})/.exec(String(t || "").trim());
+          return m ? Number(m[1]) * 60 + Number(m[2]) : NaN;
+        };
+        const want = toMin(time);
+        if(!date || !isFinite(want)) return false;
+        return readFolderRaw("athens_airport").some(function(b){
+          if(!b || b.date !== date || b.clientLeft === true || b.deleted === true) return false;
+          if(DUP_CHECK_IGNORED.has(String(b.status || "new").trim().toLowerCase())) return false;
+          const t = toMin(b.time);
+          return isFinite(t) && Math.abs(t - want) <= winMin;
+        });
+      }catch(e){ return false; }
+    };
+
     function scanSameDayDuplicateFromSnap(snap, data, rawPhone, ignored, airportAthensTerminal){
       if(!snap || !snap.exists()) return false;
       let found = false;
@@ -14324,6 +14343,12 @@ async function routeKm(fromLat, fromLon){
 
       function startSearch(){
         if(sending) return;
+        // 4/11: υπάρχει ήδη ραντεβού (παρέας ή κανονικό) για αυτή τη μέρα και ώρα → όχι νέα αναζήτηση.
+        var slotWin = Math.max(Number(cfg().window) || 0, 15);
+        if(sameSlotAsParty() || (typeof window.__hasLocalSameSlotBooking === "function" && window.__hasLocalSameSlotBooking(val("date"), val("time"), slotWin))){
+          say(T("maziSameSlot"));
+          return;
+        }
         if(!readAccepted()){
           pendingStart = true;
           openInfo();
@@ -14365,6 +14390,14 @@ async function routeKm(fromLat, fromLon){
         }); }).then(function(j){
           // Όπως η κανονική κράτηση: κλείνει η οθόνη τιμής, ο πελάτης βλέπει τη διαδικασία στο κεντρικό μόνιτορ.
           if(j.ok && j.request){
+            // 4/11: μία ενεργή παρέα ανά κινητό. Έχει ήδη παρέα με κράτηση → ο server γυρίζει εκείνη και χωρίς αυτό δεν έβλεπε τίποτα.
+            // Του λέμε τον λόγο· η οθόνη τιμής μένει ανοιχτή για να κλείσει κανονικό ταξί.
+            var ownParty = j.existing ? foundGroup(j.request) : null;
+            if(ownParty && ownParty.bookingId){
+              setMonitor(j.request, true);
+              say(T("maziOneParty"));
+              return;
+            }
             setMonitor(j.request, true);
             try{ if(typeof window.hideOverlay === "function") window.hideOverlay(); }catch(e){}
             // 1/11: στην αρχική να φαίνεται ΑΜΕΣΩΣ το μόνιτορ — η σελίδα έμενε κυλισμένη κάτω (στη φόρμα)
@@ -14817,7 +14850,13 @@ async function routeKm(fromLat, fromLon){
         if(!pb) return;
         // Το CSS κόβει το άγγιγμα· αυτό κόβει και ό,τι άλλο στέλνει «κλικ» (π.χ. εργαλεία προσβασιμότητας).
         pb.addEventListener("click", function(e){
-          if(pb.dataset.maziLock === "1"){ e.preventDefault(); e.stopImmediatePropagation(); }
+          if(pb.dataset.maziLock === "1"){ e.preventDefault(); e.stopImmediatePropagation(); return; }
+          // Έχει κράτηση παρέας για αυτή τη μέρα και ώρα → το μαθαίνει πριν ξεκινήσει τη διαδικασία.
+          if(sameSlotAsParty()){
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            say(T("maziSameSlot"));
+          }
         }, true);
       })();
 

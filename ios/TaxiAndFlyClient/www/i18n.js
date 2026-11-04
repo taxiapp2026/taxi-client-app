@@ -4875,27 +4875,50 @@
     I[c].maziNotFoundBook = MAZI_EXPIRED[c][1];
   });
 
-  /* «Μαζί» (4/11): έχει ήδη κράτηση παρέας για την ίδια μέρα και ώρα — δεύτερο ταξί δεν κλείνεται. */
+  /* «Μαζί» (4/11): έχει ήδη κράτηση για την ίδια μέρα και ώρα — η διαδικασία δεν ξεκινάει. */
   var MAZI_SAME_SLOT = {
-    el:"Έχετε ήδη κράτηση παρέας για αυτή την ημέρα και ώρα. Αλλάξτε ώρα ή ημερομηνία.",
-    en:"You already have a group booking for this date and time. Please change the time or date.",
-    de:"Sie haben für dieses Datum und diese Uhrzeit bereits eine Gruppenbuchung. Bitte ändern Sie Uhrzeit oder Datum.",
-    fr:"Vous avez déjà une réservation de groupe pour cette date et cette heure. Veuillez changer l'heure ou la date.",
-    it:"Hai già una prenotazione di gruppo per questa data e ora. Cambia l'ora o la data.",
-    es:"Ya tiene una reserva de grupo para esta fecha y hora. Cambie la hora o la fecha.",
-    ru:"У вас уже есть групповая поездка на эту дату и время. Измените время или дату.",
-    pl:"Masz już rezerwację grupową na ten dzień i godzinę. Zmień godzinę lub datę.",
-    ro:"Aveți deja o rezervare de grup pentru această dată și oră. Schimbați ora sau data.",
-    nl:"U heeft al een groepsboeking voor deze datum en tijd. Wijzig de tijd of datum.",
-    tr:"Bu tarih ve saat için zaten bir grup rezervasyonunuz var. Lütfen saati veya tarihi değiştirin.",
-    ar:"لديك بالفعل حجز جماعي لهذا التاريخ والوقت. يرجى تغيير الوقت أو التاريخ.",
-    zh:"您在此日期和时间已有同组预订。请更改时间或日期。",
-    uk:"У вас уже є групова поїздка на цю дату й час. Змініть час або дату.",
-    he:"כבר יש לך הזמנה קבוצתית לתאריך ולשעה האלה. יש לשנות את השעה או התאריך."
+    el:"Έχετε ήδη κράτηση για αυτή την ημέρα και ώρα. Αλλάξτε ώρα ή ημερομηνία.",
+    en:"You already have a booking for this date and time. Please change the time or date.",
+    de:"Sie haben für dieses Datum und diese Uhrzeit bereits eine Buchung. Bitte ändern Sie Uhrzeit oder Datum.",
+    fr:"Vous avez déjà une réservation pour cette date et cette heure. Veuillez changer l'heure ou la date.",
+    it:"Hai già una prenotazione per questa data e ora. Cambia l'ora o la data.",
+    es:"Ya tiene una reserva para esta fecha y hora. Cambie la hora o la fecha.",
+    ru:"У вас уже есть поездка на эту дату и время. Измените время или дату.",
+    pl:"Masz już rezerwację na ten dzień i godzinę. Zmień godzinę lub datę.",
+    ro:"Aveți deja o rezervare pentru această dată și oră. Schimbați ora sau data.",
+    nl:"U heeft al een boeking voor deze datum en tijd. Wijzig de tijd of datum.",
+    tr:"Bu tarih ve saat için zaten bir rezervasyonunuz var. Lütfen saati veya tarihi değiştirin.",
+    ar:"لديك بالفعل حجز لهذا التاريخ والوقت. يرجى تغيير الوقت أو التاريخ.",
+    zh:"您在此日期和时间已有预订。请更改时间或日期。",
+    uk:"У вас уже є поїздка на цю дату й час. Змініть час або дату.",
+    he:"כבר יש לך הזמנה לתאריך ולשעה האלה. יש לשנות את השעה או התאריך."
   };
   Object.keys(MAZI_SAME_SLOT).forEach(function(c){
     if(!I[c]) I[c]={};
     I[c].maziSameSlot = MAZI_SAME_SLOT[c];
+  });
+
+  /* «Μαζί» (4/11): μία ενεργή παρέα ανά κινητό — νέα μόλις ολοκληρωθεί αυτή. */
+  var MAZI_ONE_PARTY = {
+    el:"Έχετε ήδη ενεργή παρέα. Νέα παρέα μπορείτε να κλείσετε μόλις ολοκληρωθεί αυτή.",
+    en:"You already have an active group. You can book a new group once this one is completed.",
+    de:"Sie haben bereits eine aktive Gruppe. Eine neue Gruppe können Sie buchen, sobald diese abgeschlossen ist.",
+    fr:"Vous avez déjà un groupe actif. Vous pourrez réserver un nouveau groupe une fois celui-ci terminé.",
+    it:"Hai già un gruppo attivo. Potrai prenotare un nuovo gruppo quando questo sarà concluso.",
+    es:"Ya tiene un grupo activo. Podrá reservar un grupo nuevo cuando este haya terminado.",
+    ru:"У вас уже есть активная компания. Новую компанию можно будет оформить после завершения этой.",
+    pl:"Masz już aktywną grupę. Nową grupę możesz zarezerwować po zakończeniu tej.",
+    ro:"Aveți deja un grup activ. Puteți rezerva un grup nou după ce acesta se încheie.",
+    nl:"U heeft al een actieve groep. U kunt een nieuwe groep boeken zodra deze is afgerond.",
+    tr:"Zaten etkin bir grubunuz var. Bu grup tamamlandıktan sonra yeni bir grup ayırtabilirsiniz.",
+    ar:"لديك بالفعل مجموعة نشطة. يمكنك حجز مجموعة جديدة بعد اكتمال هذه المجموعة.",
+    zh:"您已有一个进行中的同组出行。此行程完成后才能预订新的同组出行。",
+    uk:"У вас уже є активна компанія. Нову компанію можна буде оформити після завершення цієї.",
+    he:"כבר יש לך קבוצה פעילה. אפשר להזמין קבוצה חדשה אחרי שזו תסתיים."
+  };
+  Object.keys(MAZI_ONE_PARTY).forEach(function(c){
+    if(!I[c]) I[c]={};
+    I[c].maziOneParty = MAZI_ONE_PARTY[c];
   });
 
   window.__I18N = I;
