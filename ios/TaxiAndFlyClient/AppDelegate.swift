@@ -9,6 +9,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
+        Self.installDownSound()
         let center = UNUserNotificationCenter.current()
         center.delegate = self
         center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
@@ -55,6 +56,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
                 return
             }
+            // «Το ταξί έφτασε και σας περιμένει κάτω»: ο ήχος παίζει και με ανοιχτή εφαρμογή (το μόνιτορ δείχνει ήδη το μήνυμα).
+            if (notification.request.content.userInfo["loud"] as? String) == "1" {
+                completionHandler([.sound])
+                return
+            }
             completionHandler([])
             return
         }
@@ -63,6 +69,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         } else {
             completionHandler([.alert, .sound, .badge])
         }
+    }
+
+    /// 4/11: το iOS ψάχνει τον ήχο του push στο Library/Sounds. Το αρχείο έρχεται μέσα στο www/sounds της εφαρμογής.
+    private static func installDownSound() {
+        let fm = FileManager.default
+        guard let src = Bundle.main.url(forResource: "taxi_kato_el", withExtension: "caf", subdirectory: "www/sounds"),
+              let lib = fm.urls(for: .libraryDirectory, in: .userDomainMask).first else { return }
+        let dir = lib.appendingPathComponent("Sounds", isDirectory: true)
+        let dst = dir.appendingPathComponent("taxi_kato_el.caf")
+        try? fm.createDirectory(at: dir, withIntermediateDirectories: true)
+        try? fm.removeItem(at: dst)
+        try? fm.copyItem(at: src, to: dst)
     }
 
     /// Push του server για «Μαζί»: type "mazi_…", κράτηση-θέση «<κράτηση>#mN» (π.χ. «Ο οδηγός έφτασε» στον συνεπιβάτη)
